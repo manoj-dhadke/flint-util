@@ -1,5 +1,5 @@
 #begin
-@log.trace("Started execution of 'delete_db.rb' flintbit...")
+@log.trace("Started execution of 'delete' flintbit...")
  #Flintbit Input Parameters
  
 input_type = @input.type
@@ -76,8 +76,8 @@ else
 	@log.error("Failure in executing JDBC Connector where, exitcode :: #{response_exitcode} | 
 		                                               message ::  #{response_message}")
         @output.set("error",response_message)
-	@log.trace("Finished executing 'http_get' flintbit with error...")
+	@log.trace("Finished executing 'delete' flintbit with error...")
 end
  
-@log.trace("Finished execution of 'delete_db.rb'")
+@log.trace("Finished execution of 'delete.rb'")
 #end
