@@ -72,7 +72,7 @@ if response.exitcode == 0
 	@log.info("Success in executing JDBC Connector where, exitcode :: #{response_exitcode} | 
     	                                                      message ::  #{response_message}")
 	@log.info("HTTP Response Body :: #{result}")
-	@output.set("result",response_message)
+	@output.set("result",result.to_s)
 
 else
 	@log.error("Failure in executing JDBC Connector where, exitcode :: #{response_exitcode} | 
