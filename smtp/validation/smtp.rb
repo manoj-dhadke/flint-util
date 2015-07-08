@@ -28,7 +28,7 @@ if @from.nil? || @from.empty?
 	@from = "infiverve.test@gmail.com"
 end
 if @to.nil? || @to.empty?
-	@to = "kamaljeet.rathi@gmail.com"
+	@to = "kamaljeet.rathi@infiverve.com"
 end
 if @subject.nil? || @subject.empty?
 	@subject = "This is subject"
@@ -37,7 +37,7 @@ if @body.nil? || @body.empty?
 	@body = "This is body"
 end
 if @cc.nil? || @cc.empty?
-	@cc = "pratap.patil@infiverve.com"
+	@cc = "shweta.nerake@infiverve.com"
 end
 if @bcc.nil? || @bcc.empty?
 	@bcc = "amit.mhetre@infiverve.com"
@@ -76,12 +76,12 @@ result = response.get("result")              #Response Body
 if response.exitcode == 0
         @log.info("Success in executing SMTP Connector where, exitcode :: #{response_exitcode} | 
     	                                                      message ::  #{response_message}")
-	@log.info("SMTP Response Body :: #{result}")
-	@output.set("result","success")
+	@log.info("SMTP Response Body ::#{response_message}")
+	@output.set("result",response_message)
 else
         @log.error("Failure in executing SMTP Connector where, exitcode :: #{response_exitcode} | 
 		                                               message ::  #{response_message}")
 	@log.error("Failed")
-	@output.set("result",response.message)
+	@output.set("result",response_message)
 end
 #end
