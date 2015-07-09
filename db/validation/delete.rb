@@ -49,11 +49,11 @@ end
                    .set("jdbc-url",@jdbc_url)
                    .set("driver",@driver).sync
 
-#HTTP Connector Response Meta Parameters
+#JDBC Connector Response Meta Parameters
 response_exitcode=response.exitcode           #Exit status code
 response_message=response.message             #Execution status message
 
-#HTTP Connector Response Parameters
+#JDBC Connector Response Parameters
 result = response.get("result")               #Response Body
 
 if response.exitcode == 0
