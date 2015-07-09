@@ -10,7 +10,7 @@
 @request_headers=@input.get("headers")        #HTTP Request Headers
 #optional
 @request_timeout=@input.get("timeout")        #Timeout in milliseconds, taken by
-                                             #the Connetor to serve the request
+                                              #the Connetor to serve the request
 @log.info("Flintbit input parameters are, connector name :: #{@connector_name} |
                                           url ::            #{@request_url} |
                                           method ::         #{@request_method} |
@@ -37,6 +37,8 @@ response=@call.connector(@connector_name)
          .sync
 
 end
+
+#HTTP Connector Response Meta Parameters
 response_exitcode=response.exitcode          #Exit status code
 response_message=response.message            #Execution status messages           
  

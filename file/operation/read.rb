@@ -1,5 +1,5 @@
 #begin
-@log.trace("Started executing 'file_read' flintbit...")
+@log.trace("Started executing 'read' flintbit...")
 
 #Flintbit Input Parameters
 connector_name=@input.get("connector_name")      #Name of the File Connector

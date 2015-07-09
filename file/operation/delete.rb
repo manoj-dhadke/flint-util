@@ -1,5 +1,5 @@
 #begin
-@log.trace("Started executing 'file_delete' flintbit...")
+@log.trace("Started executing 'delete' flintbit...")
 
 #Flintbit Input Parameters
 connector_name=@input.get("connector_name")       #Name of the HTTP Connector

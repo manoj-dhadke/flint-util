@@ -9,7 +9,7 @@
 
 #optional
 @request_timeout=@input.get("timeout")          #HTTP Request Timeout in milliseconds, taken 
-                                               #by the Connetor to serve the request 
+                                                #by the Connetor to serve the request 
 @request_headers=@input.get("headers")          #HTTP Request Headers
 
 @log.info("Flintbit input parameters are, connector name :: #{@connector_name} |
