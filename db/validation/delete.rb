@@ -5,8 +5,7 @@
 input_type = @input.type
 # this input parameters are not used
 
- if input_type == "application/xml"  # Input type of Request
-        @connector_name = @input.get("/connector_name/text()")
+ if input_type == "application/xml"                             # Input type of Request
 	#All mandatory if jdbc_url not provided  
         @connector_name = @input.get("/connector_name/text()")  #Name of the JDBC Connector
 	@jdbc_url = @input.get("/jdbc_url/text()")              #JDBC Url

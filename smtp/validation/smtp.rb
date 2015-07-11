@@ -25,10 +25,10 @@ if @connector_name.nil? || @connector_name.empty?
 	@connector_name = "email"
 end
 if @from.nil? || @from.empty?
-	@from = "infiverve.test@gmail.com"
+	@from = "email address"
 end
 if @to.nil? || @to.empty?
-	@to = "kamaljeet.rathi@infiverve.com"
+	@to = "email address"
 end
 if @subject.nil? || @subject.empty?
 	@subject = "This is subject"
@@ -37,10 +37,10 @@ if @body.nil? || @body.empty?
 	@body = "This is body"
 end
 if @cc.nil? || @cc.empty?
-	@cc = "shweta.nerake@infiverve.com"
+	@cc = "email address"
 end
 if @bcc.nil? || @bcc.empty?
-	@bcc = "amit.mhetre@infiverve.com"
+	@bcc = "email address"
 end
 if @attachments.nil? || @attachments.empty?
 	@attachments = "/home/kamaljeet/Desktop/add.rb"
