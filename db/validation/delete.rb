@@ -24,10 +24,10 @@ if @connector_name.nil? || @connector_name.empty?
 end
 
 if @jdbc_url.nil? || @jdbc_url.empty?
-	@jdbc_url = "jdbc:mysql://localhost:3306/flint"
+	@jdbc_url = "your jdbc url"
 end
 if @query.nil? || @query.empty?
-	@query = "delete from persons where age=27 "
+	@query = "your query "
 end
 if @driver.nil? || @driver.empty?
 	@driver = "com.mysql.jdbc.Driver"

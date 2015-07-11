@@ -23,10 +23,10 @@ if @connector_name.nil? || @connector_name.empty?
 	@connector_name = "mysql_db"
 end
 if @jdbc_url.nil? || @jdbc_url.empty?
-	@jdbc_url = "jdbc:mysql://localhost:3306/flint"
+	@jdbc_url = "your jdbc url"
 end
 if @query.nil? || @query.empty?
-	@query = "call test();"
+	@query = "your procedure call"
 end
 if @driver.nil? || @driver.empty?
 	@driver = "com.mysql.jdbc.Driver"
