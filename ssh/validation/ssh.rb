@@ -19,25 +19,25 @@ if @connector_name.nil? || @connector_name.empty?
 	@connector_name = "ssh_test"
 end
 if @target.nil? || @target.empty?
-	@target = "192.168.0.109"
+	@target = "ip address of target"
 end
 if @type.nil? || @type.empty?
 	@type = "exec"
 end
 if @username.nil? || @username.empty?
-	@username = "pratap"
+	@username = "username of target"
 end
 if @password.nil? || @password.empty?
-	@password = "pratap1"
+	@password = "password of target machine"
 end
 if @passphrase.nil? || @passphrase.empty?
 	@passphrase = ""
 end
 if @key_file.nil? || @key_file.empty?
-	@key_file = "id_rsa.pub"
+	@key_file = "public key"
 end
 if @command.nil? || @command.empty?
-	@command = "whoami"
+	@command = "command"
 end
 if @timeout.nil? || @timeout.empty?
 	@timeout = 100000
