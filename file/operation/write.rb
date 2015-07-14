@@ -34,6 +34,7 @@ if response_exitcode == 0
 		                                               message :: #{response_message}")
 	@log.info("File :: #{response_file} | Data written to the file :: #{response_body}")
 	@output.set("result",response_body)
+        @output.set("file",response_file)
 	@log.trace("Finished executing 'write' flintbit with success...")
 
 else

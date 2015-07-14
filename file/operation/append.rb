@@ -33,6 +33,7 @@ if response_exitcode == 0
 		                                               message :: #{response_message}")
         @log.info("File :: #{response_file} | Data appended to the File ::#{response_body}")
 	@output.set("result",response_body)
+        @output.set("file",response_file)
 	@log.trace("Finished executing 'append' flintbit with success...")
 else
 	@log.error("Failure in executing File Connector where, exitcode :: #{response_exitcode} |
