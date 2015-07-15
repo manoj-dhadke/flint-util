@@ -27,8 +27,6 @@ request_timeout=@input.get("timeout")											#Execution time of the Flintbit 
 																	 			  region : 					  #{region} |
 																	 			  subnet_id : 				#{subnet_id}") 
 
-@log.trace("Calling Amazon EC2 Connector...")
-
 if connector_name.nil? || connector_name.empty?
    raise 'Please provide Amazon EC2 "connector name (connector_name)" to launch Instance'
 end
@@ -48,6 +46,8 @@ end
 if max_instance.nil? || max_instance.is_a?(String)
    raise 'Please provide "Maximum instance value (max_instance)" to launch Instance'
 end
+
+@log.trace("Calling #{connector_name} ...")
 
 call_connector = @call.connector(connector_name)
 							  .set("action",action)
@@ -91,7 +91,7 @@ response_message=response.message                		#Execution status messages
 instance_info=response.get("instance-info")         #Amazon EC2 created instance info set
 
 if response_exitcode == 0
-	@log.info("SUCCESS in executing Amazon EC2 Connector where, exitcode : #{response_exitcode} | 
+	@log.info("SUCCESS in executing #{connector_name} where, exitcode : #{response_exitcode} | 
 																															message :  #{response_message}")
   instance_info.each do |instance|
   @log.info("Amazon EC2 Instance ID : 				#{instance.get("instance-id")} |						
@@ -101,7 +101,7 @@ if response_exitcode == 0
   end
 	@output.setraw("instance-info",instance_info.to_s)
 else
-	@log.error("ERROR in executing Amazon EC2 Connector where, exitcode :  #{response_exitcode} |
+	@log.error("ERROR in executing #{connector_name} where, exitcode :  #{response_exitcode} |
 																															 message : #{response_message}")
   @output.set("error",response_message)
   #@output.exit(1,response_message)															#Used to exit from flintbit	

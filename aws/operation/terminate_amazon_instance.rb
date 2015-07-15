@@ -15,7 +15,7 @@ request_timeout=@input.get("timeout")									      #Execution time of the Flint
 	                                        instance_id :       #{instance_id} |
 	                                        region :            #{region}")
 
-@log.trace("Calling Amazon EC2 Connector...")
+@log.trace("Calling #{connector_name}...")
 
 call_connector = @call.connector(connector_name)
 								.set("action",action)
@@ -50,7 +50,7 @@ response_message=response.message                           #Execution status me
 instances_set=response.get("terminated-instance-set")       #Set of Amazon EC2 terminated instances
 
 if response_exitcode == 0
-	@log.info("SUCCESS in executing Amazon EC2 Connector where, exitcode : #{response_exitcode} | 
+	@log.info("SUCCESS in executing #{connector_name} where, exitcode : #{response_exitcode} | 
 																															message :  #{response_message}")
 	instances_set.each do |instance_id|
   @log.info("Amazon EC2 Instance current state :  #{instance_id.get("current-state")} |
@@ -59,7 +59,7 @@ if response_exitcode == 0
 	end
 	@output.setraw("terminated-instance-set",instances_set.to_s)
 else
-	@log.error("ERROR in executing Amazon EC2 Connector where, exitcode : #{response_exitcode} |
+	@log.error("ERROR in executing #{connector_name} where, exitcode : #{response_exitcode} |
 																															 message :  #{response_message}")
   @output.set("error",response_message)
   #@output.exit(1,response_message)															#Used to exit from flintbit

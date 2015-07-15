@@ -17,7 +17,7 @@ request_timeout=@input.get("timeout")											#Execution time of the Flintbit 
 	                                        resource_type :		 #{resource_type} |
 																	 			  region : 					 #{region} |") 
 
-@log.trace("Calling Amazon EC2 Connector...")
+@log.trace("Calling #{connector_name} ...")
 
 if connector_name.nil? || connector_name.empty?
    raise 'Please provide Amazon EC2 "connector name (connector_name)" to describe Tags'
@@ -54,11 +54,11 @@ response_message=response.message                		#Execution status messages
 tag_set=response.get("tag-set")											#set of tags
 
 if response_exitcode == 0
-	@log.info("SUCCESS in executing Amazon EC2 Connector where, exitcode : #{response_exitcode} | 
+	@log.info("SUCCESS in executing #{connector_name} where, exitcode : #{response_exitcode} | 
 																															message :  #{response_message}")
 	@output.setraw("tag-set",tag_set.to_s)
 else
-	@log.error("ERROR in executing Amazon EC2 Connector where, exitcode :: #{response_exitcode} |
+	@log.error("ERROR in executing #{connector_name} where, exitcode :: #{response_exitcode} |
 																															 message ::  #{response_message}")
   @output.set("error",response_message)
   #@output.exit(1,response_message)															#Used to exit from flintbit
