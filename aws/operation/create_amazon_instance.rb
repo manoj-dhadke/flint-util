@@ -1,5 +1,5 @@
 #begin
-@log.trace("Started executing 'create_amazon_instance' flintbit...")
+@log.trace("Started executing 'flint-util:aws:operation:create_amazon_instance.rb' flintbit...")
 begin
 #Flintbit Input Parameters
 #Mandatory
@@ -17,15 +17,15 @@ key_name = @input.get("key_name")													#Specifies the name of the key pai
 subnet_id = @input.get("subnet_id")												#Subnet ID for VPC instances
 request_timeout=@input.get("timeout")											#Execution time of the Flintbit in milliseconds (default timeout is 60000 milloseconds) 
 
-@log.info("Flintbit input parameters are, action ::   				 #{action} |
-	                                        image_id :: 			 	 #{image_id} |
-	                                        availability_zone :: #{availability_zone} |
-																	 			  instance_type :: 		 #{instance_type} |
-																	 			  key_name :: 				 #{key_name} |
-																	 			  min_instance :: 		 #{min_instance} |
-																	 			  max_instance :: 		 #{max_instance} |
-																	 			  region :: 					 #{region} |
-																	 			  subnet_id :: 				 #{subnet_id}") 
+@log.info("Flintbit input parameters are, action :   				  #{action} |
+	                                        image_id : 			 	  #{image_id} |
+	                                        availability_zone : #{availability_zone} |
+																	 			  instance_type : 		#{instance_type} |
+																	 			  key_name : 				  #{key_name} |
+																	 			  min_instance : 		  #{min_instance} |
+																	 			  max_instance : 		  #{max_instance} |
+																	 			  region : 					  #{region} |
+																	 			  subnet_id : 				#{subnet_id}") 
 
 @log.trace("Calling Amazon EC2 Connector...")
 
@@ -75,8 +75,6 @@ end
 if !subnet_id.nil? && !subnet_id.empty?
    @log.trace("Creating instance in VPC (Virtual Private Cloud)")
    call_connector.set("subnet-id",subnet_id)
-else
-   @log.trace("Creating instance in non VPC (Virtual Private Cloud)")     
 end
 
 if request_timeout.nil? || request_timeout.is_a?(String)
@@ -90,32 +88,26 @@ response_exitcode=response.exitcode              		#Exit status code
 response_message=response.message                		#Execution status messages
 
 #Amazon EC2 Connector Response Parameters
-instance_id=response.get("instance-id")          		#Amazon EC2 created instance id
-instance_type=response.get("instance-type")			 		#Amazon EC2 created instance type
-public_ip=response.get("public-ip")							 		#Amazon EC2 created instance public IP	
-private_ip=response.get("private-ip") 					 		#Amazon EC2 created instance private IP
+instance_info=response.get("instance-info")         #Amazon EC2 created instance info set
 
 if response_exitcode == 0
-	@log.info("Success in executing Amazon EC2 Connector where, exitcode :: #{response_exitcode} | 
-																															message ::  #{response_message}")
-  @log.info("Amazon EC2 Instance ID :: 				 #{instance_id} |						
-						 Amazon EC2 Instance Type :: 			 #{instance_type} |
-						 Amazon EC2 Instance public IP ::  #{public_ip} |
-						 Amazon EC2 Instance private IP :: #{private_ip} ")	
-	@output.set("instance-id",instance_id)
-				 .set("instance-type",instance_type)
-         .set("public-ip",public_ip)
-         .set("private-ip",private_ip)
-	@log.trace("Finished executing 'create_amazon_instance' flintbit with success...")
-
+	@log.info("SUCCESS in executing Amazon EC2 Connector where, exitcode : #{response_exitcode} | 
+																															message :  #{response_message}")
+  instance_info.each do |instance|
+  @log.info("Amazon EC2 Instance ID : 				#{instance.get("instance-id")} |						
+						 Amazon EC2 Instance Type : 			#{instance.get("instance-type")} |
+						 Amazon EC2 Instance public IP :  #{instance.get("public-ip")} |
+						 Amazon EC2 Instance private IP : #{instance.get("private-ip")} ")	
+  end
+	@output.setraw("instance-info",instance_info.to_s)
 else
-	@log.error("Failure in executing Amazon EC2 Connector where, exitcode :: #{response_exitcode} |
-																															 message ::  #{response_message}")
-  
+	@log.error("ERROR in executing Amazon EC2 Connector where, exitcode :  #{response_exitcode} |
+																															 message : #{response_message}")
   @output.set("error",response_message)
-  @log.trace("Finished executing 'create_amazon_instance' flintbit with error...")	
+  #@output.exit(1,response_message)															#Used to exit from flintbit	
 end
 rescue Exception => e
   @log.error(e.message)
 end
+  @log.trace("Finished executing 'flint-util:aws:operation:create_amazon_instance.rb' flintbit")
 #end

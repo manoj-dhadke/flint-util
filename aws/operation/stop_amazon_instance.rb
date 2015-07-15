@@ -1,5 +1,5 @@
 #begin
-@log.trace("Started executing 'stop_amazon_instance' flintbit...")
+@log.trace("Started executing 'flint-util:aws:operation:stop_amazon_instance.rb' flintbit...")
 begin
 #Flintbit Input Parameters
 #mandatory
@@ -10,9 +10,9 @@ instance_id = @input.get("instance_id")                     #Amazon Instance ID 
 region = @input.get("region")													      #Amazon EC2 region (default region is 'us-east-1')
 request_timeout=@input.get("timeout")									      #Execution time of the Flintbit in milliseconds
 
-@log.info("Flintbit input parameters are, action ::            #{action} |
-	                                        instance_id ::       #{instance_id} |
-	                                        region ::            #{region}")
+@log.info("Flintbit input parameters are, action :            #{action} |
+	                                        instance_id :       #{instance_id} |
+	                                        region :            #{region}")
 
 @log.trace("Calling Amazon EC2 Connector...")
 
@@ -49,23 +49,22 @@ response_message=response.message                           #Execution status me
 instances_set=response.get("stop-instance-list")            #Set of Amazon EC2 stopped instances
 
 if response_exitcode == 0
-	@log.info("Success in executing Amazon EC2 Connector where, exitcode :: #{response_exitcode} | 
-																															message ::  #{response_message}")
+	@log.info("SUCCESS in executing Amazon EC2 Connector where, exitcode : #{response_exitcode} | 
+																															message :  #{response_message}")
 	instances_set.each do |instance_id|
-  @log.info("Amazon EC2 Instance current state ::  #{instance_id.get("current-state")} |
-						 Amazon EC2 Instance previous state :: #{instance_id.get("previous-state")}
-						 Amazon EC2 Instance id ::             #{instance_id.get("instance-id")}")
+  @log.info("Amazon EC2 Instance current state :  #{instance_id.get("current-state")} |
+						 Amazon EC2 Instance previous state : #{instance_id.get("previous-state")}
+						 Amazon EC2 Instance id :             #{instance_id.get("instance-id")}")
 	end
 	@output.setraw("started-instances-set",instances_set.to_s)
-	@log.trace("Finished executing 'stop_amazon_instance' flintbit with success...")
 else
-	@log.error("Failure in executing Amazon EC2 Connector where, exitcode :: #{response_exitcode} |
-																															 message ::  #{response_message}")
-  
+	@log.error("ERROR in executing Amazon EC2 Connector where, exitcode : #{response_exitcode} |
+																															 message :  #{response_message}")
   @output.set("error",response_message)
-  @log.trace("Finished executing 'stop_amazon_instance' flintbit with error...")
+  #@output.exit(1,response_message)															#Used to exit from flintbit
 end
 rescue Exception => e
   @log.error(e.message)
 end
+  @log.trace("Finished executing 'flint-util:aws:operation:stop_amazon_instance.rb' flintbit")
 #end

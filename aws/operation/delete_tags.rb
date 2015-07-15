@@ -1,5 +1,5 @@
 #begin
-@log.trace("Started executing 'delete_tags' flintbit...")
+@log.trace("Started executing 'flint-util:aws:operation:delete_tags.rb' flintbit...")
 begin
 #Flintbit Input Parameters
 #Mandatory
@@ -60,17 +60,18 @@ response_exitcode=response.exitcode              		#Exit status code
 response_message=response.message                		#Execution status messages
 
 if response_exitcode == 0
-	@log.info("Success in executing Amazon EC2 Connector where, exitcode :: #{response_exitcode} | 
+	@log.info("SUCCESS in executing Amazon EC2 Connector where, exitcode :: #{response_exitcode} | 
 																															message ::  #{response_message}")
 	@log.trace("Finished executing 'delete_tags' flintbit with success...")
 
 else
-	@log.error("Failure in executing Amazon EC2 Connector where, exitcode :: #{response_exitcode} |
+	@log.error("ERROR in executing Amazon EC2 Connector where, exitcode :: #{response_exitcode} |
 																															 message ::  #{response_message}")
   @output.set("error",response_message)
-  @log.trace("Finished executing 'delete_tags' flintbit with error...")	
+  #@output.exit(1,response_message)															#Used to exit from flintbit
 end
 rescue Exception => e
   @log.error(e.message)
 end
+  @log.trace("Finished executing 'flint-util:aws:operation:delete_tags.rb' flintbit")
 #end
