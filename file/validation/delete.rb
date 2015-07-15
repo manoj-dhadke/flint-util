@@ -42,5 +42,5 @@ else
     @output.exit(1,response_message)
         
 end
-   @log.trace("Finished executing 'flint-util:file:operation:delete' flintbit...")
+   @log.trace("Finished executing 'flint-util:file:operation:delete.rb' flintbit...")
 #end

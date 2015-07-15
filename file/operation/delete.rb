@@ -10,7 +10,7 @@ file_path=@input.get("file")                      #File Name and File Location
 	                                          action ::     #{action} |
 	                                          file_path ::  #{file_path}") 
 
-@log.trace("Calling File Connector...")
+@log.trace("Calling #{connector_name}...")
 response=@call.connector(connector_name)
               .set("action",action)
               .set("file",file_path)
