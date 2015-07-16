@@ -15,57 +15,58 @@ request_timeout=@input.get("timeout")									      #Execution time of the Flint
 	                                        instance_id :       #{instance_id} |
 	                                        region :            #{region}")
 
-@log.trace("Calling #{connector_name}...")
-
-call_connector = @call.connector(connector_name)
+connector_call = @call.connector(connector_name)
 								.set("action",action)
 
 if connector_name.nil? || connector_name.empty?
-   raise 'Please provide Amazon EC2 "connector name (connector_name)" to terminate Instance'
+   raise 'Please provide "Amazon EC2 connector name (connector_name)" to terminate Instance'
 end
 
 if instance_id.nil? || instance_id.empty?
    raise 'Please provide "Amazon instance ID (instance_id)" to terminate Instance'
 else
-   call_connector.set("instance-id",instance_id)
+   connector_call.set("instance-id",instance_id)
 end
 
 if !region.nil? && !region.empty?
-   call_connector.set("region",region)
+   connector_call.set("region",region)
 else
    @log.trace("Region is not provided so using default region 'us-east-1'")     
 end
 
 if request_timeout.nil? || request_timeout.is_a?(String)
-   response = call_connector.sync
+   @log.trace("Calling #{connector_name} with default timeout...")
+	 response = connector_call.sync
 else
-	 response = call_connector.timeout(request_timeout).sync
+   @log.trace("Calling #{connector_name} with given timeout #{request_timeout.to_s}...")
+	 response = connector_call.timeout(request_timeout).sync
 end
 
 #Amazon EC2 Connector Response Meta Parameters
-response_exitcode=response.exitcode              	          #Exit status code
-response_message=response.message                           #Execution status messages
+response_exitcode = response.exitcode              	          #Exit status code
+response_message = response.message                           #Execution status messages
 
 #Amazon EC2 Connector Response Parameters
-instances_set=response.get("terminated-instance-set")       #Set of Amazon EC2 terminated instances
+instances_set = response.get("terminated-instance-set")       #Set of Amazon EC2 terminated instances
 
 if response_exitcode == 0
 	@log.info("SUCCESS in executing #{connector_name} where, exitcode : #{response_exitcode} | 
-																															message :  #{response_message}")
+																													 message :  #{response_message}")
 	instances_set.each do |instance_id|
   @log.info("Amazon EC2 Instance current state :  #{instance_id.get("current-state")} |
-						 Amazon EC2 Instance previous state : #{instance_id.get("previous-state")}
-						 Amazon EC2 Instance id :             #{instance_id.get("instance-id")}")
+						 										 previous state : #{instance_id.get("previous-state")}
+						 										 Instance ID :    #{instance_id.get("instance-id")}")
 	end
-	@output.setraw("terminated-instance-set",instances_set.to_s)
+	@output.setraw("terminated-instances",instances_set.to_s)
 else
 	@log.error("ERROR in executing #{connector_name} where, exitcode : #{response_exitcode} |
-																															 message :  #{response_message}")
+																													message : #{response_message}")
   @output.set("error",response_message)
   #@output.exit(1,response_message)															#Used to exit from flintbit
 end
 rescue Exception => e
   @log.error(e.message)
+  @output.set("error",e.message)
 end
 	@log.trace("Finished executing 'flint-util:aws:operation:terminate_amazon_instance.rb' flintbit")
 #end
