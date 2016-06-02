@@ -4,10 +4,10 @@ begin
     # Flintbit Input Parameters
     # mandatory
     @connector_name = @input.get('connector_name') # Name of the HTTP Connector
-    @request_method = @input.get('method') # HTTP Request Method
-    @request_url = @input.get('url') # HTTP Request URL
-    @request_body = @input.get('body') # HTTP Request Body
-    @request_headers = @input.get('headers') # HTTP Request Headers
+    @request_method = @input.get('method')         # HTTP Request Method
+    @request_url = @input.get('url')               # HTTP Request URL
+    @request_body = @input.get('body')             # HTTP Request Body
+    @request_headers = @input.get('headers')       # HTTP Request Headers
     # optional
     @request_timeout = @input.get('timeout') # Timeout in milliseconds, taken by the Connetor to serve the request
 
@@ -32,11 +32,11 @@ begin
                         .sync
 
     end
-    response_exitcode = response.exitcode # Exit status code
-    response_message = response.message # Execution status messages
+    response_exitcode = response.exitcode   # Exit status code
+    response_message = response.message     # Execution status messages
 
     # HTTP Connector Response Parameters
-    @response_body = response.get('body') # Response Body
+    @response_body = response.get('body')       # Response Body
     @response_headers = response.get('headers') # Response Headers
 
     if response.exitcode == 0

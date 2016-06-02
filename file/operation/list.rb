@@ -3,8 +3,8 @@
 begin
     # Flintbit Input Parameters
     connector_name = @input.get('connector_name') # Name of the File Connector
-    action = @input.get('action') # Action
-    file_path = @input.get('file') # File Name and File Location
+    action = @input.get('action')                 # Action
+    file_path = @input.get('file')                # File Name and File Location
 
     @log.info("Flintbit input parameters are, connector name :: #{connector_name} | action :: #{action} | file_path :: #{file_path}")
 
@@ -15,12 +15,12 @@ begin
                     .sync
 
     # File Connector Response Meta Parameters
-    response_exitcode = response.exitcode # Exit status code
-    response_message = response.message # Execution status messages
+    response_exitcode = response.exitcode   # Exit status code
+    response_message = response.message     # Execution status messages
 
     # File Connector Response Parameters
-    response_file = response.get('file') # File read
-    response_body = response.get('files') # Response Body, data read from the file
+    response_file = response.get('file')   # File read
+    response_body = response.get('files')  # Response Body, data read from the file
 
     if response_exitcode == 0
         @log.info("SUCCESS in executing #{connector_name} where, exitcode :: #{response_exitcode} | message :: #{response_message}")

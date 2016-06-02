@@ -9,15 +9,15 @@ begin
     if input_type == 'application/xml' # Input type of Request
         # All mandatory if jdbc_url not provided
         @connector_name = @input.get('/connector_name/text()') # Name of the JDBC Connector
-        @jdbc_url = @input.get('/jdbc_url/text()') # JDBC Url
-        @query = @input.get('/query/text()') # Query of the Database
-        @driver = @input.get('/driver/text()') # Jdbc driver name for database
+        @jdbc_url = @input.get('/jdbc_url/text()')             # JDBC Url
+        @query = @input.get('/query/text()')                   # Query of the Database
+        @driver = @input.get('/driver/text()')                 # Jdbc driver name for database
     else
         # All mandatory if jdbc_url not provided
-        @connector_name = @input.get('connector_name') # Name of the JDBC Connector
-        @jdbc_url = @input.get('jdbc_url') # JDBC Url
-        @query = @input.get('query') # Query of the Database
-        @driver = @input.get('driver') # Jdbc driver name for database
+        @connector_name = @input.get('connector_name')         # Name of the JDBC Connector
+        @jdbc_url = @input.get('jdbc_url')                     # JDBC Url
+        @query = @input.get('query')                           # Query of the Database
+        @driver = @input.get('driver')                         # Jdbc driver name for database
     end
 
     @connector_name = 'mysql_db' if @connector_name.nil? || @connector_name.empty?
@@ -37,11 +37,11 @@ begin
                     .set('driver', @driver).sync
 
     # JDBC Connector Response Meta Parameters
-    response_exitcode = response.exitcode # Exit status code
-    response_message = response.message # Execution status message
+    response_exitcode = response.exitcode   # Exit status code
+    response_message = response.message     # Execution status message
 
     # JDBC Connector Response Parameters
-    result = response.get('result') # Response Body
+    result = response.get('result')         # Response Body
 
     if response.exitcode == 0
         @log.info("Success in executing JDBC Connector where, exitcode :: #{response_exitcode} | message :: #{response_message}")

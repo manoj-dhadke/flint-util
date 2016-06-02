@@ -4,13 +4,12 @@ begin
     # Flintbit Input Parameters
     # mandatory
     @connector_name = @input.get('connector_name') # Name of the HTTP Connector
-    @request_method = @input.get('method') # HTTP Request Method
-    @request_url = @input.get('url') # HTTP Request URL
+    @request_method = @input.get('method')         # HTTP Request Method
+    @request_url = @input.get('url')               # HTTP Request URL
 
     # optional
-    @request_timeout = @input.get('timeout') # Timeout in milliseconds, taken by
-    # the Connetor to serve the request
-    @request_headers = @input.get('headers') # HTTP Request Headers
+    @request_timeout = @input.get('timeout')       # Timeout in milliseconds, taken by the Connetor to serve the request
+    @request_headers = @input.get('headers')       # HTTP Request Headers
     @log.info("Flintbit input parameters are, connector name :: #{@connector_name} | url :: #{@request_url} | method :: #{@request_method}")
 
     if @request_timeout.to_s.empty?
@@ -27,8 +26,8 @@ begin
     end
 
     # HTTP Connector Response Meta Parameters
-    response_exitcode = response.exitcode # Exit status code
-    response_message = response.message # Execution status messages
+    response_exitcode = response.exitcode       # Exit status code
+    response_message = response.message         # Execution status messages
 
     # HTTP Connector Response Parameters
     response_headers = response.get('headers') # Response Headers

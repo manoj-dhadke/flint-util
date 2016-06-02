@@ -3,9 +3,9 @@
 begin
     # Flintbit Input Parameters
     connector_name = @input.get('connector_name') # Name of the FILE Connector
-    action = 'write' # Write Action
-    file_path = @input.get('file') # File Name and Location
-    data = @input.get('data') # Data to be written to the File
+    action = 'write'                              # Write Action
+    file_path = @input.get('file')                # File Name and Location
+    data = @input.get('data')                     # Data to be written to the File
 
     @log.info("Flintbit input parameters are, connector name :: #{connector_name} | action :: #{action} | file_path :: #{file_path} |
      file_content :: #{data}")
@@ -19,7 +19,7 @@ begin
 
     # File Connector Response Meta Parameters
     response_exitcode = response.exitcode # Exit status code
-    response_message = response.message # Execution status messages
+    response_message = response.message   # Execution status messages
 
     # File Connector Response Parameters
     response_file = response.get('file') # File, data is written to

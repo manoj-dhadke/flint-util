@@ -3,9 +3,9 @@
 begin
     # Flintbit Input Parameters
     connector_name = @input.get('connector_name') # Name of the File Connector
-    action = 'append' # Action
-    file_path = @input.get('file') # File Name and File Location
-    data = @input.get('data') # Data to be appended to the File
+    action = 'append'                             # Action
+    file_path = @input.get('file')                # File Name and File Location
+    data = @input.get('data')                     # Data to be appended to the File
 
     connector_name = 'File Connector' if connector_name.nil? || connector_name.empty?
     action = 'append' if action.nil? || action.empty?
@@ -25,12 +25,12 @@ begin
                     .sync
 
     # File Connector Response Meta Parameters
-    response_exitcode = response.exitcode # Exit status code
-    response_message = response.message # Execution status messages
+    response_exitcode = response.exitcode  # Exit status code
+    response_message = response.message    # Execution status messages
 
     # File Connector Response Parameters
-    response_file = response.get('file') # File, data is appended to
-    response_body = response.get('body') # Response Body, data appended to the file
+    response_file = response.get('file')   # File, data is appended to
+    response_body = response.get('body')   # Response Body, data appended to the file
 
     if response_exitcode == 0
         @log.info("SUCCESS in executing #{connector_name} where, exitcode :: #{response_exitcode} | message :: #{response_message}")

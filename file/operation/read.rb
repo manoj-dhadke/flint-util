@@ -17,7 +17,7 @@ begin
 
     # File Connector Response Meta Parameters
     response_exitcode = response.exitcode # Exit status code
-    response_message = response.message # Execution status messages
+    response_message = response.message   # Execution status messages
 
     # File Connector Response Parameters
     response_file = response.get('file') # File read

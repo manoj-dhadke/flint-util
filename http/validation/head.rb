@@ -3,13 +3,12 @@
 begin
     # Flintbit Input Parameters
     # mandatory
-    @connector_name = @input.get('connector_name') # Name of the HTTP Connector
-    @request_method = @input.get('method') # HTTP Request Method
-    @request_url = @input.get('url') # HTTP Request URL
+    @connector_name = @input.get('connector_name')   # Name of the HTTP Connector
+    @request_method = @input.get('method')           # HTTP Request Method
+    @request_url = @input.get('url')                 # HTTP Request URL
     # optional
-    @request_timeout = @input.get('timeout') # HTTP Request Timeout in milliseconds, taken
-    # by the Connetor to serve the request
-    @request_headers = @input.get('headers') # HTTP Request Headers
+    @request_timeout = @input.get('timeout')         # HTTP Request Timeout in milliseconds, taken by the Connetor to serve the request
+    @request_headers = @input.get('headers')         # HTTP Request Headers
 
     @connector_name = 'http1' if @connector_name.nil? || @connector_name.empty?
     @request_method = 'head' if @request_method.nil? || @request_method.empty?
@@ -26,15 +25,15 @@ begin
                           .set('url', @request_url)
     # .timeout(10000)          #Execution time of the Flintbit in milliseconds
 
-    if @request_timeout.to_s.empty?
-      response = call_connector.sync
-    else
-      response = call_connector.set('timeout', @request_timeout).sync
-    end
+    response = if @request_timeout.to_s.empty?
+                   call_connector.sync
+               else
+                   call_connector.set('timeout', @request_timeout).sync
+               end
 
     # HTTP Connector Response Meta Parameters
-    response_exitcode = response.exitcode # Exit status code
-    response_message = response.message # Execution status message
+    response_exitcode = response.exitcode    # Exit status code
+    response_message = response.message      # Execution status message
 
     # HTTP Connector Response Parameters
     response_headers = response.get('headers') # Response Headers
