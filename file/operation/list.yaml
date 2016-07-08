@@ -1,0 +1,18 @@
+---
+title: "List the folder"
+description: "gives list of files and directories in a folder"
+
+flintbit: "flint-util:file:operation:list.rb"
+icon: "list"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: file
+        label: File name
+        placeholder: "Path of the directory"
+        type: textbox
+        required: true
+...

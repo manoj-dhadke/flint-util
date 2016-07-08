@@ -1,0 +1,25 @@
+---
+title: "Write file"
+description: "Write content to file or create new"
+
+flintbit: "flint-util:file:operation:write.rb"
+icon: "fa-file-text"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: file
+        label: File name
+        placeholder: "Path of the file to write"
+        type: textbox
+        required: true
+      -
+        default:
+        id: data
+        label: Data
+        placeholder: "Data to be written to the File"
+        type: textbox
+        required: true
+...

@@ -1,0 +1,74 @@
+---
+title: "Run select Query"
+description: "Drop selected columns on screen"
+
+flintbit: "flint-util:db:operation:select.rb"
+icon: "fa fa-check-circle-o"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: user_name
+        label: User
+        placeholder: "User_name for database"
+        type: textbox
+        required: true
+      -
+        default:
+        id: password
+        label: Password
+        placeholder: "Password for Database"
+        type: password
+        required: true
+      -
+        default:
+        id: db_type
+        label: DB_type
+        placeholder: "Mysql/Oracle/MS-Sql/postgreSQL"
+        type: textbox
+        required: true
+      -
+        default:
+        id: jdbc_url
+        label: Jdbc_url
+        placeholder: "jdbc:mysql://localhost:3306/database"
+        type: textbox
+        required: true
+      -
+        default:
+        id: query
+        label: Query
+        placeholder: "Query to run"
+        type: textbox
+        required: true
+      -
+        default:
+        id: database
+        label: Database Name
+        placeholder: "Name of Database to use/Not mandatory if jdbc_url is given"
+        type: textbox
+        required: false
+      -
+        default:
+        id: port
+        label: Port
+        placeholder: "Port number/Not mandatory if jdbc_url is given"
+        type: textbox
+        required: false
+      -
+        default:
+        id: target
+        label: Target
+        placeholder: "IP address of database server/Not mandatory if jdbc_url is given"
+        type: textbox
+        required: false
+      -
+        default:
+        id: driver
+        label: Jdbc Driver using
+        placeholder: "Provide name of driver to use"
+        type: textbox
+        required: true
+...

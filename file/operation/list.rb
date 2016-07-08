@@ -3,8 +3,8 @@
 begin
     # Flintbit Input Parameters
     connector_name = @input.get('connector_name') # Name of the File Connector
-    action = @input.get('action')                 # Action
-    file_path = @input.get('file')                # File Name and File Location
+    action = "list"                                   # Action
+    file_path = @input.get('file')                # Folder Name and Location
 
     @log.info("Flintbit input parameters are, connector name :: #{connector_name} | action :: #{action} | file_path :: #{file_path}")
 

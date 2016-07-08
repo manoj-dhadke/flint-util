@@ -1,0 +1,60 @@
+---
+title: "Update data in DB"
+description: "To update some data in Database"
+
+flintbit: "flint-util:db:operation:update.rb"
+icon: "fa fa-arrow-circle-up"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: database
+        label: Database Name
+        placeholder: "Name of Database to use"
+        type: textbox
+        required: true
+      -
+        default:
+        id: db_type
+        label: DB_type
+        placeholder: "Mysql/Oracle/MS-Sql/postgreSQL"
+        type: textbox
+        required: true
+      -
+        default:
+        id: jdbc_url
+        label: Jdbc_url
+        placeholder: "jdbc:mysql://localhost:3306/database"
+        type: textbox
+        required: true
+      -
+        default:
+        id: query
+        label: Query
+        placeholder: "Query to run"
+        type: textbox
+        required: true
+      -
+        default:
+        id: port
+        label: Port
+        placeholder: "Port number"
+        type: textbox
+        required: true
+      -
+        default:
+        id: target
+        label: Target
+        placeholder: "IP address of database server"
+        type: textbox
+        required: true
+      -
+        default:
+        id: driver
+        label: Jdbc Driver using
+        placeholder: "Provide name of driver to use"
+        type: textbox
+        required: true
+...

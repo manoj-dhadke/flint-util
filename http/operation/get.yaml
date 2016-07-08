@@ -1,0 +1,33 @@
+---
+title: "Http Get Request"
+description: "Perform http get-request method operation"
+
+flintbit: "flint-util:http:operation:get.rb"
+icon: "fa fa-arrow-circle-down"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: url
+        label: URL
+        placeholder: "Please provide a url"
+        type: textbox
+        required: true
+      -
+        default:
+        id: headers
+        label: Headers
+        placeholder: "headers required"
+        type: textbox
+        required: false
+      -
+        default: 60000
+        id: timeout
+        label: Timeout
+        placeholder: "set timeout manually here"
+        type: textbox
+        required: false
+
+...

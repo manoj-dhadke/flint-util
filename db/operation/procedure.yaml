@@ -1,0 +1,74 @@
+---
+title: "Call Procedure for DB"
+description: "Delete data from Database"
+
+flintbit: "flint-util:db:operation:procedure.rb"
+icon: "fa fa-phone"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: user_name
+        label: User
+        placeholder: "User_name for database"
+        type: textbox
+        required: true
+      -
+        default:
+        id: password
+        label: Password
+        placeholder: "Password for Database"
+        type: password
+        required: true
+      -
+        default:
+        id: db_type
+        label: DB type
+        placeholder: "Oracle/Mysql/MS-sql/postgreSQL"
+        type: textbox
+        required: true
+      -
+        default:
+        id: jdbc_url
+        label: Jdbc url
+        placeholder: "Name of jdbc_url"
+        type: textbox
+        required: true
+      -
+        default:
+        id: query
+        label: Query
+        placeholder: "Query to run"
+        type: textbox
+        required: true
+      -
+        default:
+        id: database
+        label: DB Name
+        placeholder: "Name of databse using/Not mandatory if jdbc_url is given"
+        type: textbox
+        required: true
+      -
+        default:
+        id: port
+        label: Port
+        placeholder: "Port number/Not mandatory if jdbc_url is given"
+        type: textbox
+        required: false
+      -
+        default:
+        id: target
+        label: Target
+        placeholder: "IP address of database server/Not mandatory if jdbc_url is given"
+        type: textbox
+        required: true
+      -
+        default:
+        id: driver
+        label: Jdbc Driver
+        placeholder: "Provide name of driver to use"
+        type: textbox
+        required: true
+...

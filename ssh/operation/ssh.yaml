@@ -1,0 +1,53 @@
+---
+title: "Execute Command"
+description: "Provide command to execute"
+
+flintbit: "flint-util:ssh:operation:ssh.rb"
+icon: "fa fa-server"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: target
+        label: Target
+        placeholder: "Hostname of SSH-Server"
+        type: textbox
+        required: true
+      -
+        default:
+        id: username
+        label: Username
+        placeholder: "Username of SSH-Server"
+        type: textbox
+        required: true
+      -
+        default:
+        id: password
+        label: Password
+        placeholder: "Password of SSH-Server"
+        type: password
+        required: false
+      -
+        default:
+        id: key-file
+        label: Key
+        placeholder: "Provide ssh key-file absolute path"
+        type: textbox
+        required: false
+      -
+        default:
+        id: command
+        label: Command
+        placeholder: "Command to execute"
+        type: textbox
+        required: true
+      -
+        default:
+        id: type
+        label: Action Type
+        placeholder: "exec or shell"
+        type: textbox
+        required: true
+...

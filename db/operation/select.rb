@@ -11,6 +11,8 @@ begin
         @connector_name = @input.get('/connector_name/text()') # Name of the JDBC Connector
         @jdbc_url = @input.get('/jdbc_url/text()')             # JDBC Url
         @query = @input.get('/query/text()')                   # Query of the Database
+        @user_name = @input.get('/user_name/text()')           # User name of Database
+        @password = @input.get('/password/text()')             # Password of Database
         # Not mandatory if jdbc url is provided
         @port = @input.get('/port/text()')                     # Port no of Datbase
         @database = @input.get('/database/text()')             # Name of the Database
@@ -23,9 +25,11 @@ begin
         @connector_name = @input.get('connector_name')         # Name of the JDBC Connector
         @jdbc_url = @input.get('jdbc_url')                     # JDBC Url
         @query = @input.get('query')                           # Query of the Database
+        @user_name = @input.get('user_name')                   # User name of Database
+        @password = @input.get('password')                     # Password of Database
         # Not mandatory if jdbc url is provided
         @port = @input.get('port')                             # Port no of Datbase
-        @database = @input.get('database')                     # Type of the Database
+        @database = @input.get('database')                     # Type of the Database 
         @db_type = @input.get('db_type')                       # Type of the Database
         @target = @input.get('target')                         # Hostname of the database server
         @driver = @input.get('driver')                         # Jdbc driver name for database
@@ -40,6 +44,8 @@ begin
                         .set('action', 'select')
                         .set('port', @port)
                         .set('database', @database)
+                        .set('username',@user_name)
+                        .set('password',@password)
                         .set('db_type', @db_type)
                         .set('target', @target)
                         .set('query', @query)
@@ -49,6 +55,8 @@ begin
         response = @call.connector(@connector_name)
                         .set('action', 'select')
                         .set('query', @query)
+			.set('username',@user_name)
+			.set('password',@password)
                         .set('jdbc-url', @jdbc_url)
                         .set('driver', @driver).sync
     end

@@ -1,0 +1,18 @@
+---
+title: "Delete File"
+description: "File Name and File Location to delete"
+
+flintbit: "flint-util:file:operation:delete.rb"
+icon: "fa fa-icon-remove-sign "
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: file
+        label: File name
+        placeholder: "Full path of File want to delete"
+        type: textbox
+        required: true
+...

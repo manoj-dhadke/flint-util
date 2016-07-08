@@ -1,0 +1,39 @@
+---
+title: "Http Delete Request"
+description: "Perform http delete operation"
+
+flintbit: "flint-util:http:operation:delete.rb"
+icon: "fa fa-trash"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: url
+        label: URL
+        placeholder: "Please provide a url"
+        type: textbox
+        required: true
+      -
+        default:
+        id: body
+        label: Message
+        placeholder: "message body "
+        type: textbox
+        required: false
+      -
+        default:
+        id: headers
+        label: Headers
+        placeholder: "headers required"
+        type: textbox
+        required: false
+      -
+        default: 60000
+        id: timeout
+        label: Timeout
+        placeholder: "set timeout manually here"
+        type: textbox
+        required: false
+...

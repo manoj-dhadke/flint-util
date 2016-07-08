@@ -4,7 +4,7 @@
 #mandatory
 connector_name = @input.get("connector_name")                 #Name of the Twitter Connector
 action = "post"		                                  					#Tweet text on Twitter action
-text = @input.get("text")    	                        				#Text to tweet on Twitter
+text = @input.get("text")    	                        				#Text twitte on Twitter
 
 #optional
 file = @input.get("file")													      			#Full path of image file to post a photo in a Tweet
@@ -52,7 +52,7 @@ retweet_count=response.get("retweet-count")            			#Tweet Retweet count u
 username=response.get("username")            								#Username of twitter account
 
 if response_exitcode == 0
-	@log.info("SUCCESS in executing #{connector_name} where, exitcode : #{response_exitcode} | 
+	@log.info("SUCCESS in executing #{connector_name} where, exitcode : #{response_exitcode} |
 																													 message : #{response_message}")
 	@log.info("Twitter Tweet ID : #{tweet_id} |
 						 				       status : #{status} |

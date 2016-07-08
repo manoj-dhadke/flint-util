@@ -1,0 +1,18 @@
+---
+title: "Read File"
+description: "Read file from local system"
+
+flintbit: "flint-util:file:operation:read.rb"
+icon: "fa fa-file"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: file
+        label: File name
+        placeholder: "Full path of file to read"
+        type: textbox
+        required: true
+...

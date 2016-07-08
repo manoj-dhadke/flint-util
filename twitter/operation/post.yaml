@@ -1,0 +1,34 @@
+---
+title: "Twitte Here"
+description: "Text twitte on Twitter"
+
+flintbit: "flint-util:twitter:operation:post.rb"
+icon: "fa fa-twitter"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: text
+        label: Text Here
+        placeholder: "Text to twitte"
+        type: textbox
+        required: true
+      -
+        default:
+        id: file
+        label: Image File
+        placeholder: "Full path of image file to post on Twitte"
+        type: textbox
+        required: false
+
+      -
+        default:
+        id: connector-name
+        label: Connector
+        placeholder: "Select Connector Name"
+        type: map
+        map: ConnectorSSH
+        required: true
+...

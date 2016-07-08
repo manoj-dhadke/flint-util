@@ -4,7 +4,7 @@ begin
     # Flintbit Input Parameters
     connector_name = @input.get('connector_name')       # Name of the FILE Connector
     action = 'delete'                                   # Delete action
-    file_path = @input.get('file')                      # File Name and File Location
+    file_path = @input.get('file')                      # Path of File
 
     @log.info("Flintbit input parameters are, connector name :: #{connector_name} | action :: #{action} | file_path ::  #{file_path}")
 

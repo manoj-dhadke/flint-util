@@ -1,0 +1,26 @@
+---
+title: "Append to File"
+description: "To Append some data in File"
+
+flintbit: "flint-util:file:operation:append.rb"
+icon: "fa-plus"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+
+      -
+        default:
+        id: file
+        label: File name
+        placeholder: "Full path of File"
+        type: textbox
+        required: true
+      -
+        default:
+        id: data
+        label: Data
+        placeholder: "Data to be appended to the File"
+        type: textbox
+        required: true
+...

@@ -1,0 +1,60 @@
+---
+title: "smtp connector"
+description: "smtp connector from connector center"
+
+flintbit: "flint-util/smtp/operation:smtp.rb"
+icon: "fa fa-tasks"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: to
+        label: To
+        placeholder: "Email Address of receiver"
+        type: textbox
+        required: true
+      -
+        default:
+        id: cc
+        label: cc
+        placeholder: "cc"
+        type: textbox
+        required: false
+      -
+        default:
+        id: bcc
+        label: bcc
+        placeholder: "bcc"
+        type: textbox
+        required: false
+      -
+        default:
+        id: from
+        label: From
+        placeholder: "Email Address of sender"
+        type: textbox
+        required: true
+      -
+        default:
+        id: subject
+        label: Subject
+        placeholder: "Subject of Email"
+        type: textbox
+        required: false
+      -
+        default:
+        id: body
+        label: Body
+        placeholder: "Body of Email"
+        type: textarea
+        required: false
+      -
+        default:
+        id: attachments
+        label: Attachments
+        placeholder: "Path of Attachments"
+        type: textbox
+        required: false
+...

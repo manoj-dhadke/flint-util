@@ -1,0 +1,46 @@
+---
+title: "Command to ifconfig"
+description: "Gives configuration of the remote server"
+
+flintbit: "flint-util:ssh:operation:ifconfig.rb"
+icon: "fa fa-info"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: target
+        label: Target
+        placeholder: "Hostname of SSH-Server"
+        type: textbox
+        required: true
+      -
+        default:
+        id: username
+        label: Username
+        placeholder: "Username of SSH-Server"
+        type: textbox
+        required: true
+      -
+        default:
+        id: password
+        label: Password
+        placeholder: "Password of SSH-Server"
+        type: password
+        required: false
+      -
+        default:
+        id: key-file
+        label: Key
+        placeholder: "Provide ssh key-file absolute path"
+        type: textbox
+        required: false
+      -
+        default:
+        id: type
+        label: Action Type
+        placeholder: "exec or shell"
+        type: textbox
+        required: true
+...

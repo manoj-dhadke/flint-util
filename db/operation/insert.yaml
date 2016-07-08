@@ -1,0 +1,61 @@
+---
+title: "Insert in DB"
+description: "Insert data in Database"
+
+flintbit: "flint-util:db:operation:insert.rb"
+icon: "fa fa-edit"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: jdbc_url
+        label: Jdbc url
+        placeholder: "jdbc:mysql://localhost:3306/database"
+        type: textbox
+        required: true
+      -
+        default:
+        id: query
+        label: Query
+        placeholder: "Query to run"
+        type: textbox
+        required: true
+      -
+        default:
+        id: port
+        label: Port
+        placeholder: "Port number/Not mandatory if jdbc_url is given"
+        type: textbox
+        required: true
+      -
+        default:
+        id: database
+        label: DB Name
+        placeholder: "Name of Database to use/Not mandatory if jdbc_url is given"
+        type: textbox
+        required: true
+      -
+        default:
+        id: db_type
+        label: DB type
+        placeholder: "Mysql/Oracle/MS-Sql/postgreSQL"
+        type: textbox
+        required: true
+      -
+        default:
+        id: target
+        label: Target
+        placeholder: "IP address of database server/Not mandatory if jdbc_url is given"
+        type: textbox
+        required: true
+      -
+
+        default:
+        id: driver
+        label: Jdbc Driver using
+        placeholder: "Provide name of driver to use"
+        type: textbox
+        required: true
+...
