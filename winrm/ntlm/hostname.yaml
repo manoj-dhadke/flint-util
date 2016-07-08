@@ -1,0 +1,43 @@
+---
+title: "Hostname of Windows machine using NTLM"
+description: "Hostname of Windows machine using NTLM"
+
+flintbit: "flint-util:winrm:ntlm:hostname.rb"
+icon: "fa fa-h-square"
+inputs:
+  -
+    section: Get Hostname
+    fields:
+      -
+        default:
+        id: protocol
+        label: Protocol
+        options:
+          - "http"
+          - "https"
+        placeholder: "http/https"
+        type: select
+        required: true
+      -
+        default:
+        id: hostname
+        label: Hostname
+        placeholder: "Enter Hostname"
+        type: textbox
+        required: true
+      -
+        default:
+        id: username
+        label: Username
+        placeholder: "Enter Username"
+        type: textbox
+        required: true
+      -
+        default:
+        id: password
+        label: Password
+        placeholder: "Enter Password"
+        type: password
+        required: true
+
+...

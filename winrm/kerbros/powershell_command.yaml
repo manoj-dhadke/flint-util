@@ -1,0 +1,42 @@
+---
+title: "Execute powershell command using kerbros"
+description: "Execute powershell command on windows machine using kerbros"
+
+flintbit: "flint-util:winrm:kerbros:powershell_command.rb"
+icon: "fa fa-terminal"
+inputs:
+  -
+    section: Execute powershell Command
+    fields:
+      -
+        default:
+        id: hostname
+        label: Hostname
+        placeholder: "Enter hostname"
+        type: hostname
+        required: true
+      -
+        default:
+        id: username
+        label: Username
+        placeholder: "Enter username"
+        type: textbox
+        required: true
+      -
+        default:
+        id: kerb5_realm
+        label: Kerbros5 realm
+        placeholder: "Kerbros5 realm"
+        type: textbox
+        required: true
+      -
+        default:
+        id: protocol
+        label: Protocol
+        placeholder: "Http/Https"
+        type: select
+        required: true
+        options:
+          - "http"
+          - "https"
+...

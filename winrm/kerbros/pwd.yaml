@@ -1,0 +1,42 @@
+---
+title: "Windows home directory using kerbros"
+description: "Get Windows home directory using kerbros"
+
+flintbit: "flint-util:winrm:kerbros:pwd.rb"
+icon: "fa fa-folder-alt"
+inputs:
+  -
+    section: Get Windows Home Directory
+    fields:
+      -
+        default:
+        id: hostname
+        label: Hostname
+        placeholder: "Enter hostname"
+        type: hostname
+        required: true
+      -
+        default:
+        id: username
+        label: Username
+        placeholder: "Enter username"
+        type: textbox
+        required: true
+      -
+        default:
+        id: kerb5_realm
+        label: Kerbros5 realm
+        placeholder: "Kerbros5 realm"
+        type: textbox
+        required: true
+      -
+        default:
+        id: protocol
+        label: Protocol
+        placeholder: "Http/Https"
+        type: select
+        required: true
+        options:
+          - "http"
+          - "https"
+...

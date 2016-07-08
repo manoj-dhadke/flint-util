@@ -1,0 +1,42 @@
+---
+title: "Hostname of windows machine using kerbros"
+description: "Get Hostname of windows machine using kerbros"
+
+flintbit: "flint-util:winrm:kerbros:hostname.rb"
+icon: "fa fa-h-square"
+inputs:
+  -
+    section: Get Hostname of Windows Machine
+    fields:
+      -
+        default:
+        id: hostname
+        label: Hostname
+        placeholder: "Enter hostname"
+        type: hostname
+        required: true
+      -
+        default:
+        id: username
+        label: Username
+        placeholder: "Enter username"
+        type: textbox
+        required: true
+      -
+        default:
+        id: kerb5_realm
+        label: Kerbros5 realm
+        placeholder: "Kerbros5 realm"
+        type: textbox
+        required: true
+      -
+        default:
+        id: protocol
+        label: Protocol
+        placeholder: "Http/Https"
+        type: select
+        required: true
+        options:
+          - "http"
+          - "https"
+...

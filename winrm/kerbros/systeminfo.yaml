@@ -1,0 +1,42 @@
+---
+title: "System Info of Windows Machine using kerbros"
+description: "Get System Info of Windows Machine using kerbros"
+
+flintbit: "flint-util:winrm:kerbros:systeminfo.rb.rb"
+icon: "fa fa-th-list"
+inputs:
+  -
+    section: System Info
+    fields:
+      -
+        default:
+        id: hostname
+        label: Hostname
+        placeholder: "Enter hostname"
+        type: hostname
+        required: true
+      -
+        default:
+        id: username
+        label: Username
+        placeholder: "Enter username"
+        type: textbox
+        required: true
+      -
+        default:
+        id: kerb5_realm
+        label: Kerbros5 realm
+        placeholder: "Kerbros5 realm"
+        type: textbox
+        required: true
+      -
+        default:
+        id: protocol
+        label: Protocol
+        placeholder: "Http/Https"
+        type: select
+        required: true
+        options:
+          - "http"
+          - "https"
+...
