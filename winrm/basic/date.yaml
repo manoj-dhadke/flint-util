@@ -1,0 +1,43 @@
+---
+title: "Current Date of Windows machine"
+description: "Get current Date of Windows machine"
+
+flintbit: "flint-util:winrm:basic:date.rb"
+icon: "fa fa-calendar"
+inputs:
+  -
+    section: Get current date of Windows machine
+    fields:
+      -
+        default:
+        id: protocol
+        label: Protocol
+        options:
+          - "http"
+          - "https"
+        placeholder: "http/https"
+        type: select
+        required: true
+      -
+        default:
+        id: hostname
+        label: Hostname
+        placeholder: "Enter Hostname"
+        type: textbox
+        required: true
+      -
+        default:
+        id: username
+        label: Username
+        placeholder: "Enter Username"
+        type: textbox
+        required: true
+      -
+        default:
+        id: password
+        label: Password
+        placeholder: "Enter Password"
+        type: password
+        required: true
+
+...

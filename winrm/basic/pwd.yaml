@@ -1,0 +1,43 @@
+---
+title: "Windows home directory"
+description: "Get windows home directory"
+
+flintbit: "flint-util:winrm:basic:pwd.rb"
+icon: "fa fa-folder"
+inputs:
+  -
+    section: Get windows home directory
+    fields:
+      -
+        default:
+        id: protocol
+        label: Protocol
+        options:
+          - "http"
+          - "https"
+        placeholder: "http/https"
+        type: select
+        required: true
+      -
+        default:
+        id: hostname
+        label: Hostname
+        placeholder: "Enter Hostname"
+        type: textbox
+        required: true
+      -
+        default:
+        id: username
+        label: Username
+        placeholder: "Enter Username"
+        type: textbox
+        required: true
+      -
+        default:
+        id: password
+        label: Password
+        placeholder: "Enter Password"
+        type: password
+        required: true
+
+...

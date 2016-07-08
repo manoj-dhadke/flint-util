@@ -1,0 +1,43 @@
+---
+title: "IP Configuration of Windows machine"
+description: "Get IP Congiguration of Windows machine"
+
+flintbit: "flint-util:winrm:basic:ipconfig.rb"
+icon: "fa fa-globe"
+inputs:
+  -
+    section: Get IP Configuration
+    fields:
+      -
+        default:
+        id: protocol
+        label: Protocol
+        options:
+          - "http"
+          - "https"
+        placeholder: "http/https"
+        type: select
+        required: true
+      -
+        default:
+        id: hostname
+        label: Hostname
+        placeholder: "Enter Hostname"
+        type: textbox
+        required: true
+      -
+        default:
+        id: username
+        label: Username
+        placeholder: "Enter Username"
+        type: textbox
+        required: true
+      -
+        default:
+        id: password
+        label: Password
+        placeholder: "Enter Password"
+        type: password
+        required: true
+
+...
