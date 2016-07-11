@@ -1,5 +1,5 @@
 ---
-title: "IP Configuration of Windows machine using NTLM"
+title: "NTLM:IP Configuration"
 description: "Get IP Congiguration of Windows machine using NTLM"
 
 flintbit: "flint-util:winrm:ntlm:ipconfig.rb"

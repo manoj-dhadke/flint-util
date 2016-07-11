@@ -1,5 +1,5 @@
 ---
-title: "IP Configuration of windows machine using kerbros"
+title: "Kerbros:IP Configuration"
 description: "Get IP Configuration of windows machine using kerbros"
 
 flintbit: "flint-util:winrm:kerbros:ipconfig.rb"

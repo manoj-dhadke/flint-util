@@ -1,5 +1,5 @@
 ---
-title: "Execute command on Windows using NTLM"
+title: "NTLM:Execute command"
 description: "Execute command on Windows using NTLM"
 
 flintbit: "flint-util:winrm:ntlm:execute_command.rb"

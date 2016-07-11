@@ -1,5 +1,5 @@
 ---
-title: "Windows Directory structure using kerbros"
+title: "Kerbros:Directory structure"
 description: "Get Windows Directory structure using kerbros"
 
 flintbit: "flint-util:winrm:kerbros:dir.rb"

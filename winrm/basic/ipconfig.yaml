@@ -1,6 +1,6 @@
 ---
-title: "IP Configuration of Windows machine"
-description: "Get IP Congiguration of Windows machine"
+title: "Basic:IP Configuration"
+description: "Get IP Congiguration of Windows machine using basic auth"
 
 flintbit: "flint-util:winrm:basic:ipconfig.rb"
 icon: "fa fa-globe"

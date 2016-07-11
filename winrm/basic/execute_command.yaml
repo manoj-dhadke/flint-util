@@ -1,6 +1,6 @@
 ---
-title: "Execute command on Windows"
-description: "Execute command on Windows"
+title: "Basic:Execute command"
+description: "Execute command on Windows using basic auth"
 
 flintbit: "flint-util:winrm:basic:execute_command.rb"
 icon: "fa fa-rocket"
@@ -39,5 +39,11 @@ inputs:
         placeholder: "Enter Password"
         type: password
         required: true
-
+      -
+        default:
+        id: command
+        label: Command
+        placeholder: "Enter Command"
+        type: textbox
+        required: true
 ...

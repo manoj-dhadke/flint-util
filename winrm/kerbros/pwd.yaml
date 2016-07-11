@@ -1,9 +1,9 @@
 ---
-title: "Windows home directory using kerbros"
+title: "Kerbros:Home directory"
 description: "Get Windows home directory using kerbros"
 
 flintbit: "flint-util:winrm:kerbros:pwd.rb"
-icon: "fa fa-folder-alt"
+icon: "fa icon-folder-alt"
 inputs:
   -
     section: Get Windows Home Directory
@@ -13,7 +13,7 @@ inputs:
         id: hostname
         label: Hostname
         placeholder: "Enter hostname"
-        type: hostname
+        type: textbox
         required: true
       -
         default:

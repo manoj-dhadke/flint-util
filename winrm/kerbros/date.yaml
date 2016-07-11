@@ -1,5 +1,5 @@
 ---
-title: "Date of windows machine using kerbros"
+title: "Kerbros:Date"
 description: "Get Date of windows machine using kerbros"
 
 flintbit: "flint-util:winrm:kerbros:date.rb"

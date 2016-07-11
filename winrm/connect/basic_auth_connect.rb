@@ -1,5 +1,5 @@
 require 'winrm'
-@log.trace("Started executing 'flint-util:winrm:connect:basic_auth.rb' flintbit...")
+@log.trace("Started executing 'flint-util:winrm:connect:basic_auth_connect.rb' flintbit...")
 begin
     command = @input.get('command')
 
@@ -37,17 +37,22 @@ begin
     end
     endpoint = '' + protocol + '://' + hostname + ':' + port.to_s + '/wsman'
     winrm = WinRM::WinRMWebService.new(endpoint, :plaintext, user: username, pass: password, basic_auth_only: true)
+    @command_output = ''
+    @error_output = ''
     winrm.create_executor do |executor|
         executor.run_cmd(command) do |stdout, stderr|
-            @log.debug('Output of command : ' + stdout)
-            @log.debug('Error output of command : ' + stderr)
-            @output.set('message', 'success').set('exit-code', 0).set('output', stdout).set('error_output', stderr)
+            @command_output = @command_output.to_s + stdout.to_s
+            @error_output = @error_output.to_s + stderr.to_s
         end
     end
+    @log.debug('Output of command : ' + @command_output.to_s)
+    @log.debug('Error output of command : ' + @error_output.to_s)
+    @output.set('message', 'success').set('exit-code', 0).set('output', @command_output).set('error_output', @error_output)
+
 rescue => e
     @log.error(e.message)
     @output.set('message', e.message).set('exit-code', -1)
     @log.info('output in exception')
 end
-@log.trace("Finished executing 'flint-util:winrm:basic_auth.rb' flintbit")
+@log.trace("Finished executing 'flint-util:winrm:connect:basic_auth_connect.rb' flintbit")
 # end

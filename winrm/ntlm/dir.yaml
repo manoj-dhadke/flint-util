@@ -1,6 +1,6 @@
 ---
-title: "Windows Directory structure"
-description: "Get windows Directory structure"
+title: "NTLM:Directory structure"
+description: "Get windows Directory structure using NTLM"
 
 flintbit: "flint-util:winrm:ntlm:dir.rb"
 icon: "fa fa-th-list"

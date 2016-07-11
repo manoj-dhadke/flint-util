@@ -14,7 +14,7 @@ begin
       else
           @output.set('message', bit_response.get('message')).set('exit-code', bit_response.get('exit-code'))
       end
-  rescue => e
+  rescue Exception => e
       @log.error(e.message)
       @output.set('message', e.message).set('exit-code', -1)
       @log.info('output in exception')

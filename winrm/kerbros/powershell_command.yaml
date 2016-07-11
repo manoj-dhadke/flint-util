@@ -1,5 +1,5 @@
 ---
-title: "Execute powershell command using kerbros"
+title: "Kerbros:Execute powershell command"
 description: "Execute powershell command on windows machine using kerbros"
 
 flintbit: "flint-util:winrm:kerbros:powershell_command.rb"

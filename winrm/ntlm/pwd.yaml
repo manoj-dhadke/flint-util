@@ -1,5 +1,5 @@
 ---
-title: "Windows home directory using NTLM"
+title: "NTLM:Home directory"
 description: "Get windows home directory using NTLM"
 
 flintbit: "flint-util:winrm:ntlm:pwd.rb"

@@ -1,5 +1,5 @@
 ---
-title: "System Informantion of Windows machine using NTLM"
+title: "NTLM:System Informantion"
 description: "Get system information of Windows machine using NTLM"
 
 flintbit: "flint-util:winrm:ntlm:systeminfo.rb"

@@ -1,5 +1,5 @@
 ---
-title: "System Informantion of Windows machine"
+title: "Basic:System Informantion"
 description: "Get system information of Windows machine"
 
 flintbit: "flint-util:winrm:basic:systeminfo.rb"

@@ -1,5 +1,5 @@
 ---
-title: "Execute powershell command using NTLM"
+title: "NTLM:Execute powershell command"
 description: "Execute powershell command on Windows machine using NTLM"
 
 flintbit: "flint-util:winrm:ntlm:powershell_command.rb"

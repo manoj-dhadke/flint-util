@@ -1,5 +1,5 @@
 ---
-title: "Current Date of Windows machine using NTLM"
+title: "NTLM:Date"
 description: "Get current Date of Windows machine using NTLM"
 
 flintbit: "flint-util:winrm:ntlm:date.rb"

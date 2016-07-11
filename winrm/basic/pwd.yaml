@@ -1,6 +1,6 @@
 ---
-title: "Windows home directory"
-description: "Get windows home directory"
+title: "Basic:Home directory"
+description: "Get windows home directory using basic auth"
 
 flintbit: "flint-util:winrm:basic:pwd.rb"
 icon: "fa fa-folder"

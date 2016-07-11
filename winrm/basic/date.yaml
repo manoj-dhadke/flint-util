@@ -1,6 +1,6 @@
 ---
-title: "Current Date of Windows machine"
-description: "Get current Date of Windows machine"
+title: "Basic:Current Date"
+description: "Get current Date of Windows machine using basic auth"
 
 flintbit: "flint-util:winrm:basic:date.rb"
 icon: "fa fa-calendar"

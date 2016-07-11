@@ -1,5 +1,5 @@
 ---
-title: "Hostname of windows machine using kerbros"
+title: "Kerbros:Hostname"
 description: "Get Hostname of windows machine using kerbros"
 
 flintbit: "flint-util:winrm:kerbros:hostname.rb"

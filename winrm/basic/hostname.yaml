@@ -1,6 +1,6 @@
 ---
-title: "Hostname of Windows machine"
-description: "Hostname of Windows machine"
+title: "Basic:Hostname"
+description: "Hostname of Windows machine usig basic auth"
 
 flintbit: "flint-util:winrm:basic:hostname.rb"
 icon: "fa fa-h-square"

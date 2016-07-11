@@ -1,8 +1,8 @@
 ---
-title: "System Info of Windows Machine using kerbros"
+title: "Kerbros:System Info"
 description: "Get System Info of Windows Machine using kerbros"
 
-flintbit: "flint-util:winrm:kerbros:systeminfo.rb.rb"
+flintbit: "flint-util:winrm:kerbros:systeminfo.rb"
 icon: "fa fa-th-list"
 inputs:
   -

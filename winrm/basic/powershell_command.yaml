@@ -1,6 +1,6 @@
 ---
-title: "Execute powershell command"
-description: "Execute powershell command on Windows machine"
+title: "Basic:Execute powershell command"
+description: "Execute powershell command on Windows machine using basic auth"
 
 flintbit: "flint-util:winrm:basic:powershell_command.rb"
 icon: "fa fa-terminal"
@@ -39,5 +39,11 @@ inputs:
         placeholder: "Enter Password"
         type: password
         required: true
-
+      -
+        default:
+        id: command
+        label: Command
+        placeholder: "Enter Command"
+        type: textbox
+        required: true
 ...

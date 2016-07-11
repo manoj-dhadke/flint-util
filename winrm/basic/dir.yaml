@@ -1,6 +1,6 @@
 ---
-title: "Windows Directory structure"
-description: "Get windows Directory structure"
+title: "Basic:Directory structure"
+description: "Get windows Directory structure using basic auth"
 
 flintbit: "flint-util:winrm:basic:dir.rb"
 icon: "fa fa-th-list"

@@ -1,5 +1,5 @@
 ---
-title: "Execute Command on windows using kerbros"
+title: "Kerbros:Execute Command"
 description: "Execute Command on windows using kerbros"
 
 flintbit: "flint-util:winrm:kerbros:execute_command.rb"
