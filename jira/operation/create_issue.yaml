@@ -1,0 +1,99 @@
+---
+title: "Add Comment"
+description: "Adds a new comment to an issue"
+
+flintbit: "flint-util:addcomment:operation:addcomment.rb"
+icon: "fa fa-plus"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: action
+        label: Action
+        placeholder: "action to perform: add-comment"
+        type: textbox
+        required: true
+      -
+        default:
+        id: summary
+        label: Summary
+        placeholder: "Title of issue"
+        type: textbox
+        required: true
+      -
+        default:
+        id: description
+        label: Description
+        placeholder: "Description related to issue"
+        type: textbox
+        required: true
+      -
+        default:
+        id: issuetype
+        label: Select
+        options:
+          - "Service Request"
+          - "Incident"
+          - "Problem"
+          - "Change"
+        placeholder: "action to perform: add-comment"
+        type: select
+        required: true
+      -
+        default:
+        id: priority
+        label: Select
+        options:
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+          - "5"
+        placeholder: "Priority of issue. i.e. Highest=1 and Lowest=5"
+        type: select
+        required: true
+      -
+        default:
+        id: components
+        label: Components
+        placeholder: "Components ids"
+        type: textbox
+        required: true
+      -
+        default:
+        id: labels
+        label: Labels
+        placeholder: "Components labels"
+        type: textbox
+        required: true
+      -
+        default:
+        id: duedate
+        label: DueDate
+        placeholder: "Due date of issue"
+        type: textbox
+        required: true
+      -
+        default:
+        id: reporter
+        label: Reporter
+        placeholder: "Reporter of the issue"
+        type: textbox
+        required: true
+      -
+        default:
+        id: assignee
+        label: Assignee
+        placeholder: "Assignee of the isssue"
+        type: textbox
+        required: true
+      -
+        default:
+        id: custom-field
+        label: Custom Field
+        placeholder: "Custom fields"
+        type: textbox
+        required: true
+...

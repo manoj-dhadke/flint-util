@@ -1,0 +1,46 @@
+---
+title: "Add Comment"
+description: "Adds a new comment to an issue"
+
+flintbit: "flint-util:addcomment:operation:addcomment.rb"
+icon: "fa fa-plus"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: action
+        label: Action
+        placeholder: "action to perform: add-comment"
+        type: textbox
+        required: true
+      -
+        default:
+        id: comment
+        label: Comment
+        placeholder: "Comment text"
+        type: textbox
+        required: true
+      -
+        default:
+        id: type
+        label: Type
+        placeholder: "For User you want to restrict comment"
+        type: textbox
+        required: true
+      -
+        default:
+        id: value
+        label: Value
+        placeholder: "Value of the role e.g: Administrators"
+        type: textbox
+        required: false
+      -
+        default:
+        id: issue-id
+        label: Issue Id
+        placeholder: "issue-id"
+        type: textbox
+        required: true
+...
