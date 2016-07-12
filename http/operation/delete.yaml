@@ -18,10 +18,10 @@ inputs:
       -
         default:
         id: body
-        label: Message
-        placeholder: "message body "
+        label: Body
+        placeholder: "Delete body "
         type: textbox
-        required: false
+        required: true
       -
         default:
         id: headers

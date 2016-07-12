@@ -3,7 +3,7 @@ title: "Append File"
 description: "To Append some data in File"
 
 flintbit: "flint-util:file:operation:append.rb"
-icon: "fa-plus"
+icon: "fa fa-trash"
 inputs:
   -
     section: Basic Fields

@@ -4,7 +4,7 @@ begin
     # Flintbit Input Parameters
     # mandatory
     @connector_name = @input.get('connector_name') # Name of the HTTP Connector
-    @request_method = @input.get('method')         # HTTP Request Method
+    @request_method = 'delete'         # HTTP Request Method
     @request_url = @input.get('url')               # HTTP Request URL
     @request_body = @input.get('body')             # HTTP Request Body
     @request_headers = @input.get('headers')       # HTTP Request Headers
@@ -14,6 +14,7 @@ begin
     @log.info("Flintbit input parameters are, connector name :: #{@connector_name} | url :: #{@request_url} | method :: #{@request_method} |
     headers :: #{@request_headers} | body :: #{@request_body} | timeout :: #{@request_timeout}")
 
+    @log.trace('Calling HTTP Connector...')
     if @request_timeout.to_s.empty?
         response = @call.connector(@connector_name)
                         .set('method', @request_method)

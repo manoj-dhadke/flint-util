@@ -3,7 +3,7 @@ title: "Write File"
 description: "Create new File"
 
 flintbit: "flint-util:file:operation:write.rb"
-icon: "fa-file-text"
+icon: "fa fa-file-text"
 inputs:
   -
     section: Basic Fields

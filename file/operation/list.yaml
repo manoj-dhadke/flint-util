@@ -3,7 +3,7 @@ title: "List Folder"
 description: "gives list of files and directories in a folder"
 
 flintbit: "flint-util:file:operation:list.rb"
-icon: "list"
+icon: "fa fa-list"
 inputs:
   -
     section: Basic Fields

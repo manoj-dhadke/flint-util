@@ -2,7 +2,7 @@
 title: "Http PATCH"
 description: "Perform http patch-method operation"
 
-flintbit: "flint-util/http/operation:patch.rb"
+flintbit: "flint-util:http:operation:patch.rb"
 icon: "fa fa-envelope"
 inputs:
   -

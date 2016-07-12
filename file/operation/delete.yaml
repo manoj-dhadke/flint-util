@@ -3,7 +3,7 @@ title: "Delete File"
 description: "Delete file from local system"
 
 flintbit: "flint-util:file:operation:delete.rb"
-icon: "fa fa-icon-remove-sign "
+icon: "fa fa-trash"
 inputs:
   -
     section: Basic Fields
