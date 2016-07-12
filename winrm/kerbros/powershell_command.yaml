@@ -13,13 +13,6 @@ inputs:
         id: hostname
         label: Hostname
         placeholder: "Enter hostname"
-        type: hostname
-        required: true
-      -
-        default:
-        id: username
-        label: Username
-        placeholder: "Enter username"
         type: textbox
         required: true
       -
@@ -27,6 +20,13 @@ inputs:
         id: kerb5_realm
         label: Kerbros5 realm
         placeholder: "Kerbros5 realm"
+        type: textbox
+        required: true
+      -
+        default:
+        id: command
+        label: Command
+        placeholder: "Enter Command"
         type: textbox
         required: true
       -

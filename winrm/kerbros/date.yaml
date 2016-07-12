@@ -13,7 +13,7 @@ inputs:
         id: hostname
         label: Hostname
         placeholder: "Enter hostname"
-        type: hostname
+        type: textbox
         required: true
       -
         default:

@@ -4,7 +4,7 @@ begin
       protocol = @input.get('protocol')
       krb5_realm = @input.get('kerb5_realm')
       bit_response = @call.bit('flint-util:winrm:connect:kerbros_connect.rb').set('command', 'date /t && time /t').set('hostname', hostname)
-                          .set('protocol', protocol).set('kerb5_realm', kerb5_realm).sync
+                          .set('protocol', protocol).set('kerb5_realm', krb5_realm).sync
       if bit_response.get('exit-code') == 0
           @output.set('message', 'success').set('exit-code', 0)
                  .set('output', bit_response.get('output')).set('error_output', bit_response.get('error_output'))

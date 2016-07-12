@@ -39,5 +39,11 @@ inputs:
         placeholder: "Enter Password"
         type: password
         required: true
-
+      -
+        default:
+        id: command
+        label: Command
+        placeholder: "Enter Command"
+        type: textbox
+        required: true
 ...

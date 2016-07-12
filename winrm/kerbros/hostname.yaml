@@ -13,13 +13,6 @@ inputs:
         id: hostname
         label: Hostname
         placeholder: "Enter hostname"
-        type: hostname
-        required: true
-      -
-        default:
-        id: username
-        label: Username
-        placeholder: "Enter username"
         type: textbox
         required: true
       -

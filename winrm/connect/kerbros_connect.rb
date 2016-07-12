@@ -14,8 +14,8 @@ begin
         raise "Please provide 'hostname' to Connect with windows machine"
     end
     # check for kerbrose.
-    if kerb5_realm.nil?
-        raise "Please provide 'kerb5_realm' to Connect with windows machine"
+    if krb5_realm.nil?
+        raise "Please provide 'krb5_realm' to Connect with windows machine"
     end
     # check for Protocol.
     if protocol.nil?
