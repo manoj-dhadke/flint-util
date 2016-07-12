@@ -1,5 +1,5 @@
 ---
-title: "Command to Date"
+title: "Date"
 description: "Gives date of remote server"
 
 flintbit: "flint-util:ssh:operation:date.rb"
@@ -40,7 +40,7 @@ inputs:
         default:
         id: type
         label: Action Type
-        placeholder: "exec or shell"
+        placeholder: "Exec or Shell"
         type: textbox
         required: true
 ...

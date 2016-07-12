@@ -1,5 +1,5 @@
 ---
-title: "Update data in DB"
+title: "Update"
 description: "To update some data in Database"
 
 flintbit: "flint-util:db:operation:update.rb"
@@ -10,10 +10,17 @@ inputs:
     fields:
       -
         default:
-        id: database
-        label: Database Name
-        placeholder: "Name of Database to use"
+        id: user_name
+        label: User
+        placeholder: "User_name for database"
         type: textbox
+        required: true
+      -
+        default:
+        id: password
+        label: Password
+        placeholder: "Password for Database"
+        type: password
         required: true
       -
         default:
@@ -38,18 +45,25 @@ inputs:
         required: true
       -
         default:
+        id: database
+        label: Database Name
+        placeholder: "Name of Database to use"
+        type: textbox
+        required: false
+      -
+        default:
         id: port
         label: Port
         placeholder: "Port number"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: target
         label: Target
         placeholder: "IP address of database server"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: driver

@@ -1,5 +1,5 @@
 ---
-title: "Http Delete Request"
+title: "Http DELETE"
 description: "Perform http delete operation"
 
 flintbit: "flint-util:http:operation:delete.rb"
@@ -29,11 +29,5 @@ inputs:
         placeholder: "headers required"
         type: textbox
         required: false
-      -
-        default: 60000
-        id: timeout
-        label: Timeout
-        placeholder: "set timeout manually here"
-        type: textbox
-        required: false
+
 ...

@@ -1,5 +1,5 @@
 ---
-title: "Insert in DB"
+title: "Insert"
 description: "Insert data in Database"
 
 flintbit: "flint-util:db:operation:insert.rb"
@@ -8,6 +8,27 @@ inputs:
   -
     section: Basic Fields
     fields:
+      -
+        default:
+        id: user_name
+        label: User
+        placeholder: "User_name for database"
+        type: textbox
+        required: true
+      -
+        default:
+        id: password
+        label: Password
+        placeholder: "Password for Database"
+        type: password
+        required: true
+      -
+        default:
+        id: db_type
+        label: DB type
+        placeholder: "Mysql/Oracle/MS-Sql/postgreSQL"
+        type: textbox
+        required: true
       -
         default:
         id: jdbc_url
@@ -28,28 +49,21 @@ inputs:
         label: Port
         placeholder: "Port number/Not mandatory if jdbc_url is given"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: database
         label: DB Name
         placeholder: "Name of Database to use/Not mandatory if jdbc_url is given"
         type: textbox
-        required: true
-      -
-        default:
-        id: db_type
-        label: DB type
-        placeholder: "Mysql/Oracle/MS-Sql/postgreSQL"
-        type: textbox
-        required: true
+        required: false
       -
         default:
         id: target
         label: Target
         placeholder: "IP address of database server/Not mandatory if jdbc_url is given"
         type: textbox
-        required: true
+        required: false
       -
 
         default:

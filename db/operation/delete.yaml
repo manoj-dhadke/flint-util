@@ -1,5 +1,5 @@
 ---
-title: "Delete from DB"
+title: "Delete"
 description: "Delete data from Database"
 
 flintbit: "flint-util:db:operation:delete.rb"
@@ -35,21 +35,21 @@ inputs:
         label: Jdbc_url
         placeholder: "jdbc:mysql://localhost:3306/database"
         type: textbox
-        required: false
+        required: true
       -
         default:
         id: query
         label: Query
         placeholder: "Query to run"
         type: textbox
-        required: false
+        required: true
       -
         default:
         id: database
         label: Database Name
         placeholder: "Name of Database to use/Not mandatory if jdbc_url is given"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: port
@@ -70,5 +70,5 @@ inputs:
         label: Jdbc Driver using
         placeholder: "Provide name of driver to use"
         type: textbox
-        required: false
+        required: true
 ...

@@ -1,5 +1,5 @@
 ---
-title: "Http Put Request"
+title: "Http PUT"
 description: "Performs http Put-method operation"
 
 flintbit: "flint-util:http:operation:put.rb"
@@ -18,14 +18,14 @@ inputs:
       -
         default:
         id: body
-        label: Message
-        placeholder: "message body"
+        label: Body
+        placeholder: "Body"
         type: textbox
         required: false
       -
         default:
         id: headers
-        label: Headers
+        label: Header
         placeholder: "headers required"
         type: textbox
         required: false

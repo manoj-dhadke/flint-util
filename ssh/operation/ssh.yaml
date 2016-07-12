@@ -47,7 +47,7 @@ inputs:
         default:
         id: type
         label: Action Type
-        placeholder: "exec or shell"
+        placeholder: "Exec or Shell"
         type: textbox
         required: true
 ...

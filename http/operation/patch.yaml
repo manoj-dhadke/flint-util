@@ -1,5 +1,5 @@
 ---
-title: "Http Patch Request"
+title: "Http PATCH"
 description: "Perform http patch-method operation"
 
 flintbit: "flint-util/http/operation:patch.rb"
@@ -18,14 +18,14 @@ inputs:
       -
         default:
         id: body
-        label: Message
-        placeholder: "message body "
+        label: Body
+        placeholder: "Body "
         type: textbox
         required: false
       -
         default:
         id: headers
-        label: Headers
+        label: Header
         placeholder: "headers required"
         type: textbox
         required: false

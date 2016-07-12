@@ -1,5 +1,5 @@
 ---
-title: "Http Head Request"
+title: "Http HEAD"
 description: "Perform http head method operation"
 
 flintbit: "flint-util:http:operation:head.rb"
@@ -18,15 +18,8 @@ inputs:
       -
         default:
         id: headers
-        label: Headers
+        label: Header
         placeholder: "headers required"
-        type: textbox
-        required: false
-      -
-        default: 60000
-        id: timeout
-        label: Timeout
-        placeholder: "set timeout manually here"
         type: textbox
         required: false
 ...

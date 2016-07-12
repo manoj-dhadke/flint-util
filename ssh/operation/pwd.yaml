@@ -1,9 +1,9 @@
 ---
-title: "Command to Pwd"
+title: "PWD"
 description: "Gives present working directory of remote server"
 
 flintbit: "flint-util:ssh:operation:pwd.rb"
-icon: "fa fa-road"
+icon: "fa fa-folder-open-o"
 inputs:
   -
     section: Basic Fields
@@ -40,7 +40,7 @@ inputs:
         default:
         id: type
         label: Action Type
-        placeholder: "exec or shell"
+        placeholder: "Exec or Shell"
         type: textbox
         required: true
 ...

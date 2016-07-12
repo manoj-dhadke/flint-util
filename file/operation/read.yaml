@@ -11,7 +11,7 @@ inputs:
       -
         default:
         id: file
-        label: File name
+        label: File Name
         placeholder: "Full path of file to read"
         type: textbox
         required: true

@@ -1,5 +1,5 @@
 ---
-title: "Call Procedure for DB"
+title: "Call Procedure"
 description: "Delete data from Database"
 
 flintbit: "flint-util:db:operation:procedure.rb"
@@ -49,7 +49,7 @@ inputs:
         label: DB Name
         placeholder: "Name of databse using/Not mandatory if jdbc_url is given"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: port
@@ -63,7 +63,7 @@ inputs:
         label: Target
         placeholder: "IP address of database server/Not mandatory if jdbc_url is given"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: driver

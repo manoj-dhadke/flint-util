@@ -1,5 +1,5 @@
 ---
-title: "Append to File"
+title: "Append File"
 description: "To Append some data in File"
 
 flintbit: "flint-util:file:operation:append.rb"

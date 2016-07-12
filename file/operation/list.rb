@@ -2,9 +2,9 @@
 @log.trace("Started executing 'flint-util:file:operation:list.rb' flintbit...")
 begin
     # Flintbit Input Parameters
-    connector_name = @input.get('connector_name') # Name of the File Connector
+    connector_name = @input.get('connector_name')     # Name of the File Connector
     action = "list"                                   # Action
-    file_path = @input.get('file')                # Folder Name and Location
+    file_path = @input.get('file')                    # Folder Name and Location
 
     @log.info("Flintbit input parameters are, connector name :: #{connector_name} | action :: #{action} | file_path :: #{file_path}")
 

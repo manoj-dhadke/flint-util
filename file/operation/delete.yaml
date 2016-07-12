@@ -1,6 +1,6 @@
 ---
 title: "Delete File"
-description: "File Name and File Location to delete"
+description: "Delete file from local system"
 
 flintbit: "flint-util:file:operation:delete.rb"
 icon: "fa fa-icon-remove-sign "

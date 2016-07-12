@@ -4,7 +4,7 @@ begin
     # Flintbit Input Parameters
     # mandatory
     @connector_name = @input.get('connector_name') # Name of the HTTP Connector
-    @request_method = 'head'                       # HTTP Request Method
+    @request_method = @input.get('method')         # HTTP Request Method
     @request_url = @input.get('url')               # HTTP Request URL
 
     # optional

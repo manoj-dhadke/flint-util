@@ -1,5 +1,5 @@
 ---
-title: "Run select Query"
+title: "Select Query"
 description: "Drop selected columns on screen"
 
 flintbit: "flint-util:db:operation:select.rb"
