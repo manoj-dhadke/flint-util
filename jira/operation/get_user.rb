@@ -1,24 +1,13 @@
-@log.trace("Started execution of 'flint-util:jira:operation:add_comment.rb' flntbit..")
+@log.trace("Started execution of 'flint-util:jira:operation:get_user.rb' flntbit..")
 begin
     # Flintbit input parameters
     @connector_name = @input.get('connector_name')
-    @action = 'add-comment'                       # Action of jira connector
-    @body = @input.get('body')                    # Comment body on jira issue ticket
-    @issue_id = @input.get('issue-id')            # Issue ID of jira
-    @type = @input.get('type')
-    @value = @input.get('value')
-    @use_proxy = @input.get('use_proxy')
-    @proxy = @input.get('proxy')
+    @action = 'get-user' # Action of jira connector
+    @user = @input.get('user')
 
     response = @call.connector(@connector_name)
                     .set('action', @action)
-                    .set('comment', @body)
-                    .set('issue-id', @issue_id)
-                    .set("type",@type)
-                    .set("value",@value)
-                    .set('use-proxy', @use_proxy)
-                    .set('proxy', @proxy)
-                    .timeout(30000)
+                    .set('username', @user)
                     .sync
 
     # Jira Connector Response Parameters
@@ -29,7 +18,6 @@ begin
     response_message = response.message       # Execution status message
 
     if response_exitcode == 0
-        @log.info("Successfully added comment over an service request #{@issue_id}")
         @log.info("Success in executing #{@connector_name} connector, where exitcode : " + response_exitcode.to_s + ' | message : ' + response_message)
         @output.set('exit-code', 0).set('message', 'success').set('result', response_result.to_s)
     else
@@ -40,4 +28,4 @@ rescue Exception => e
     @log.error(e.message)
     @output.set('exit-code', 1).set('message', e.message)
 end
-@log.trace("Finished execution of 'flint-util:jira:operation:add_comment.rb' flntbit..")
+@log.trace("Finished execution of 'flint-util:jira:operation:add_worklog.rb' flntbit..")

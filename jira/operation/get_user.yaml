@@ -1,0 +1,16 @@
+---
+description: "Get user details"
+flintbit: "flint-util:jira:operation:get_user.rb"
+icon: "fa fa-plus"
+inputs:
+  -
+    fields:
+      -
+        default: ~
+        id: username
+        label: Username
+        placeholder: Username
+        required: true
+        type: textbox
+    section: "Get user details"
+title: "Get User"

@@ -1,0 +1,70 @@
+---
+description: "Notify Users"
+flintbit: "flint-util:jira:operation:notify.rb"
+icon: "fa fa-plus"
+inputs:
+  -
+    fields:
+      -
+        default: ~
+        id: issue-id
+        label: "Issue Id"
+        placeholder: "Issue Id"
+        required: true
+        type: textbox
+      -
+        default: ~
+        id: body
+        label: Body
+        placeholder: "Notify message"
+        required: true
+        type: textarea
+      -
+        default: ~
+        id: subject
+        label: Subject
+        placeholder: "Subject of notify"
+        required: true
+        type: textbox
+      -
+        default: ~
+        id: reporter
+        label: Reporter
+        options:
+          - true
+          - false
+        placeholder: true/false
+        required: true
+        type: select
+      -
+        default: ~
+        id: watcher
+        label: Watcher
+        options:
+          - true
+          - false
+        placeholder: true/false
+        required: true
+        type: select
+      -
+        default: ~
+        id: assignee
+        label: Assignee
+        options:
+          - true
+          - false
+        placeholder: true/false
+        required: true
+        type: select
+      -
+        default: ~
+        id: voters
+        label: Voters
+        options:
+          - true
+          - false
+        placeholder: true/false
+        required: true
+        type: select
+    section: "Notify Users"
+title: "Notify User"

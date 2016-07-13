@@ -2,24 +2,17 @@
 title: "Add Comment"
 description: "Adds a new comment to an issue"
 
-flintbit: "flint-util:addcomment:operation:addcomment.rb"
+flintbit: "flint-util:jira:operation:add_comment.rb"
 icon: "fa fa-plus"
 inputs:
   -
-    section: Basic Fields
+    section: Add Comment on Issue
     fields:
       -
         default:
-        id: action
-        label: Action
-        placeholder: "action to perform: add-comment"
-        type: textbox
-        required: true
-      -
-        default:
-        id: comment
+        id: body
         label: Comment
-        placeholder: "Comment text"
+        placeholder: "Comment body"
         type: textbox
         required: true
       -
@@ -28,7 +21,7 @@ inputs:
         label: Type
         placeholder: "For User you want to restrict comment"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: value
@@ -43,4 +36,12 @@ inputs:
         placeholder: "issue-id"
         type: textbox
         required: true
+      -
+        default:
+        id: proxy
+        label: proxy
+        placeholder: "proxy"
+        type: textbox
+        required: false
+
 ...

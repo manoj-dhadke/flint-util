@@ -1,0 +1,58 @@
+---
+title: "Add Worklog"
+description: "Adds Worklog to an issue"
+
+flintbit: "flint-util:jira:operation:add_worklog.rb"
+icon: "fa fa-plus"
+inputs:
+  -
+    section: Add Worklog on Issue
+    fields:
+      -
+        default:
+        id: comment
+        label: Comment
+        placeholder: "Comment body"
+        type: textbox
+        required: true
+      -
+        default:
+        id: issue-id
+        label: Issue Id
+        placeholder: "issue-id"
+        type: textbox
+        required: true
+      -
+        default:
+        id: new_estimate
+        label: New Estimate
+        placeholder: "For User you want to restrict comment"
+        type: textbox
+        required: false
+      -
+        default:
+        id: adjust-estimate
+        label: Value
+        placeholder: "Value of the role e.g: Administrators"
+        type: select
+        required: true
+        options:
+          - new
+          - manual
+          - auto
+          - leave
+      -
+        default:
+        id: time_spend
+        label: Time Spend
+        placeholder: "Time spend on issue"
+        type: textbox
+        required: true
+      -
+        default:
+        id: reduce_by
+        label: Reduce Time
+        placeholder: "Reduce by time"
+        type: textbox
+        required: true
+...

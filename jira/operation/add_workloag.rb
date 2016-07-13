@@ -1,24 +1,27 @@
-@log.trace("Started execution of 'flint-util:jira:operation:add_comment.rb' flntbit..")
+@log.trace("Started execution of 'flint-util:jira:operation:add_worklog.rb' flntbit..")
 begin
     # Flintbit input parameters
     @connector_name = @input.get('connector_name')
-    @action = 'add-comment'                       # Action of jira connector
-    @body = @input.get('body')                    # Comment body on jira issue ticket
+    @action = 'add-worklog'                       # Action of jira connector
+    @comment = @input.get('comment')              # Comment body on jira issue ticket
     @issue_id = @input.get('issue-id')            # Issue ID of jira
-    @type = @input.get('type')
-    @value = @input.get('value')
+    @new_estimate = @input.get('new_estimate')
+    @adjust_estimate = @input.get('adjust_estimate')
+    @time_spend = @input.get('time_spend')
+    @start_time = @input.get('start_time')
+    @reduce_by = @input.get('reduce_by')
     @use_proxy = @input.get('use_proxy')
     @proxy = @input.get('proxy')
 
     response = @call.connector(@connector_name)
                     .set('action', @action)
-                    .set('comment', @body)
+                    .set('comment', @comment)
                     .set('issue-id', @issue_id)
-                    .set("type",@type)
-                    .set("value",@value)
-                    .set('use-proxy', @use_proxy)
-                    .set('proxy', @proxy)
-                    .timeout(30000)
+                    .set('started', @start_time)
+                    .set('timeSpent', @time_spend)
+                    .set('adjust-estimate', @adjust_estimate)
+                    .set('new-estimate', @new_estimate)
+                    .set("reduce-by", @reduce_by)
                     .sync
 
     # Jira Connector Response Parameters
@@ -29,7 +32,7 @@ begin
     response_message = response.message       # Execution status message
 
     if response_exitcode == 0
-        @log.info("Successfully added comment over an service request #{@issue_id}")
+        @log.info("Successfully added worklog over an service request #{@issue_id}")
         @log.info("Success in executing #{@connector_name} connector, where exitcode : " + response_exitcode.to_s + ' | message : ' + response_message)
         @output.set('exit-code', 0).set('message', 'success').set('result', response_result.to_s)
     else
@@ -40,4 +43,4 @@ rescue Exception => e
     @log.error(e.message)
     @output.set('exit-code', 1).set('message', e.message)
 end
-@log.trace("Finished execution of 'flint-util:jira:operation:add_comment.rb' flntbit..")
+@log.trace("Finished execution of 'flint-util:jira:operation:add_worklog.rb' flntbit..")

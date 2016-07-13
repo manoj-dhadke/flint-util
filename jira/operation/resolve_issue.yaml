@@ -1,0 +1,33 @@
+---
+title: "Resolve Issue"
+description: "Resolve an issue"
+
+flintbit: "flint-util:jira:operation:resolve_issue.rb"
+icon: "fa fa-plus"
+inputs:
+  -
+    section: Resolve Issue
+    fields:
+      -
+        default:
+        id: comment
+        label: Comment
+        placeholder: "Comment body"
+        type: textbox
+        required: true
+      -
+        default:
+        id: issue-id
+        label: Issue Id
+        placeholder: "issue-id"
+        type: textbox
+        required: true
+      -
+        default:
+        id: proxy
+        label: proxy
+        placeholder: "proxy"
+        type: textbox
+        required: false
+
+...

@@ -1,20 +1,13 @@
 ---
-title: "Add Comment"
+title: "Create Issue"
 description: "Adds a new comment to an issue"
 
-flintbit: "flint-util:addcomment:operation:addcomment.rb"
+flintbit: "flint-util:jira:operation:create_issue.rb"
 icon: "fa fa-plus"
 inputs:
   -
-    section: Basic Fields
+    section: Create Issue
     fields:
-      -
-        default:
-        id: action
-        label: Action
-        placeholder: "action to perform: add-comment"
-        type: textbox
-        required: true
       -
         default:
         id: summary
