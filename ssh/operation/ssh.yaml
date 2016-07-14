@@ -47,7 +47,10 @@ inputs:
         default:
         id: type
         label: Action Type
-        placeholder: "Exec or Shell"
-        type: textbox
+        options:
+          - "exec"
+          - "shell"
+        placeholder: "Action to perform"
+        type: select
         required: true
 ...

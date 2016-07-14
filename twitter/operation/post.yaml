@@ -10,25 +10,44 @@ inputs:
     fields:
       -
         default:
-        id: text
-        label: Text Here
-        placeholder: "Text to twitte"
+        id: consumer_key
+        label: Consumer Key
+        placeholder: "Provide Consumer Key"
         type: textbox
         required: true
+      -
+        default:
+        id: consumer_secret_key
+        label: Consumer Secret Key
+        placeholder: "Provide Consumer Secret Key "
+        type: textbox
+        required: true
+      -
+        default:
+        id: access_token
+        label: Access Token
+        placeholder: "Provide Access Token "
+        type: textbox
+        required: true
+      -
+        default:
+        id: access_secret_token
+        label: Access Secret Token
+        placeholder: "Provide Access Secret Token"
+        type: textbox
+        required: true
+      -
+        default:
+        id: text
+        label: Text Here
+        placeholder: "text to twitte"
+        type: textbox
+        required: false
       -
         default:
         id: file
         label: Image File
-        placeholder: "Full path of image file to post on Twitte"
+        placeholder: "Full path of image/file"
         type: textbox
         required: false
-
-      -
-        default:
-        id: connector-name
-        label: Connector
-        placeholder: "Select Connector Name"
-        type: map
-        map: ConnectorSSH
-        required: true
 ...

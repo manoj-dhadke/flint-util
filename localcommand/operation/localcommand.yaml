@@ -1,0 +1,18 @@
+---
+title: "Command Localy"
+description: "Execute command on Local machine"
+
+flintbit: "flint-util:localcommand:operation:localcommand.rb"
+icon: "fa fa-minus-circle"
+inputs:
+  -
+    section: Basic Fields
+    fields:
+      -
+        default:
+        id: command
+        label: Command
+        placeholder: "Command to execute"
+        type: textbox
+        required: true
+...
