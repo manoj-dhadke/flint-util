@@ -1,17 +1,17 @@
 ---
-title: "Jira:Resolve Issue"
-description: "Resolve an Jira issue"
+title: "Jira:Delete Issue"
+description: "Delete Jira Issue"
 
-flintbit: "flint-util:jira:operation:resolve_issue.rb"
+flintbit: "flint-util:jira:operation:delete_issue.rb"
 icon: "fa fa-plus"
 inputs:
   -
-    section: Resolve Issue
+    section: Delete Issue
     fields:
       -
         default:
         id: issue-id
-        label: Issue Id
+        label: Issue ID
         placeholder: "Id of issue"
         type: textbox
         required: true
@@ -32,5 +32,4 @@ inputs:
         placeholder: "proxy"
         type: textbox
         required: false
-
 ...

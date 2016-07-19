@@ -8,6 +8,13 @@ begin
     @type = @input.get('type')
     @value = @input.get('value')
     @use_proxy = @input.get('use_proxy')
+    if @use_proxy.is_a?(String)
+      if @use_proxy == 'true'
+        @use_proxy = true
+      else
+        @use_proxy = false
+      end
+    end
     @proxy = @input.get('proxy')
 
     response = @call.connector(@connector_name)

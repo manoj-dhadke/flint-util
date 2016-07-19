@@ -1,18 +1,32 @@
 ---
-title: "Jira:Add Comment on Issue"
-description: "Adds a new comment to an issue"
+title: "Jira:Update Comment"
+description: "Update comment of issue"
 
-flintbit: "flint-util:jira:operation:add_comment.rb"
+flintbit: "flint-util:jira:operation:update_comment.rb"
 icon: "fa fa-plus"
 inputs:
   -
-    section: Add Comment on Issue
+    section: Update comment
     fields:
       -
         default:
-        id: body
-        label: Comment
-        placeholder: "Comment body"
+        id: issue-id
+        label: Issue ID
+        placeholder: "Id of issue"
+        type: textbox
+        required: true
+      -
+        default:
+        id: comment-id
+        label: Comment ID
+        placeholder: "Id of comment"
+        type: textbox
+        required: true
+      -
+        default:
+        id: comment
+        label: New Comment
+        placeholder: "new comment to update"
         type: textbox
         required: true
       -
@@ -21,19 +35,12 @@ inputs:
         label: Type
         placeholder: "For User you want to restrict comment"
         type: textbox
-        required: false
+        required: true
       -
         default:
         id: value
-        label: Value
+        label: value
         placeholder: "Value of the role e.g: Administrators"
-        type: textbox
-        required: false
-      -
-        default:
-        id: issue-id
-        label: Issue Id
-        placeholder: "issue-id"
         type: textbox
         required: true
       -

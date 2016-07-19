@@ -1,18 +1,25 @@
 ---
-title: "Jira:Resolve Issue"
-description: "Resolve an Jira issue"
+title: "Jira:Delete Comment"
+description: "Delete comment of issue"
 
-flintbit: "flint-util:jira:operation:resolve_issue.rb"
+flintbit: "flint-util:jira:operation:delete_comment.rb"
 icon: "fa fa-plus"
 inputs:
   -
-    section: Resolve Issue
+    section: Delete comment
     fields:
       -
         default:
         id: issue-id
-        label: Issue Id
+        label: Issue ID
         placeholder: "Id of issue"
+        type: textbox
+        required: true
+      -
+        default:
+        id: comment-id
+        label: Comment ID
+        placeholder: "Id of comment"
         type: textbox
         required: true
       -
@@ -32,5 +39,4 @@ inputs:
         placeholder: "proxy"
         type: textbox
         required: false
-
 ...

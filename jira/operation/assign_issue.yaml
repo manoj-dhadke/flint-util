@@ -1,18 +1,25 @@
 ---
-title: "Jira:Resolve Issue"
-description: "Resolve an Jira issue"
+title: "Jira:Assign Issue"
+description: "Assign Jira Issue to user"
 
-flintbit: "flint-util:jira:operation:resolve_issue.rb"
+flintbit: "flint-util:jira:operation:assign_issue.rb"
 icon: "fa fa-plus"
 inputs:
   -
-    section: Resolve Issue
+    section: Assign Issue
     fields:
       -
         default:
         id: issue-id
-        label: Issue Id
+        label: Issue ID
         placeholder: "Id of issue"
+        type: textbox
+        required: true
+      -
+        default:
+        id: username
+        label: Username
+        placeholder: "Username of user"
         type: textbox
         required: true
       -
@@ -32,5 +39,4 @@ inputs:
         placeholder: "proxy"
         type: textbox
         required: false
-
 ...

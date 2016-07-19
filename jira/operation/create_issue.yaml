@@ -1,6 +1,6 @@
 ---
 title: "Create Issue"
-description: "Adds a new comment to an issue"
+description: "Create new issue in Jira"
 
 flintbit: "flint-util:jira:operation:create_issue.rb"
 icon: "fa fa-plus"

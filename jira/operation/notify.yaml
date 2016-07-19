@@ -1,5 +1,5 @@
 ---
-description: "Notify Users"
+description: "Jira:Notify Users"
 flintbit: "flint-util:jira:operation:notify.rb"
 icon: "fa fa-plus"
 inputs:

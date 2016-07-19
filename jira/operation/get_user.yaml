@@ -1,5 +1,5 @@
 ---
-description: "Get user details"
+description: "Jira:Get user details"
 flintbit: "flint-util:jira:operation:get_user.rb"
 icon: "fa fa-plus"
 inputs:

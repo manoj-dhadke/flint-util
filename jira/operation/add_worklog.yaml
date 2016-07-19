@@ -24,16 +24,30 @@ inputs:
         required: true
       -
         default:
+        id: type
+        label: Type
+        placeholder: "For User you want to restrict comment"
+        type: textbox
+        required: true
+      -
+        default:
+        id: value
+        label: value
+        placeholder: "Value of the role e.g: Administrators"
+        type: textbox
+        required: true
+      -
+        default:
         id: new_estimate
         label: New Estimate
-        placeholder: "For User you want to restrict comment"
+        placeholder: "New value for the remaining estimate field. e.g. 2d "
         type: textbox
         required: false
       -
         default:
         id: adjust-estimate
-        label: Value
-        placeholder: "Value of the role e.g: Administrators"
+        label: Adjust Estimate
+        placeholder: "Update the remaining time estimate of the issue"
         type: select
         required: true
         options:
