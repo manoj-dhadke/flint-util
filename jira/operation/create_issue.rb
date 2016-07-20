@@ -5,7 +5,7 @@ begin
     @action = 'create-issue' # Action of jira connector
     @summary = @input.get('summary')
     @description = @input.get('description')
-    @issuetype = @input.get('description')
+    @issuetype = @input.get('issuetype')
     @priority =  @input.get('priority')
     @components = @input.get('components')
     @labels = @input.get('labels')

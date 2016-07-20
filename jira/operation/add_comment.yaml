@@ -19,7 +19,7 @@ inputs:
         default:
         id: type
         label: Type
-        placeholder: "For User you want to restrict comment"
+        placeholder: "For User you want to restrict comment e.g: role"
         type: textbox
         required: false
       -
@@ -33,7 +33,7 @@ inputs:
         default:
         id: issue-id
         label: Issue Id
-        placeholder: "issue-id"
+        placeholder: "Id of issue"
         type: textbox
         required: true
       -

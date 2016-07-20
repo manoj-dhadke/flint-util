@@ -1,5 +1,6 @@
 ---
-description: "Jira:Get user details"
+title: "Jira:Get User"
+description: "Get user details"
 flintbit: "flint-util:jira:operation:get_user.rb"
 icon: "fa fa-plus"
 inputs:
@@ -13,4 +14,4 @@ inputs:
         required: true
         type: textbox
     section: "Get user details"
-title: "Get User"
+...

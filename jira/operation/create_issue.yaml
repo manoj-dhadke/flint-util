@@ -1,5 +1,5 @@
 ---
-title: "Create Issue"
+title: "Jira:Create Issue"
 description: "Create new issue in Jira"
 
 flintbit: "flint-util:jira:operation:create_issue.rb"
@@ -21,7 +21,7 @@ inputs:
         label: Description
         placeholder: "Description related to issue"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: issuetype
@@ -33,7 +33,7 @@ inputs:
           - "Change"
         placeholder: "action to perform: add-comment"
         type: select
-        required: true
+        required: false
       -
         default:
         id: priority
@@ -51,42 +51,42 @@ inputs:
         default:
         id: components
         label: Components
-        placeholder: "Components ids"
+        placeholder: "Components ids i.e. ['10106','10105']"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: labels
         label: Labels
-        placeholder: "Components labels"
+        placeholder: "Components labels i.e. ['bugfix','blitz_test']"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: duedate
         label: DueDate
         placeholder: "Due date of issue"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: reporter
         label: Reporter
         placeholder: "Reporter of the issue"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: assignee
         label: Assignee
         placeholder: "Assignee of the isssue"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: custom-field
         label: Custom Field
-        placeholder: "Custom fields"
+        placeholder: "Custom fields i.e. [{'Operating System':'Ubuntu'}]"
         type: textbox
-        required: true
+        required: false
 ...

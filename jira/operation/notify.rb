@@ -7,9 +7,37 @@ begin
     @body = @input.get('body')
     @subject = @input.get('subject')
     @reporter = @input.get('reporter')
+    if @reporter.is_a?(String)
+      if @reporter == 'true'
+        @reporter = true
+      else
+        @reporter = false
+      end
+    end
     @assignee = @input.get('assignee')
+    if @assignee.is_a?(String)
+      if @assignee == 'true'
+        @assignee = true
+      else
+        @assignee = false
+      end
+    end
     @watcher = @input.get('watcher')
+    if @watcher.is_a?(String)
+      if @watcher == 'true'
+        @watcher = true
+      else
+        @watcher = false
+      end
+    end
     @voters = @input.get('voters')
+    if @voters.is_a?(String)
+      if @voters == 'true'
+        @voters = true
+      else
+        @voters = false
+      end
+    end
 
     response = @call.connector(@connector_name)
                     .set('action', @action)

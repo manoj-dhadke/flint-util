@@ -20,7 +20,7 @@ inputs:
         id: comment-id
         label: Comment ID
         placeholder: "Id of comment"
-        type: textbox
+        type: float
         required: true
       -
         default:
@@ -35,14 +35,14 @@ inputs:
         label: Type
         placeholder: "For User you want to restrict comment"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: value
         label: value
         placeholder: "Value of the role e.g: Administrators"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: use-proxy

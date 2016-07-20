@@ -1,5 +1,5 @@
 ---
-title: "Add Worklog"
+title: "Jira:Add Worklog"
 description: "Adds Worklog to an issue"
 
 flintbit: "flint-util:jira:operation:add_worklog.rb"
@@ -28,14 +28,14 @@ inputs:
         label: Type
         placeholder: "For User you want to restrict comment"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: value
         label: value
         placeholder: "Value of the role e.g: Administrators"
         type: textbox
-        required: true
+        required: false
       -
         default:
         id: new_estimate
@@ -68,5 +68,5 @@ inputs:
         label: Reduce Time
         placeholder: "Reduce by time"
         type: textbox
-        required: true
+        required: false
 ...
