@@ -38,7 +38,7 @@ begin
     if response_exitcode == 0
         @log.info("Successfully added comment over an service request #{@issue_id}")
         @log.info("Success in executing #{@connector_name} connector, where exitcode : " + response_exitcode.to_s + ' | message : ' + response_message)
-        @output.set('exit-code', 0).set('message', 'success').set('result', response_result.to_s)
+        @output.set('exit-code', 0).set('message', 'success').setraw('result', response_result.to_s)
     else
         @log.error("Failure in executing  #{@connector_name} connector, where exitcode : " + response_exitcode.to_s + ' | message : ' + response_message)
         @output.set('exit-code', 1).set('message', response_message)
