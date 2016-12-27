@@ -30,6 +30,7 @@ begin
 
     if response_exitcode == 0
         @log.info("Success in executing #{@connector_name} connector, where exitcode : " + response_exitcode.to_s + ' | message : ' + response_message)
+        @log.info("#{response_result}")
         @output.set('exit-code', 0).set('message', 'success').set("body",response_result)
     else
         @log.error("Failure in executing  #{@connector_name} connector, where exitcode : " + response_exitcode.to_s + ' | message : ' + response_message)

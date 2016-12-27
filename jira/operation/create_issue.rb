@@ -36,7 +36,8 @@ begin
     response_message = response.message       # Execution status message
 
     if response_exitcode == 0
-        @log.info("Successfully created jira issue #{@issue_id}")
+        issue_id = ticket_content["key"]
+        @log.info("Successfully created jira issue #{issue_id}")
         @log.info("Success in executing #{@connector_name} connector, where exitcode : " + response_exitcode.to_s + ' | message : ' + response_message)
         @output.set('exit-code', 0).set('message', 'success').set('result', ticket_content.to_s)
     else
