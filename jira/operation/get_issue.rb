@@ -30,8 +30,17 @@ begin
 
     if response_exitcode == 0
         @log.info("Success in executing #{@connector_name} connector, where exitcode : " + response_exitcode.to_s + ' | message : ' + response_message)
-        @log.info("#{response_result}")
-        @output.set('exit-code', 0).set('message', 'success').set("body",response_result)
+        @log.info("response ::" +response_result.to_s)
+        res = {}
+        res["id"] = response_result["id"]
+        res["key"] = response_result["key"] 
+        res["project_name"] = response_result["fields"]["project"]["name"]
+        res["discription"] = response_result["fields"]["description"]
+        res["created"] = response_result["fields"]["created"]
+        res["priority"] = response_result["fields"]["priority"]["id"]
+        res["assignee"] = response_result["fields"]["assignee"]["name"]
+        @log.info("Output :: #{res}")  
+        @output.set("result", "#{res}")
     else
         @log.error("Failure in executing  #{@connector_name} connector, where exitcode : " + response_exitcode.to_s + ' | message : ' + response_message)
         @output.set('exit-code', 1).set('message', response_message)
