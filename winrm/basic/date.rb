@@ -9,9 +9,9 @@ begin
                         .set('protocol', protocol).set('username', username).set('password', password).sync
     if bit_response.get('exit-code') == 0
         @output.set('message', 'success').set('exit-code', 0)
-               .set('output', bit_response.get('output')).set('error_output', bit_response.get('error_output'))
+               .set('output', bit_response.get('output'))
     else
-        @output.set('message', bit_response.get('message')).set('exit-code', bit_response.get('exit-code'))
+        @output.set('message', bit_response.get('message')).set('exit-code', bit_response.get('exit-code')).set('error_output', bit_response.get('error_output'))
     end
 rescue Exception => e
     @log.error(e.message)
