@@ -29,9 +29,12 @@ begin
                     .set('adjust-estimate', @adjust_estimate)
                     .set('new-estimate', @new_estimate)
                     .set("reduce-by", @reduce_by)
+                    .set('proxy', @proxy)
+                    .set('use-proxy', @use_proxy)
                     .sync
 
     # Jira Connector Response Parameters
+    @log.info("************************  #{response}")
     response_result = response.get('body') # Response Body
 
     # Jira Connector Response Meta Parameters
