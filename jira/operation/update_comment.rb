@@ -21,7 +21,7 @@ begin
     response = @call.connector(@connector_name)
                     .set('action', @action)
                     .set('issue-id', @issue_id)
-                    .set('comment-id', @comment_id)
+                    .set('comment-id', @comment_id.to_i)
                     .set('comment',@comment)
                     .set('type',@type)
                     .set('value',@value)

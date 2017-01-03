@@ -20,7 +20,7 @@ inputs:
         id: comment-id
         label: Comment ID
         placeholder: "Id of comment"
-        type: float
+        type: textbox
         required: true
       -
         default:
