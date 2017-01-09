@@ -39,13 +39,12 @@ inputs:
         id: priority
         label: Priority
         options:
-          - "select"
-          - "1"
-          - "2"
-          - "3"
-          - "4"
-          - "5"
-        placeholder: "Priority of issue. i.e. Highest=1 and Lowest=5"
+          - "Highest"
+          - "High"
+          - "Medium"
+          - "Low"
+          - "Lowest"
+        placeholder: "Priority of issue"
         type: select
         required: true
       -

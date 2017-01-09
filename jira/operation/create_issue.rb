@@ -13,6 +13,22 @@ begin
     @reporter = @input.get('reporter')
     @assignee = @input.get('assignee')
     @custom_field = @input.get('custom-field')
+    @log.info ("#{@input.raw()}")
+    if @priority.include?'Highest'
+       @priority = "1"   
+     end
+   if @priority.include?'High'
+       @priority = "2"   
+     end
+   if @priority.include?'Medium'
+       @priority = "3"   
+     end
+   if @priority.include?'Low'
+       @priority = "4"   
+     end
+   if @priority.include?'Lowest'
+       @priority = "5"   
+     end
 
     response = @call.connector(@connector_name)
                     .set('action', @action)
