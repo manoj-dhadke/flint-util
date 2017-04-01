@@ -1,6 +1,6 @@
----
-title: Flint integration with Jenkins Build Server
----
+
+## Flint integration with Jenkins Build Server
+
 ### What is Flint IT Automation Platform?
 Flint is a lean IT Process Automation & Orchestration Platform for IT infrastructure and applications. It empowers teams to leverage existing scripting (Ruby or Groovy) skills to develop powerful workflows and processes which can be published as microservices.
 
@@ -72,7 +72,7 @@ Jenkins is a cross-platform, continuous integration and continuous delivery appl
 ```ruby
 # call the flintbit
 #Flintbit to start build deployment
-@response_startbuild = @call.bit('flint-util:jenkins:start_build.rb') 
+@response_startbuild = @call.bit('flint-util:jenkins:start_build.rb')
                             .set('build_name',@build_name)
                             .sync
 
