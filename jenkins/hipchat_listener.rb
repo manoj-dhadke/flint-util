@@ -10,8 +10,7 @@
 begin
 	@log.info("Message::#{@message}")
 	if @message.start_with?("#{@build_operation} deploy")
-		@body = '{"color":"green","message":"Hello @' + @mention_name + ',I have started deploying the build.You will get an email notification once the deployment is complete","notify":true,"message_format":"text"}'
-		@call.bit('flint-util:jenkins:add_message.rb').set('body', @body).sync
+
 
 		@build_name=   @message.gsub! "#{@build_operation} deploy",''
 		@build_name_removedspace= @build_name.strip
@@ -25,6 +24,8 @@ begin
 				#if "#{@builds.include?(@build_name)}"
 				if (@builds.include?(@build_name_removedspace))
 					@log.info('Calling Flintbit to perform jenkins build Operation')
+					@body = '{"color":"green","message":"Hello @' + @mention_name + ',I have started deploying the build.You will get an email notification once the deployment is complete","notify":true,"message_format":"text"}'
+					@call.bit('flint-util:jenkins:add_message.rb').set('body', @body).sync
 					response_startbuild = @call.bit('flint-util:jenkins:start_build.rb')
                     .set('id', @id)
                     .set('mention_name', @mention_name)
