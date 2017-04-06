@@ -8,17 +8,25 @@ begin
     request_url = @input.get('url')               # HTTP Request URL
     request_body = @input.get('body')             # HTTP Request Body
     request_headers = @input.get('headers')       # HTTP Request Headers
+    @is_proxy=@input.get('is-proxy')		   #proxy (true or false)
+    @proxy_details=@input.get('proxy')		   #if proxy is true then provide details of the proxy i. hostname,port,protocol
     # optional
     request_timeout = @input.get('timeout')       # Timeout in milliseconds, taken by the Connetor to serve the request
 
     @log.info("Flintbit input parameters are, connector name :: #{connector_name} |url :: #{request_url} | method :: #{request_method} |
     headers :: #{request_headers} | body :: #{request_body} | timeout :: #{request_timeout}")
 
+    if @is_proxy.nil?		
+           @is_proxy = false
+    end
+
     @log.trace('Calling HTTP Connector...')
     call_connector = @call.connector(connector_name)
                           .set('method', request_method)
                           .set('url', request_url)
                           .set('body', request_body)
+			  .set('is-proxy',@is_proxy)
+			  .set('proxy',@proxy_details)
                           .set('headers', request_headers)
     # .timeout(10000)          #Execution time of the Flintbit in milliseconds
 
