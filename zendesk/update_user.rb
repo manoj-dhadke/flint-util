@@ -16,6 +16,7 @@ begin
     @data['notes'] = @input.get('notes') #Any notes you want to store about the user
     @data['phone'] = @input.get('phone')
     @data['role'] = @input.get('role')
+    @data['organization_id'] = @input.get('organization-id')
     @request_timeout = @input.get('timeout')
 
     if @connector_name.nil? || @connector_name.empty?
