@@ -41,7 +41,7 @@ begin
 
     connector_call = @call.connector(@connector_name)
                     .set('action', @action)
-                    .set('ticket', @id)
+                    .set('ticket-id', @id)
                     .set('data', @data)
 
 
