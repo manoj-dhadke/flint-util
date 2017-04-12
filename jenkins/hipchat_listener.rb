@@ -133,8 +133,14 @@ begin
 			body = '{"color":"green","message":"' + reply_message + '","notify":true,"message_format":"text"}'
 			@call.bit('flint-util:jenkins:add_message.rb').set('body', body).sync
 		end
+
+	elsif @message.start_with?("#{@build_operation} list")
+				@builds =@builds.to_s
+        @body ='{"color":"green","message":"Hello @' + @mention_name + ',The list of available builds in this Room is: ' + @builds + ' ","notify":true,"message_format":"text"}'
+        @call.bit('flint-util:jenkins:add_message.rb').set('body', @body).sync
+
 	else
-		reply_message = 'Hello @' + @mention_name + ',Please provide valid command :''\n' 'Usage:  /build deploy [buildname] ''\n' '/build status [buildname] ''\n' '/build lastfailed [buildname]'
+		reply_message = 'Hello @' + @mention_name + ',Please provide valid command :''\n' 'Usage:  /build deploy [buildname] ''\n' '/build status [buildname] ''\n' '/build lastfailed [buildname] ''\n' '/build list'
 		body = '{"color":"green","message":"' + reply_message + '","notify":true,"message_format":"text"}'
 		@call.bit('flint-util:jenkins:add_message.rb').set('body', body).sync
 
