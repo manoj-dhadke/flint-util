@@ -8,7 +8,7 @@ begin
     # Optional
     request_timeout = @input.get('timeout')	# Execution time of the Flintbit in milliseconds (default timeout is 60000 milloseconds)
 
-    connector_call = @call.connector('testad')
+    connector_call = @call.connector(@connector_name)
                           .set('action', 'list-users')
                           .set('distinguished-names', @dn)
 
