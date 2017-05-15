@@ -1,7 +1,7 @@
 require 'json'
 require 'rubygems'
 #begin
-@log.trace("Started executing 'fb-cloud:hyperv:run-command.rb' flintbit...")
+@log.trace("Started executing 'flint-util:winrm:basic:run-command.rb' flintbit...")
 begin
     #Flintbit Input Parameters
     #Mandatory  
@@ -26,7 +26,7 @@ begin
                                             command                  ::    #{@command}|
                                             operation_timeout        ::    #{@operation_timeout}|
                                             no_ssl_peer_verification ::    #{@no_ssl_peer_verification}|
-                                            port                     ::    #{@port.class}")
+                                            port                     ::    #{@port}")
 
     connector_call = @call.connector(@connector_name)
                     .set("target",@target)
@@ -70,5 +70,5 @@ rescue Exception => e
     @log.error(e.message)
     @output.set('exit-code', 1).set('message', e.message)
 end   
-@log.trace("Finished executing 'fb-cloud:hyperv:list_virtual_machine.rb' flintbit...")
+@log.trace("Finished executing 'flint-util:winrm:basic:run-command.rb' flintbit...")
 #end
