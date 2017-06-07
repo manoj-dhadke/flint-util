@@ -1,0 +1,39 @@
+---
+title: "Oracle Database backup"
+description: "To Take Oracle Database backup"
+
+flintbit: "flint-mmc:oracle:database_backup.rb"
+icon: "fa fa-database"
+inputs:
+  -
+    section: Oracle Database backup
+    fields:
+      -
+        default:
+        id: target
+        label: Target Server
+        placeholder: "IP address of the server"
+        type: map
+        map: oracle_db_servers
+        required: True
+      -
+        default: "FULL"
+        id: backup_type
+        label: Backup Type
+        placeholder: "Oracle database backup type"
+        type: select
+        required: true
+        options:
+          - FULL
+          - INC
+          - ARCH
+      -
+        default:
+        id: database_name
+        label: Database Name
+        placeholder: "Database Name"
+        type: map
+        map: oracle_db_name
+        required: True
+
+...
