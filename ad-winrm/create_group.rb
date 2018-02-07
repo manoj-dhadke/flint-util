@@ -3,6 +3,7 @@ begin
     @group_name = @input.get('group-name')
     @sam_account_name= @input.get('SamAccountName')
     @path= @input.get('path')
+    @path= @path.gsub(' ', ',')
     @description= @input.get('group-description')
     @command = "New-ADGroup -Name '#{@group_name}' -SamAccountName #{@sam_account_name} -GroupCategory Security -GroupScope Global -DisplayName '#{@group_name}' -Path '#{@path}' -Description '#{@description}'"
     @log.info("Command:: #{@command}")
