@@ -4,7 +4,7 @@ begin
     @sam_account_name= @input.get('SamAccountName')
     @path= @input.get('path')
     @description= @input.get('group-description')
-    @command = "New-ADGroup -Name "+@group_name.to_s+" -SamAccountName #{@sam_account_name} -GroupCategory Security -GroupScope Global -DisplayName "+@group_name.to_s+" -Path "+@path.to_s+" -Description "+@description.to_s+""
+    @command = "New-ADGroup -Name '#{@group_name}' -SamAccountName #{@sam_account_name} -GroupCategory Security -GroupScope Global -DisplayName '#{@group_name}' -Path '#{@path}' -Description '#{@description}'"
     @log.info("Command:: #{@command}")
     # Call flintbit synchronously and set arguments
     flintbit_response = @call.bit('flint-util:ad-winrm:winrm_commonconnect.rb')
