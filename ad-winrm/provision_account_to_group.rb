@@ -83,7 +83,8 @@ User Details :
 * Sam Account Name : #{@samAccountName}
 * Distinguished Name : #{@distinguishedName}
 * Full Name : #{@fullName}
-* ObjectGUID : #{@objectguid} """
+* ObjectGUID : #{@objectguid}
+* User with login-name: #{@login_name} added to Group : #{@group_name} """
 @log.info(">>>> #{@user_message} >>>>>>")
     @output.set('result', @result.to_s).set('user_message',@user_message).set('exit-code', 0)
 else
