@@ -17,7 +17,7 @@ if flintbit_response.get("exit-code") == 0
     @log.info("Command executed :: #{@command} | Command execution results :: #{result}")
     @user_message = """**Account with username :'#{@login_name}' is added to Group #{@group_name} successfully**"""
     @log.info("Add user to a Group operation successful    ::user_message:: #{@user_message}")
-    @output.set('result', result).set('user_message',@user_message)
+    @output.set('result', result).set('user_message',@user_message).set('exit-code', 0)
     @log.trace("Finished executing 'winrm' flintbit with success...")
 else
     @log.error("Failure in executing WinRM Connector where, exitcode :: #{flintbit_response.get("exit-code")} | message :: #{@error_message}")
@@ -30,7 +30,7 @@ else
     @user_message = """**Error:**
 #{@a.rstrip}"""
     @log.error("Failure in executing WinRM Connector where, exitcode :: #{flintbit_response.get("exit-code")} | message :: #{@error_message} | for user :: #{@user_message}")
-    @output.set('error', @error_message).set('user_message',@user_message)
+    @output.set('error', @error_message).set('user_message',@user_message).set('exit-code', -1)
     @log.trace("Finished executing 'winrm' flintbit with error...")
 end
 rescue => e
