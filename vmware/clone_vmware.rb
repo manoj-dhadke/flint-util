@@ -2,8 +2,8 @@
 begin
 
     # Flintbit input parametes
-    @connector_name = @input.get("connector_name")                # "vmware"
-    @action = @input.get('action')
+    @connector_name = @config.global('vmware.connector_name')                # "vmware"
+    @action = 'clone-vm'
     @username = @input.get('username')
     @password=@input.get('password')
     @url=@input.get('url')
