@@ -12,7 +12,7 @@ begin
 @no_ssl_peer_verification= @config.global("winrm.no_ssl_peer_verification")
 @timeout = 60000                                       # Timeout in milliseconds, taken by
 @service_name = @input.get('service_name')
-@command = "Get-Service #{@service_name}"
+@command = "Get-Service #{@service_name} |Convertto-json"
 
 if @transport.empty?
     @transport = "negotiate"
@@ -43,11 +43,21 @@ response_message = connector_response.message         # Execution status message
 
 # WinRM Connector Response Parameters
 response_body = connector_response.get('result')                # Response Body
+response_body = @util.json(response_body)
+@status= response_body.get("Status")
+@log.info("Status::#{@status}")
+if @status == 4
+   @log.info("The service status for service name: #{@service_name} is Running" )
+elsif @status == 1
+      @log.info("The service status for service name: #{@service_name} is not running" )
+  else
+    @log.info("Unable to find the service status of service: #{@service_name}" )
+end
 
 if response_exitcode == 0
     @log.info("Success in executing WinRM Connector, where exitcode :: #{response_exitcode} | message :: #{response_message}")
-    @log.info("The service status for service name #{@service_name} :: #{response_body}")
-    @output.set('result', response_body)
+    #@log.info("The service status for service name #{@service_name} :: #{response_body}")
+    #@output.set('result', response_body)
     @log.trace("Finished executing 'winrm' flintbit with success...")
 else
     @log.info("Failed to get service status on remote target server : #{@target}")
