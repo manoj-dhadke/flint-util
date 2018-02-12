@@ -4,7 +4,7 @@ begin
     # Flintbit input parametes
     #Mandatory
     @connector_name = @config.global('vmware.connector_name') # vmware connector name
-    @action = @input.get('start-vm') # name of the operation:start-vm
+    @action = 'start-vm' # name of the operation:start-vm
     @username = @input.get('username') # username of the vmware connector
     @password = @input.get('password') # password of vmware connector
     @vmname = @input.get('vm-name') # name of virtual machine which you want to start
