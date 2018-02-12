@@ -47,22 +47,25 @@ response_body = @util.json(response_body)
 @status= response_body.get("Status")
 @log.info("Status::#{@status}")
 if @status == 4
-   @log.info("The service status for service name: #{@service_name} is Running" )
+   @log.info("The service status for service name: #{@service_name} is running" )
+   @user_message= ("The service status for service name: #{@service_name} is Running")
 elsif @status == 1
       @log.info("The service status for service name: #{@service_name} is not running" )
+      @user_message= ("The service status for service name: #{@service_name} is not running")
   else
     @log.info("Unable to find the service status of service: #{@service_name}" )
+    @user_message= ("Unable to find the service status of service: #{@service_name}")
 end
 
 if response_exitcode == 0
     @log.info("Success in executing WinRM Connector, where exitcode :: #{response_exitcode} | message :: #{response_message}")
     #@log.info("The service status for service name #{@service_name} :: #{response_body}")
-    #@output.set('result', response_body)
+    @output.set('user_message',@user_message)
     @log.trace("Finished executing 'winrm' flintbit with success...")
 else
     @log.info("Failed to get service status on remote target server : #{@target}")
     @log.error("Failure in executing WinRM Connector where, exitcode :: #{response_exitcode} | message :: #{response_message}")
-    @output.set('error', response_message)
+    @output.set('error', response_message).set('user_message',@user_message)
     @log.trace("Finished executing 'winrm' flintbit with error...")
 end
 
