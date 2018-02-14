@@ -59,7 +59,7 @@ response_body = connector_response.get('result')                # Response Body
 if response_exitcode == 0
     @log.info("Success in executing WinRM Connector, where exitcode :: #{response_exitcode} | message :: #{response_message}")
     @log.info("Command executed :: #{@command} | Command execution results :: #{response_body}")
-    @user_message = "#{@service_name} has started"
+    @user_message = "#{@service_name} running as service on #{@target} server has been started successfully"
     @output.set('result', response_body).set('user_message',@user_message)
     @log.trace("Finished executing 'winrm' flintbit with success...")
 else
