@@ -3,26 +3,28 @@ begin
 
     # Flintbit input parametes
     @connector_name = @config.global('vmware.connector_name')                # "vmware"
-    @action = 'clone-vm'
-    @username = @input.get('username')
-    @password=@input.get('password')
-    @url=@input.get('url')
+    @action = "clone-vm"
     @datacenter=@input.get('datacenter-name')
-    @vmpath=@input.get('virtualMachine-path')
-    @clonename=@input.get('clone-name')
+    @vmname=@input.get('vm-name')
+    @clonename=@input.get('clone-from-name')
+    @hostname=@input.get('host-name')
+    @username=@input.get('username')
+    @password = @input.get('password')
+    @url = @input.get('url')
 
     #Optional
     request_timeout = @input.get('timeout')	# Execution time of the Flintbit in milliseconds (default timeout is 60000 milloseconds)
 
     # calling vmware connector
     response = @call.connector(@connector_name)
-                    .set('action',@action)
-		                .set('url',@url)
-		                .set('username',@username)
-		                .set('password',@password)
-		                .set('datacenter-name',@datacenter)
-		                .set('virtualMachine-path',@vmpath)
-		                .set('clone-name',@clonename)
+                    .set('action',@action)            
+                    .set('url',@url)
+                    .set('username',@username)
+                    .set('password',@password)
+                    .set('datacenter-name',@datacenter)
+                    .set('vm-name',@vmname)
+                    .set('clone-from-name',@clonename)
+                    .set('host-name',@hostname)
                     .sync
 
      response_exitcode = response.exitcode # Exit status code
