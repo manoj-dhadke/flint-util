@@ -22,12 +22,9 @@ if flintbit_response.get("exit-code") == 0
   if @result.empty? || @result.nil?
   @log.info("No lockedout account found in AD")
   else
-@result = @result.gsub("[", '').gsub("]",'').gsub("{",'').gsub("}",'')
-@log.info("Result::#{@result}")
-@log.info("Success in executing WinRM Connector, where exitcode :: #{flintbit_response.get("exit-code")} | message :: #{success_message}")
-    @user_message = """**User account names of the locked out accounts is :#{@result}  **"""
-    @log.info("User account names of the locked out accounts is :#{@result}")
-    @output.set('result', @result).set('user_message',@user_message)
+    @result = @result.gsub("[", '').gsub("]",'').gsub("{",'').gsub("}",'')
+    @log.info("Result::#{@result}")
+    @log.info("Success in executing WinRM Connector, where exitcode :: #{flintbit_response.get("exit-code")} | message :: #{success_message}")
     @log.trace("Finished executing 'winrm' flintbit with success...")
     @body_email = "<br> The following accounts are locked in AD <br>
                     <br> #{@result} <br>
@@ -45,6 +42,9 @@ if flintbit_response.get("exit-code") == 0
 
     if email_flintbit_response.get("exit-code") == 0
     @log.info("Email send successfully on email-id : #{@to}")
+    @user_message = """**Successfully performed the operation to get lockedout account list and email send to email-id : #{@to} **"""
+    @log.info("User account names of the locked out accounts is :#{@result}")
+    @output.set('result', @result).set('user_message',@user_message)
   else
   @log.info("Failed to send email on email-id : #{@to}")
 end
