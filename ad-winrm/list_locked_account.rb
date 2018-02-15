@@ -1,6 +1,6 @@
 @log.trace("Started executing 'flint-util:ad-winrm:list_locked_account.rb' flintbit...")
 begin
-    @command = "Search-ADAccount –LockedOut| select name"
+    @command = "Search-ADAccount –LockedOut| select name|Convertto-json"
     @target_smtp = @config.global('send-server-info-email-details').get('target')
     @username_smtp = @config.global('send-server-info-email-details').get('username')
     @password_smtp =@config.global('send-server-info-email-details').get('password')
@@ -17,14 +17,20 @@ success_message = flintbit_response.message
 @result= flintbit_response.get("result")
 @error_message= flintbit_response.get("error")
 @log.info("Result::#{@result}")
+
 if flintbit_response.get("exit-code") == 0
+  if @result.empty? || @result.nil?
+  @log.info("No lockedout account found in AD")
+  else
+@result = @result.gsub("[", '').gsub("]",'').gsub("{",'').gsub("}",'')
+@log.info("Result::#{@result}")
 @log.info("Success in executing WinRM Connector, where exitcode :: #{flintbit_response.get("exit-code")} | message :: #{success_message}")
     @user_message = """**User account names of the locked out accounts is :#{@result}  **"""
     @log.info("User account names of the locked out accounts is :#{@result}")
     @output.set('result', @result).set('user_message',@user_message)
     @log.trace("Finished executing 'winrm' flintbit with success...")
-    @body_email = "The following accounts are locked in AD \n
-                    #{@result}
+    @body_email = "<br> The following accounts are locked in AD <br>
+                    <br> #{@result} <br>
                     Please unlock the AD accounts"
     email_flintbit_response = @call.bit('flint-util:ad-winrm:email_smtp.rb')
                                        .set('connector_name',@connector_name_smtp)
@@ -55,6 +61,7 @@ else
     @log.error("Failure in executing WinRM Connector where, exitcode :: #{flintbit_response.get("exit-code")} | message :: #{@error_message} | for user :: #{@user_message}")
     @output.set('error', @error_message).set('user_message',@user_message)
     @log.trace("Finished executing 'winrm' flintbit with error...")
+end
 end
 rescue => e
     @log.error(e.message)
