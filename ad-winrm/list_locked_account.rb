@@ -48,6 +48,7 @@ if flintbit_response.get("exit-code") == 0
   else
   @log.info("Failed to send email on email-id : #{@to}")
 end
+end
 else
     @log.error("Failure in executing WinRM Connector where, exitcode :: #{flintbit_response.get("exit-code")} | message :: #{@error_message}")
     @log.error("Failed to fetch lockedout accounts from AD...")
@@ -61,7 +62,6 @@ else
     @log.error("Failure in executing WinRM Connector where, exitcode :: #{flintbit_response.get("exit-code")} | message :: #{@error_message} | for user :: #{@user_message}")
     @output.set('error', @error_message).set('user_message',@user_message)
     @log.trace("Finished executing 'winrm' flintbit with error...")
-end
 end
 rescue => e
     @log.error(e.message)
