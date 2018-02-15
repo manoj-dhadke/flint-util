@@ -1,6 +1,6 @@
 
 # begin
-@log.trace("Started executing 'example:remove_files_directory.rb' flintbit...")
+@log.trace("Started executing 'flint-util:operating_system:remove_files_directory.rb' flintbit...")
 begin
     # Flintbit Input Parameters
     @connector_name = @config.global('ssh_serviceaide_linux.connector_name')  # Name of the SSH Connector
@@ -78,10 +78,10 @@ begin
                         .sync
         # .timeout(10000) # Execution time of the Flintbit in milliseconds
       end
-    @user_message = "Directory deleted"
+    @user_message = "Directory #{@directory} has been deleted successfully"
     else
       @log.info("Directory does not exist")
-      @user_message = "Directory does not exist"
+      @user_message = "Directory #{@directory} does not exist"
     end
 
     # SSH Connector Response Meta Parameters
