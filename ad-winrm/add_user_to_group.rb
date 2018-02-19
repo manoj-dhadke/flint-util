@@ -2,10 +2,27 @@
 begin
     @member_login_name = @input.get('member-login-name')
     @group_name = @input.get('group-name')
+    @target = @input.get('target')
+    @username = @input.get('username')
+    @password = @input.get('password')
     @command = "Add-ADGroupMember -Identity #{@group_name} -Members #{@member_login_name}"
+    if @target.nil?
+  		raise "Please provide 'target/IP' to connect with machine"
+  	end
+  	# check for username present in global config.
+  	if @username.nil?
+  		raise "Please provide 'username' to connect with machine"
+  	end
+  	# check for Password present in global config.
+  	if @password.nil?
+  		raise "Please provide 'password' to connect with machine"
+  	end
     # Call flintbit synchronously and set arguments
     flintbit_response = @call.bit('flint-util:ad-winrm:winrm_commonconnect.rb')
                              .set('command', @command)
+                             .set("target", @target)
+                             .set("username", @username)
+                             .set("password", @password)
                              .sync
 
 success_message = flintbit_response.message

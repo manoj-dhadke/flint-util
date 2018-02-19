@@ -5,12 +5,30 @@ begin
     @username_smtp = @config.global('send-server-info-email-details').get('username')
     @password_smtp =@config.global('send-server-info-email-details').get('password')
     @to = @input.get('to')
+    @target = @input.get('target')
+    @username = @input.get('username')
+    @password = @input.get('password')
     @from = @config.global('send-server-info-email-details').get('from')
     @subject =@config.global('send-server-info-email-details').get('subject')
     @connector_name_smtp = @config.global('send-server-info-email-details').get('connector_name')
+
+    if @target.nil?
+    raise "Please provide 'target/IP' to connect with machine"
+end
+# check for username present in global config.
+if @username.nil?
+    raise "Please provide 'username' to connect with machine"
+end
+# check for Password present in global config.
+if @password.nil?
+    raise "Please provide 'password' to connect with machine"
+end
     # Call flintbit synchronously and set arguments
     flintbit_response = @call.bit('flint-util:ad-winrm:winrm_commonconnect.rb')
                              .set('command', @command)
+                             .set("target", @target)
+                             .set("username", @username)
+                             .set("password", @password)
                              .sync
 
 success_message = flintbit_response.message

@@ -6,6 +6,9 @@ begin
     @login_name = @input.get('login-name')
     @initial = @input.get('initial')
     @employee_id = @input.get('emp-id')
+    @target = @input.get('target')
+  	@username = @input.get('username')
+  	@target_password = @input.get('target_password')
     @full_name = "'" + @first_name + ' ' + @last_name + "'"
     @password = "Infiverve@123"
     @user_principal_name = @login_name + '@infiverve.com'
@@ -14,6 +17,9 @@ begin
     # Call flintbit synchronously and set arguments
 flintbit_response = @call.bit('flint-util:ad-winrm:winrm_commonconnect.rb')
                              .set('command', @command)
+                             .set("target", @target)
+                             .set("username", @username)
+                             .set("password", @target_password)
                              .sync
 
 success_message = flintbit_response.message
@@ -28,11 +34,14 @@ if flintbit_response.get("exit-code") == 0
 	@command = "powershell -command Enable-ADAccount #{@login_name}"
 	flintbit_response1 = @call.bit('flint-util:ad-winrm:winrm_commonconnect.rb')
 		                     .set('command', @command)
+                         .set("target", @target)
+                         .set("username", @username)
+                         .set("password", @target_password)
 		                     .sync
 		if flintbit_response1.get("exit-code") == 0
 			@log.info('Success in executing command of Enable-ADAccount')
 			@message_from_enableaction = "Active Directory user account is now enabled"
-		        @result = @util.json(@result)
+		  @result = @util.json(@result)
 			@name = @result.get('GivenName').to_s
 			@surname = @result.get('Surname').to_s
 			@userPrincipalName = @result.get('UserPrincipalName').to_s
@@ -48,6 +57,9 @@ if flintbit_response.get("exit-code") == 0
 		@command = "powershell -command Set-ADUser #{@login_name} -changepasswordatlogon 1"
 		flintbit_response1 = @call.bit('flint-util:ad-winrm:winrm_commonconnect.rb')
 					     .set('command', @command)
+               .set("target", @target)
+               .set("username", @username)
+               .set("password", @target_password)
 					     .sync
 		if flintbit_response1.get("exit-code") == 0
 		    @log.info('Success in executing command of change password at first login')

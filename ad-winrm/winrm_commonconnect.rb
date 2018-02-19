@@ -1,9 +1,9 @@
 # begin
 @log.trace("Started executing 'flint-util:ad-winrm:winrm_commonconnect.rb' flintbit...")
 begin
-@target = @config.global('winrm').get('target')
-@username = @config.global('winrm').get('username')
-@password = @config.global('winrm').get('password')
+@target = @input.get('target')
+@username = @input.get('username')
+@password = @input.get('password')
 @transport = @config.global('winrm').get('transport')
 @port = @config.global('winrm').get('port')
 @connector_name = "winrm"
