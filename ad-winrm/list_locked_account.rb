@@ -39,6 +39,8 @@ success_message = flintbit_response.message
 if flintbit_response.get("exit-code") == 0
   if @result.empty? || @result.nil?
   @log.info("No lockedout account found in AD")
+  @user_message = "No lockedout accounts found in AD"
+  @output.set('user_message',@user_message)
   else
     @result = @result.gsub("[", '').gsub("]",'').gsub("{",'').gsub("}",'')
     @log.info("Result::#{@result}")
@@ -60,7 +62,7 @@ if flintbit_response.get("exit-code") == 0
 
     if email_flintbit_response.get("exit-code") == 0
     @log.info("Email send successfully on email-id : #{@to}")
-    @user_message = """**Successfully performed the operation to get lockedout account list and email send to email-id : #{@to} **"""
+    @user_message = """**Successfully performed the operation to get locked user account list and email sent successfully on : #{@to} **"""
     @log.info("User account names of the locked out accounts is :#{@result}")
     @output.set('result', @result).set('user_message',@user_message)
   else
