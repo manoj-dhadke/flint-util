@@ -62,7 +62,7 @@ begin
                         .sync
         # .timeout(10000) # Execution time of the Flintbit in milliseconds
     end
-    @log.info("Whether directory exists or not: {response}")
+    #@log.info("Whether directory exists or not: {response}")
     if (response.get('result').include? 'Directory exist')
                 if @timeout.to_s.empty?
                 response_file = @call.connector(@connector_name)
@@ -74,7 +74,7 @@ begin
                 # .timeout(10000) # Execution time of the Flintbit in milliseconds
                 @log.info("Flintbit input parameters are, connector name :: #{@connector_name} | target :: #{@target}  |
                 username :: #{@username} | password :: #{@password} | command  :: #{@command_check_file}")
-                @log.info("Whether File exists or not:{response_file}")
+                @log.info("Whether File exists or not:#{response_file}")
                 else
                 response_file = @call.connector(@connector_name)
                         .set('target', @target)
@@ -85,7 +85,7 @@ begin
                # .timeout(10000) # Execution time of the Flintbit in milliseconds
                @log.info("Whether File exists or not:{response_file}")
                end
-             @log.info("Whether File exists or not:{response_file.get('result')}")
+             #@log.info("Whether File exists or not:{response_file.get('result')}")
        if(response_file.get('result').include? 'File does not exist')
         @log.info("Mail send to get approval as file does nit exists")
               response_smtp = @call.connector(@connector_name_smtp)
@@ -103,15 +103,16 @@ begin
                     .sync
 
        @log.info("Mail send successfully: #{response_smtp}")
+       @user_message="Mail has been send to get the approval to create the flie: #{@file}. Please check your inbox."
 
        else
        @log.info("File already exist")
-       @user_message = "File already exist"
+       @user_message = "File #{@file} already exist"
        end
     
     else
     @log.info("Directory does not exist")
-    @user_message = "Directory does not exist"
+    @user_message = "Directory #{@directory} does not exist"
     end
 
     # SSH Connector Response Meta Parameters
