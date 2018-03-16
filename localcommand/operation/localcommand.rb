@@ -14,7 +14,6 @@ begin
                         .set('timeout', 40000)
                         .sync
         # .timeout(10000) # Execution time of the Flintbit in milliseconds
-    end
 
     # Local-command Connector Response Meta Parameters
     response_exitcode = response.exitcode       # Exit status code
