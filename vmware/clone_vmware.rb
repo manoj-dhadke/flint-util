@@ -33,11 +33,13 @@ begin
 
       if response_exitcode==0
          @log.info("Success in executing #{@connector_name} Connector, where exitcode :: #{response_exitcode} | message :: #{response_message}")
-         @output.set("result::", "success")
+         @user_message = "VMware VM named #{@vmname} created"         
+         @output.set("result::", "success").set('user_message',@user_message)
 
       else
          @log.error("ERROR in executing #{@connector_name} where, exitcode :: #{response_exitcode} | message :: #{response_message}")
-         @output.exit(1, response_message)
+         @user_message = "Error in creating VMware VM named #{@vmname}" 
+         @output.exit(1, response_message).set('user_message',@user_message)
       end
 
 rescue Exception => e
