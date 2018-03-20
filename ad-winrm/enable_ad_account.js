@@ -3,7 +3,7 @@ log.trace("Started executing flint-demo-box:ad:enable_account.rb flintbit...")
     login_name = input.get("login-name")
     command = "Enable-adAccount"+" "+ login_name
     //# Call flintbit synchronously and set arguments
-    flintbit_response = call.bit("example:AD:winram_connect.js")
+    flintbit_response = call.bit("flint-util:ad-winrm:winram_connect.js")
                              .set("command", command)
                              .sync()
 
