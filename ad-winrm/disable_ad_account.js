@@ -11,7 +11,7 @@ success_message = flintbit_response.message
 result= flintbit_response.get("result")
 error_message= flintbit_response.get("error")
 
-if (flintbit_response.get("exit-code") == 0)
+if (flintbit_response.exitcode() == 0)
 {
 log.info("Success in executing WinRM Connector, where exitcode ::"+ flintbit_response.get("exit-code")+" | message ::"+ success_message)
     log.info("Command executed ::"+command+" | Command execution results ::"+ result)
