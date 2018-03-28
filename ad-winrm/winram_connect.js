@@ -1,4 +1,4 @@
-log.trace("Started executing flint-demo-box:ad:winrm_commonconnect.rb")
+log.trace("Started executing flint-util:ad-winrm:winrm_commonconnect.js")
 target = config.global("winrm.target")
 log.info ("target::" +target)
 username = config.global("winrm.username")
@@ -42,3 +42,4 @@ else
     output.set("error", response_message).set("exit-code", -1)
     log.trace("Finished executing winrm flintbit with error...")
 }
+log.trace("Finished executing flint-util:ad-winrm:winrm_commonconnect.js")
