@@ -30,6 +30,7 @@ connector_response = call.connector(connector_name)
 response_exitcode = connector_response.exitcode() // exitcode
 response_message = connector_response.message() // message
 response_body = connector_response.get("result")
+log.info("Exitcode>>>>>>>>>:: " + response_exitcode)
 
 if (response_exitcode == 0) {
     log.info("Success in executing WinRM Connector, where exitcode ::" + response_exitcode + "| message ::" + response_message)
