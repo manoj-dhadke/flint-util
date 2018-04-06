@@ -40,17 +40,5 @@ if (response_exitcode == 0) {
     log.error("Failure in executing WinRM Connector where, exitcode ::" + response_exitcode + "| message ::" + response_message)
     output.set("error", response_message).set("exit-code", -1)
     log.trace("Finished executing winrm flintbit with error...")
-    work_description_fail = "Error occured while executing ticket" + " " + ticket_id + ". " + "The error occured due to" + " " + response_message
-    update_serviceaide_status = call.bit("serviceaide:servicerequest:service_request_update_error_status.groovy")
-        .set("ticket_id", ticket_id)
-        .sync()
-    if (update_serviceaide_status.exitcode() == 0) {
-        add_serviceaide_worklog = call.bit("serviceaide:servicerequest:service_request_add_error_worklog.groovy")
-            .set("ticket_id", ticket_id)
-            .set("work_description", work_description_fail)
-            .sync()
-    } else {
-        log.info("Failed to update ticket status")
-    }
 }
 log.trace("Finished executing flint-util:ad-winrm:winrm_commonconnect.js")
