@@ -1,7 +1,7 @@
 log.trace("Started executing flint-util:ad-winrm:winrm_commonconnect.js")
 // Input from Flint's global config
 target = config.global("winrm.target")
-log.info("target::>>>>>>>>>" + target)
+log.info("target:" + target)
 username = config.global("winrm.username")
 password = config.global("winrm.password")
 transport = config.global("winrm.transport")
