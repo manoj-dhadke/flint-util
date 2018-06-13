@@ -12,7 +12,7 @@ begin
     @full_name = "'" + @first_name + ' ' + @last_name + "'"
     @password = "Infiverve@123"
     @user_principal_name = @login_name + '@infiverve.com'
-    @command ="New-ADUser -Name #{@full_name} -GivenName #{@first_name} -Surname #{@last_name} -Initials #{@initial} -SamAccountName #{@login_name} -UserPrincipalName #{@user_principal_name} -EmployeeID #{@employee_id} -AccountPassword (ConvertTo-SecureString -AsPlainText  #{@password}  -Force) -PassThru | ConvertTo-Json"
+    @command ="Import-module activedirectory;New-ADUser -Name #{@full_name} -GivenName #{@first_name} -Surname #{@last_name} -Initials #{@initial} -SamAccountName #{@login_name} -UserPrincipalName #{@user_principal_name} -EmployeeID #{@employee_id} -AccountPassword (ConvertTo-SecureString -AsPlainText  #{@password}  -Force) -PassThru | ConvertTo-Json"
 #secureString = convertto-securestring "Password" -asplaintext -force
     # Call flintbit synchronously and set arguments
 flintbit_response = @call.bit('flint-util:ad-winrm:winrm_commonconnect.rb')
@@ -31,7 +31,7 @@ if flintbit_response.get("exit-code") == 0
     @log.info("Success in executing WinRM Connector!!!!!!!!!, where exitcode :: #{flintbit_response.get("exit-code")} | message :: #{success_message}  |||| #{flintbit_response.class}")
     @log.info("Command executed :: #{@command} | Command execution results :: #{@result}")
 	#if success_message == "success"
-	@command = "powershell -command Enable-ADAccount #{@login_name}"
+	@command = "Import-module activedirectory;Enable-ADAccount #{@login_name}"
 	flintbit_response1 = @call.bit('flint-util:ad-winrm:winrm_commonconnect.rb')
 		                     .set('command', @command)
                          .set("target", @target)
@@ -54,7 +54,7 @@ if flintbit_response.get("exit-code") == 0
 		    @log.error 'Account provision operation unsuccessful'
 		    @message_from_enableaction = "Failed to enable Active Directory user account"
 		end
-		@command = "powershell -command Set-ADUser #{@login_name} -changepasswordatlogon 1"
+		@command = "Import-module activedirectory;Set-ADUser #{@login_name} -changepasswordatlogon 1"
 		flintbit_response1 = @call.bit('flint-util:ad-winrm:winrm_commonconnect.rb')
 					     .set('command', @command)
                .set("target", @target)

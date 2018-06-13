@@ -7,7 +7,7 @@ begin
 	@username = @input.get('username')
 	@target_password = @input.get('target_password')
 	#@command = "powershell -command dsmod user 'CN=#{@full_name},CN=Users,DC=infiverve,DC=com' -pwd '#{@password}' "
-	@command = "Set-ADAccountPassword -Identity "+@logon_name.to_s+" -Reset -NewPassword (ConvertTo-SecureString -AsPlainText "+@password.to_s+" -Force)"
+	@command = "Import-module activedirectory;Set-ADAccountPassword -Identity "+@logon_name.to_s+" -Reset -NewPassword (ConvertTo-SecureString -AsPlainText "+@password.to_s+" -Force)"
 	if @target.nil?
 		raise "Please provide 'target/IP' to connect with machine"
 	end
@@ -37,7 +37,7 @@ begin
 		@output.set('result', result)
 		@log.trace("Finished executing 'winrm' flintbit with success...")
 		@message_from_reset = "Password for User: '#{@logon_name}' has been reset successfully"
-		@command = "powershell -command Set-ADUser #{@logon_name} -changepasswordatlogon 1"
+		@command = "Import-module activedirectory;Set-ADUser #{@logon_name} -changepasswordatlogon 1"
 		flintbit_response1 = @call.bit('flint-util:ad-winrm:winrm_commonconnect.rb')
                                   .set('command', @command)
                                   .set("target", @target)

@@ -4,7 +4,7 @@ begin
 	@target = @input.get('target')
 	@username = @input.get('username')
 	@password = @input.get('password')
-	@command = "Remove-ADUser #{@login_name} -Confirm:$false"
+	@command = "Import-module activedirectory;Remove-ADUser #{@login_name} -Confirm:$false"
 
 	if @target.nil?
 		raise "Please provide 'target/IP' to connect with machine"

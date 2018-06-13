@@ -8,7 +8,7 @@ begin
 	@password = @input.get('password')
 	@path= @path.gsub(' ', ',')
 	@description= @input.get('group-description')
-	@command = "New-ADGroup -Name '#{@group_name}' -SamAccountName #{@sam_account_name} -GroupCategory Security -GroupScope Global -DisplayName '#{@group_name}' -Path '#{@path}' -Description '#{@description}'"
+	@command = "Import-module activedirectory;New-ADGroup -Name '#{@group_name}' -SamAccountName #{@sam_account_name} -GroupCategory Security -GroupScope Global -DisplayName '#{@group_name}' -Path '#{@path}' -Description '#{@description}'"
 	@log.info("Command:: #{@command}")
 	if @target.nil?
 		raise "Please provide 'target/IP' to connect with machine"

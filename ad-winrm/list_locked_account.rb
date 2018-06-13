@@ -1,6 +1,6 @@
 @log.trace("Started executing 'flint-util:ad-winrm:list_locked_account.rb' flintbit...")
 begin
-    @command = "Search-ADAccount –LockedOut| select name|Convertto-json"
+    @command = "Import-module activedirectory;Search-ADAccount –LockedOut| select name|Convertto-json"
     @target_smtp = @config.global('send-server-info-email-details').get('target')
     @username_smtp = @config.global('send-server-info-email-details').get('username')
     @password_smtp =@config.global('send-server-info-email-details').get('password')

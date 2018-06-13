@@ -1,7 +1,7 @@
 @log.trace("Started executing 'flint-util:ad-winrm:enable_account.rb' flintbit...")
 begin
 	@login_name = @input.get('login-name')
-	@command = "Enable-adAccount #{@login_name}"
+	@command = "Import-module activedirectory;Enable-adAccount #{@login_name}"
 	@target = @input.get('target')
 	@username = @input.get('username')
 	@password = @input.get('password')

@@ -7,7 +7,7 @@ ou_name = input.get("ou_name")
 ad_object_name = input.get("ad_object_name")
 object_data = input.get("object_data")
 path= "OU=" + ou_name + ",DC="+ domain_controller + ",DC=" + domain_controller_com
-command = "New-ADObject -Name" + " '" + ad_object_name + "' " + " -Type" + " '" + type + "' " + " -Path" + " '" + path + "'"
+command = "Import-module activedirectory;New-ADObject -Name" + " '" + ad_object_name + "' " + " -Type" + " '" + type + "' " + " -Path" + " '" + path + "'"
 log.info("Command:" + command)
 
  // Call flintbit synchronously and set arguments

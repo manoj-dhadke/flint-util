@@ -4,7 +4,7 @@ begin
 	@target = @input.get('target')
 	@username = @input.get('username')
 	@password = @input.get('password')
-	@command = "Disable-adAccount #{@login_name}"
+	@command = "Import-module activedirectory;Disable-adAccount #{@login_name}"
 
 	if @target.nil?
 		raise "Please provide 'target/IP' to connect with machine"

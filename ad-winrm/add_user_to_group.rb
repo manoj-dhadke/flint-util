@@ -5,7 +5,7 @@ begin
     @target = @input.get('target')
     @username = @input.get('username')
     @password = @input.get('password')
-    @command = "Add-ADGroupMember -Identity #{@group_name} -Members #{@member_login_name}"
+    @command = "Import-module activedirectory;Add-ADGroupMember -Identity #{@group_name} -Members #{@member_login_name}"
     if @target.nil?
   		raise "Please provide 'target/IP' to connect with machine"
   	end
