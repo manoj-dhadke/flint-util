@@ -20,7 +20,7 @@ try{
     log.info("Description: ${srdescription}")
     //create_sr_command=input.get("create_sr_command")
 //log.info("Flintbit input parameters are,connector name:: ${connector_name} |target:: ${target} |username:: ${username}|shell:: ${shell}|transport:: ${transport}|operation_timeout:: ${operation_timeout}|no_ssl_peer_verification :: ${no_ssl_peer_verification} |port :: ${port}")
-create_sr_command= "cd C:\\smlets; .\\createSR.ps1 '${srdescription}'"
+create_sr_command= "cd C:\\smlets; .\\createSR.ps1 '${srdescription}' '${vmsize}' '${offer}'"
 create_sr_response =  call.connector(connector_name)
                          .set("target",target_scsm)
                          .set("username",username_scsm)

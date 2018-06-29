@@ -9,6 +9,8 @@ import-module smlets;
 #$srsubarea=$args[2]
 #$serviceRequestTitle=$args[2]
 $serviceRequestDescription=$args[0]
+$vmsize=$args[1]
+$operating_system=$args[2]
 
 #Get the Service Request Class
 $serviceRequestClass = Get-SCSMClass -name System.WorkItem.ServiceRequest$
@@ -25,6 +27,10 @@ $serviceRequestUrgency = Get-SCSMEnumeration -Name ServiceRequestUrgencyEnum.Med
  Urgency = $serviceRequestUrgency;
  Priority = $serviceRequestPriority;
  ID = 'SR{0}';
+ UserInput = "<UserInputs>
+<UserInput Question='VM Size' Answer='$vmsize' Type='string' />
+<UserInput Question='Operating System' Answer='$operating_system' Type='string' />
+</UserInputs>";
 Area = $serviceRequestArea
 }
 
