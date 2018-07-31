@@ -30,10 +30,8 @@ try {
 
   // Call flintbit synchronously and set required arguments/parameters
   flintbit_call_response = call.bit('flint-util:ad-winrm:winrm_commonconnect.js')
-                               .set('command', command)
-                               .set("target", target)
-                               .set("username", username)
-                               .set("password", password)
+                               .set(input)
+                               .set("command",command)
                                .timeout(300000)
                                .sync()
 

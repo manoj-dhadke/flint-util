@@ -7,6 +7,7 @@
 log.trace("Started executing flint-util:ad-winrm:winrm_commonconnect.js flintbit.")
 // Input from Flint
 try {
+    log.info("Input: " +input)
     target = input.get("target")
     username = input.get("username")
     password = input.get("password")
