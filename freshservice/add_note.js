@@ -14,6 +14,7 @@ try {
     domain_name=input.get("domain_name")
     ticket_type =input.get("ticket_type")
     body=input.get("body")
+    private_note=input.get("private_note")
 
     if (freshservice_connector_name == null || freshservice_connector_name == "") {
         throw "Please provide 'Connector Name'"
@@ -39,6 +40,10 @@ try {
         throw "Please provide 'Freshservice Ticket type: Incident'"
     }
 
+    if (private_note == null) {
+        throw "Please provide 'Freshservice Private Note state: Boolean true/false'"
+    }
+
     if (body == null || body == "") {
         throw "Please provide 'Freshservice Note/Comments body'"
     }
@@ -52,6 +57,7 @@ try {
                              .set("ticket-type",ticket_type)
                              .set("body",body)
                              .set("ticket-id",ticket_id)
+                             .set("private",private_note)
                              .sync()
 
     log.info("Connector_Response::" +connector_response)
