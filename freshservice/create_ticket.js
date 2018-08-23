@@ -12,7 +12,7 @@ try {
     description = input.get("description")                   //Plain text content of the ticket
     subject = input.get("subject")                           //Ticket subject
     freshservice_connector_name = input.get("connector_name")
-    api_key = input.get("api_key")
+    //api_key = input.get("api_key")
     action ="create-ticket"
     domain_name=input.get("domain_name")
     ticket_type =input.get("ticket_type")
@@ -49,7 +49,6 @@ try {
 
     connector_response = call.connector(freshservice_connector_name)
                              .set("domain-name",domain_name)
-                             .set("api-key",api_key)
                              .set("password",password)
                              .set("email",email)
                              .set("action", action)

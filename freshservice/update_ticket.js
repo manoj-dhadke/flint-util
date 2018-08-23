@@ -10,7 +10,7 @@ try {
     status = input.get("status")                             //Status of the ticket
     ticket_id=input.get("ticket_id")                      
     freshservice_connector_name = input.get("connector_name")
-    api_key = input.get("api_key")
+    //api_key = input.get("api_key")
     action ="update-ticket"
     domain_name=input.get("domain_name")
     ticket_type =input.get("ticket_type")
@@ -45,7 +45,6 @@ try {
 
     connector_response = call.connector(freshservice_connector_name)
                              .set("domain-name",domain_name)
-                             .set("api-key",api_key)
                              .set("password",password)
                              .set("email",email)
                              .set("action", action)
