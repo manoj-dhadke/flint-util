@@ -49,7 +49,7 @@ try{
     serviceduration = input.get('serviceduration')
     hostaddress = input.get('hostaddress')
 
-    description = "Flint Automation: \nApache server host " + hostaddress + "is down"
+    description = "Flint Automation: \nApache server host " + hostaddress + " is down"
 
     // Service goes ‘Down’, i.e. if service state is 'CRITICAL' raise a ticket, create ticket, add comment & change ticket status 
     if (servicestate == 'CRITICAL'){ 
