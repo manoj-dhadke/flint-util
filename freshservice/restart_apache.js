@@ -21,7 +21,7 @@ try{
     subject = input.get('subject')
     acknowledge_body = input.get('acknowledge_body')
     final_body = input.get('final_body')                // Will be set in service config
-    description = input.get('description')
+    
     initial_status = input.get('initial_status')
     final_status = input.get('final_status')
     priority = input.get('priority')
@@ -48,6 +48,8 @@ try{
     serviceexecutiontime = input.get('serviceexecutiontime')
     serviceduration = input.get('serviceduration')
     hostaddress = input.get('hostaddress')
+
+    description = "Flint Automation: \nApache server host " + hostaddress + "is down"
 
     // Service goes ‘Down’, i.e. if service state is 'CRITICAL' raise a ticket, create ticket, add comment & change ticket status 
     if (servicestate == 'CRITICAL'){ 
