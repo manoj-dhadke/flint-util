@@ -64,10 +64,10 @@ try {
     //exception handling
     if (response_exitcode == 0) {
         log.info("Success in executing Freshservice Connector, where exitcode ::" + response_exitcode + "| message ::" + response_message)
-        output.set("exit-code", 0).set("success",response_message)
+        output.set("exit-code", 0).set("message",response_message)
     } else {
         log.error("Failure in executing Freshservice Connector where, exitcode ::" + response_exitcode + "| message ::" + response_message)
-        output.set("error", response_message).set("exit-code", -1)       
+        output.set("message", response_message).set("exit-code", -1)       
     }
 
 }
