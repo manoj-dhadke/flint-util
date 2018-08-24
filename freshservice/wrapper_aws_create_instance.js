@@ -25,7 +25,7 @@ try{
 
     // TOD Input
     //ticket_id = input.get('ticket_id')
-    
+
     ticket_id = ticket_id.replace(/^\D+/g, '') 
 
     log.info(ticket_id)
@@ -138,7 +138,7 @@ try{
         public_ip = instance_info[0].get('public-ip')
         log.info("Public IP: " + public_ip)
 
-        final_body = "Flint Automation: \n Created AWS instance successfully. \n Instance ID: " +instance_id + "\n Instance Type: " + instance_size + "\n Private IP: " + private_ip + "\n Public IP: " + public_ip
+        final_body = "Flint Automation: \n Created AWS instance successfully. \n Instance ID: " +instance_id + "\n Instance Type: " + instance_size + "OS: "+ os_type +"\n Private IP: " + private_ip + "\n Public IP: " + public_ip
         if(create_instance_exit_code == 0){
 
             // Set SERVICE STATUS..
