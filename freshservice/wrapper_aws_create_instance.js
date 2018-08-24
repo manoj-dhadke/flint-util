@@ -3,10 +3,11 @@
 ** Summary: This is Create AWS instance service flintbit.
 ** Description: This flintbit is developed to create an AWS instance after receiving request from Freshserver.
 **/
+log.trace("Started running flintbit")
 
 try{
+
     // Inputs to create AWS instance, set in service config
-    ami_id = input.get('ami_id')
     region = input.get('region')
     key_name = input.get('key_name')
     subnet_id = input.get('subnet_id')
@@ -17,28 +18,47 @@ try{
     aws_connector_name = input.get('aws_connector_name')
     availability_zone = input.get('availability_zone')
 
+    ami_id = ""
 
 // FRESHSERVICE - Service request JSON
 
     // Service ID/ Ticket ID
-    ticket_id = input.get('freshdesk_webhook.ticket_id')
+    //ticket_id = input.get('freshdesk_webhook.ticket_id')
+    ticket_id = input.get('ticket_id')
     //ticket_id = input.get('ticket_id')
-    ticket_id = ticket_id.replace(/^\D+/g, '')//.toString()           // Get just the integer part 
+    ticket_id = ticket_id.replace(/^\D+/g, '') 
+
+    log.info(ticket_id)
+
 
     // Ticket service item fields to be parsing
-    ticket_service_item_fields = input.get('freshdesk_webhook.ticket_service_item_fields')
+     ticket_service_item_fields = input.get('freshdesk_webhook.ticket_service_item_fields')
+    
+    // TOD input
+    //  ticket_service_item_fields = input.get('ticket_service_item_fields')
+
 
     // Parse the service item fields by calling flintbit
-
     parse_flintbit_call_response = call.bit('flint-util:freshservice:extract_sr_items_fields.groovy')
-        .set('ticket_service_item_fields', ticket_service_item_fields).sync()
+        .set('ticket_service_item_fields', ticket_service_item_fields)
+        .sync()
     
-    // Get instance size(type) from the response of extract_sr_items_fields
+
+    // Get instance size(type) from the response of freshservice extract_sr_items_fields
     instance_size = parse_flintbit_call_response.get('data').get('Instance Size')
+
+
+    // Getting OS from FRESHSERVICE request
+    os_type = parse_flintbit_call_response.get('data').get('Operating System')
+    
+    // TOD input
+    //  os_type = "Ubuntu 18.04 LTS"
+
 
     log.info("Ticket ID " + ticket_id)
     log.info("Instance Size " + instance_size)
-    log.info("Inputs taken")
+    log.info("OS: " + os_type)
+
 
     // Inputs for setting service status
     domain_name = input.get('domain_name')
@@ -48,10 +68,18 @@ try{
     connector_name = input.get('connector_name')
     ticket_type = input.get('ticket_type')
 
+
     // Inputs for creating notes
     acknowledgement_body = "Flint Automation: Creating AWS Instance..."
     private_note = input.get('private_note')
 
+
+    // Getting relevant ami ID
+    ami_id = input.get('os_data').get(os_type)
+
+    log.trace("AMI ID: " + ami_id)
+
+    log.info("Inputs are taken")
 
 // ====================================== Inputs done. Flintbit calls start here ============================================ //
 
