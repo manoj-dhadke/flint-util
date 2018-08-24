@@ -18,14 +18,14 @@ try{
     aws_connector_name = input.get('aws_connector_name')
     availability_zone = input.get('availability_zone')
 
-    ami_id = ""
-
 // FRESHSERVICE - Service request JSON
 
     // Service ID/ Ticket ID
-    //ticket_id = input.get('freshdesk_webhook.ticket_id')
-    ticket_id = input.get('ticket_id')
+    ticket_id = input.get('freshdesk_webhook.ticket_id')
+
+    // TOD Input
     //ticket_id = input.get('ticket_id')
+    
     ticket_id = ticket_id.replace(/^\D+/g, '') 
 
     log.info(ticket_id)
@@ -68,14 +68,12 @@ try{
     connector_name = input.get('connector_name')
     ticket_type = input.get('ticket_type')
 
-
     // Inputs for creating notes
     acknowledgement_body = "Flint Automation: Creating AWS Instance..."
     private_note = input.get('private_note')
 
-
     // Getting relevant ami ID
-    ami_id = input.get('os_data').get(os_type)
+    ami_id = input.get('os_mapping').get(os_type)
 
     log.trace("AMI ID: " + ami_id)
 
