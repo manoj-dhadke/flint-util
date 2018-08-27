@@ -4,15 +4,16 @@ try{
     // Input parameters
     login_name = input.get("login_name")
     log.info(" login_name:" + login_name)
+
     // NEW RESET DEFAULT PASSWORD
     password = "Infiverve@123"
-    log.info("After login_name and password")
+
     log.trace(input)
 
     // Inputs for winrm 
     target = input.get('target')
-    ad_username = input.get('target_username')
-    ad_password = input.get('target_password')
+     target_username = input.get('target_username')
+     target_password = input.get('target_password')
     
 
     log.info("Before flintbit call")
@@ -28,8 +29,8 @@ try{
     flintbit_response = call.bit("flint-util:ad-winrm:winrm_commonconnect.js")
                             .set("command", command)
                             .set("target", target)
-                            .set("username", ad_username)
-                            .set("password", ad_password)
+                            .set("username",  target_username)
+                            .set("password",  target_password)
                             .sync()
 
     //extracting response of connector call
@@ -54,8 +55,8 @@ try{
         flintbit_response_first_logon = call.bit("flint-util:ad-winrm:winrm_commonconnect.js")
                                             .set("command", command)
                                             .set("target", target)
-                                            .set("username", ad_username)
-                                            .set("password", ad_password)
+                                            .set("username",  target_username)
+                                            .set("password",  target_password)
                                             .sync()
 
 
@@ -70,6 +71,8 @@ try{
             log.error("ERROR AT FIRST LOGON: "+second_error_message)
             log.error("Error in executing command to change password at first login")
         }
+
+        output.set("exit-code", exitcode).set('message',success_message)
     }else{
         log.error("ERROR AT RESET PASSWORD: "+first_error_message)
  
