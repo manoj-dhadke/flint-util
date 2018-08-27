@@ -1,4 +1,4 @@
-log.trace("Started executing>>>>>>>>>>>>> flint-util:ad-winrm:reset_password.js flintbit...")
+log.trace("Started executing flint-util:ad-winrm:reset_password.js flintbit...")
 
 try{
     // Input parameters
@@ -14,15 +14,6 @@ try{
     ad_username = input.get('target_username')
     ad_password = input.get('target_password')
     
-    // Printing out all inputs global and others
-    // log.info("Target: "+target)
-    // log.info("Target username: "+ad_username )
-    // log.info("Target password: "+ad_password)
-    // log.info("AD User Login Name: "+login_name)
-    // log.info("Connector Name: "+config.global("winrm.connector_name"))
-    // log.info("Port: "+config.global("winrm.port"))
-    // log.info("Transport: "+config.global("winrm.transport"))
-    // log.info("Shell: "+config.global("winrm.shell"))
 
     log.info("Before flintbit call")
  
@@ -30,10 +21,8 @@ try{
 
     command = " Import-module activedirectory;Set-ADAccountPassword -Identity " + " " + login_name.toString() + " " + " -Reset -NewPassword (ConvertTo-SecureString -AsPlainText " + " " + password.toString() + " " + " -Force)"
 
-    // command = " Import-module activedirectory;Set-ADAccountPassword -Identity " +  login_name.toString() +" -Reset -NewPassword (ConvertTo-SecureString -AsPlainText " + password.toString() +" -Force)"
     log.info("Command : "+ command)
 
-    
 
     // CALL TO RESET PASSWORD
     flintbit_response = call.bit("flint-util:ad-winrm:winrm_commonconnect.js")
