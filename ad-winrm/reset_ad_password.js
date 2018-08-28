@@ -81,7 +81,7 @@ try{
 
         output.set("exit-code", exitcode).set('message', message)
     }else{
-        output.set("exit-code", exitcode).set('message', message)
+        output.set("exit-code", exitcode).set('message', first_error_message)
         log.error("ERROR AT RESET PASSWORD: "+first_error_message)
  
     }
