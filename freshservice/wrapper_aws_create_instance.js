@@ -6,6 +6,8 @@
 log.trace("Started running flintbit")
 
 try{
+    // Get Flint Job ID
+    flint_job_id = input.jobid()
 
     // Inputs to create AWS instance, set in service config
     region = input.get('region')
@@ -69,13 +71,14 @@ try{
     ticket_type = input.get('ticket_type')
 
     // Inputs for creating notes
-    acknowledgement_body = "Flint Automation: Creating AWS Instance..."
+    acknowledgement_body = "Flint acknowledged request for AWS instance creation and automation has been initiated for Job ID ("+flint_job_id+")"
     private_note = input.get('private_note')
 
     // Getting relevant ami ID
     ami_id = input.get('os_mapping').get(os_type)
 
     log.trace("AMI ID: " + ami_id)
+
 
     log.info("Inputs are taken")
 
@@ -139,9 +142,15 @@ try{
         // public_ip = instance_info[0].get('public-ip')
         // log.info("Public IP: " + public_ip)
 
-        final_body = "Flint Automation: \n Created AWS instance successfully. \n Instance ID: " +instance_id + "\n Instance Type: " + instance_size + "\nOS: "+ os_type +"\n Private IP: " + private_ip
+       
+        //final_body = "Flint Automation: \n Created AWS instance successfully. \n Instance ID: " +instance_id + "\n Instance Type: " + instance_size + "\nOS: "+ os_type +"\n Private IP: " + private_ip
 
-        user_message = "<b>Flint Automation:</b>  Created AWS instance successfully. <br><b>Instance ID:</b> " +instance_id + " <br><b>Instance Type:</b> " + instance_size + "<br><b>OS:</b> "+ os_type +"<br><b>Private IP:</b> " + private_ip
+         //Final note body
+        final_body = "Service request is completed by Flint. Marked service request as resolved.\n Instance ID: " +instance_id + "\n Instance Type: " + instance_size + "\nOS: "+ os_type +"\n Private IP: " + private_ip
+
+        user_message = "<b>Flint Automation:</b>  Created AWS instance successfully. <br><b>Instance ID:</b> " +instance_id + " <br><b>Instance Type:</b> " + 
+        
+        instance_size + "<br><b>OS:</b> "+ os_type +"<br><b>Private IP:</b> " + private_ip
 
         if(create_instance_exit_code == 0){
 
