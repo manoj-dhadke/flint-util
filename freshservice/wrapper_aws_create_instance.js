@@ -140,6 +140,9 @@ try{
         // log.info("Public IP: " + public_ip)
 
         final_body = "Flint Automation: \n Created AWS instance successfully. \n Instance ID: " +instance_id + "\n Instance Type: " + instance_size + "\nOS: "+ os_type +"\n Private IP: " + private_ip
+
+        user_message = "Flint Automation:  Created AWS instance successfully. <br>Instance ID: " +instance_id + " <br>Instance Type: " + instance_size + "<br>OS: "+ os_type +"<br>Private IP: " + private_ip
+
         if(create_instance_exit_code == 0){
 
             // Set SERVICE STATUS..
@@ -175,7 +178,7 @@ try{
             log.trace(second_note_response_message)  
 
             // Setting user message (will be visible on CMP)
-            output.set('exit-code', 0).set('user_message', final_body)
+            output.set('exit-code', 0).set('user_message', user_message)
         }else{
             log.error("Unable to create AWS instance : "+ create_instance_response_message )
         }
