@@ -175,7 +175,7 @@ try{
             log.trace(second_note_response_message)  
 
             // Setting user message (will be visible on CMP)
-            output.set('user_message', final_body)
+            output.set('exit-code', 0).set('user_message', final_body)
         }else{
             log.error("Unable to create AWS instance : "+ create_instance_response_message )
         }
