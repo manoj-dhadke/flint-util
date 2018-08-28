@@ -37,7 +37,7 @@ try{
     user_message = "<b>Flint Automation:</b> Apache server has been restarted"
 
     // Ticket note bodies
-    acknowledge_body = "Flint acknowledged request for remediation  and automation has been initiated for Job ID ("+flint_job_id+")"
+    acknowledge_body = "Flint acknowledged request for remediation and automation has been initiated for Job ID ("+flint_job_id+")"
     final_body = "Incident resolved by Flint auto-remediation. Marked incident as resolved."
 
     log.trace(acknowledge_body)
