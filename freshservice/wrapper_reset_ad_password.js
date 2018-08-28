@@ -3,6 +3,10 @@
 // 2. common connect vars (target,username,password, from service config)
 
 try{
+
+    // Get Flint Job ID
+    flint_job_id = input.jobid()
+
     // WINRM INPUTS
     target = input.get('target')
     target_username = input.get('target_username')
@@ -48,9 +52,9 @@ try{
 
 
     // Inputs for creating notes
-    acknowledgement_body = "Flint Automation: Resetting AD password for user: "+login_name
+    acknowledgement_body = "Flint acknowledged request for Active Directory password reset and automation has been initiated for Job ID ("+flint_job_id+")"
+    final_body = "Service request is completed by Flint. Marked service request as resolved.\n Use the password 'Welcome@123' to login. You can reset the password at first logon"
 
-    final_body = "Flint Automation: Password has been successfully reset for active directory user: "+login_name+"\n Use the password 'Infiverve@123' to login. You can reset the password at first logon"
     private_note = input.get('private_note')
 
     // User message definition
@@ -100,6 +104,7 @@ try{
 
         reset_exit_code = reset_flintbit_call_response.get("exit-code")
         reset_message = reset_flintbit_call_response.get("message")
+        log.info("==================>"+reset_flintbit_call_response)
 
         if(reset_exit_code == 0){
             log.trace("Exit-code: "+reset_exit_code)
