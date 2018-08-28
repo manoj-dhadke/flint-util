@@ -62,7 +62,7 @@ try{
     serviceduration = input.get('serviceduration')
     hostaddress = input.get('hostaddress')
 
-    description = "<b>Alert Source:</b> Nagios \n<b>Affected System:</b> " + hostaddress+ "\n<b>Remediation System:</b> Flint\n<b>Alert Details:</b> Apache server at host " + hostaddress + " is down"
+    description = "Alert Source: Nagios \nAffected System: " + hostaddress+ "\nRemediation System: Flint\nAlert Details: Apache server at host " + hostaddress + " is down"
 
     // Service goes ‘Down’, i.e. if service state is 'CRITICAL' raise a ticket, create ticket, add comment & change ticket status 
     if (servicestate == 'CRITICAL'){ 
