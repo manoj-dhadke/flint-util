@@ -104,7 +104,8 @@ try{
 
         reset_exit_code = reset_flintbit_call_response.get("exit-code")
         reset_message = reset_flintbit_call_response.get("message")
-        log.info("==================>"+reset_flintbit_call_response)
+
+        log.trace("INSIDE wrapper ==================> "+reset_message)
 
         if(reset_exit_code == 0){
             log.trace("Exit-code: "+reset_exit_code)
