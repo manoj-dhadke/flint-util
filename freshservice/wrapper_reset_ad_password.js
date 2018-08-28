@@ -105,7 +105,7 @@ try{
         reset_exit_code = reset_flintbit_call_response.get("exit-code")
         reset_message = reset_flintbit_call_response.get("message")
 
-        log.trace("INSIDE wrapper ==================> "+reset_message)
+        
 
         if(reset_exit_code == 0){
             log.trace("Exit-code: "+reset_exit_code)
@@ -146,6 +146,29 @@ try{
            output.set('user_message', user_message)
 
         }else{
+            no_user_body = "Service request could not be completed by Flint.\n Active Directory user "+ login_name +" does not exist."
+            reset_message_trim = val.split(' ').slice(0,6).join(' ');
+
+            if(reset_message_trim == "Cannot find an object with identity:"){
+                
+                 // Add note when AD user does not exist: THIRD CALL TO ADD NOTE
+                third_flintbit_call_response =  call.bit("flint-util:freshservice:add_note.js")
+                                                     .set('domain_name', domain_name)
+                                                     .set('email', email)
+                                                     .set('password', password)
+                                                     .set('private_note',private_note)
+                                                     .set('body', no_user_body)
+                                                     .set('connector_name',freshservice_connector_name)
+                                                     .set('ticket_id',ticket_id)
+                                                     .set('ticket_type',ticket_type)
+                                                     .sync()
+
+                third_note_response_message = third_flintbit_call_response.get("message")
+                log.trace("Third note added: "+third_note_response_message)
+            
+
+                
+            }
             log.error("Unable to reset password: "+reset_message)
         }
         output.set('exit-code', first_note_exitcode)
