@@ -6,7 +6,7 @@ try{
     log.info(" login_name:" + login_name)
 
     // NEW RESET DEFAULT PASSWORD
-    password = "Infiverve@123"
+    password = "Welcome@123"
 
     log.trace(input)
 
