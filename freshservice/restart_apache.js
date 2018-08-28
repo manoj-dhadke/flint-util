@@ -37,8 +37,11 @@ try{
     user_message = "<b>Flint Automation:</b> Apache server has been restarted"
 
     // Ticket note bodies
-    acknowledge_body = "Flint acknowledged request for remediation  and automation has been initiated for Job ID "+flint_job_id
-    final_body = "Incident resolved by Flint auto-remediation. Marked incident resolved"
+    acknowledge_body = "Flint acknowledged request for remediation  and automation has been initiated for Job ID ("+flint_job_id+")"
+    final_body = "Incident resolved by Flint auto-remediation. Marked incident as resolved"
+
+    log.trace(acknowledge_body)
+    log.trace(final_body)
 
     // Logging current execution status
     log.trace("Inputs are valid")
@@ -59,7 +62,7 @@ try{
     serviceduration = input.get('serviceduration')
     hostaddress = input.get('hostaddress')
 
-    description = "Alert Source: Nagios \nAffected System: " + hostaddress+ "\nRemediation System: Flint\nAlert Details: Apache server host " + hostaddress + " is down"
+    description = "<b>Alert Source:</b> Nagios \n<b>Affected System:</b> " + hostaddress+ "\n<b>Remediation System:</b> Flint\n<b>Alert Details:</b> Apache server at host " + hostaddress + " is down"
 
     // Service goes ‘Down’, i.e. if service state is 'CRITICAL' raise a ticket, create ticket, add comment & change ticket status 
     if (servicestate == 'CRITICAL'){ 
@@ -93,7 +96,7 @@ try{
         .set('ticket_type', ticket_type)
         .sync()
 
-
+        log.trace("SSH Connector call")
     // Calling SSH connector
         connector_response = call.connector('ssh') 
                         .set('target',hostaddress)
@@ -123,6 +126,7 @@ try{
             .set('ticket_type',ticket_type)
             .sync()
 
+            log.trace("After second note")
     // Call flintbit to change status of ticket
             call.bit("flint-util:freshservice:update_ticket.js")
             .set('domain_name', domain_name)
@@ -133,6 +137,7 @@ try{
             .set('ticket_id',ticket_id)
             .set('ticket_type',ticket_type)
             .sync()
+
 
         log.info("Successfully executed flintbit with exit-code :" + response_exitcode)
         }
