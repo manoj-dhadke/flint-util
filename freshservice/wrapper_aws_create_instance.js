@@ -119,7 +119,7 @@ try{
         .set('availability_zone', availability_zone)
         .sync()
 
-        log.info("==============================>"+create_aws_flintbit_call_response.toString())
+        
         // Getting exit-code for create instance flinbit call
         create_instance_exit_code = create_aws_flintbit_call_response.get("exit-code")
         // Getting response message from create instance flintbit call 
@@ -141,7 +141,7 @@ try{
 
         final_body = "Flint Automation: \n Created AWS instance successfully. \n Instance ID: " +instance_id + "\n Instance Type: " + instance_size + "\nOS: "+ os_type +"\n Private IP: " + private_ip
 
-        user_message = "Flint Automation:  Created AWS instance successfully. <br>Instance ID: " +instance_id + " <br>Instance Type: " + instance_size + "<br>OS: "+ os_type +"<br>Private IP: " + private_ip
+        user_message = "<b>Flint Automation:</b>  Created AWS instance successfully. <br><b>Instance ID:</b> " +instance_id + " <br><b>Instance Type:</b> " + instance_size + "<br><b>OS:</b> "+ os_type +"<br><b>Private IP:</b> " + private_ip
 
         if(create_instance_exit_code == 0){
 
