@@ -119,6 +119,7 @@ try{
         .set('availability_zone', availability_zone)
         .sync()
 
+        log.info("==============================>"+create_aws_flintbit_call_response.toString())
         // Getting exit-code for create instance flinbit call
         create_instance_exit_code = create_aws_flintbit_call_response.get("exit-code")
         // Getting response message from create instance flintbit call 
