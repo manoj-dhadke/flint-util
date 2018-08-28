@@ -30,7 +30,7 @@ try{
     final_private_note=input.get('final_private_note')    
 
     //User message definition
-    user_message = "Flint Automation: Apache server has been restarted"
+    user_message = "<b>Flint Automation:</b> Apache server has been restarted"
 
     // Logging current execution status
     log.trace("Inputs are valid")
