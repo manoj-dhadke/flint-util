@@ -147,7 +147,7 @@ try{
 
         }else{
             no_user_body = "Service request could not be completed by Flint.\n Active Directory user "+ login_name +" does not exist."
-            reset_message_trim = val.split(' ').slice(0,6).join(' ');
+            reset_message_trim = reset_message.split(' ').slice(0,6).join(' ');
 
             if(reset_message_trim == "Cannot find an object with identity:"){
                 
