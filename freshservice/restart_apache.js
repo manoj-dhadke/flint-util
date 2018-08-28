@@ -38,7 +38,7 @@ try{
 
     // Ticket note bodies
     acknowledge_body = "Flint acknowledged request for remediation  and automation has been initiated for Job ID ("+flint_job_id+")"
-    final_body = "Incident resolved by Flint auto-remediation. Marked incident as resolved"
+    final_body = "Incident resolved by Flint auto-remediation. Marked incident as resolved."
 
     log.trace(acknowledge_body)
     log.trace(final_body)
