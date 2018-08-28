@@ -177,6 +177,8 @@ try{
         log.error("Unable to create note : " + first_note_response_message )
 
     }
+    // Setting user message (will be visible on CMP)
+    output.set('user_message', final_body)
 }catch(error){
     log.error("Error : " + error)
 }

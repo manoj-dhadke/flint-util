@@ -29,6 +29,8 @@ try{
     acknowledge_private_note= input.get('acknowledge_private_note')
     final_private_note=input.get('final_private_note')    
 
+    //User message definition
+    user_message = "Flint Automation: Apache server has been restarted"
 
     // Logging current execution status
     log.trace("Inputs are valid")
@@ -130,6 +132,8 @@ try{
             log.info("Unable to restart Apache server...")
         }
     }
+    // Setting user-message
+    output.set('user_message', user_message)
 }catch(error){
     log.error("Error message : " + error)
 

@@ -139,6 +139,9 @@ try{
     }else{
         log.error("Unable to create acknowledgement note: "+first_note_response_message)
     }
+
+    // Setting user message
+    output.set('user_message', final_body)
 }catch(error){
     log.error(error)
 
