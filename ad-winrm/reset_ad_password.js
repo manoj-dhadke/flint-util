@@ -34,7 +34,7 @@ try{
                             .sync()
 
     //extracting response of connector call
-    success_message = flintbit_response.message()
+     message = flintbit_response.message()
     result = flintbit_response.get("result")
 
     first_error_message = flintbit_response.get("error")
@@ -43,10 +43,10 @@ try{
     log.trace("First WINRM ==========> "+flintbit_response)
 
     //exception handling
-    //case to execute if success_message is the response
+    //case to execute if  message is the response
     if (exitcode == 0) {
         
-        log.info("Success in executing WinRM Connector! \nExitcode FOR RESET PASSWORD :: " + exitcode + "\nMessage :: " + success_message)
+        log.info("Success in executing WinRM Connector! \nExitcode FOR RESET PASSWORD :: " + exitcode + "\nMessage :: " +  message)
 
         log.info("Reset password successful")
         log.trace("Finished executing winrm flintbit with success...")
@@ -79,8 +79,9 @@ try{
             log.error("Error in executing command to change password at first login")
         }
 
-        output.set("exit-code", exitcode).set('message',success_message)
+        output.set("exit-code", exitcode).set('message', message)
     }else{
+        output.set("exit-code", exitcode).set('message', message)
         log.error("ERROR AT RESET PASSWORD: "+first_error_message)
  
     }
