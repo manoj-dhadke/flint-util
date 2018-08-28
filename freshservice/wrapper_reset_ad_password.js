@@ -53,6 +53,9 @@ try{
     final_body = "Flint Automation: Password has been successfully reset for active directory user: "+login_name+"\n Use the password 'Infiverve@123' to login. You can reset the password at first logon"
     private_note = input.get('private_note')
 
+    // User message definition
+    user_message =  "<b>Flint Automation:</b> Password has been successfully reset for active directory user: "+login_name+"<br>Use the password 'Infiverve@123' to login. You can reset the password at first logon"
+
     // Log freshservice inputs
     log.info("Ticket ID " + ticket_id)
     log.info("AD user login name " + login_name)
@@ -132,6 +135,10 @@ try{
 
            second_note_response_message =  second_flintbit_call_response.get("message")
            log.trace(second_note_response_message)
+
+           // Setting user message - will be displayed on the Flint CMP in Service Requests
+           output.set('user_message', user_message)
+
         }else{
             log.error("Unable to reset password: "+reset_message)
         }
@@ -141,8 +148,6 @@ try{
     }
 
     // Setting user message
-    output.set('user_message', final_body)
 }catch(error){
     log.error(error)
-
 }
