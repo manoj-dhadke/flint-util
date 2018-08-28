@@ -40,9 +40,12 @@ try{
     first_error_message = flintbit_response.get("error")
     exitcode = flintbit_response.get("exit-code")
 
+    log.trace("First WINRM ==========> "+flintbit_response)
+
     //exception handling
     //case to execute if success_message is the response
     if (exitcode == 0) {
+        
         log.info("Success in executing WinRM Connector! \nExitcode FOR RESET PASSWORD :: " + exitcode + "\nMessage :: " + success_message)
 
         log.info("Reset password successful")
@@ -63,6 +66,10 @@ try{
         exitcode_response = flintbit_response_first_logon.get("exit-code")
         second_error_message = flintbit_response_first_logon.get("error")
         if(exitcode_response == 0){
+
+            log.trace("SECOND WINRM ==========> "+flintbit_response_first_logon)
+
+
             log.trace("Exit-code for FIRST LOGON: "+exitcode_response)
             log.info("Success in executing command of change password at first login")
             
