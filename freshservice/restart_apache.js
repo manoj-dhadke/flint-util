@@ -8,6 +8,10 @@ try{
      port = input.get('port')
 
 
+    // Get flint service request ID
+    flint_job_id = input.jobid()
+    log.trace("Flint Job ID: "+flint_job_id)
+
     //Freshservice Inputs from JSON for connector and flintbits
 
     domain_name = input.get('domain_name')
@@ -19,18 +23,22 @@ try{
 
     email = input.get('email')
     subject = input.get('subject')
-    acknowledge_body = input.get('acknowledge_body')
-    final_body = input.get('final_body')                // Will be set in service config
     
     initial_status = input.get('initial_status')
     final_status = input.get('final_status')
     priority = input.get('priority')
     ticket_type = input.get('ticket_type')
+
+    // Ticket notes status private/public
     acknowledge_private_note= input.get('acknowledge_private_note')
     final_private_note=input.get('final_private_note')    
 
     //User message definition
     user_message = "<b>Flint Automation:</b> Apache server has been restarted"
+
+    // Ticket note bodies
+    acknowledge_body = "Flint acknowledged request for remediation  and automation has been initiated for Job ID "+flint_job_id
+    final_body = "Incident resolved by Flint auto-remediation. Marked incident resolved"
 
     // Logging current execution status
     log.trace("Inputs are valid")
@@ -51,7 +59,7 @@ try{
     serviceduration = input.get('serviceduration')
     hostaddress = input.get('hostaddress')
 
-    description = "Flint Automation: \nApache server host " + hostaddress + " is down"
+    description = "Alert Source: Nagios \nAffected System: " + hostaddress+ "\nRemediation System: Flint\nAlert Details: Apache server host " + hostaddress + " is down"
 
     // Service goes ‘Down’, i.e. if service state is 'CRITICAL' raise a ticket, create ticket, add comment & change ticket status 
     if (servicestate == 'CRITICAL'){ 
