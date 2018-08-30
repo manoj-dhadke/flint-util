@@ -45,7 +45,7 @@ try{
     private_note = input.get('private_note')
 
     // User message definition
-    user_message =  "<b>Flint Automation:</b> Password has been successfully reset for active directory user: "+login_name+"<br>Use the password 'Infiverve@123' to login. You can reset the password at first logon"
+    user_message =  "<b>Flint Automation:</b> Password has been successfully reset for active directory user: "+login_name+"<br>Use the password 'Welcome@123' to login. You can reset the password at first logon"
 
     // Add service acknowledgement note
     flintbit_call_response = call.bit("flint-util:freshservice:add_note.js")
