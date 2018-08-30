@@ -20,7 +20,7 @@ try{
     ticket_id = ticket_id.replace(/^\D+/g, '')
     log.info(ticket_id)
 
-    // Ticket service item fields to parsed FRESHSERVICE
+    // Ticket service item fields to parsed
     ticket_service_item_fields = input.get('freshdesk_webhook.ticket_service_item_fields')
 
     // Parse the service item fields by calling flintbit
@@ -68,7 +68,7 @@ try{
     // If exit-code for that add_note flintbit call is 0
     if(first_note_exitcode == 0){
         log.trace(input)
-        // Flintbit call to reset_ad_password: 4 inputs
+        // Flintbit call to reset_ad_password
         reset_flintbit_call_response = call.bit('flint-util:ad-winrm:reset_ad_password.js')
                                            .set('target', target)
                                            .set('target_username', target_username)
