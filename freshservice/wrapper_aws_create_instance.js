@@ -80,15 +80,15 @@ try{
         log.trace(input)
 
         create_aws_flintbit_call_response = call.bit("fb-cloud:aws-ec2:operation:create_instance.rb")
-        .set('connector_name',aws_connector_name)   
-        .set('ami_id', ami_id)                  // Image ID
-        .set('instance_type', instance_size)    
-        .set('min_instance', min_instance)
-        .set('max_instance', max_instance)
-        .set('access-key',access_key)
-        .set('security-key', security_key)
-        .set('availability_zone', availability_zone)
-        .sync()
+                                                .set('connector_name',aws_connector_name)   
+                                                .set('ami_id', ami_id)                  // Image ID
+                                                .set('instance_type', instance_size)    
+                                                .set('min_instance', min_instance)
+                                                .set('max_instance', max_instance)
+                                                .set('access-key',access_key)
+                                                .set('security-key', security_key)
+                                                .set('availability_zone', availability_zone)
+                                                .sync()
         
         // Getting exit-code for create instance flinbit call
         create_instance_exit_code = create_aws_flintbit_call_response.get("exit-code")
