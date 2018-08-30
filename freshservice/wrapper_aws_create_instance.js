@@ -55,7 +55,6 @@ try{
     // Getting relevant ami ID
     ami_id = input.get('os_mapping').get(os_type)
     log.trace("AMI ID: " + ami_id)
-    log.info("Inputs are taken")
 
     // Add service acknowledgement note
     flintbit_call_response = call.bit("flint-util:freshservice:add_note.js")
@@ -140,11 +139,10 @@ try{
             // Setting user message (will be visible on CMP)
             output.set('exit-code', 0).set('user_message', user_message)
         }else{
-            log.error("Unable to create AWS instance : "+ create_instance_response_message )
+            log.error("Unable to create AWS instance : "+ create_instance_response_message)
         }
     }else{
-        log.error("Unable to create note : " + first_note_response_message )
-
+        log.error("Unable to create note : " + first_note_response_message)
     }
 }catch(error){
     log.error("Error : " + error)
