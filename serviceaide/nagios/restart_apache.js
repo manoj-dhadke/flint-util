@@ -13,9 +13,6 @@ try {
     // Get flint service request ID
     flint_job_id = input.jobid()
     log.trace("Flint Job ID: " + flint_job_id)
-    incident_description = input.get("incident_description")
-    incident_description_long = input.get("incident_description_long")
-    user_message = "Flint Automation: Apache server has been restarted"
     // Getting the values from JSON
     servicename = input.get('servicename')
     hostname = input.get('hostname')
@@ -33,6 +30,7 @@ try {
     incident_description = "Apcahe server is Down or Critical"
     incident_description_long = "Alert Source: Nagios, Affected System: " + hostaddress + "Remediation System: Flint, Alert Details: Apache server at host " + hostaddress + " is down"
     // Service goes ‘Down’, i.e. if service state is 'CRITICAL' raise a ticket, create ticket, add comment & change ticket status 
+    log.info("1111111111111111111111111111111111")
     if (servicestate == 'CRITICAL') {
         // Call flintbit to raise ticket
         response = call.bit("flint-util:serviceaide:servicerequest:create_incident.groovy")
@@ -42,6 +40,8 @@ try {
                        .sync()
         // Get ticket id
         ticket_id = response.get('ticket_id')
+        log.info("2222222222222222222222222222222222")
+
         // Call flintbit to add comment regarding acknowledgement of incident
         work_description_ack = "Flint acknowledged request for remediation and automation has been initiated for Job ID (" + flint_job_id + ")"
         add_serviceaide_worklog = call.bit("flint-util:serviceaide:servicerequest:service_request_add_worklog.groovy")
@@ -58,6 +58,8 @@ try {
                                 .set('command', 'sudo service apache2 start') // Starting web server apache2
                                 .set('timeout', 60000)
                                 .sync()
+        log.info("33333333333333333333333333333333")
+
         //  SSH Connector Response Parameter
         result = connector_response.get('result')
         response_exitcode = connector_response.exitcode()
