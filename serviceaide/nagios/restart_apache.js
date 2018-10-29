@@ -10,6 +10,7 @@ try {
     username = input.get('username')
     target_password = input.get('target_password')
     port = input.get('port')
+    user_message = "Flint Automation: Apache server has been restarted"
     // Get flint service request ID
     flint_job_id = input.jobid()
     log.trace("Flint Job ID: " + flint_job_id)
@@ -44,7 +45,7 @@ try {
 
         // Call flintbit to add comment regarding acknowledgement of incident
         work_description_ack = "Flint acknowledged request for remediation and automation has been initiated for Job ID (" + flint_job_id + ")"
-        add_serviceaide_worklog = call.bit("flint-util:serviceaide:servicerequest:service_request_add_worklog.groovy")
+        add_serviceaide_worklog = call.bit("flint-util:serviceaide:servicerequest:incident_add_worklog.groovy")
                                       .set("ticket_id", ticket_id)
                                       .set("work_description", work_description_ack)
                                       .sync()
@@ -72,7 +73,7 @@ try {
             log.info("Status response:: " + update_serviceaide_status)
             if (update_serviceaide_status.exitcode() == 0) {
                 final_work_description = "Incident resolved by Flint auto-remediation. Marked incident as resolved."
-                add_serviceaide_worklog = call.bit("flint-util:serviceaide:servicerequest:service_request_add_worklog.groovy")
+                add_serviceaide_worklog = call.bit("flint-util:serviceaide:servicerequest:incident_add_worklog.groovy")
                                               .set("ticket_id", ticket_id)
                                               .set("work_description", final_work_description)
                                               .sync()
@@ -81,11 +82,11 @@ try {
             }
         }else {
             work_description_fail = "Error occured while executing ticket" + " " + ticket_id + ". " + "The error occured due to" + " " + error_message
-            update_serviceaide_status = call.bit("flint-util:serviceaide:servicerequest:service_request_update_error_status.groovy")
+            update_serviceaide_status = call.bit("flint-util:serviceaide:servicerequest:incident_update_error_status.groovy")
                                             .set("ticket_id", ticket_id)
                                             .sync()
             if (update_serviceaide_status.exitcode() == 0) {
-                add_serviceaide_worklog = call.bit("flint-util:serviceaide:servicerequest:service_request_add_error_worklog.groovy")
+                add_serviceaide_worklog = call.bit("flint-util:serviceaide:servicerequest:incident_add_error_worklog.groovy")
                                               .set("ticket_id", ticket_id)
                                               .set("work_description", work_description_fail)
                                               .sync()
