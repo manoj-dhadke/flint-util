@@ -40,9 +40,9 @@ try {
                        .timeout(300000)
                        .sync()
         // Get ticket id
+        log.info("2222222222222222222222222222222222 "+response)
         ticket_id = response.get('ticket_id')
-        log.info("2222222222222222222222222222222222")
-
+        log.info("Ticket Id ....  "+ticket_id)
         // Call flintbit to add comment regarding acknowledgement of incident
         work_description_ack = "Flint acknowledged request for remediation and automation has been initiated for Job ID (" + flint_job_id + ")"
         add_serviceaide_worklog = call.bit("flint-util:serviceaide:servicerequest:incident_add_worklog.groovy")
