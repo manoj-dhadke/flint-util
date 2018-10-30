@@ -32,7 +32,7 @@ try {
     serviceduration = input.get('serviceduration')
     hostaddress = input.get('hostaddress')
     incident_description = "Apache server is Down or Critical"
-    incident_description_long = "Alert Source: Nagios, Affected System: " + hostaddress + "Remediation System: Flint, Alert Details: Apache server at host " + hostaddress + " is down"
+    incident_description_long = "Alert Source: Nagios, Affected System: " + hostaddress + ", Remediation System: Flint, Alert Details: Apache server at host " + hostaddress +" "+ " is down."
     // Service goes ‘Down’, i.e. if service state is 'CRITICAL' raise a ticket, create ticket, add comment & change ticket status 
     if (servicestate == 'CRITICAL') {
         // Call flintbit to raise ticket
