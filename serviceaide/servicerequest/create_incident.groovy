@@ -41,12 +41,21 @@ http_response= call.connector(connector_name)
                    .timeout(60000)
                    .sync()
 log.info("Http Response : "+ http_response)
+body=http_response.get("body")
+//log.info("Body : "+ body)
+before_index = body.indexOf('{')
+after_index = body.indexOf('}')
+body= body.substring(before_index, after_index +1)
+body_to_json = util.json(body)
+log.info("JSON Body : "+ body_to_json)
+ticket_id= body_to_json.get("ticket_identifier")
+log.info("ticket id : "+ ticket_id)
 exit_code = http_response.exitcode()
 message = http_response.message()
 
 if (exit_code == 0){
     log.info("Success in executing ${connector_name} connector where exit_code::${exit_code} and message :: ${message}")
-    output.set("exit-code", 0)
+    output.set("exit-code", 0).set("ticket_id",ticket_id)
 }
 else{
     log.error("Error in executing ${connector_name} connector  where, exit_code : ${exit_code} and message:: ${message}")
