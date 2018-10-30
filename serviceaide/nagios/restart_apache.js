@@ -6,14 +6,17 @@
 log.trace("Started executing 'flint-util:serviceaide:nagios:restart_apache.js' flintbit...")
 try {
     // Apache Server Details
-    target = input.get('target')
-    username = input.get('username')
-    target_password = input.get('target_password')
-    port = input.get('port')
+    nagios_apache_config = input.get("nagios_apache_config")
+    target = nagios_apache_config.get('target')
+    username = nagios_apache_config.get('username')
+    target_password = nagios_apache_config.get('target_password')
+    port = nagios_apache_config.get('port')
     user_message = "Flint Automation: Apache server has been restarted"
+    log.info("Input parameters..... target "+target+" | username "+username+" | target_password"+target_password+ " | port "+port)
     // Get flint service request ID
     flint_job_id = input.jobid()
     log.trace("Flint Job ID: " + flint_job_id)
+    log.info("")
     // Getting the values from JSON
     servicename = input.get('servicename')
     hostname = input.get('hostname')
@@ -66,6 +69,7 @@ try {
         response_exitcode = connector_response.exitcode()
         error_message = connector_response.get("error")
         if (response_exitcode == 0) {
+            log.info("4444444444444444444444444444444")
             // Call flintbit to add comment after issue is resolved with exit-code 0   
             update_serviceaide_status = call.bit("flint-util:serviceaide:servicerequest:incident_update_status.groovy")
                                             .set("ticket_id", ticket_id)
