@@ -4,6 +4,7 @@
 ** Description: This flintbit is developed to create an AWS instance after receiving request from Freshserver.
 **/
 log.trace("Started executing flint-util:freshservice:wrapper_aws_create_instance.js flintbit.")
+log.info("Input.....:: "+input)
 try{
     // Get Flint Job ID
     flint_job_id = input.jobid()
