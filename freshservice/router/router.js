@@ -7,6 +7,7 @@ aws_connector_name = aws_config.get('aws_connector_name')         // Name of the
 access_key = aws_config.get('access-key')
 security_key = aws_config.get('security-key')
 aws_region = aws_config.get('region')	                             // Amazon EC2 region (default region is 'us-east-1')
+
 //Azure
 //GCP
 ticket_id = input.get('freshdesk_webhook.ticket_id')
@@ -19,6 +20,8 @@ password = freshservice_config.get('password')
 status = freshservice_config.get('status')
 freshservice_connector_name = freshservice_config.get('freshservice_connector_name')
 ticket_type = freshservice_config.get('ticket_type')
+private_note = freshservice_config.get('private_note')
+
 
 // Ticket service item fields to be parsing
 ticket_service_item_fields = input.get('freshdesk_webhook.ticket_service_item_fields')
@@ -51,6 +54,7 @@ switch (flint_action_name) {
                 .set('connector_name', freshservice_connector_name)
                 .set('ticket_id', ticket_id)
                 .set('ticket_type', ticket_type)
+                .set('private_note',private_note)
                 .sync()
         
 
