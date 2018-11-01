@@ -3,13 +3,12 @@
 ** Summary: This is Start AWS instance service flintbit.
 ** Description: This flintbit is developed to start an AWS instance after receiving request from Freshserver.
 **/
-log.trace("Started executing flint-util:freshservice:aws_create_instance.js flintbit.")
+log.trace("Started executing flint-util:freshservice:aws:aws_start_instance.js flintbit.")
 log.info("Input parameters........::  " + input)
 try {
     // Get Flint Job ID
     flint_job_id = input.jobid()
     aws_connector_name = input.get('connector_name')         // Name of the Amazon EC2 Connector
-    action = 'start-instances'                           // Specifies the name of the operation: start-instances
     access_key = input.get('access-key')
     security_key = input.get('security-key')
     region = input.get('region')
@@ -58,7 +57,6 @@ try {
 
         create_aws_flintbit_call_response = call.bit("fb-cloud:aws-ec2:operation:start_instance.rb")
                                                 .set("connector_name", aws_connector_name)
-                                                .set("action", action)
                                                 .set("access-key", access_key)
                                                 .set("security-key", security_key)
                                                 .set("region", region)
@@ -124,4 +122,4 @@ try {
 } catch (error) {
     log.error("Error : " + error)
 }
-log.trace("Finished executing flint-util:freshservice:aws_create_instance.js flintbit.")
+log.trace("Finished executing flint-util:freshservice:aws:aws_start_instance.js flintbit.")
