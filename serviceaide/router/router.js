@@ -346,7 +346,7 @@ log.info("Delete vmware snapshot")
 case "create_aws_instance":
 {
 log.info("Create aws instance")
-  flintbit_response = call.bit("flint-util:serviceaide:aws:AWS_create_instance.js")
+  flintbit_response = call.bit("flint-util:serviceaide:aws:aws_create_instance.js")
                           .set("ticket_id", ticket_id)
                           .set("instance_size", instance_size)
                           .set("operating_system_name",operating_system_name) 
@@ -365,7 +365,7 @@ log.info("Create aws instance")
 case "start_aws_instance":
 {
 log.info("Start aws instance")
-  flintbit_response = call.bit("flint-util:serviceaide:aws:AWS_start_instance.js")
+  flintbit_response = call.bit("flint-util:serviceaide:aws:aws_start_instance.js")
                           .set("ticket_id", ticket_id)
                           .set("connector_name", aws_connector_name)
                           .set("security-key",security_key)
