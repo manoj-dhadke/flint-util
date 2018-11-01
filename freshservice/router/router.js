@@ -30,6 +30,7 @@ parse_flintbit_call_response = call.bit('flint-util:freshservice:extract_sr_item
     .sync()
 // Get instance size(type) from the response of freshservice extract_sr_items_fields
 flint_action_name = parse_flintbit_call_response.get('data').get("Item Name")
+log.info("Flint action name....:: "+flint_action_name)
 instance_id = parse_flintbit_call_response.get('data').get('Instance ID')
 log.info("Instance id " + instance_id)
 
