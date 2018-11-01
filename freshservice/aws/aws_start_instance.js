@@ -8,6 +8,7 @@ log.info("Input parameters........::  " + input)
 try {
     // Get Flint Job ID
     flint_job_id = input.jobid()
+    log.info("Job Id " + flint_job_id)
     aws_connector_name = input.get('aws_connector_name')
     access_key = input.get('access-key')
     security_key = input.get('security-key')
@@ -25,7 +26,7 @@ try {
     ticket_type = input.get('ticket_type')
     private_note = input.get('private_note')
     // Inputs for creating notes
-    acknowledgement_body = "Flint acknowledged request for AWS instance creation and automation has been initiated for Job ID (" + flint_job_id + ")"
+    acknowledgement_body = "Flint acknowledged request for 'Start AWS instance'  and automation has been initiated for Job ID (" + flint_job_id + ")"
     // Add service acknowledgement note
     flintbit_call_response = call.bit("flint-util:freshservice:add_note.js")
         .set('domain_name', domain_name)
@@ -57,7 +58,7 @@ try {
         start_instance_response_message = start_aws_flintbit_call_response.get("message")
         // Final note body
         final_body = "Service request is completed by Flint. Marked service request as resolved.\n Instance ID: " + instance_id
-        user_message = "<b>Flint Automation:</b>  started AWS instance successfully. <br><b>Instance ID:</b> " + instance_id
+        user_message = "<b>Flint Automation:</b>  Started AWS instance successfully. <br><b>Instance ID:</b> " + instance_id
         if (start_instance_exit_code == 0) {
             // Set service status
             update_ticket_call_response = call.bit('flint-util:freshservice:update_ticket.js')

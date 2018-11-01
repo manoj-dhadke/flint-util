@@ -1,6 +1,5 @@
 log.trace("Started executing freshservice:router:router.js")
 log.info("Input from freshservice.....:: " + input)
-flint_job_id = input.jobid()
 //AWS inputs
 aws_config = input.get("aws_config")
 aws_connector_name = aws_config.get('aws_connector_name')         // Name of the Amazon EC2 Connector
