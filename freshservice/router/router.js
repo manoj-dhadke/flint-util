@@ -42,7 +42,7 @@ switch (flint_action_name) {
         {
             log.info("Start aws instance")
             flintbit_response = call.bit("flint-util:freshservice:aws:aws_start_instance.js")
-                .set("connector_name", aws_connector_name)
+                .set("aws_connector_name", aws_connector_name)
                 .set("security-key", security_key)
                 .set("access-key", access_key)
                 .set("instance-id", instance_id)
@@ -51,7 +51,7 @@ switch (flint_action_name) {
                 .set('email', email)
                 .set('password', password)
                 .set('status', status)
-                .set('connector_name', freshservice_connector_name)
+                .set('freshservice_connector_name', freshservice_connector_name)
                 .set('ticket_id', ticket_id)
                 .set('ticket_type', ticket_type)
                 .set('private_note',private_note)

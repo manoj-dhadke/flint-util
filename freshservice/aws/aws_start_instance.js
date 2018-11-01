@@ -8,7 +8,7 @@ log.info("Input parameters........::  " + input)
 try {
     // Get Flint Job ID
     flint_job_id = input.jobid()
-    aws_connector_name = input.get('connector_name')         // Name of the Amazon EC2 Connector
+    aws_connector_name = input.get('aws_connector_name')         
     access_key = input.get('access-key')
     security_key = input.get('security-key')
     region = input.get('region')
@@ -21,7 +21,7 @@ try {
     email = input.get('email')
     password = input.get('password')
     status = input.get('status')
-    freshservice_connector_name = input.get('connector_name')
+    freshservice_connector_name = input.get('freshservice_connector_name')
     ticket_type = input.get('ticket_type')
     private_note = input.get('private_note')
 
