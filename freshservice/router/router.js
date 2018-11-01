@@ -17,7 +17,7 @@ domain_name = freshservice_config.get('domain_name')
 email = freshservice_config.get('email')
 password = freshservice_config.get('password')
 status = freshservice_config.get('status')
-freeshservice_connector_name = freshservice_config.get('freshservice_connector_name')
+freshservice_connector_name = freshservice_config.get('freshservice_connector_name')
 ticket_type = freshservice_config.get('ticket_type')
 
 // Ticket service item fields to be parsing
@@ -48,7 +48,7 @@ switch (flint_action_name) {
                 .set('email', email)
                 .set('password', password)
                 .set('status', status)
-                .set('connector_name', freeshservice_connector_name)
+                .set('connector_name', freshservice_connector_name)
                 .set('ticket_id', ticket_id)
                 .set('ticket_type', ticket_type)
                 .sync()
