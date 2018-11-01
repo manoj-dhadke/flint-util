@@ -3,7 +3,7 @@
 ** Summary: This is Start AWS instance service flintbit.
 ** Description: This flintbit is developed to start an AWS instance after receiving request from Freshserver.
 **/
-log.trace("Started executing flint-util:freshservice:wrapper_aws_create_instance.js flintbit.")
+log.trace("Started executing flint-util:freshservice:aws_create_instance.js flintbit.")
 log.info("Input parameters........::  " + input)
 try {
     // Get Flint Job ID
@@ -56,15 +56,15 @@ try {
     if (first_note_exitcode == 0) {
         log.trace(input)
 
-        create_aws_flintbit_call_response = call.bit("fb-cloud:aws-ec2:operation:create_instance.rb")
-            .set("connector_name", aws_connector_name)
-            .set("action", action)
-            .set("access-key", access_key)
-            .set("security-key", security_key)
-            .set("region", region)
-            .set("instance-id", instance_id)
-            .set('timeout', 60000)
-            .sync()
+        create_aws_flintbit_call_response = call.bit("fb-cloud:aws-ec2:operation:start_instance.rb")
+                                                .set("connector_name", aws_connector_name)
+                                                .set("action", action)
+                                                .set("access-key", access_key)
+                                                .set("security-key", security_key)
+                                                .set("region", region)
+                                                .set("instance-id", instance_id)
+                                                .set('timeout', 60000)
+                                                .sync()
 
         // Getting exit-code for create instance flinbit call
         create_instance_exit_code = create_aws_flintbit_call_response.get("exit-code")
@@ -124,4 +124,4 @@ try {
 } catch (error) {
     log.error("Error : " + error)
 }
-log.trace("Finished executing flint-util:freshservice:wrapper_aws_create_instance.js flintbit.")
+log.trace("Finished executing flint-util:freshservice:aws_create_instance.js flintbit.")
