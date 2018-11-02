@@ -7,8 +7,17 @@ access_key = aws_config.get('access-key')
 security_key = aws_config.get('security-key')
 aws_region = aws_config.get('region')	                             // Amazon EC2 region (default region is 'us-east-1')
 
-//Azure
+//Azure input
+azure_config = input.get("azure_config")
+azure_connector_name = azure_config.get('azure_connector_name')
+azure_region = azure_config.get('region')
+key = azure_config.get('key')
+tenant_id = azure_config.get('tenant-id')
+subscription_id = azure_config.get('subscription-id')
+client_id = azure_config.get('client-id')
+
 //GCP
+
 ticket_id = input.get('freshdesk_webhook.ticket_id')
 ticket_id = ticket_id.replace(/^\D+/g, '')
 log.info("Ticket ID " + ticket_id)
@@ -36,6 +45,10 @@ log.info("Flint action name....:: "+flint_action_name)
 instance_id = parse_flintbit_call_response.get('data').get('Instance ID')
 log.info("Instance id " + instance_id)
 
+group_name = parse_flintbit_call_response.get('data').get('Resource Group Name')
+log.info("Group name " + group_name)
+
+
 switch (flint_action_name) {
     case "Start AWS EC2 Instance":
         {
@@ -55,8 +68,28 @@ switch (flint_action_name) {
                 .set('ticket_type', ticket_type)
                 .set('private_note',private_note)
                 .sync()
-        
-
         } break;
+        case "Create Azure Resource Group":
+        {
+            log.info("Create resource group")
+            flintbit_response = call.bit("flint-util:freshservice:azure:azure_create_resource_group.js")
+                .set('azure_connector_name', azure_connector_name)
+                .set('tenant-id', tenant_id)
+                .set('subscription-id', subscription_id)
+                .set('key', key)
+                .set('client-id', client_id)
+                .set('group-name', group_name)
+                .set('region', azure_region)
+                .set('domain_name', domain_name)
+                .set('email', email)
+                .set('password', password)
+                .set('status', status)
+                .set('freshservice_connector_name', freshservice_connector_name)
+                .set('ticket_id', ticket_id)
+                .set('ticket_type', ticket_type)
+                .set('private_note',private_note)
+                .sync()
+        } break;
+
 
 }
