@@ -125,7 +125,7 @@ switch (flint_action_name) {
                 .set('private_note',private_note)
                 .sync()
         } break;
-        case "Create GCP Instance":
+        case "New GCP Instance":
         {
             log.info("Create gcp instance....")
             log.info("gcp_connector_name "+gcp_connector_name+" | project_id "+project_id+" | zone_name "+zone_name+" | service_account_credenetials "+service_account_credenetials+" | instance_name "+instance_name+" | disk_type "+disk_type+" | operating_system_type "+operating_system_type+" | machine_type "+machine_type+" | image_project_id "+image_project_id)
