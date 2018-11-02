@@ -17,6 +17,13 @@ subscription_id = azure_config.get('subscription-id')
 client_id = azure_config.get('client-id')
 
 //GCP
+gcp_config = input.get("gcp_config")
+gcp_connector_name = gcp_config.get('gcp_connector_name')        
+project_id = gcp_config.get('project-id')                
+zone_name = gcp_config.get('zone-name')                  
+disk_type = gcp_config.get('disk-type')                  
+image_project_id = gcp_config.get('image-project-id')     
+service_account_credenetials = gcp_config.get('service-account-credentials')
 
 ticket_id = input.get('freshdesk_webhook.ticket_id')
 ticket_id = ticket_id.replace(/^\D+/g, '')
@@ -48,8 +55,10 @@ log.info("Instance id " + instance_id)
 group_name = parse_flintbit_call_response.get('data').get('Resource Group Name')
 log.info("Group name " + group_name)
 
-// resource_group_name = parse_flintbit_call_response.get('data').get('Resource Group Name')
-// log.info("Resource group name " + resource_group_name)
+instance_name = parse_flintbit_call_response.get('data').get('Instance Name')          
+operating_system_type = parse_flintbit_call_response.get('data').get('Operating System Type')
+machine_type = parse_flintbit_call_response.get('data').get('Machine Type')
+log.info("Instance Name "+instance_name+" | Operating System Type "+operating_system_type+" | Machine Type "+machine_type)
 
 
 switch (flint_action_name) {
@@ -98,8 +107,7 @@ switch (flint_action_name) {
         case "Delete Azure Resource Group":
         {
             log.info("Delete resource group")
-
-        log.info("Inputs .... azure_connector_name "+azure_connector_name+" | tenant_id "+tenant_id+" | subscription_id "+subscription_id+" | key "+key+" | client_id "+client_id+" | group_name "+group_name)    
+            log.info("Inputs .... azure_connector_name "+azure_connector_name+" | tenant_id "+tenant_id+" | subscription_id "+subscription_id+" | key "+key+" | client_id "+client_id+" | group_name "+group_name)    
             flintbit_response = call.bit("flint-util:freshservice:azure:azure_delete_resource_group.js")
                 .set('azure_connector_name', azure_connector_name)
                 .set('tenant-id', tenant_id)
@@ -107,6 +115,30 @@ switch (flint_action_name) {
                 .set('key', key)
                 .set('client-id', client_id)
                 .set('resource-group-name', group_name)
+                .set('domain_name', domain_name)
+                .set('email', email)
+                .set('password', password)
+                .set('status', status)
+                .set('freshservice_connector_name', freshservice_connector_name)
+                .set('ticket_id', ticket_id)
+                .set('ticket_type', ticket_type)
+                .set('private_note',private_note)
+                .sync()
+        } break;
+        case "Create GCP Instance":
+        {
+            log.info("Create gcp instance....")
+            log.info("gcp_connector_name "+gcp_connector_name+" | project_id "+project_id+" | zone_name "+zone_name+" | service_account_credenetials "+service_account_credenetials+" | instance_name "+instance_name+" | disk_type "+disk_type+" | operating_system_type "+operating_system_type+" | machine_type "+machine_type+" | image_project_id "+image_project_id)
+            flintbit_response = call.bit("flint-util:freshservice:gcp:gcp_create_instance.js")
+                .set('gcp_connector_name', gcp_connector_name)
+                .set('project-id', project_id)
+                .set('zone-name', zone_name)
+                .set('service-account-credentials', service_account_credenetials)
+                .set('instance-name', instance_name)
+                .set('disk-type', disk_type)
+                .set('image-name', operating_system_type)
+                .set('machine-type', machine_type)
+                .set('image-project-id', image_project_id)
                 .set('domain_name', domain_name)
                 .set('email', email)
                 .set('password', password)
