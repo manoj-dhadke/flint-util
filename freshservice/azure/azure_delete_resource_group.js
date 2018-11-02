@@ -26,7 +26,7 @@ try {
     ticket_type = input.get('ticket_type')
     private_note = input.get('private_note')
     // Inputs for creating notes
-    acknowledgement_body = "Flint acknowledged request for 'Creating resource group'  and automation has been initiated for Job ID (" + flint_job_id + ")"
+    acknowledgement_body = "Flint acknowledged request for 'Deleting resource group'  and automation has been initiated for Job ID (" + flint_job_id + ")"
     // Add service acknowledgement note
     flintbit_call_response = call.bit("flint-util:freshservice:add_note.js")
         .set('domain_name', domain_name)
@@ -45,7 +45,7 @@ try {
     log.trace(first_note_exitcode)
     if (first_note_exitcode == 0) {
         log.trace(input)
-        create_azure_flintbit_call_response = call.bit("fb-cloud:azure:operation:delete_resource_group.rb")
+        delete_azure_flintbit_call_response = call.bit("fb-cloud:azure:operation:delete_resource_group.rb")
                                                   .set('connector_name', connector_name)
                                                   .set('tenant-id', tenant_id)
                                                   .set('subscription-id', subscription_id)
@@ -53,13 +53,13 @@ try {
                                                   .set('client-id', client_id)
                                                   .set('resource-group-name', resource_group_name)
                                                   .sync()
-        // Getting exit-code for create resource group instance flinbit call
-        create_group_exit_code = create_azure_flintbit_call_response.get("exit-code")
-        create_group_response_message = create_azure_flintbit_call_response.get("message")
+        // Getting exit-code for delete resource group instance flinbit call
+        delete_group_exit_code = delete_azure_flintbit_call_response.get("exit-code")
+        delete_group_response_message = delete_azure_flintbit_call_response.get("message")
         // Final note body
         final_body = "Service request is completed by Flint. Marked service request as resolved.\n Group Name: " + group_name
-        user_message = "<b>Flint Automation:</b>  Created Azure resource group successfully. <br><b>Group Name:</b> " + group_name
-        if (create_group_exit_code == 0) {
+        user_message = "<b>Flint Automation:</b>  Deleted Azure resource group successfully. <br><b>Group Name:</b> " + group_name
+        if (delete_group_exit_code == 0) {
             // Set service status
             update_ticket_call_response = call.bit('flint-util:freshservice:update_ticket.js')
                 .set('domain_name', domain_name)
@@ -73,7 +73,7 @@ try {
             // Get Service status response message
             update_ticket_response_message = update_ticket_call_response.get("message")
             log.trace(update_ticket_response_message)
-            // Add note after resource group is created
+            // Add note after resource group is deleted
             second_flintbit_call_response = call.bit("flint-util:freshservice:add_note.js")
                 .set('domain_name', domain_name)
                 .set('email', email)
@@ -89,12 +89,12 @@ try {
             // Setting user message (will be visible on CMP)
             output.set('exit-code', 0).set('user_message', user_message)
         } else {
-            log.error("Unable to create resource group : " + create_group_response_message)
+            log.error("Unable to delete resource group : " + delete_group_response_message)
         }
     } else {
-        log.error("Unable to create note : " + first_note_response_message)
+        log.error("Unable to delete note : " + first_note_response_message)
     }
 } catch (error) {
     log.error("Error : " + error)
 }
-log.trace("Finished executing flint-util:freshservice:azure:azure_create_resource_group.js flintbit.")
+log.trace("Finished executing flint-util:freshservice:azure:azure_delete_resource_group.js flintbit.")
