@@ -46,19 +46,19 @@ try {
     if (first_note_exitcode == 0) {
         log.trace(input)
         delete_azure_flintbit_call_response = call.bit("fb-cloud:azure:operation:delete_resource_group.rb")
-                                                  .set('connector_name', azure_connector_name)
-                                                  .set('tenant-id', tenant_id)
-                                                  .set('subscription-id', subscription_id)
-                                                  .set('key', key)
-                                                  .set('client-id', client_id)
-                                                  .set('resource-group-name', resource_group_name)
-                                                  .sync()
+            .set('connector_name', azure_connector_name)
+            .set('tenant-id', tenant_id)
+            .set('subscription-id', subscription_id)
+            .set('key', key)
+            .set('client-id', client_id)
+            .set('resource-group-name', resource_group_name)
+            .sync()
         // Getting exit-code for delete resource group instance flinbit call
         delete_group_exit_code = delete_azure_flintbit_call_response.get("exit-code")
         delete_group_response_message = delete_azure_flintbit_call_response.get("message")
         // Final note body
-        final_body = "Service request is completed by Flint. Marked service request as resolved.\n Group Name: " + group_name
-        user_message = "<b>Flint Automation:</b>  Deleted Azure resource group successfully. <br><b>Group Name:</b> " + group_name
+        final_body = "Service request is completed by Flint. Marked service request as resolved.\n Group Name: " + resource_group_name
+        user_message = "<b>Flint Automation:</b>  Deleted Azure resource group successfully. <br><b>Group Name:</b> " + resource_group_name
         if (delete_group_exit_code == 0) {
             // Set service status
             update_ticket_call_response = call.bit('flint-util:freshservice:update_ticket.js')
