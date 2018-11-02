@@ -153,7 +153,7 @@ switch (flint_action_name) {
         {
             log.info("delete gcp instance....")
             flintbit_response = call.bit("flint-util:freshservice:gcp:gcp_delete_instance.js")
-                .set('connector_name', gcp_connector_name)
+                .set('gcp_connector_name', gcp_connector_name)
                 .set('project-id', project_id)
                 .set('zone-name', zone_name)
                 .set('service-account-credentials', service_account_credenetials)
