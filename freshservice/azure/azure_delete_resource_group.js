@@ -46,7 +46,7 @@ try {
     if (first_note_exitcode == 0) {
         log.trace(input)
         delete_azure_flintbit_call_response = call.bit("fb-cloud:azure:operation:delete_resource_group.rb")
-                                                  .set('connector_name', connector_name)
+                                                  .set('connector_name', azure_connector_name)
                                                   .set('tenant-id', tenant_id)
                                                   .set('subscription-id', subscription_id)
                                                   .set('key', key)
