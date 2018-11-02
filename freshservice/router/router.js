@@ -72,6 +72,8 @@ switch (flint_action_name) {
         case "Create Azure Resource Group":
         {
             log.info("Create resource group")
+
+        log.info("Inputs .... azure_connector_name "+azure_connector_name+" | tenant_id "+tenant_id+" | subscription_id "+subscription_id+" | key "+key+" | client_id "+client_id+" | group_name "+group_name+" | azure_region "+azure_region)    
             flintbit_response = call.bit("flint-util:freshservice:azure:azure_create_resource_group.js")
                 .set('azure_connector_name', azure_connector_name)
                 .set('tenant-id', tenant_id)
