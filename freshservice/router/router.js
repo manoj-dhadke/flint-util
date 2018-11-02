@@ -149,6 +149,25 @@ switch (flint_action_name) {
                 .set('private_note',private_note)
                 .sync()
         } break;
+        case "Delete GCP Instance":
+        {
+            log.info("delete gcp instance....")
+            flintbit_response = call.bit("flint-util:freshservice:gcp:gcp_delete_instance.js")
+                .set('connector_name', gcp_connector_name)
+                .set('project-id', project_id)
+                .set('zone-name', zone_name)
+                .set('service-account-credentials', service_account_credenetials)
+                .set('instance-name', instance_name)
+                .set('domain_name', domain_name)
+                .set('email', email)
+                .set('password', password)
+                .set('status', status)
+                .set('freshservice_connector_name', freshservice_connector_name)
+                .set('ticket_id', ticket_id)
+                .set('ticket_type', ticket_type)
+                .set('private_note',private_note)
+                .sync()
+        } break;
 
 
 }
