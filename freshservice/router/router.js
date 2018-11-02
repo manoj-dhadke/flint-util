@@ -48,6 +48,9 @@ log.info("Instance id " + instance_id)
 group_name = parse_flintbit_call_response.get('data').get('Resource Group Name')
 log.info("Group name " + group_name)
 
+// resource_group_name = parse_flintbit_call_response.get('data').get('Resource Group Name')
+// log.info("Resource group name " + resource_group_name)
+
 
 switch (flint_action_name) {
     case "Start AWS EC2 Instance":
@@ -82,6 +85,28 @@ switch (flint_action_name) {
                 .set('client-id', client_id)
                 .set('group-name', group_name)
                 .set('region', azure_region)
+                .set('domain_name', domain_name)
+                .set('email', email)
+                .set('password', password)
+                .set('status', status)
+                .set('freshservice_connector_name', freshservice_connector_name)
+                .set('ticket_id', ticket_id)
+                .set('ticket_type', ticket_type)
+                .set('private_note',private_note)
+                .sync()
+        } break;
+        case "Delete Azure Resource Group":
+        {
+            log.info("Delete resource group")
+
+        log.info("Inputs .... azure_connector_name "+azure_connector_name+" | tenant_id "+tenant_id+" | subscription_id "+subscription_id+" | key "+key+" | client_id "+client_id+" | group_name "+group_name)    
+            flintbit_response = call.bit("flint-util:freshservice:azure:azure_create_resource_group.js")
+                .set('azure_connector_name', azure_connector_name)
+                .set('tenant-id', tenant_id)
+                .set('subscription-id', subscription_id)
+                .set('key', key)
+                .set('client-id', client_id)
+                .set('resource-group-name', group_name)
                 .set('domain_name', domain_name)
                 .set('email', email)
                 .set('password', password)
