@@ -17,7 +17,7 @@ try {
     machine_type = input.get('machine-type')            
     image_project_id = input.get('image-project-id')     
     service_account_credenetials = input.get('service-account-credentials')
-    operating_system_type = input.get('operating_system_type')
+    operating_system_type = input.get('image-name')
     // Service ID/ Ticket ID
     ticket_id = input.get('ticket_id')
     log.info("Ticket ID " + ticket_id)
