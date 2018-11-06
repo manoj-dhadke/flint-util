@@ -2,10 +2,10 @@ log.trace("Started executing freshservice:router:router.js")
 log.info("Input from freshservice.....:: " + input)
 //AWS inputs
 aws_config = input.get("aws_config")
-aws_connector_name = aws_config.get('aws_connector_name')         // Name of the Amazon EC2 Connector
+aws_connector_name = aws_config.get('aws_connector_name')         
 access_key = aws_config.get('access-key')
 security_key = aws_config.get('security-key')
-aws_region = aws_config.get('region')	                             // Amazon EC2 region (default region is 'us-east-1')
+aws_region = aws_config.get('region')	                            
 //Azure inputs
 azure_config = input.get("azure_config")
 azure_connector_name = azure_config.get('azure_connector_name')
