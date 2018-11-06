@@ -2,10 +2,16 @@ log.trace("Started executing freshservice:router:router.js")
 log.info("Input from freshservice.....:: " + input)
 //AWS inputs
 aws_config = input.get("aws_config")
-aws_connector_name = aws_config.get('aws_connector_name')         // Name of the Amazon EC2 Connector
+aws_connector_name = aws_config.get('aws_connector_name')         
+instance_size = input.get("instance_size")
+key_name = aws_config.get('key_name')
+subnet_id = aws_config.get('subnet_id')
+max_instance = aws_config.get('max_instance')
+min_instance = aws_config.get('min_instance')
+availability_zone = aws_config.get('availability_zone')
 access_key = aws_config.get('access-key')
 security_key = aws_config.get('security-key')
-aws_region = aws_config.get('region')	                             // Amazon EC2 region (default region is 'us-east-1')
+aws_region = aws_config.get('region')	                             
 //Azure inputs
 azure_config = input.get("azure_config")
 azure_connector_name = azure_config.get('azure_connector_name')
@@ -57,6 +63,32 @@ log.info("Instance Name "+instance_name+" | Operating System Type "+operating_sy
 
 
 switch (flint_action_name) {
+    case "New AWS EC2 Instance":
+        {
+            log.info("Create aws instance")
+            flintbit_response = call.bit("flint-util:freshservice:aws:aws_create_instance.js")
+                                    .set("instance_size", instance_size)
+                                    .set("region",aws_region)
+                                    .set("key_name",key_name)
+                                    .set("subnet_id",subnet_id)
+                                    .set("access-key",access_key)
+                                    .set("max_instance",max_instance)
+                                    .set("min_instance",min_instance)
+                                    .set("security-key",security_key)
+                                    .set("connector_name",aws_connector_name)
+                                    .set("availability_zone",availability_zone)
+                                    .set("aws_config",aws_config)
+                                    .set('domain_name', domain_name)
+                                    .set('email', email)
+                                    .set('password', password)
+                                    .set('status', status)
+                                    .set('freshservice_connector_name', freshservice_connector_name)
+                                    .set('ticket_id', ticket_id)
+                                    .set('ticket_type', ticket_type)
+                                    .set('private_note',private_note)
+                                    .sync()
+        }break;
+
     case "Start AWS EC2 Instance":
         {
             log.info("Start aws instance")
