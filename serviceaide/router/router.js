@@ -165,7 +165,7 @@ case "create_ad_group":
 case "reset_ad_password":
 {
 log.info("reset")
-  flintbit_response = call.bit("serviceaide:ad:reset_password_send_mail.js")
+  flintbit_response = call.bit("flint-util:serviceaide:ad:reset_ad_password_send_sms.js")
                            .set("login-name", login_user_name_reset)
                            .set("ticket_id", ticket_id)
                            .set("to", to)
