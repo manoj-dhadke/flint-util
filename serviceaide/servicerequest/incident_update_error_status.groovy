@@ -8,7 +8,7 @@ wsdl_body = """
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wrap="http://wrappers.webservice.appservices.core.inteqnet.com" xmlns:xsd="http://beans.webservice.appservices.core.inteqnet.com/xsd">
    <soapenv:Header/>
    <soapenv:Body>
-      <wrap:updateServiceRequest>
+      <wrap:updateIncident>
          <!--Optional:-->
           <wrap:credentials>
             <xsd:userName>${soap_username}</xsd:userName>
@@ -28,7 +28,7 @@ wsdl_body = """
             <xsd:ticket_status>Active</xsd:ticket_status>
             <!--Optional:-->
          </wrap:srqBean>
-      </wrap:updateServiceRequest>
+      </wrap:updateIncident>
    </soapenv:Body>
 </soapenv:Envelope>
 """
@@ -37,7 +37,7 @@ http_response= call.connector(connector_name)
                    .set("method","POST")
                    .set("url",incident_soap_url)
                    .set("body",wsdl_body)
-                   .set("headers",["Content-Type: text/xml;charset=UTF-8","SOAPAction: \"urn:updateServiceRequest\""])
+                   .set("headers",["Content-Type: text/xml;charset=UTF-8","SOAPAction: \"urn:updateIncident\""])
                    .timeout(60000)
                    .sync()
 log.info("Http Response : " + http_response)
@@ -54,7 +54,7 @@ http_response= call.connector(connector_name)
                    .set("method","POST")
                    .set("url",soap_url)
                    .set("body",wsdl_body)
-                   .set("headers",["Content-Type: text/xml;charset=UTF-8","SOAPAction: \"urn:updateServiceRequest\""])
+                   .set("headers",["Content-Type: text/xml;charset=UTF-8","SOAPAction: \"urn:updateIncident\""])
                    .timeout(60000)
                    .sync()
 log.info("Http Response : " + http_response)
@@ -68,7 +68,7 @@ http_response= call.connector(connector_name)
                    .set("method","POST")
                    .set("url",soap_url)
                    .set("body",wsdl_body)
-                   .set("headers",["Content-Type: text/xml;charset=UTF-8","SOAPAction: \"urn:updateServiceRequest\""])
+                   .set("headers",["Content-Type: text/xml;charset=UTF-8","SOAPAction: \"urn:updateIncident\""])
                    .timeout(60000)
                    .sync()
 log.info("Http Response : " + http_response)
