@@ -22,8 +22,8 @@ try {
     flint_job_id = input.jobid()
     log.info("Job-id:" + flint_job_id)
     // Worklog messages to update worklog at ServiceAide ticket
-    work_description_ack = "Flint has recieved Ticket Id " + ": " + ticket_id + " " + "Flint is trying to resolve it. Flint job-id : " + " " + flint_job_id
-    work_description = "Ticket Id : " + ticket_id + " " + "Azure resource group created successfully"
+    work_description_ack = "Flint has recieved Ticket Id " + ": " + ticket_id + " " + "and is trying to resolve it. \nFlint Job-Id : " + " " + flint_job_id
+    work_description = "Ticket Id : " + ticket_id + " " + "\nAzure resource group "+group_name+" has been created successfully"
     // Call flintbit to add initial worklog
     add_serviceaide_worklog = call.bit("flint-util:serviceaide:servicerequest:service_request_add_worklog.groovy")
                                 .set("ticket_id", ticket_id)
