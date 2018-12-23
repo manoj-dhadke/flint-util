@@ -27,7 +27,7 @@ try {
     flint_job_id = input.jobid()
     log.info("Job-id:" + flint_job_id)
     //Worklog messages to update worklog at ServiceAide ticket
-    work_description_ack = "Flint has recieved Ticket Id " + ": " + ticket_id + " " + "Flint is trying to resolve it. Flint job-id : " + " " + flint_job_id
+    work_description_ack = "Flint has recieved Ticket Id " + ": " + ticket_id + " " + "and is trying to resolve it. \nFlint Job-Id : " + " " + flint_job_id
     // Call flintbit to add initial worklog
     add_serviceaide_worklog = call.bit("flint-util:serviceaide:servicerequest:service_request_add_worklog.groovy")
                                 .set("ticket_id", ticket_id)
@@ -53,7 +53,7 @@ try {
     instance_info = flintbit_response.get('instances-info')
     instance_id = instance_info[0].get('instance-id')
     log.info("Instance_Info: " + instance_id)
-    work_description = "Ticket Id : " + ticket_id + " " + " AWS instance created successfully with instance id: " + instance_id
+    work_description = "Ticket Id : " + ticket_id + " " + " AWS instance has been created successfully. \nInstance Id: " + instance_id
     // Getting exit-code for create instance flinbit call
     exitcode = flintbit_response.get("exit-code")
     success_message = flintbit_response.message
