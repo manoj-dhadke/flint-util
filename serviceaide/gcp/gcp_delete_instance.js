@@ -20,8 +20,8 @@ try {
     flint_job_id = input.jobid()
     log.info("Job-id:" + flint_job_id)
     // Worklog messages to update worklog at ServiceAide ticket
-    work_description_ack = "Flint has recieved Ticket Id " + ": " + ticket_id + " " + "Flint is trying to resolve it. Flint job-id : " + " " + flint_job_id
-    work_description = "Ticket Id : " + ticket_id + " " + "GCP instance deleted successfully"
+    work_description_ack = "Flint has recieved Ticket Id " + ": " + ticket_id + " " + "Flint is trying to resolve it. \nFlint job-id : " + " " + flint_job_id
+    work_description = "Ticket Id : " + ticket_id +" \nGCP instance deleted successfully"
     // Call flintbit to add initial worklog
     add_serviceaide_worklog = call.bit("flint-util:serviceaide:servicerequest:service_request_add_worklog.groovy")
                                 .set("ticket_id", ticket_id)
@@ -56,7 +56,7 @@ try {
         }
     }else {
 
-        work_description_fail = "Error occured while executing ticket" + " " + ticket_id + ". " + "The error occured due to" + " " + error_message
+        work_description_fail = "Error occured while executing ticket" + " " + ticket_id + ". " + "\nThe error occured due to" + " " + error_message
         update_serviceaide_status = call.bit("flint-util:serviceaide:servicerequest:service_request_update_error_status.groovy")
             .set("ticket_id", ticket_id)
             .sync()
