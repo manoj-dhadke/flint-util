@@ -71,7 +71,7 @@ try {
                 .sync()
             log.info("Status response:: " + update_serviceaide_status)
             if (update_serviceaide_status.exitcode() == 0) {
-                final_work_description = "Incident resolved by Flint auto-remediation. Marked incident as resolved."
+                final_work_description = "Incident has been resolved by Flint auto-remediation. Apache server was remediated. Marked incident as resolved."
                 add_serviceaide_worklog = call.bit("flint-util:serviceaide:servicerequest:incident_add_worklog.groovy")
                     .set("ticket_id", ticket_id)
                     .set("work_description", final_work_description)
