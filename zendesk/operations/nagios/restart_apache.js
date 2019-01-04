@@ -36,11 +36,11 @@ try {
     serviceduration = input.get('serviceduration')
     hostaddress = input.get('hostaddress')
     comment = "Flint acknowledged request for remediation and automation has been initiated for Job ID (" + flint_job_id + ")"
-    subject = "Apache server is Down or Critical."
+    subject = "Alert Source: Nagios, Affected System: " + hostaddress + ", Remediation System: Flint, Alert Details: Apache server at host " + hostaddress + " " + " is down."
     ticket_type = "incident"
     ticket_priority = "urgent"
-    description = "Alert Source: Nagios, Affected System: " + hostaddress + ", Remediation System: Flint, Alert Details: Apache server at host " + hostaddress + " " + " is down."
-    log.info("1111111111111111111111111111111111")
+    description = "Apache server is Down or critical on Host: " + hostaddress
+    
     // Service goes ‘Down’, i.e. if service state is 'CRITICAL' raise a ticket, create ticket, add comment & change ticket status 
     if (servicestate == 'CRITICAL') {
 
@@ -62,7 +62,6 @@ try {
         requester_id = result.get("ticket.requester_id")
         log.info("Zendesk ticket id: " + ticket_id)
         log.info("Zendesk requester id: " + requester_id)
-log.info("222222222222222222222222222222222222222222222222")
         // Calling SSH connector
         connector_response = call.connector('ssh')
                                  .set('target', hostaddress)
@@ -78,8 +77,7 @@ log.info("222222222222222222222222222222222222222222222222")
         result = connector_response.get('result')
         response_exitcode = connector_response.exitcode()
         if(response_exitcode == 0){
-          log.info("33333333333333333333333333333333333")  
-          final_ticket_comment = "Incident has been resolved by Flint auto-remediation. Apache server was remediated. Marked incident as resolved."
+          final_ticket_comment = "Incident has been resolved by Flint auto-remediation. Apache server was remediated. Marked incident as solved."
           ticket_status = "solved"
           response_update_ticket = call.bit("flint-util:zendesk:operations:update_ticket.rb")
                                        .set('connector_name', zendesk_connector_name)
