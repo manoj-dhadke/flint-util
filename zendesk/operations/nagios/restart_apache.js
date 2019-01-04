@@ -46,7 +46,7 @@ try {
 
         // Creating a ticket in Zendesk
 
-        create_ticket_response = call.bit("flint-util:zendesk:operations:update_ticket.rb")
+        create_ticket_response = call.bit("flint-util:zendesk:operations:create_ticket.rb")
                                      .set("connector_name", zendesk_connector_name)
                                      .set("type", ticket_type)
                                      .set("subject", subject)
