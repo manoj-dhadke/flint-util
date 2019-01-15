@@ -3,7 +3,7 @@ try {
     // Flintbit Input Parameters
     // mandatory
     log.info("Input:: " +input)
-    connector_name = input.get('http_config.connector_name')    // Name of the HTTP Connector
+    connector_name = input.get('http_config.connector_namee')   // Name of the HTTP Connector
     request_method = input.get('method')            // HTTP Request Method
     request_url = input.get('url')                // HTTP Request URL
     request_body = input.get('body')              // HTTP Request Body
