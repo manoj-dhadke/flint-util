@@ -2,6 +2,7 @@ log.trace("Started executing 'flint-util:http:operation:http_request.js' flintbi
 try {
     // Flintbit Input Parameters
     // mandatory
+    log.info("Input>>>>>>>> " +input)
     connector_name = input.get('connector_name')    // Name of the HTTP Connector
     request_method = input.get('method')            // HTTP Request Method
     request_url = input.get('url')                // HTTP Request URL
