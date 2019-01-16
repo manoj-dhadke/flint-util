@@ -1,4 +1,4 @@
-log.trace("Started executing flint-util:ad:enable_account.rb flintbit...")
+log.trace("Started executing flint-util:ad:disable_ad_account.rb flintbit...")
 
     login_name = input.get("login_name")
     target = input.get("target")
@@ -38,4 +38,4 @@ else
     output.set("error", error_message).set("user_message",user_message)
     log.trace("Finished executing winrm flintbit with error...")
 }
-log.trace("Finished executing flint-util:ad:enable_account.rb flintbit")
+log.trace("Finished executing flint-util:ad:disable_ad_account.rb flintbit")
