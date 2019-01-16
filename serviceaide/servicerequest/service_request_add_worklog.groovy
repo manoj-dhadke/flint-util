@@ -65,5 +65,6 @@ if (exit_code == 0){
 else{
     log.error("Error in executing ${connector_name} connector  where, exit_code : ${exit_code} and message:: ${message}")
     output.set("exit-code", -1)
+    output.exit(-1, message)
 }
 log.info("Finished execution of 'serviceaide:service_request_add_worklog.groovy")
