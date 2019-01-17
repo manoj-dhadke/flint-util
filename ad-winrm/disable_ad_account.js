@@ -30,7 +30,7 @@ log.info("Success in executing WinRM Connector, where exitcode ::"+ flintbit_res
     log.info("Command executed ::"+command+" | Command execution results ::"+ result)
     user_message = "**Account with username :'"+login_name+"' is disable successfully**"
     log.info("Account Disable operation successful    ::user_message::"+ user_message)
-    output.set("result", result).set("user_message",user_message)
+    output.set("result", result).set("user_message",user_message).set('exit-code',0)
     log.trace("Finished executing winrm flintbit with success...")
   }
 else
@@ -39,7 +39,8 @@ else
     log.error("Account Disable operation unsuccessful")
     user_message = ("**Error:** in disabling the AD user account"+ login_name)
     log.error("Failure in executing WinRM Connector where, exitcode ::"+ flintbit_response.exitcode()+" | message ::"+ error_message +" | for user ::"+ user_message)
-    output.set("error", error_message).set("user_message",user_message)
+    output.set("error", error_message).set("user_message",user_message).set('exit-code', -1)
     log.trace("Finished executing winrm flintbit with error...")
+    output.exit(-1, error_message)
 }
 log.trace("Finished executing flint-util:ad-winrm:disable_ad_account.js flintbit")
