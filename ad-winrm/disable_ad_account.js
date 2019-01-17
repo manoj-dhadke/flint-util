@@ -1,9 +1,13 @@
 log.trace("Started executing flint-util:ad-winrm:disable_ad_account.js flintbit...")
 
     login_name = input.get("login_name")
-    target = input.get("target")
-    username = input.get("username")
-    password = input.get("password")
+    target = config.global("ad_credentials.target")
+    // target = input.get("target")
+    username = config.global("ad_credentials.username")
+    // username = input.get("username")
+    password = config.global("ad_credentials.password")
+    // password = input.get("password")
+
     log.info("loginname:" + login_name)
     login = login_name.substring(0, login_name.indexOf("@") + "@".length)
     log.info("loginname:" + login)
