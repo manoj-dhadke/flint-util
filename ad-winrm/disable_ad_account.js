@@ -1,5 +1,4 @@
 log.trace("Started executing flint-util:ad-winrm:disable_ad_account.js flintbit...")
-
     login_name = input.get("login_name")
     target = config.global("ad_credentials.target")
     // target = input.get("target")
@@ -7,7 +6,6 @@ log.trace("Started executing flint-util:ad-winrm:disable_ad_account.js flintbit.
     // username = input.get("username")
     password = config.global("ad_credentials.password")
     // password = input.get("password")
-
     log.info("loginname:" + login_name)
     login = login_name.substring(0, login_name.indexOf("@") + "@".length)
     log.info("loginname:" + login)
@@ -16,15 +14,15 @@ log.trace("Started executing flint-util:ad-winrm:disable_ad_account.js flintbit.
     command = "Import-module activedirectory;Disable-adAccount"+" "+ loginname
     // Call flintbit synchronously and set arguments
     flintbit_response = call.bit("flint-util:ad-winrm:winrm_commonconnect.js")
-                            .set(input)
+                            .set('username', username)
+                            .set('target', target)
+                            .set('password', password)
                             .set("command",command)
                             .sync()
-
 success_message = flintbit_response.message()
 result= flintbit_response.get("result")
 error_message= flintbit_response.get("error")
-
-if (flintbit_response.exitcode() == 0)
+if (flintbit_response.get('exit-code') == 0)
 {
 log.info("Success in executing WinRM Connector, where exitcode ::"+ flintbit_response.exitcode()+" | message ::"+ success_message)
     log.info("Command executed ::"+command+" | Command execution results ::"+ result)
