@@ -22,7 +22,10 @@ log.trace("Started executing flint-util:ad-winrm:disable_ad_account.js flintbit.
 success_message = flintbit_response.message()
 result= flintbit_response.get("result")
 error_message= flintbit_response.get("error")
-if (flintbit_response.get('exit-code') == 0)
+flintbit_response_exitcode= flintbit_response.get('exit-code')
+log.info("Winrm ExitCode:: "+flintbit_response_exitcode)
+
+if (flintbit_response_exitcode == 0)
 {
 log.info("Success in executing WinRM Connector, where exitcode ::"+ flintbit_response.exitcode()+" | message ::"+ success_message)
     log.info("Command executed ::"+command+" | Command execution results ::"+ result)
