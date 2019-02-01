@@ -18,7 +18,9 @@ log.info(input)
     log.trace("Global config set")
 
 // Inputs from Service Form
-    ticket_id = input.get("ticket_id")              
+    ticket_id = input.get('freshdesk_webhook.ticket_id')
+    ticket_id = ticket_id.replace(/^\D+/g, '')
+    log.info(ticket_id)              
     ticket_type = input.get("ticket_type")
     body=input.get("body")
     //api_key = input.get("api_key")
