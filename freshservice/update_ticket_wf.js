@@ -5,6 +5,8 @@
 **/
 log.trace("Started executing flint-util:freshservice:update_ticket_wf.js")
 
+    log.info(input)
+
     // Global config
     email = config.global("freshservice_wf.email")                               //Email address of the requester
     password = config.global("freshservice_wf.password")                         //Password of the freshservice account
