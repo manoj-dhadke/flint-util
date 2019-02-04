@@ -40,8 +40,8 @@ try{
     ticket_type = input.get('ticket_type')
 
     // Inputs for creating notes
-    acknowledgement_body = "Flint acknowledged request for Active Directory password reset and automation has been initiated for Job ID ("+flint_job_id+")"
-    final_body = "Service request is completed by Flint. Marked service request as resolved.\n Use the password 'Welcome@123' to login. You can reset the password at first logon"
+    acknowledgement_body = "Service request acknowledged and AD password reset initiated by Flint job id - ("+flint_job_id+")"
+    final_body = "Service request is now resolved by Flint. Use 'Welcome@123' as new password. You may change password after first login."
     private_note = input.get('private_note')
 
     // User message definition

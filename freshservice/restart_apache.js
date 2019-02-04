@@ -34,12 +34,6 @@ try{
     final_private_note=input.get('final_private_note')    
     user_message = "<b>Flint Automation:</b> Apache server has been restarted"
 
-    // Ticket note bodies
-    acknowledge_body = "Flint acknowledged request for remediation and automation has been initiated for Job ID ("+flint_job_id+")"
-    final_body = "Incident resolved by Flint auto-remediation. Marked incident as resolved."
-    log.trace(acknowledge_body)
-    log.trace(final_body)
-
     // Getting the values from JSON
     servicename = input.get('servicename') 
     hostname = input.get('hostname')
@@ -55,6 +49,12 @@ try{
     serviceduration = input.get('serviceduration')
     hostaddress = input.get('hostaddress')
     description = "Alert Source: Nagios \nAffected System: " + hostaddress+ "\nRemediation System: Flint\nAlert Details: Apache server at host " + hostaddress + " is down"
+
+    // Ticket note bodies
+    acknowledge_body = "Apache server critical state alert acknowledged and remediation initiated by Flint job id - ("+flint_job_id+")"
+    final_body = "Incident is now auto-resolved by Flint. Apache Service on "+hostname+" restarted."
+    log.trace(acknowledge_body)
+    log.trace(final_body)
 
     // Service goes ‘Down’, i.e. if service state is 'CRITICAL' raise a ticket, create ticket, add comment & change ticket status 
     if (servicestate == 'CRITICAL'){ 

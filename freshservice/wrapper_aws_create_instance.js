@@ -50,7 +50,7 @@ try{
     ticket_type = input.get('ticket_type')
 
     // Inputs for creating notes
-    acknowledgement_body = "Flint acknowledged request for AWS instance creation and automation has been initiated for Job ID ("+flint_job_id+")"
+    acknowledgement_body = "Service request acknowledged and AWS instance provisioning initiated by Flint job id - ("+flint_job_id+")"
     private_note = input.get('private_note')
 
     // Getting relevant ami ID
@@ -103,7 +103,7 @@ try{
         log.info("Private IP: " + private_ip)
 
         // Final note body
-        final_body = "Service request is completed by Flint. Marked service request as resolved.\n Instance ID: " +instance_id + "\n Instance Type: " + instance_size + "\nOS: "+ os_type +"\n Private IP: " + private_ip
+        final_body = "Service request is now resolved by Flint. Here are the details of newly provisioned AWS instance -\n Instance ID: " +instance_id + "\n Instance Type: " + instance_size + "\nOS: "+ os_type +"\n Private IP: " + private_ip
 
         user_message = "<b>Flint Automation:</b>  Created AWS instance successfully. <br><b>Instance ID:</b> " +instance_id + " <br><b>Instance Type:</b> " + instance_size + "<br><b>OS:</b> "+ os_type +"<br><b>Private IP:</b> " + private_ip
 
