@@ -52,7 +52,7 @@ try{
 
     // Ticket note bodies
     acknowledge_body = "Incident created for Nagios alert and auto-remediation initiated by Flint job-id - ("+flint_job_id+")"
-    final_body = "Incident is now auto-resolved by Flint. Apache Service on "+hostname+" restarted."
+    final_body = "Incident is now auto-resolved by Flint. Apache Service on host "+hostname+" has been restarted."
     log.trace(acknowledge_body)
     log.trace(final_body)
 
