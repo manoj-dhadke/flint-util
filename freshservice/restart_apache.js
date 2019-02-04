@@ -51,7 +51,7 @@ try{
     description = "Alert Source: Nagios \nAffected System: " + hostaddress+ "\nRemediation System: Flint\nAlert Details: Apache server at host " + hostaddress + " is down"
 
     // Ticket note bodies
-    acknowledge_body = "Apache server critical state alert acknowledged and remediation initiated by Flint job id - ("+flint_job_id+")"
+    acknowledge_body = "Incident created for Nagios alert and auto-remediation initiated by Flint job-id - ("+flint_job_id+")"
     final_body = "Incident is now auto-resolved by Flint. Apache Service on "+hostname+" restarted."
     log.trace(acknowledge_body)
     log.trace(final_body)
