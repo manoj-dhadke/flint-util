@@ -18,33 +18,33 @@ log.trace("Started executing flint-util:ad-winrm:enable_ad_account.js flintbit."
   
   if (target == null || target == "") {
     target = config.global("ad_credentials.target")
-    if (target == null || target == ""){
-    throw "Please provide 'target/IP' to connect with machine"
-
     }
-    
-  }
-
+    if (target == null || target == ""){
+      throw "Please provide 'target/IP' to connect with machine"
+  
+      }
   if (username == null || username == "") {
     username = config.global("ad_credentials.username")
-    if (username == null || username == ""){
-    throw "Please provide 'username' to connect with machine"
-    }
     
   }
+  if (username == null || username == ""){
+    throw "Please provide 'username' to connect with machine"
+    }
 
   if (password == null || password == "") {
     password = config.global("ad_credentials.password")
+    
+    }
     if (password == null || password == "")
     {
     throw "Please provide 'password' to connect with machine"
     }
-    
-  }
 
   // Call flintbit synchronously and set required arguments/parameters
   flintbit_call_response = call.bit('flint-util:ad-winrm:winrm_commonconnect.js')
-                               .set(input)
+                               .set('username', username)
+                               .set('target', target)
+                               .set('password', password)
                                .set("command",command)
                                .timeout(300000)
                                .sync()
