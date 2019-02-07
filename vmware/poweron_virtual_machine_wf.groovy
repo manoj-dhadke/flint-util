@@ -13,7 +13,7 @@ try{
     password = config.global('vmware_config.password') // password of vmware connector
     url = config.global("vmware_config.url") //url for the vmware connector
     action = "start-vm" // name of the operation:start-vm
-    vmname = input.get('vm-name') // name of virtual machine which you want to start
+    vmname = input.get('vm_name') // name of virtual machine which you want to start
 
     // Optional
     request_timeout = input.get('timeout')	//Execution time of the Flintbit in milliseconds (default timeout is 60000 milloseconds)
