@@ -37,8 +37,9 @@ log.trace("Started execution 'flint-util:vmware:poweroff_virtual_machine.groovy'
     if (password == null || password == ""){
      throw new Exception ( 'Please provide "VMWare password to stop virtual machines')
     }
+    
     if (url == null || url == ""){
-        password = config.global("vmware_config.url")
+        url = config.global("vmware_config.url")
        
     }
 
