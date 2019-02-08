@@ -1,6 +1,9 @@
-// begin
+/**
+** Creation Date: 7th February 2019
+** Summary: This is stop VM in VMware Vcenter. Flint workflow compatible.
+** Description: This flintbit is developed to stop/power-off a Virtual Machine in VMware. Flint workflow compatible.
+**/
 log.trace("Started execution 'flint-util:vmware:poweroff_virtual_machine.groovy' flintbit...") // execution Started
-try{
     // Flintbit input parametes
     // Mandatory
     connector_name = input.get('connector_name') // vmware connector name
@@ -9,16 +12,6 @@ try{
     password = input.get('password') // password of vmware connector
     vmname = input.get('vm_name')	// name of virtual machine which you want to stop
     url = input.get('url')
-
-    // Optional
-    request_timeout = input.get('timeout')	// Execution time of the Flintbit in milliseconds (default timeout is 60000 milloseconds)
-
-    connector_call = call.connector(connector_name)
-                          .set('action', action)
-                          .set('url', url)
-                          .set('username', username)
-                          .set('password', password)
-
     // checking connector name is nil or empty
     if (connector_name == null || connector_name == ""){
         connector_name = config.global("vmware_config.connector_name")
@@ -58,20 +51,13 @@ if (url == null || url == ""){
     if( vmname == null || vmname == ""){
        throw new Exception ( 'Please provide "Virtual Machine name (vmname)" to stop virtual machine')
     }
-    else{
-        connector_call.set('vm-name', vmname)
-    }
 
-    if( request_timeout == null || request_timeout instanceof String ){
-        log.trace("Calling ${connector_name} with default timeout...")
-        // calling vmware55 connector
-        response = connector_call.sync()
-    }
-    else{
-        log.trace("Calling ${connector_name} with given timeout ${request_timeout}...")
-        // calling vmware55 connector
-        response = connector_call.timeout(request_timeout).sync()
-    }
+    response = call.connector(connector_name)
+                          .set('action', action)
+                          .set('url', url)
+                          .set('username', username)
+                          .set('password', password)
+                          .sync()
 
     // VMWare  Connector Response Meta Parameters
     response_exitcode = response.exitcode() // Exit status code
@@ -84,13 +70,6 @@ if (url == null || url == ""){
     else{
         log.error("ERROR in executing ${connector_name} where, exitcode :: ${response_exitcode} | message :: ${response_message}")
         output.set('exit-code', -1).set('message', response_message)
-        output.exit(1, response_message)
+        output.exit(-1, response_message)
     }
-}
-catch (Exception  e){
-    log.error(e.message)
-    output.set('exit-code', -1).set('message', e.message)
-}
-
 log.trace("Finished execution 'flint-util:vmware:poweroff_virtual_machine.groovy' flintbit...")
-// end
