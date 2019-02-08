@@ -58,6 +58,7 @@ if (url == null || url == ""){
                           .set('url', url)
                           .set('username', username)
                           .set('password', password)
+                          .set('vm-name', vmname)
                           .sync()
 
     // VMWare  Connector Response Meta Parameters
