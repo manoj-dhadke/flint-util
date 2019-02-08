@@ -1,5 +1,5 @@
 // begin
-log.trace("Started execution 'fb-cloud:vmware55:operation:poweroff_virtual_machines.groovy' flintbit...") // execution Started
+log.trace("Started execution 'flint-util:vmware:poweroff_virtual_machine.groovy' flintbit...") // execution Started
 try{
     // Flintbit input parametes
     // Mandatory
@@ -92,5 +92,5 @@ catch (Exception  e){
     output.set('exit-code', -1).set('message', e.message)
 }
 
-log.trace("Finished execution 'fb-cloud:vmware55:operation:poweroff_virtual_machines.groovy' flintbit...")
+log.trace("Finished execution 'flint-util:vmware:poweroff_virtual_machine.groovy' flintbit...")
 // end
