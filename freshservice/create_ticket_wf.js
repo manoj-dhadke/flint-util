@@ -3,7 +3,7 @@
 ** Summary: This is create ticket in Freshservice Desk flintbit
 ** Description: This flintbit is developed to create ticket in Freshservice Desk.
 **/
-log.trace("Started executing flint-util:freshservice:create_ticket.js")
+log.trace("Started executing flint-util:freshservice:create_ticket_wf.js")
 try {
     // Global configurations
     email = config.global("freshservice_wf.email")                               //Email address of the requester
@@ -95,4 +95,4 @@ catch (error) {
     output.set('exit-code', 1)
 
 }
-log.trace("Finished executing flint-util:freshservice:create_ticket.js")
+log.trace("Finished executing flint-util:freshservice:create_ticket_wf.js")
