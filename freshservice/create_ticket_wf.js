@@ -4,7 +4,7 @@
 ** Description: This flintbit is developed to create ticket in Freshservice Desk.
 **/
 log.trace("Started executing flint-util:freshservice:create_ticket_wf.js")
-try {
+
     // Global configurations
     email = config.global("freshservice_wf.email")                               //Email address of the requester
     password = config.global("freshservice_wf.password")                         //Password of the freshservice account
@@ -86,13 +86,8 @@ try {
         
     } else {
         log.error("Failure in executing Freshservice Connector where, exitcode ::" + response_exitcode + "| message ::" + response_message)
-        output.set("message", response_message).set("exit-code", -1)   
+        output.set("message", response_message).set("exit-code", -1)
+        output.exit(-1, response_message)   
     }
 
-}
-catch (error) {
-    log.error("Error message: " + error)
-    output.set('exit-code', 1)
-
-}
 log.trace("Finished executing flint-util:freshservice:create_ticket_wf.js")

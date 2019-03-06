@@ -55,8 +55,9 @@ response_exitcode = connector_response.exitcode()
 
 if(response_exitcode == 0){
     log.trace("Apache Server: "+target+" stopped successfully")
+    output.set(0, result)
 }else{
     log.trace("Failed to stop apache server with exit code: "+response_exitcode)
-    
+    output.set('error', connector_response)
 }
 log.trace("Started executing 'flint-util:freshservice:start_apache_server_wf.js' flintbit...")
