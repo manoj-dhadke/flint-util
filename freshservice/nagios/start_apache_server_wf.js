@@ -10,9 +10,6 @@ target = ""
 port = ""
 username = ""
 target_password = ""
-
-// Service parameters
-start_apache_sp = input.get('start_apache_sp')
  
 // Service inputs
 target = input.get('target')
