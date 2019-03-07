@@ -34,7 +34,7 @@ response_exitcode = connector_response.exitcode()
 
 if(response_exitcode == 0){
     log.trace("Apache Server: "+target+" started successfully")
-    output.set(0, connector_response)
+    output.set('exit-code', 0)
 }else{
     log.trace("Failed to stop apache server with exit code: "+response_exitcode)
     output.set('error', connector_response)
