@@ -7,11 +7,6 @@ log.trace("Started executing flint-util:ad-winrm:reset_ad_password.js flintbit."
     // Input parameters
     login_name = input.get("login_name")
     log.info(" login_name:" + login_name)
-    log.info("loginname:" + login_name)
-    login = login_name.substring(0, login_name.indexOf("@") + "@".length)
-    log.info("loginname:" + login)
-    loginname = login.replace("@", " ")
-    log.info("loginname:" + loginname)
 
     // New default password
     password = "Welcome@123"
