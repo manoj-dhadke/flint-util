@@ -20,7 +20,7 @@ log.trace("Started executing flint-util:freshservice:update_ticket_wf.js")
     // Service Form
     status = input.get("status")                             //Status of the ticket
     ticket_id = input.get('ticket_id')
-    ticket_id = "\""+ticket_id+"\""
+    ticket_id = parseInt(ticket_id)
     //ticket_id = ticket_id.replace(/^\D+/g, '')
     log.info(ticket_id)                          
     //api_key = input.get("api_key")

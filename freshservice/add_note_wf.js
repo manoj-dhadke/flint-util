@@ -19,7 +19,7 @@ log.info(input)
 
 // Inputs from Service Form
     ticket_id = input.get('ticket_id')
-    ticket_id = "\""+ticket_id+"\""
+    ticket_id = parseInt(ticket_id)
 
     //ticket_id = ticket_id.replace(/^\D+/g, '')
     
