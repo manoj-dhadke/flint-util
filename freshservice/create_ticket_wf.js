@@ -87,7 +87,6 @@ log.trace("Started executing flint-util:freshservice:create_ticket_wf.js")
     } else {
         log.error("Failure in executing Freshservice Connector where, exitcode ::" + response_exitcode + "| message ::" + response_message)
         output.set("message", response_message).set("exit-code", -1)
-        output.exit(-1, response_message)   
     }
 
 log.trace("Finished executing flint-util:freshservice:create_ticket_wf.js")
