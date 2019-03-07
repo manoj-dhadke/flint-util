@@ -19,7 +19,10 @@ log.info(input)
 
 // Inputs from Service Form
     ticket_id = input.get('ticket_id')
-    ticket_id = ticket_id.replace(/^\D+/g, '')
+    if(!Number.isInteger(ticket_id)){
+        ticket_id = ticket_id.replace(/^\D+/g, '')
+    }
+    
     log.info(ticket_id)              
     ticket_type = input.get("ticket_type")
     body=input.get("body")
