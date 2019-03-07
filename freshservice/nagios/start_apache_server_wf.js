@@ -11,30 +11,11 @@ port = ""
 username = ""
 target_password = ""
  
-// Service inputs
-target = input.get('target')
-if(target == null || target == ""){
-    log.trace("Setting target from global configuration")
-    target = config.global("nagios_apache_config.target")
-}
-
-username = input.get('username')
-if(username == null || username == ""){
-    log.trace("Setting username from global configuration")
-    username = config.global("nagios_apache_config.username")
-}
-
-port = input.get('port')
-if(port == null || port == ""){
-    log.trace("Setting port from global configuration")
-    port = config.global("nagios_apache_config.port")
-}
-
-target_password = input.get('password')
-if(target_password == null || target_password == ""){
-    log.trace("Setting password from global configuration")
-    target_password = config.global("nagios_apache_config.target_password")
-}
+// Global configuration inputs
+target = config.global("nagios_apache_config.target")
+username = config.global("nagios_apache_config.username")
+port = config.global("nagios_apache_config.port")
+target_password = config.global("nagios_apache_config.target_password")
 
 log.info("Calling SSH connector")
 
