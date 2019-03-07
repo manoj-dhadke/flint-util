@@ -6,15 +6,13 @@
 
 log.trace("Started executing 'flint-util:freshservice:start_apache_server_wf.js' flintbit...")
 
-target = ""
-port = ""
-username = ""
-target_password = ""
- 
 // Global configuration inputs
 target = config.global("nagios_apache_config.target")
+log.info(target)
 username = config.global("nagios_apache_config.username")
+log.info(username)
 port = config.global("nagios_apache_config.port")
+log.info(port)
 target_password = config.global("nagios_apache_config.target_password")
 
 log.info("Calling SSH connector")
