@@ -4,21 +4,26 @@
 ** Description: This flintbit is developed to reset AD user password after receiving service request from Freshserver.
 **/
 log.trace("Started executing flint-util:ad-winrm:reset_ad_password.js flintbit.")
-
-try{
     // Input parameters
     login_name = input.get("login_name")
     log.info(" login_name:" + login_name)
+    log.info("loginname:" + login_name)
+    login = login_name.substring(0, login_name.indexOf("@") + "@".length)
+    log.info("loginname:" + login)
+    loginname = login.replace("@", " ")
+    log.info("loginname:" + loginname)
 
     // New default password
     password = "Welcome@123"
 
     log.trace(input)
 
-    // Inputs for winrm 
-    target = input.get('target')
-    target_username = input.get('target_username')
-    target_password = input.get('target_password')
+    // Inputs for winrm taken from Global Config
+
+    target = config.global("ad_credentials.target")
+    target_username = config.global("ad_credentials.username")
+    target_password = config.global("ad_credentials.password")
+    
      
     // Command to reset AD user password
     command = " Import-module activedirectory;Set-ADAccountPassword -Identity " + " " + login_name.toString() + " " + " -Reset -NewPassword (ConvertTo-SecureString -AsPlainText " + " " + password.toString() + " " + " -Force)"
@@ -72,8 +77,6 @@ try{
     }else{
         output.set("exit-code", exitcode).set('message', first_error_message)
         log.error("ERROR AT RESET PASSWORD: "+first_error_message)
-    }
-}catch(error){
-    log.trace("Catch Exception: "+error)
+        output.exit(-1, error_message)
 }
 log.trace("Finished executing flint-util:ad-winrm:reset_password.js flintbit")
