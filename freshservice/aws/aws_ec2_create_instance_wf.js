@@ -19,6 +19,9 @@ min_instance = aws_service_params.get('min_instance')
 availability_zone = aws_service_params.get('availability_zone')
 log.info("Service Parameters: "+aws_service_params)
 
+log.trace(region)
+log.trace(key_name)
+
 // Global Conf
 access_key = aws_service_params.get('access_key')
 security_key = aws_service_params.get('security_key')
