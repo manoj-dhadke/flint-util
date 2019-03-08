@@ -60,11 +60,11 @@ log.info("Private IP: " + private_ip)
 
 if(create_instance_exit_code == 0){
     log.trace("Instance created successfully with: \nInstance ID:"+ instance_id +"\nPrivate IP: "+private_ip)
-    output.set('instance_info', instance_info[0])
+    output.set('instance_id', instance_id)
 }
 else{
     // Setting user message (will be visible on CMP)
     output.set('exit-code', -1).set('error', create_aws_flintbit_call_response)
 }
 
-log.trace("Finished executing flint-util:freshservice:aws_ec2_create_instance_wf.js flintbit.")
+log.trace("Finished executing flint-util:freshservice:aws:aws_ec2_create_instance_wf.js flintbit.")
