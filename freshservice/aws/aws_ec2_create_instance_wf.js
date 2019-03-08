@@ -20,9 +20,9 @@ availability_zone = aws_service_params.get('availability_zone')
 log.info("Service Parameters: "+aws_service_params)
 
 // Global Conf
-access_key = config.global('aws_ec2_conf.access_key')
-security_key = config.global('aws_ec2_conf.security_key')
-aws_connector_name = config.global('aws_ec2_conf.connector_name')
+access_key = aws_service_params.get('access_key')
+security_key = aws_service_params.get('security_key')
+aws_connector_name = aws_service_params.get('connector_name')
 
 
 // Service Form
