@@ -32,7 +32,7 @@ os_type = input.get('operating_system')
 log.info("Instance Size: " + instance_size)
 log.info("OS: " + os_type)
 // Getting relevant ami ID
-ami_id = input.get('os_mapping').get(os_type)
+ami_id = aws_service_params.get('os_mapping').get(os_type)
 log.trace("AMI ID: " + ami_id)
 
 create_aws_flintbit_call_response = call.bit("fb-cloud:aws-ec2:operation:create_instance.rb")
