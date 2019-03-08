@@ -16,7 +16,7 @@ key_name = aws_service_params.get('key_name')
 subnet_id = aws_service_params.get('subnet_id')
 max_instance = aws_service_params.get('max_instance')
 min_instance = aws_service_params.get('min_instance')
-availability_zone = aws_service_params.get('availability_zone')
+availability_zone = aws_service_params.get('availablity_zone')
 log.info("Service Parameters: "+aws_service_params)
 
 log.trace(region)
