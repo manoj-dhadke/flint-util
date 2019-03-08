@@ -69,5 +69,6 @@ if (exitcode == 0) {
  }
 } else {
  log.error("Error in provisionong AD user account")
+ output.exit(-1, error_message_change_password)
 }
 log.trace("Finished executing 'flint-util:ad-winrm:provision_ad_account.js' flintbit")
