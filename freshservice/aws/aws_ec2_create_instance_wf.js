@@ -35,6 +35,8 @@ log.info("OS: " + os_type)
 ami_id = aws_service_params.get('os_mapping').get(os_type)
 log.trace("AMI ID: " + ami_id)
 
+log.trace("Calling connector")
+
 create_aws_flintbit_call_response = call.bit("fb-cloud:aws-ec2:operation:create_instance.rb")
     .set('connector_name', aws_connector_name)
     .set('ami_id', ami_id)                  // Image ID
@@ -46,9 +48,12 @@ create_aws_flintbit_call_response = call.bit("fb-cloud:aws-ec2:operation:create_
     .set('availability_zone', availability_zone)
     .sync()
 
+    log.trace("Called connector")
 // Getting exit-code for create instance flinbit call
 create_instance_exit_code = create_aws_flintbit_call_response.get("exit-code")
-create_instance_response_message = create_aws_flintbit_call_response.get("message")
+log.trace("Exit code: "+create_instance_exit_code)
+
+// create_instance_response_message = create_aws_flintbit_call_response.get("message")
 
 // Getting instance information
 instance_info = create_aws_flintbit_call_response.get('instances-info')
