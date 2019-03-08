@@ -3,7 +3,7 @@
 ** Summary: Create AWS instance service flintbit.
 ** Description: This flintbit is developed to create an AWS EC2 instance.
 **/
-log.trace("Started executing flint-util:freshservice:aws_ec2_create_instance_wf.js flintbit.")
+log.trace("Started executing flint-util:freshservice:aws:aws_ec2_create_instance_wf.js flintbit.")
 log.info("Input.....:: " + input)
 
 // Get Flint Job ID
@@ -67,9 +67,9 @@ create_instance_exit_code = create_aws_flintbit_call_response.get("exit-code")
 log.trace("Exit code: "+create_instance_exit_code)
 
 // create_instance_response_message = create_aws_flintbit_call_response.get("message")
-
+log.info(create_aws_flintbit_call_response)
 // Getting instance information
-instance_info = create_aws_flintbit_call_response.get('instances-info')
+// instance_info = create_aws_flintbit_call_response.get('instances-info')
 // instance_id = instance_info[0].get('instance-id')
 // log.info("Instance_Info: " + instance_id)
 // Getting private IP
@@ -77,8 +77,8 @@ instance_info = create_aws_flintbit_call_response.get('instances-info')
 // log.info("Private IP: " + private_ip)
 
 if(create_instance_exit_code == 0){
-    log.trace("Instance created successfully with: \nInstance ID:"+ instance_id +"\nPrivate IP: "+private_ip)
-    output.set('instance_id', instance_id)
+    log.trace("Instance created successfully with: \nInstance ID:\nPrivate IP: ")
+    output.set('instance_id', create_aws_flintbit_call_response)
 }
 else{
     // Setting user message (will be visible on CMP)
