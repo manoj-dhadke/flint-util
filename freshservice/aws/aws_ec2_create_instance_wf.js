@@ -69,16 +69,16 @@ log.trace("Exit code: "+create_instance_exit_code)
 // create_instance_response_message = create_aws_flintbit_call_response.get("message")
 log.info(create_aws_flintbit_call_response)
 // Getting instance information
-// instance_info = create_aws_flintbit_call_response.get('instances-info')
-// instance_id = instance_info[0].get('instance-id')
-// log.info("Instance_Info: " + instance_id)
+instance_info = create_aws_flintbit_call_response.get('instances-info')
+instance_id = instance_info[0].get('instance-id')
+log.info("Instance_Info: " + instance_id)
 // Getting private IP
-// private_ip = instance_info[0].get('private-ip')
-// log.info("Private IP: " + private_ip)
+private_ip = instance_info[0].get('private-ip')
+log.info("Private IP: " + private_ip)
 
 if(create_instance_exit_code == 0){
     log.trace("Instance created successfully with: \nInstance ID:\nPrivate IP: ")
-    output.set('instance_id', create_aws_flintbit_call_response)
+    output.set('instance_id', instance_info[0])
 }
 else{
     // Setting user message (will be visible on CMP)
