@@ -77,8 +77,8 @@ private_ip = instance_info[0].get('private-ip')
 log.info("Private IP: " + private_ip)
 
 if(create_instance_exit_code == 0){
-    log.trace("Instance created successfully with: \nInstance ID:\nPrivate IP: ")
-    output.set('instance_id', instance_info[0])
+    log.trace("Instance created successfully with: \nInstance ID:"+instance_id+"\nPrivate IP: "+private_ip)
+    output.set('instance_details', instance_info[0])
 }
 else{
     // Setting user message (will be visible on CMP)
