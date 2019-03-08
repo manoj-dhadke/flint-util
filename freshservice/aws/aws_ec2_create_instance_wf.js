@@ -58,6 +58,7 @@ create_aws_flintbit_call_response = call.bit("fb-cloud:aws-ec2:operation:create_
                                         .set('access-key', access_key)
                                         .set('security-key', security_key)
                                         .set('availability_zone', availability_zone)
+                                        .set('subnet_id', subnet_id)
                                         .sync()
 
     log.trace("Called connector")
