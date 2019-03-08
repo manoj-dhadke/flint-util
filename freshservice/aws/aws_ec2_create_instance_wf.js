@@ -27,6 +27,7 @@ access_key = aws_service_params.get('access_key')
 security_key = aws_service_params.get('security_key')
 aws_connector_name = aws_service_params.get('connector_name')
 
+log.trace(aws_connector_name)
 
 // Service Form
 instance_size = input.get('instance_size')
@@ -39,17 +40,25 @@ ami_id = aws_service_params.get('os_mapping').get(os_type)
 log.trace("AMI ID: " + ami_id)
 
 log.trace("Calling connector")
+log.info(aws_connector_name)
+log.trace(ami_id)
+log.trace(instance_size)
+log.trace(min_instance)
+log.trace(max_instance)
+log.trace(access_key)
+log.trace(security_key)
+log.trace(availability_zone)
 
 create_aws_flintbit_call_response = call.bit("fb-cloud:aws-ec2:operation:create_instance.rb")
-    .set('connector_name', aws_connector_name)
-    .set('ami_id', ami_id)                  // Image ID
-    .set('instance_type', instance_size)
-    .set('min_instance', min_instance)
-    .set('max_instance', max_instance)
-    .set('access-key', access_key)
-    .set('security-key', security_key)
-    .set('availability_zone', availability_zone)
-    .sync()
+                                        .set('connector_name', aws_connector_name)
+                                        .set('ami_id', ami_id)                  // Image ID
+                                        .set('instance_type', instance_size)
+                                        .set('min_instance', min_instance)
+                                        .set('max_instance', max_instance)
+                                        .set('access-key', access_key)
+                                        .set('security-key', security_key)
+                                        .set('availability_zone', availability_zone)
+                                        .sync()
 
     log.trace("Called connector")
 // Getting exit-code for create instance flinbit call
