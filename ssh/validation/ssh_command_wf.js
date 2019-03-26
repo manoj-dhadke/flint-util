@@ -15,6 +15,7 @@ passphrase= input.get("passphrase")              // Passphrase to be used
 key_file = input.get('key-file')                 // SSH Key-file placed in "/flint-dist/gridconfig/keystore"
 command = input.get('command')                   // Command/Commands to be executed
 // type = input.get('type')                         // The Connector to serve the request
+port = input.get('port')
 
 if (connector_name != null || connector_name != "") {
     log.trace("Connector Name : " + connector_name)
@@ -59,6 +60,8 @@ key_file = 'public key'
 // command = 'command' 
 if (command != null || command != "") {
     log.trace("Command : " + command)
+}else{
+    log.info("Command is not given")
 }
 
 // timeout = 100_000
@@ -66,6 +69,10 @@ if (timeout != null || timeout != "") {
     log.trace("Timeout : " + timeout)
 }else{
     timeout = 120000
+}
+
+if(port != null || port != ""){
+    log.trace("Port : "+port)
 }
 
 // Print out all inputs
@@ -78,10 +85,11 @@ if (timeout.toString() == "") {
         .set('type', type)
         .set('username', username)
         .set('password', password)
-        .set('passphrase', passphrase)
-        .set('key-file', key_file)
+        //.set('passphrase', passphrase)
+        //.set('key-file', key_file)
         .set('command', command)
         .set('type', type)
+        .set('port',port)
         .sync()
 }
 //# .timeout(10000) # Execution time of the Flintbit in milliseconds
@@ -91,11 +99,12 @@ else {
         .set('type', type)
         .set('username', username)
         .set('password', password)
-        .set('passphrase', passphrase)
-        .set('key-file', key_file)
+        //.set('passphrase', passphrase)
+        //.set('key-file', key_file)
         .set('command', command)
         .set('timeout', timeout)
         .set('type', type)
+        .set('port',port)
         .sync()
     //# .timeout(10000) # Execution time of the Flintbit in milliseconds
 }
