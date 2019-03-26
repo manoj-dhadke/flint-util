@@ -4,7 +4,7 @@
 ** Description: This flintbit is developed to execute any WinRM command.
 **/
 
-log.trace("Started executing 'flint-util:winrm-ruby:negotiate.rb' flintbit.")
+log.trace("Started executing 'flint-util:winrm-ruby:negotiate.js' flintbit.")
 
 // Service Parameters
 winrm_negotiate_service_params = input.get('winrm_negotiate_service_params')
@@ -21,6 +21,8 @@ transport = input.get("transport")              // Transport type protocol
 command = input.get("command")                  // Command to be executed
 operation_timeout = input.get("operation_timeout")
 port = input.get("port")
+
+log.trace(target+"\n"+username+"\n"+password+"\n"+shell+"\n"+transport+"\n"+command+"\n"+operation_timeout+"\n"+port)
 
 
 log.info("Inputs to 'flint-util:winrm-ruby:negotiate.rb' are : " + input)
@@ -56,6 +58,9 @@ connector_response = call.connector(connector_name)
 response_exitcode = connector_response.exitcode()        // Exit status code
 response_message = connector_response.message()          // Execution status messages
 
+log.trace("Exit code : "+response_exitcode)
+log.trace("Message : "+response_message)
+
 // WinRM Connector Response Parameters
 response_body = connector_response.get('result')                 // Response Body
 
@@ -70,7 +75,7 @@ if (response_exitcode == 0) {
     log.error("Failure in executing WinRM connector with exitcode ::  " + response_exitcode + "\nMessage :: " + response_message)
     output.set('error', response_message)
 
-    log.trace("Finished executing 'flint-util:winrm-ruby:negotiate.rb' flintbit with error.")
+    log.trace("Finished executing 'flint-util:winrm-ruby:negotiate.js' flintbit with error.")
 }
 
 
