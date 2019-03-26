@@ -33,7 +33,7 @@ if (transport == null || transport == "") {
 }
 
 // Connector Call
-log.trace('Calling WinRM Connector...')
+log.trace('Calling WinRM Connector.')
 
 connector_response = call.connector(connector_name)
     .set("target", target)
@@ -47,6 +47,7 @@ connector_response = call.connector(connector_name)
     .set("port", port)
     .sync()
 
+    log.trace(connector_response)
 // Timeout value check
 // if (timeout.toString() == "" || timeout.toString() == null) {
 //     connector_response = call_connector.sync()
