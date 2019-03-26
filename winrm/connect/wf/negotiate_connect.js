@@ -11,6 +11,7 @@ winrm_negotiate_service_params = input.get('winrm_negotiate_service_params')
 connector_name = winrm_negotiate_service_params.get("connector_name")    // Name of the WinRM connector
 no_ssl_peer_verification = winrm_negotiate_service_params.get("no_ssl_peer_verification")
 timeout = winrm_negotiate_service_params.get('timeout')                  // Timeout in milliseconds, taken by
+operation_timeout = winrm_negotiate_service_params.get("operation_timeout")
 
 // Service Inputs
 target = input.get("target")                    // target where the command will be executed
@@ -19,7 +20,7 @@ password = input.get("password")                // Target password
 shell = input.get("shell")                      // Type of execution - powershell or cmd
 transport = input.get("transport")              // Transport type protocol
 command = input.get("command")                  // Command to be executed
-operation_timeout = input.get("operation_timeout")
+
 port = input.get("port")
 
 log.trace(target+"\n"+username+"\n"+password+"\n"+shell+"\n"+transport+"\n"+command+"\n"+operation_timeout+"\n"+port)
