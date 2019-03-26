@@ -6,7 +6,13 @@
 
 log.trace("Started executing 'flint-util:winrm-ruby:negotiate.rb' flintbit.")
 
-connector_name = input.get("connector_name")    // Name of the WinRM connector
+// Service Parameters
+winrm_negotiate_service_params = input.get('winrm_negotiate_service_params')
+connector_name = winrm_negotiate_service_params.get("connector_name")    // Name of the WinRM connector
+no_ssl_peer_verification = winrm_negotiate_service_params.get("no_ssl_peer_verification")
+timeout = winrm_negotiate_service_params.get('timeout')                  // Timeout in milliseconds, taken by
+
+// Service Inputs
 target = input.get("target")                    // target where the command will be executed
 username = input.get("username")                // Target username
 password = input.get("password")                // Target password
@@ -15,8 +21,7 @@ transport = input.get("transport")              // Transport type protocol
 command = input.get("command")                  // Command to be executed
 operation_timeout = input.get("operation_timeout")
 port = input.get("port")
-no_ssl_peer_verification = input.get("no_ssl_peer_verification")
-timeout = input.get('timeout')                  // Timeout in milliseconds, taken by
+
 
 log.info("Inputs to 'flint-util:winrm-ruby:negotiate.rb' are : " + input)
 
@@ -28,7 +33,7 @@ if (transport == null || transport == "") {
 // Connector Call
 log.trace('Calling WinRM Connector...')
 
-call_connector = call.connector(connector_name)
+connector_response = call.connector(connector_name)
     .set("target", target)
     .set("username", username)
     .set("password", password)
@@ -38,13 +43,14 @@ call_connector = call.connector(connector_name)
     .set("operation_timeout", operation_timeout)
     .set("no_ssl_peer_verification", no_ssl_peer_verification)
     .set("port", port)
+    .sync()
 
 // Timeout value check
-if (timeout.toString() == "" || timeout.toString() == null) {
-    connector_response = call_connector.sync()
-} else {
-    connector_response = call_connector.set('timeout', timeout).sync()
-}
+// if (timeout.toString() == "" || timeout.toString() == null) {
+//     connector_response = call_connector.sync()
+// } else {
+//     connector_response = call_connector.set('timeout', timeout).sync()
+// }
 
 // WinRM Connector Response Meta Parameters
 response_exitcode = connector_response.exitcode()        // Exit status code
@@ -63,7 +69,7 @@ if (response_exitcode == 0) {
 } else {
     log.error("Failure in executing WinRM connector with exitcode ::  " + response_exitcode + "\nMessage :: " + response_message)
     output.set('error', response_message)
-    
+
     log.trace("Finished executing 'flint-util:winrm-ruby:negotiate.rb' flintbit with error.")
 }
 
