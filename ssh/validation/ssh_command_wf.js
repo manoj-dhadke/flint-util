@@ -1,3 +1,9 @@
+/**
+** Creation Date: 25th March 2019
+** Summary: SSH Command Execution. 
+** Description: This flintbit is developed to execute any SSH command.
+**/
+
 log.trace("Started executing 'flint-util:validation:ssh_command_wf.js' flintbit")
 
 
@@ -72,7 +78,9 @@ if (timeout != null || timeout != "") {
 }
 
 if(port != null || port != ""){
+    port = parseInt(port)
     log.trace("Port : "+port)
+    log.info("Port data type: "+typeof port)
 }
 
 // Print out all inputs
