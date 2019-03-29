@@ -20,8 +20,13 @@ password = input.get("password")                // Target password
 shell = input.get("shell")                      // Type of execution - powershell or cmd
 transport = input.get("transport")              // Transport type protocol
 command = input.get("command")                  // Command to be executed
+port = input.get("port")                        // WinRM Port
 
-port = input.get("port")
+if(port != null || port != ""){
+    port = parseInt(port)
+    log.trace("WinRM Port: "+port)
+    log.info("Port Datatype: "+typeof port)
+}
 
 log.trace(target+"\n"+username+"\n"+password+"\n"+shell+"\n"+transport+"\n"+command+"\n"+operation_timeout+"\n"+port)
 
