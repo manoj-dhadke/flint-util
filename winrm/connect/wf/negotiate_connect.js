@@ -40,12 +40,13 @@ if(ssl== null || ssl == ""){
 
 // Converting SSL value to No SSL Peer Verification, which is a connector field
     if(ssl == "false" || ssl == "False"){
-        ssl = !ssl
-        log.trace("\n SSL is false. Converting SSL value to no ssl peer verification: "+ssl)
         
+        log.trace("\n SSL is false. Converting SSL value to no ssl peer verification: "+!ssl)
+        log.trace("\n False condition. Verify SSL: "+ssl)
     }else if(ssl == "true" || ssl == "True"){
-        ssl = !ssl
-        log.trace("\n SSL is true. Converting SSL value to to no ssl peer verification: "+ssl)
+        log.trace("\n SSL is true. Converting SSL value to to no ssl peer verification: "+!ssl)
+        log.trace("\n True condition. Verify SSL: "+ssl)
+
         
     }
     
