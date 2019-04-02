@@ -28,20 +28,23 @@ ssl = input.get('ssl')                // This field is for no ssl peer verificat
 log.info("Port input type before parsing: "+typeof port)
 
 // Set default SSL auth preference
-if(ssl!= null || ssl != ""){
-    if(ssl == "true" || ssl == "True"){
-        log.trace("SSL is : "+ssl+"\n Converting SSL value to boolean true.")
-        ssl = true
-    }else if(ssl == "false" || ssl == "False"){
-        log.trace("SSL is: "+ssl+"\n Converting SSL value to boolean false")
-        ssl = false
-    }
-}else{
+
+if(ssl== null || ssl == ""){
     log.info("SSL is not specified. Setting SSL to true by default")
-    ssl = true
+    // Default No SSL Peer Verification is true 
+    ssl = true        
     log.trace("isSSL: "+ssl)
 }
 
+// Converting SSL value to No SSL Peer Verification, which is a connector field
+    if(ssl == "false" || ssl == "False"){
+        log.trace("SSL is : "+ssl+"\n Converting SSL value to no ssl peer verification: "+!ssl)
+        ssl = !ssl
+    }else if(ssl == "true" || ssl == "True"){
+        log.trace("SSL is: "+ssl+"\n Converting SSL value to to no ssl peer verification: "+!ssl)
+        ssl = !ssl
+    }
+    
 // Parsing port into a number
 if(port != null || port != ""){
     port = parseInt(port)
