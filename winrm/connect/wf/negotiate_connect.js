@@ -32,8 +32,10 @@ log.info("Port input type before parsing: "+typeof port)
 if(ssl== null || ssl == ""){
     log.info("SSL is not specified. Setting SSL to true by default")
     // Default No SSL Peer Verification is true 
-    ssl = true        
+    ssl = false        
     log.trace("isSSL: "+ssl)
+    ssl = !ssl
+    log.trace("SSL deafult value is false. No ssl peer verification is: "+!ssl)
 }
 
 // Converting SSL value to No SSL Peer Verification, which is a connector field
