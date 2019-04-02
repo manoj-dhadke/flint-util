@@ -31,26 +31,27 @@ log.info("Port input type before parsing: "+typeof port)
 
 // Set default SSL auth preference
 
-if(ssl== null || ssl == ""){
-    log.info("SSL is not specified. Setting SSL to true by default")
-    // Default No SSL Peer Verification is true 
-    ssl = false        
-    log.trace("isSSL: "+ssl)
-    ssl = !ssl
-    log.trace("SSL deafult value is false. No ssl peer verification is: "+ssl)
-}
+// if(ssl== null || ssl == ""){
+//     log.info("SSL is not specified. Setting SSL to true by default")
+//     // Default No SSL Peer Verification is true 
+//     ssl = false        
+//     log.trace("isSSL: "+ssl)
+//     ssl = !ssl
+//     log.trace("SSL deafult value is false. No ssl peer verification is: "+ssl)
+// }
 
-// Converting SSL value to No SSL Peer Verification, which is a connector field
-    if(ssl == "false" || ssl == "False"){
+// // Converting SSL value to No SSL Peer Verification, which is a connector field
+//     if(ssl == "false" || ssl == "False"){
         
-        log.trace("\n SSL is false. Converting SSL value to no ssl peer verification: "+!ssl)
-        log.trace("\n False condition. Verify SSL: "+ssl)
-    }else if(ssl == "true" || ssl == "True"){
-        log.trace("\n SSL is true. Converting SSL value to to no ssl peer verification: "+!ssl)
-        log.trace("\n True condition. Verify SSL: "+ssl)
+//         log.trace("\n SSL is false. Converting SSL value to no ssl peer verification: "+!ssl)
+//         log.trace("\n False condition. Verify SSL: "+ssl)
+//     }
+//     if(ssl == "true" || ssl == "True"){
+//         log.trace("\n SSL is true. Converting SSL value to to no ssl peer verification: "+!ssl)
+//         log.trace("\n True condition. Verify SSL: "+ssl)
 
         
-    }
+//     }
     
 // Parsing port into a number
 if(port != null || port != ""){
@@ -80,7 +81,7 @@ connector_response = call.connector(connector_name)
     .set("transport", transport)
     .set("command", command)
     .set("operation_timeout", operation_timeout)
-    .set("no_ssl_peer_verification", ssl)              // Specifies http or https i.e. SSL or no SSL encryption to be used.
+    .set("no_ssl_peer_verification", !ssl)              // Specifies http or https i.e. SSL or no SSL encryption to be used.
     .set("port", port)
     .sync()
 
