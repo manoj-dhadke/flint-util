@@ -30,7 +30,7 @@ log.info("Port input type before parsing: "+typeof port)
 // Set default SSL auth preference
 if(protocol == null || protocol == ""){
     log.info("SSL/Protocol (Http/Https) is not specified. Setting SSL to false")
-    protocol = false
+    protocol = true
     log.trace("Protocol: "+protocol)
 }
 
