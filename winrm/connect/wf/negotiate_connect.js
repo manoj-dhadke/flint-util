@@ -4,7 +4,9 @@
 ** Description: This flintbit is developed to execute any WinRM command.
 **/
 
-log.trace("Started executing 'flint-util:winrm-ruby:negotiate.js' flintbit.")
+log.trace("Started executing 'flint-util:winrm:connect:wf:negotiate_connect.js' flintbit.")
+
+log.info("Inputs for flintbit 'flint-util:winrm:connect:wf:negotiate_connect.js' are: \n"+input)
 
 // Service Parameters
 winrm_negotiate_service_params = input.get('winrm_negotiate_service_params')
@@ -23,6 +25,16 @@ command = input.get("command")                  // Command to be executed
 port = input.get("port")                        // WinRM Port
 protocol = input.get('protocol')                // This field is for no ssl peer verification. Protocol indicates SSL peer verification check. true or false.  
 
+log.info("Port input type before parsing: "+typeof port)
+
+// Set default SSL auth preference
+if(protocol == null || protocol == ""){
+    log.info("SSL/Protocol (Http/Https) is not specified. Setting SSL to false")
+    protocol = false
+    log.trace("Protocol: "+protocol)
+}
+
+// Parsing port into a number
 if(port != null || port != ""){
     port = parseInt(port)
     log.trace("WinRM Port: "+port)
@@ -83,7 +95,7 @@ if (response_exitcode == 0) {
     log.error("Failure in executing WinRM connector with exitcode ::  " + response_exitcode + "\nMessage :: " + response_message)
     output.set('error', response_message)
 
-    log.trace("Finished executing 'flint-util:winrm-ruby:negotiate.js' flintbit with error.")
+    log.trace("Finished executing 'flint-util:winrm:connect:wf:negotiate_connect.js' flintbit with error.")
 }
 
 
