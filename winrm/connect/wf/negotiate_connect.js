@@ -75,7 +75,7 @@ connector_response = call.connector(connector_name)
     .set("transport", transport)
     .set("command", command)
     .set("operation_timeout", operation_timeout)
-    .set("no_ssl_peer_verification", protocol)              // Specifies http or https i.e. SSL or no SSL encryption to be used.
+    .set("no_ssl_peer_verification", ssl)              // Specifies http or https i.e. SSL or no SSL encryption to be used.
     .set("port", port)
     .sync()
 
