@@ -21,6 +21,8 @@ username = input.get("username")                // Target username
 password = input.get("password")                // Target password
 shell = input.get("shell")                      // Type of execution - powershell or cmd
 transport = input.get("transport")              // Transport type protocol
+transport = transport.toLowerCase();
+log.info(transport)
 command = input.get("command")                  // Command to be executed
 port = input.get("port")                        // WinRM Port
 ssl = input.get('ssl')                // This field is for no ssl peer verification. Protocol indicates SSL peer verification check. true or false.  
