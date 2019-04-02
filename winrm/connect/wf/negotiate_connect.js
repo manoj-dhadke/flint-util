@@ -23,15 +23,23 @@ shell = input.get("shell")                      // Type of execution - powershel
 transport = input.get("transport")              // Transport type protocol
 command = input.get("command")                  // Command to be executed
 port = input.get("port")                        // WinRM Port
-protocol = input.get('protocol')                // This field is for no ssl peer verification. Protocol indicates SSL peer verification check. true or false.  
+ssl = input.get('ssl')                // This field is for no ssl peer verification. Protocol indicates SSL peer verification check. true or false.  
 
 log.info("Port input type before parsing: "+typeof port)
 
 // Set default SSL auth preference
-if(protocol == null || protocol == ""){
-    log.info("SSL/Protocol (Http/Https) is not specified. Setting SSL to false")
-    protocol = true
-    log.trace("Protocol: "+protocol)
+if(ssl!= null || ssl != ""){
+    if(ssl == "true" || ssl == "True"){
+        log.trace("SSL is : "+ssl+"\n Converting SSL value to boolean true.")
+        ssl = true
+    }else if(ssl == "false" || ssl == "False"){
+        log.trace("SSL is: "+ssl+"\n Converting SSL value to boolean false")
+        ssl = false
+    }
+}else{
+    log.info("SSL is not specified. Setting SSL to true by default")
+    ssl = true
+    log.trace("isSSL: "+ssl)
 }
 
 // Parsing port into a number
@@ -42,7 +50,6 @@ if(port != null || port != ""){
 }
 
 log.trace(target+"\n"+username+"\n"+password+"\n"+shell+"\n"+transport+"\n"+command+"\n"+operation_timeout+"\n"+port)
-
 
 log.info("Inputs to 'flint-util:winrm-ruby:negotiate.rb' are : " + input)
 
