@@ -9,7 +9,7 @@ log.trace("Started executing 'flint-util:winrm-ruby:negotiate.js' flintbit.")
 // Service Parameters
 winrm_negotiate_service_params = input.get('winrm_negotiate_service_params')
 connector_name = winrm_negotiate_service_params.get("connector_name")    // Name of the WinRM connector
-no_ssl_peer_verification = winrm_negotiate_service_params.get("no_ssl_peer_verification")
+// no_ssl_peer_verification = winrm_negotiate_service_params.get("no_ssl_peer_verification")
 timeout = winrm_negotiate_service_params.get('timeout')                  // Timeout in milliseconds, taken by
 operation_timeout = winrm_negotiate_service_params.get("operation_timeout")
 
@@ -21,6 +21,7 @@ shell = input.get("shell")                      // Type of execution - powershel
 transport = input.get("transport")              // Transport type protocol
 command = input.get("command")                  // Command to be executed
 port = input.get("port")                        // WinRM Port
+protocol = input.get('protocol')                // This field is for no ssl peer verification. Protocol indicates SSL peer verification check. true or false.  
 
 if(port != null || port != ""){
     port = parseInt(port)
@@ -49,7 +50,7 @@ connector_response = call.connector(connector_name)
     .set("transport", transport)
     .set("command", command)
     .set("operation_timeout", operation_timeout)
-    .set("no_ssl_peer_verification", no_ssl_peer_verification)
+    .set("no_ssl_peer_verification", protocol)              // Specifies http or https i.e. SSL or no SSL encryption to be used.
     .set("port", port)
     .sync()
 
