@@ -35,7 +35,7 @@ if(ssl== null || ssl == ""){
     ssl = false        
     log.trace("isSSL: "+ssl)
     ssl = !ssl
-    log.trace("SSL deafult value is false. No ssl peer verification is: "+!ssl)
+    log.trace("SSL deafult value is false. No ssl peer verification is: "+ssl)
 }
 
 // Converting SSL value to No SSL Peer Verification, which is a connector field
@@ -55,6 +55,7 @@ if(port != null || port != ""){
 }
 
 log.trace(target+"\n"+username+"\n"+password+"\n"+shell+"\n"+transport+"\n"+command+"\n"+operation_timeout+"\n"+port)
+log.trace(ssl +"\n"+connector_name+"\n"+timeout)
 
 log.info("Inputs to 'flint-util:winrm-ruby:negotiate.rb' are : " + input)
 
