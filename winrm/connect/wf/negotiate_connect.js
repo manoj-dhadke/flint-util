@@ -8,12 +8,11 @@ log.trace("Started executing 'flint-util:winrm:connect:wf:negotiate_connect.js' 
 
 log.info("Inputs for flintbit 'flint-util:winrm:connect:wf:negotiate_connect.js' are: \n"+input)
 
-// Service Parameters
-winrm_negotiate_service_params = input.get('winrm_negotiate_service_params')
-connector_name = winrm_negotiate_service_params.get("connector_name")    // Name of the WinRM connector
 // no_ssl_peer_verification = winrm_negotiate_service_params.get("no_ssl_peer_verification")
-timeout = winrm_negotiate_service_params.get('timeout')                  // Timeout in milliseconds, taken by
-operation_timeout = winrm_negotiate_service_params.get("operation_timeout")
+timeout = input.get('timeout')                  // Timeout in milliseconds, taken by
+operation_timeout = input.get("operation_timeout")
+connector_name = input.get("connector_name")    // Name of the WinRM connector
+
 
 // Service Inputs
 target = input.get("target")                    // target where the command will be executed
