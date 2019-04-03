@@ -6,11 +6,8 @@
 
 log.trace("Started executing 'flint-util:validation:ssh_command_wf.js' flintbit")
 
-
-// Service Parameters
-ssh_service_params = input.get('ssh_service_params')
-connector_name = ssh_service_params.get('connector_name')     //# Name of the SSH Connector
-timeout = ssh_service_params.get('timeout')                  // # Timeout in milliseconds, taken by
+connector_name = input.get('connector_name')     //# Name of the SSH Connector
+timeout = input.get('timeout')                  // # Timeout in milliseconds, taken by
 
 // Service Form Inputs
 target = input.get('target')                     // Target machine where the command will be executed
