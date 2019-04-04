@@ -20,6 +20,7 @@ command = input.get('command')                   // Command/Commands to be execu
 // type = input.get('type')                         // The Connector to serve the request
 port = input.get('port')
 
+
 if (connector_name != null || connector_name != "") {
     log.trace("Connector Name : " + connector_name)
 } else {
@@ -68,9 +69,11 @@ if (command != null || command != "") {
 }
 
 // timeout = 100_000
-if (timeout != null || timeout != "") {
+if (timeout != null) {
+    log.info("Timeout class: "+typeof timeout)
     log.trace("Timeout : " + timeout)
 }else{
+    log.info("Setting default timeout to 120000")
     timeout = 120000
 }
 
@@ -84,7 +87,7 @@ if(port != null || port != ""){
 log.info("Flintbit Inputs: \n" + input)
 
 log.trace('Calling SSH Connector')
-if (timeout.toString() == "") {
+if (timeout == null) {
     response = call.connector(connector_name)
         .set('target', target)
         .set('type', type)
