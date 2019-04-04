@@ -83,25 +83,28 @@ if(port != null || port != ""){
     log.info("Port data type: "+typeof port)
 }
 
+log.info("Parsing timeout")
+timeout = parseInt(timeout)
+
 // Print out all inputs
 log.info("Flintbit Inputs: \n" + input)
 
-log.trace('Calling SSH Connector')
-if (timeout == null) {
-    response = call.connector(connector_name)
-        .set('target', target)
-        .set('type', type)
-        .set('username', username)
-        .set('password', password)
-        //.set('passphrase', passphrase)
-        //.set('key-file', key_file)
-        .set('command', command)
-        .set('type', type)
-        .set('port',port)
-        .sync()
-}
-//# .timeout(10000) # Execution time of the Flintbit in milliseconds
-else {
+// log.trace('Calling SSH Connector')
+// if (timeout == null) {
+//     response = call.connector(connector_name)
+//         .set('target', target)
+//         .set('type', type)
+//         .set('username', username)
+//         .set('password', password)
+//         //.set('passphrase', passphrase)
+//         //.set('key-file', key_file)
+//         .set('command', command)
+//         .set('type', type)
+//         .set('port',port)
+//         .sync()
+// }
+// //# .timeout(10000) # Execution time of the Flintbit in milliseconds
+// else {
     response = call.connector(connector_name)
         .set('target', target)
         .set('type', type)
@@ -115,7 +118,6 @@ else {
         .set('port',port)
         .sync()
     //# .timeout(10000) # Execution time of the Flintbit in milliseconds
-}
 
 //# SSH Connector Response Meta Parameters
 response_exitcode = response.exitcode()              //# Exit status code
