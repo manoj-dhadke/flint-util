@@ -21,7 +21,7 @@ connector_name = input.get('connector_name')
 // Create User Params
 first_name = input.get('first_name')
 last_name = input.get('last_name')
-email = input.get('username')
+email = input.get('email')
 username = input.get('username')
 
 
