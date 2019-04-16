@@ -10,6 +10,8 @@ log.info("Inputs: \n" + input)
 
 input_clone = JSON.parse(input)
 
+result = ""
+
 client_id = input.get('client_id')
 client_secret = input.get('client_secret')
 region = input.get('region')
@@ -161,11 +163,11 @@ exit_code = connector_response.exitcode()
 message = connector_response.message()
 
 if (exit_code == 0) {
-    log.trace("Created user details are : " + result)
     result = connector_response.get('created-user')
+    log.trace("Created user details are : " + result)
     output.set('result', result)
 } else {
-    log.trace("failed to get users list " + message)
+    log.trace("Failed to create user: " + message)
     output.set('error', message)
 }
 
