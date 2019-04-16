@@ -137,8 +137,8 @@ if (input_clone.hasOwnProperty('phone')) {
     }
 }
 
-if (input_clone.hasOwnProperty('samaccountname')) {
-    samaccountname = input.get('samaccountname')
+if (input_clone.hasOwnProperty('sam_account_name')) {
+    samaccountname = input.get('sam_account_name')
 
     if (samaccountname != null || samaccountname != "") {
         response.set('samaccountname', samaccountname)
