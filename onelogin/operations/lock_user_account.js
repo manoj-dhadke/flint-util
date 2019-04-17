@@ -6,11 +6,15 @@
 
 log.info("Started executing 'example:lock_user_account.js' flintbit")
 
-client_id = input.get('client_id')
-client_secret = input.get('client_secret')
+
+// Service parameters
+onelogin_config = input.get('onelogin_configurations')
+client_id = onelogin_config.get('client_id')
+client_secret = onelogin_config.get('client_secret')
+connector_name = onelogin_config.get('connector_name')
+
 region = input.get('region')
 user_id = input.get('user_id')
-connector_name = input.get('connector_name')
 
 // Specified the duration in minutes, to lock the specified user account
 locked_until = input.get('locked_until')
