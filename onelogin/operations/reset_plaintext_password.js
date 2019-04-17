@@ -5,7 +5,7 @@
 **/
 
 log.info("Started executing 'example:reset_plaintext_password.js' flintbit")
-
+log.trace("Flintbit inputs: "+input)
 action = 'reset-password-plaintext'
 
 // Service parameters
