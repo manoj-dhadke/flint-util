@@ -12,19 +12,23 @@ input_clone = JSON.parse(input)
 
 result = ""
 
-client_id = input.get('client_id')
-client_secret = input.get('client_secret')
-region = input.get('region')
+// Service parameters
+onelogin_config = input.get('onelogin_configurations')
+client_id = onelogin_config.get('client_id')
+client_secret = onelogin_config.get('client_secret')
+connector_name = onelogin_config.get('connector_name')
+
+// Generic flintbit action
 action = 'create-user'
-connector_name = input.get('connector_name')
 
 // Create User Params
+region = input.get('region')
 first_name = input.get('first_name')
 last_name = input.get('last_name')
 email = input.get('email')
 username = input.get('username')
 
-
+log.trace("Calling OneLogin connector")
 
 response = call.connector(connector_name)
     .set('client_id', client_id)
@@ -37,7 +41,6 @@ response = call.connector(connector_name)
     .set('username', username)
 
 // Setting optional parameter to OneLogin connector
-
 if (input_clone.hasOwnProperty('company')) {
     company = input.get('company')
     if (company != null || company != "") {

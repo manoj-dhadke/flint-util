@@ -7,11 +7,15 @@
 log.info("Started executing 'example:reset_plaintext_password.js' flintbit")
 
 action = 'reset-password-plaintext'
-client_id = input.get('client_id')
-client_secret = input.get('client_secret')
+
+// Service parameters
+onelogin_config = input.get('onelogin_configurations')
+client_id = onelogin_config.get('client_id')
+client_secret = onelogin_config.get('client_secret')
+connector_name = onelogin_config.get('connector_name')
+
 region = input.get('region')
 user_id = input.get('user_id')
-connector_name = input.get('connector_name')
 password = input.get('password')
 confirm_password = input.get('confirm_password')
 validate_policy = input.get('validate_policy')
