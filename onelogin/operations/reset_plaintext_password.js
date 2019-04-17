@@ -18,9 +18,11 @@ region = input.get('region')
 user_id = input.get('user_id')
 password = input.get('password')
 confirm_password = input.get('confirm_password')
+
 validate_policy = input.get('validate_policy')
 
-connector_response = call.connector(connector_name)
+
+response = call.connector(connector_name)
                         .set('client_id',client_id)
                         .set('client_secret', client_secret)
                         .set('region', region)
@@ -28,8 +30,24 @@ connector_response = call.connector(connector_name)
                         .set('user_id', user_id)
                         .set('password', password)
                         .set('password_confirmation', confirm_password)
-                        .set('validate_policy', validate_policy)
-                        .sync()
+
+// Set validate policy
+if(validate_policy != null || validate_response!= ""){
+    log.trace("Validate response is given")
+    if(validate_policy == "false"){
+        validate_policy = false
+    }
+    if(validate_policy == "true"){
+        validate_policy = true
+    }
+    response.set('validate_policy', validate_policy)
+}else{
+    validate_policy = false
+    response.set('validate_policy', validate_policy)
+}
+
+log.trace("Calling OneLogin connector")
+connector_response =  response.sync()
 
 log.trace(connector_response)
 exit_code = connector_response.exitcode()
