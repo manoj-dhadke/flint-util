@@ -5,17 +5,43 @@
 **/
 log.trace("Started executing flint-util:freshservice:add_note_wf.js")
 log.info(input)
+
+freshservice_configs = ""
 // Global config
     email = config.global("freshservice_wf.email")                               //Email address of the requester
+    if(email == null || email == ""){
+        log.trace("Setting email from service param")
+        freshservice_configs = input.get('freshservice_configurations')
+        email = freshservice_configs.get('email')
+    }
     password = config.global("freshservice_wf.password")                         //Password of the freshservice account
+    if(password == null || password == ""){
+        log.trace("Setting password from service param")
+        password = freshservice_configs.get('password')
+    }
+
     freshservice_connector_name = config.global("freshservice_wf.connector_name")
+    if(freshservice_connector_name == null || freshservice_connector_name == ""){
+        log.trace("Setting freshservice connector name from service param")
+        freshservice_connector_name = freshservice_configs.get('connector_name')
+    }
+
     private_note= config.global("freshservice_wf.private_note")
+    if(private_note == null || private_note == ""){
+        log.trace("Setting private note from service param")
+        private_note = freshservice_configs.get('private_note')
+    }
+
     domain_name= config.global("freshservice_wf.domain_name")
+    if(domain_name == null || domain_name == ""){
+        log.trace("Setting domain name from service param")
+        domain_name = freshservice_configs.get('domain_name')
+    }
 
 // Hard coded action
     action ="add-note"
 
-    log.trace("Global config set")
+    log.trace("Service params / Gloabal configs set")
 
 // Inputs from Service Form
     ticket_id = input.get('ticket_id')
