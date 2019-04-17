@@ -41,14 +41,16 @@ response = call.connector(connector_name)
     .set('username', username)
 
 // Setting optional parameter to OneLogin connector
-if (input_clone.hasOwnProperty('company')) {
-    company = input.get('company')
-    if (company != null || company != "") {
+if (input_clone.hasOwnProperty('company') && input_clone['company'] != null) {
+    // company = input.get('company')
+    if (input.get('company') != null || input.get('company') != "") {
+        company = input.get('company')
         response.set('company', company)
         log.trace("Company is " + company)
     }
 }
-if (input_clone.hasOwnProperty('department')) {
+
+if (input_clone.hasOwnProperty('department') && input_clone['department'] != null) {
     department = input.get('department')
     if (department != null || department != "") {
         response.set('department', department)
@@ -56,7 +58,7 @@ if (input_clone.hasOwnProperty('department')) {
     }
 }
 
-if (input_clone.hasOwnProperty('directory_id')) {
+if (input_clone.hasOwnProperty('directory_id')&& input_clone['directory_id'] != null) {
     directory_id = input.get('directory_id')   // Integer 
     // directory_id = parseInt(directory_id) 
 
@@ -66,7 +68,7 @@ if (input_clone.hasOwnProperty('directory_id')) {
     }
 }
 
-if (input_clone.hasOwnProperty('distinguished_name')) {
+if (input_clone.hasOwnProperty('distinguished_name')&& input_clone['distinguished_name'] != null) {
     distinguished_name = input.get('distinguished_name')
 
     if (distinguished_name != null || distinguished_name != "") {
@@ -75,7 +77,7 @@ if (input_clone.hasOwnProperty('distinguished_name')) {
     }
 }
 
-if (input_clone.hasOwnProperty('external_id')) {
+if (input_clone.hasOwnProperty('external_id')&& input_clone['external_id'] != null) {
     external_id = input.get('external_id')
 
     if (external_id != null || external_id != "") {
@@ -84,7 +86,7 @@ if (input_clone.hasOwnProperty('external_id')) {
     }
 }
 
-if (input_clone.hasOwnProperty('group_id')) {
+if (input_clone.hasOwnProperty('group_id')&& input_clone['group_id'] != null) {
     group_id = input.get('group_id')           // Integer
     // group_id = parseInt(group_id)
 
@@ -94,7 +96,7 @@ if (input_clone.hasOwnProperty('group_id')) {
     }
 }
 
-if (input_clone.hasOwnProperty('invalid_login_attempts')) {
+if (input_clone.hasOwnProperty('invalid_login_attempts')&& input_clone['invalid_login_attempts'] != null) {
     invalid_login_attempts = input.get('invalid_login_attempts') // Integer
     // invalid_login_attempts = parseInt(invalid_login_attempts)
 
@@ -104,7 +106,7 @@ if (input_clone.hasOwnProperty('invalid_login_attempts')) {
     }
 }
 
-if (input_clone.hasOwnProperty('locale_code')) {
+if (input_clone.hasOwnProperty('locale_code')&& input_clone['locale_code'] != null) {
     locale_code = input.get('locale_code')
 
     if (locale_code != null || locale_code != "") {
@@ -113,7 +115,7 @@ if (input_clone.hasOwnProperty('locale_code')) {
     }
 }
 
-if (input_clone.hasOwnProperty('member_of')) {
+if (input_clone.hasOwnProperty('member_of')&& input_clone['member_of'] != null) {
     member_of = input.get('member_of')
 
     if (member_of != null || member_of != "") {
@@ -122,7 +124,7 @@ if (input_clone.hasOwnProperty('member_of')) {
     }
 }
 
-if (input_clone.hasOwnProperty('openid_name')) {
+if (input_clone.hasOwnProperty('openid_name')&& input_clone['openid_name'] != null) {
     openid_name = input.get('openid_name')
 
     if (openid_name != null || openid_name != "") {
@@ -131,7 +133,7 @@ if (input_clone.hasOwnProperty('openid_name')) {
     }
 }
 
-if (input_clone.hasOwnProperty('phone')) {
+if (input_clone.hasOwnProperty('phone')&& input_clone['phone'] != null) {
     phone = input.get('phone')
 
     if (phone != null || phone != "") {
@@ -140,7 +142,7 @@ if (input_clone.hasOwnProperty('phone')) {
     }
 }
 
-if (input_clone.hasOwnProperty('sam_account_name')) {
+if (input_clone.hasOwnProperty('sam_account_name')&& input_clone['sam_account_name'] != null) {
     samaccountname = input.get('sam_account_name')
 
     if (samaccountname != null || samaccountname != "") {
@@ -149,7 +151,7 @@ if (input_clone.hasOwnProperty('sam_account_name')) {
     }
 }
 
-if (input_clone.hasOwnProperty('title')) {
+if (input_clone.hasOwnProperty('title')&& input_clone['title'] != null) {
     title = input.get('title')
 
     if (title != null || title != "") {
