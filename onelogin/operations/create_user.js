@@ -41,123 +41,96 @@ response = call.connector(connector_name)
     .set('username', username)
 
 // Setting optional parameter to OneLogin connector
-if (input_clone.hasOwnProperty('company') && input_clone['company'] != null) {
+if (input_clone.hasOwnProperty('company') && input_clone['company'] != null && input_clone['company'] != "") {
     // company = input.get('company')
-    if (input.get('company') != null || input.get('company') != "") {
         company = input.get('company')
         response.set('company', company)
         log.trace("Company is " + company)
-    }
 }
 
-if (input_clone.hasOwnProperty('department') && input_clone['department'] != null) {
+if (input_clone.hasOwnProperty('department') && input_clone['department'] != null && input_clone['department'] != "") {
     department = input.get('department')
-    if (department != null || department != "") {
         response.set('department', department)
         log.trace("Department is " + department)
-    }
+
 }
 
-if (input_clone.hasOwnProperty('directory_id')&& input_clone['directory_id'] != null) {
+if (input_clone.hasOwnProperty('directory_id')&& input_clone['directory_id'] != null && input_clone['directory_id'] != "") {
     directory_id = input.get('directory_id')   // Integer 
-    // directory_id = parseInt(directory_id) 
-
-    if (directory_id != null || directory_id != "") {
         response.set('directory_id', directory_id)
         log.trace("Directory Id is " + directory_id)
-    }
 }
 
-if (input_clone.hasOwnProperty('distinguished_name')&& input_clone['distinguished_name'] != null) {
+if (input_clone.hasOwnProperty('distinguished_name')&& input_clone['distinguished_name'] != null && input_clone['distinguished_name'] != "") {
     distinguished_name = input.get('distinguished_name')
 
-    if (distinguished_name != null || distinguished_name != "") {
         response.set('distinguished_name', distinguished_name)
         log.trace("Distinguished Name is " + distinguished_name)
-    }
 }
 
-if (input_clone.hasOwnProperty('external_id')&& input_clone['external_id'] != null) {
+if (input_clone.hasOwnProperty('external_id')&& input_clone['external_id'] != null && input_clone['external_id'] != "") {
     external_id = input.get('external_id')
-
-    if (external_id != null || external_id != "") {
         response.set('external_id', external_id)
         log.trace("External ID is " + external_id)
-    }
+    
 }
 
-if (input_clone.hasOwnProperty('group_id')&& input_clone['group_id'] != null) {
+if (input_clone.hasOwnProperty('group_id') && input_clone['group_id'] != null && input_clone['group_id'] != "") {
     group_id = input.get('group_id')           // Integer
-    // group_id = parseInt(group_id)
-
-    if (group_id != null || group_id != "") {
         response.set('group_id', group_id)
         log.trace("Group ID is " + group_id)
-    }
+
 }
 
-if (input_clone.hasOwnProperty('invalid_login_attempts')&& input_clone['invalid_login_attempts'] != null) {
+if (input_clone.hasOwnProperty('invalid_login_attempts')&& input_clone['invalid_login_attempts'] != null && input_clone['invalid_login_attempts'] != "" ) {
     invalid_login_attempts = input.get('invalid_login_attempts') // Integer
-    // invalid_login_attempts = parseInt(invalid_login_attempts)
-
-    if (invalid_login_attempts != null || invalid_login_attempts != "") {
         response.set('invalid_login_attempts', invalid_login_attempts)
         log.trace("Inalid login attempts are set to " + invalid_login_attempts)
-    }
+    
 }
 
 if (input_clone.hasOwnProperty('locale_code')&& input_clone['locale_code'] != null && input_clone['locale_code'] != "") {
     locale_code = input.get('locale_code')
-
-    if (locale_code != null || locale_code != "") {
         response.set('locale_code', locale_code)
         log.trace("Locale code is " + locale_code)
-    }
+    
 }
 
 if (input_clone.hasOwnProperty('member_of')&& input_clone['member_of'] != null && input_clone['member_of'] != "") {
     member_of = input.get('member_of')
-
-    if (member_of != null || member_of != "") {
         response.set('member_of', member_of)
         log.trace("Member of " + member_of)
-    }
 }
 
 if (input_clone.hasOwnProperty('openid_name')&& input_clone['openid_name'] != null && input_clone['openid_name'] != "") {
     openid_name = input.get('openid_name')
 
-    if (openid_name != null || openid_name != "") {
         response.set('openid_name', openid_name)
         log.trace("OpenID Name is " + openid_name)
-    }
+    
 }
 
 if (input_clone.hasOwnProperty('phone')&& input_clone['phone'] != null && input_clone['phone'] != "") {
     phone = input.get('phone')
 
-    if (phone != null || phone != "") {
         response.set('phone', phone)
         log.trace("Phone is " + phone)
-    }
+    
 }
 
 if (input_clone.hasOwnProperty('sam_account_name')&& input_clone['sam_account_name'] != null && input_clone['sam_account_name'] != "") {
     samaccountname = input.get('sam_account_name')
 
-    if (samaccountname != null || samaccountname != "") {
         response.set('samaccountname', samaccountname)
         log.trace("Sam Account Name is " + samaccountname)
-    }
+    
 }
 
 if (input_clone.hasOwnProperty('title') && input_clone['title'] != null && input_clone['title'] != "") {
     title = input.get('title')
-
-    if (title != null || title != "") {
         response.set('title', title)
         log.trace("Title is " + title)
-    }
+
 }
 
 // Calling OneLogin Connector
