@@ -57,6 +57,7 @@ if (input_clone.hasOwnProperty('department') && input_clone['department'] != nul
 
 if (input_clone.hasOwnProperty('directory_id')&& input_clone['directory_id'] != null && input_clone['directory_id'] != "") {
     directory_id = input.get('directory_id')   // Integer 
+    directory_id = Number(directory_id)
         response.set('directory_id', directory_id)
         log.trace("Directory Id is " + directory_id)
 }
@@ -77,6 +78,7 @@ if (input_clone.hasOwnProperty('external_id')&& input_clone['external_id'] != nu
 
 if (input_clone.hasOwnProperty('group_id') && input_clone['group_id'] != null && input_clone['group_id'] != "") {
     group_id = input.get('group_id')           // Integer
+    group_id = Number('group_id')
         response.set('group_id', group_id)
         log.trace("Group ID is " + group_id)
 
@@ -84,6 +86,7 @@ if (input_clone.hasOwnProperty('group_id') && input_clone['group_id'] != null &&
 
 if (input_clone.hasOwnProperty('invalid_login_attempts')&& input_clone['invalid_login_attempts'] != null && input_clone['invalid_login_attempts'] != "" ) {
     invalid_login_attempts = input.get('invalid_login_attempts') // Integer
+    invalid_login_attempts = Number('invalid_login_attempts')
         response.set('invalid_login_attempts', invalid_login_attempts)
         log.trace("Inalid login attempts are set to " + invalid_login_attempts)
     
