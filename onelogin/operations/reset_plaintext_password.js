@@ -31,19 +31,13 @@ response = call.connector(connector_name)
                         .set('password', password)
                         .set('password_confirmation', confirm_password)
 
-// Set validate policy
-if(validate_policy != null || validate_response!= ""){
-    log.trace("Validate response is given")
-    if(validate_policy == "false"){
-        validate_policy = false
-    }
-    if(validate_policy == "true"){
-        validate_policy = true
-    }
+
+input_clone = JSON.parse(input)
+// Optional Parameters
+if(input_clone.hasOwnProperty('validate_policy') && input_clone['validate_policy'] != null && input_clone['validate_policy'] != ""){
+    validate_policy = input.get('validate_policy')
     response.set('validate_policy', validate_policy)
-}else{
-    validate_policy = false
-    response.set('validate_policy', validate_policy)
+    log.trace("Validation policy is "+validate_policy)
 }
 
 log.trace("Calling OneLogin connector")
@@ -52,6 +46,7 @@ connector_response =  response.sync()
 log.trace(connector_response)
 exit_code = connector_response.exitcode()
 message = connector_response.message()
+
 if(exit_code == 0){
     result = connector_response.get('status')
     log.trace("Successfully reset password for user with ID: "+user_id)
