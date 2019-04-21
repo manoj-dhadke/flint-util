@@ -33,7 +33,7 @@ response = call.connector(connector_name)
                         .timeout(120000)
                         log.debug(input_clone['locked_until'] )
                         log.debug(input_clone['locked_until'] != null)
-if(input_clone.hasOwnProperty('locked_until') && (input_clone['locked_until'] != null || input_clone['locked_until'] != "")){
+if(input_clone.hasOwnProperty('locked_until') && (input_clone['locked_until'] != null && input_clone['locked_until'] != "")){
     locked_until = input.get('locked_until')
     response.set('locked_until', locked_until)
 
