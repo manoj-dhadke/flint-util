@@ -38,6 +38,8 @@ if(exit_code == 0){
     result = connector_response.get('result')
     output.set('result', result)
 }else{
+    message = message.split('(')[1].split(')')[0]
+
     log.trace("Failed to reset users password : "+message)
     output.set('error', message)
 }
