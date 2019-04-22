@@ -58,6 +58,11 @@ if(input_clone.hasOwnProperty('profile_properties') && input_clone['profile_prop
 // User Active?
 if(input_clone.hasOwnProperty('is_active') && input_clone['is_active'] != null && input_clone['is_active'] != ''){
     is_active = input.get('is_active')
+    if(is_active == "true"){
+        is_active = true
+    }else{
+        is_active = false
+    }
     connector_request.set('is_active', is_active)
     log.trace('Make user active?: '+is_active)
 }
@@ -65,6 +70,11 @@ if(input_clone.hasOwnProperty('is_active') && input_clone['is_active'] != null &
 // Next login boolean
 if(input_clone.hasOwnProperty('is_next_login') && input_clone['is_next_login'] != null && input_clone['is_next_login'] != ''){
     is_next_login = input.get('is_next_login')
+    if(is_next_login == "true"){
+        is_next_login = true
+    }else{
+        is_next_login = false
+    }
     connector_request.set('is_next_login', is_next_login)
     log.trace('Reset password on next login?: '+is_next_login)
 }
@@ -72,6 +82,11 @@ if(input_clone.hasOwnProperty('is_next_login') && input_clone['is_next_login'] !
 // Is user Provider? boolean
 if(input_clone.hasOwnProperty('is_provider') && input_clone['is_provider'] != null && input_clone['is_provider'] != ''){
     is_provider = input.get('is_provider')
+    if(is_provider == "true"){
+        is_provider = true
+    }else{
+        is_provider = false
+    }
     connector_request.set('is_provider', is_provider)
     log.trace('User is provider?: '+is_provider)
 }
