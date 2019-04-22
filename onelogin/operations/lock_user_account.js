@@ -36,7 +36,6 @@ response = call.connector(connector_name)
 if(input_clone.hasOwnProperty('locked_until') && (input_clone['locked_until'] != null && input_clone['locked_until'] != "")){
     locked_until = input.get('locked_until')
     response.set('locked_until', locked_until)
-
 }
 
 log.trace("Calling OneLogin Connector")

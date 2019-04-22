@@ -6,10 +6,13 @@
 
 log.info("Started executing 'example:get_users.js' flintbit")
 
-client_id = input.get('client_id')
-client_secret = input.get('client_secret')
+// Service parameters
+onelogin_config = input.get('onelogin_configurations')
+client_id = onelogin_config.get('client_id')
+client_secret = onelogin_config.get('client_secret')
+connector_name = onelogin_config.get('connector_name')
+
 region = input.get('region')
-connector_name = input.get('connector_name')
 action = 'get-users'
 
 connector_response = call.connector(connector_name)

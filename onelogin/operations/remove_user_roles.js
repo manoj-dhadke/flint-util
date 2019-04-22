@@ -7,11 +7,16 @@
 log.info("Started executing 'example:remove_user_roles.js' flintbit")
 
 action = 'remove-user-roles'
-client_id = input.get('client_id')
-client_secret = input.get('client_secret')
+
+// Service parameters
+onelogin_config = input.get('onelogin_configurations')
+client_id = onelogin_config.get('client_id')
+client_secret = onelogin_config.get('client_secret')
+connector_name = onelogin_config.get('connector_name')
+
+// Service Form Inputs
 region = input.get('region')
 user_id = input.get('user_id')
-connector_name = input.get('connector_name')
 role_id_array = input.get('role_id_array')
 
 connector_response = call.connector(connector_name)
