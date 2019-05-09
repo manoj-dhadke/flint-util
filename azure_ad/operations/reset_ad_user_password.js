@@ -53,7 +53,7 @@ if(input_clone.hasOwnProperty('key')){
 }
 
 // Subscription ID
-if(input_clone.hasOwnProperty('subscription_id'){
+if(input_clone.hasOwnProperty('subscription_id')){
     subscription_id = input.get('subscription_id')
 }else{
     subscription_id = ms_azure_parameters.get('subscription_id')
