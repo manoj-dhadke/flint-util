@@ -61,6 +61,15 @@ if(input_clone.hasOwnProperty('subscription_id')){
 
 // Azure AD username
 username = input.get('username')
+if(username == null && username == ""){
+    log.trace("Please provide active directory username")
+}
+
+// Azure AD Domain
+ad_domain = input.get('active_directory_domain')
+if(ad_domain == null && ad_domain == ""){
+    log.trace("Please provide active directory domain")
+}
 
 log.trace("Calling MS Azure connector for action: "+action)
 connector_call_response = call.connector(connector_name)
@@ -70,6 +79,7 @@ connector_call_response = call.connector(connector_name)
     .set('key', key)
     .set('subscription-id', subscription_id)
     .set('username', username)
+    .set('active_directory_domain', ad_domain)
     .set('azureAd','')
     .timeout(120000)
     .sync()
