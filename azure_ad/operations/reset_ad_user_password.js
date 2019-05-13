@@ -67,8 +67,23 @@ if(username == null && username == ""){
 
 // Azure AD Domain
 ad_domain = input.get('active_directory_domain')
+log.trace("AD Domain: "+ad_domain)
 if(ad_domain == null && ad_domain == ""){
     log.trace("Please provide active directory domain")
+}
+
+// Password
+password = input.get('password')
+log.trace("New password: "+password)
+if(password == null && password == ""){
+    log.trace("Please provide password")
+}
+
+// Force password change?
+is_force_password_change = input.get('forceChangePasswordNextLogin')
+log.trace("Change password: "+is_force_password_change)
+if(is_force_password_change == null && is_force_password_change == ""){
+    log.trace("please provide force password change")
 }
 
 log.trace("Calling MS Azure connector for action: "+action)
@@ -80,6 +95,8 @@ connector_call_response = call.connector(connector_name)
     .set('subscription-id', subscription_id)
     .set('username', username)
     .set('active_directory_domain', ad_domain)
+    .set('password', password)
+    .set('forceChangePasswordNextLogin', is_force_password_change)
     .set('azureAd','')
     .timeout(120000)
     .sync()
