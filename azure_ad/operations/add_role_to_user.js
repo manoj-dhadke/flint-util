@@ -4,12 +4,68 @@ log.trace("Inputs for 'fb-cloud:azure:operation:add_role_to_user.js' :: "+input)
 action = "aad-assign-role-to-user"
 connector_name = "msazure"
 
-client_id = input.get('client_id')
-tenant_id= input.get('tenant_id')
-key = input.get('key')
-subscription_id = input.get('subscription_id')
+// Input clone
+input_clone = JSON.parse(input)
+
+// Initializaing vars
+client_id = ""
+tenant_id = ""
+key = ""
+subscription_id = ""
+ms_azure_parameters = ""
+
+// Check if service params for Azure exist
+if (input_clone.hasOwnProperty('ms_azure_parameters')) {
+    ms_azure_parameters = input.get('ms_azure_parameters')
+
+    // Client ID
+    if (!input_clone.hasOwnProperty('client_id')) {
+        client_id = ms_azure_parameters.get('client_id')
+        log.trace("Client ID taken from service parameters")
+    }
+
+    // Tenant ID
+    if (!input_clone.hasOwnProperty('tenant_id')) {
+        tenant_id = ms_azure_parameters.get('tenant_id')
+        log.trace("Tenant ID taken from service parameters")
+    }
+
+    // Key
+    if (!input_clone.hasOwnProperty('key')) {
+        key = ms_azure_parameters.get('key')
+        log.trace("Key taken from service parameters")
+    }
+
+    // Subscription ID
+    if (!input_clone.hasOwnProperty('subscription_id')) {
+        subscription_id = ms_azure_parameters.get('subscription_id')
+        log.trace("Subscription ID taken from service parameters")
+    }
+} else {
+    log.info("Optional azure service parameters are not present")
+
+    client_id = input.get('client_id')
+    log.trace("Client ID: "+client_id)
+    tenant_id = input.get('tenant_id')
+    log.trace("Tenant ID is given")
+    key = input.get('key')
+    log.trace("Key is given")
+    subscription_id = input.get('subscription_id')
+    log.trace("Subscription ID: "+subscription_id)
+
+}
+
+// Get Users name and Role to be assigned
 username = input.get('username')
 role_name = input.get('role_name')
+
+if(username != null || username != ""){
+    log.trace("Azure AD username is "+username)
+}
+
+if(role_name != null || role_name != ""){
+    log.trace("Roles to assign to user are "+role_name)
+}
 
 
 log.trace("Calling MS Azure connector for action: "+action)
