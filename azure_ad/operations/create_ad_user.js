@@ -19,25 +19,25 @@ if (input_clone.hasOwnProperty('ms_azure_parameters')) {
     ms_azure_parameters = input.get('ms_azure_parameters')
 
     // Client ID
-    if (!input.hasOwnProperty('client_id')) {
+    if (!input_clone.hasOwnProperty('client_id')) {
         client_id = ms_azure_parameters.get('client_id')
         log.trace("Client ID taken from service parameters")
     }
 
     // Tenant ID
-    if (!input.hasOwnProperty('tenant_id')) {
+    if (!input_clone.hasOwnProperty('tenant_id')) {
         tenant_id = ms_azure_parameters.get('tenant_id')
         log.trace("Tenant ID taken from service parameters")
     }
 
     // Key
-    if (!input.hasOwnProperty('key')) {
+    if (!input_clone.hasOwnProperty('key')) {
         key = ms_azure_parameters.get('key')
         log.trace("Key taken from service parameters")
     }
 
     // Subscription ID
-    if (!input.hasOwnProperty('subscription_id')) {
+    if (!input_clone.hasOwnProperty('subscription_id')) {
         subscription_id = ms_azure_parameters.get('subscription_id')
         log.trace("Subscription ID taken from service parameters")
     }
