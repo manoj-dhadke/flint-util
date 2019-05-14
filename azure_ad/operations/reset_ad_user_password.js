@@ -80,7 +80,7 @@ if(password == null && password == ""){
 }
 
 // Force password change?
-is_force_password_change = input.get('forceChangePasswordNextLogin')
+is_force_password_change = input.get('force_password_change')
 log.trace("Change password: "+is_force_password_change)
 if(is_force_password_change == null && is_force_password_change == ""){
     log.trace("please provide force password change")
