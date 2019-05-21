@@ -56,21 +56,21 @@ if (input_clone.hasOwnProperty('ms_azure_parameters')) {
 }
 
 // Mandatory new user parameters
-account_enabled = false 
+account_enabled = true 
 display_name = ""
-mail_nickname = ""
+mail_alias_name = ""
 password = ""
 force_password_change = true
 user_principal_name = ""
 
 
 // Account Enabled?
-if(input_clone.hasOwnProperty('account_enabled')){
+/*if(input_clone.hasOwnProperty('account_enabled')){
     account_enabled = input.get('account_enabled')
     if( account_enabled!= null &&  account_enabled!= ""){
         log.trace("Account Enabled? "+account_enabled)
     }
-}
+}*/
 
 // Display Name
 if(input_clone.hasOwnProperty('display_name')){
@@ -81,10 +81,10 @@ if(input_clone.hasOwnProperty('display_name')){
 }
 
 // Mail Nickname
-if(input_clone.hasOwnProperty('mail_nickname')){
-    mail_nickname = input.get('mail_nickname')
-   if( mail_nickname!= null && mail_nickname != ''){
-       log.trace("Mail nickname is "+mail_nickname)
+if(input_clone.hasOwnProperty('mail_alias_name')){
+    mail_alias_name = input.get('mail_alias_name')
+   if( mail_alias_name!= null && mail_alias_name != ''){
+       log.trace("Mail nickname is "+mail_alias_name)
    }
 }
 
@@ -97,12 +97,12 @@ if(input_clone.hasOwnProperty('password')){
 }
 
 // Force password change on login
-if(input_clone.hasOwnProperty('force_password_change')){
+/*if(input_clone.hasOwnProperty('force_password_change')){
     force_password_change = input.get('force_password_change')
    if( force_password_change!= null &&  force_password_change!= ""){
        log.trace("Force password change on login? "+force_password_change)
    }
-}
+}*/
 
 // User Principal Name
 if(input_clone.hasOwnProperty('user_principal_name')){
@@ -129,7 +129,7 @@ connector_call = call.connector(connector_name)
     .set('subscription-id', subscription_id)
     .set('accountEnabled', account_enabled)
     .set('displayName', display_name)
-    .set('mailNickname', mail_nickname)
+    .set('mailNickname', mail_alias_name)
     .set('password', password)
     .set('forceChangePasswordNextLogin', force_password_change)
     .set('userPrincipalName', user_principal_name)
