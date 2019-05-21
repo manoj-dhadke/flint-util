@@ -5,145 +5,156 @@
 */
 
 log.trace("Started executing 'flint-util:ssh:operation:workflow:date.js'");
-
-//Service Parameters
-connector_name = input.get("connector_name");      //Name of the SSH Connector
-
-//Service Inputs
-timeout = input.get("timeout");                     //Timeout in miliseconds
-target = input.get("target");                       //Target machine where command will be executed
-username = input.get("username");                   //Target Username
-password = input.get("password");                   //Target password
-passphrase = input.get("passphrase");               //Passphrase to be used
-key_file = input.get("private_key");                //Absolute path of private-key
-port = input.get("port");                           //Port to connect
-type = input.get("type");                           //type of shell
-
-//Command to find out the system date
 command = "date";
 
-//Validation of Connector Name
-if(connector_name!=null || connector_name!=""){
-    log.info("connector name:"+connector_name);
+
+input_clone = JSON.parse(input);                    //used for checking
+
+
+//Connector name
+if(input_clone.hasOwnProperty("connector_name")){ //to check for key "connector_name"
+    connector_name = input.get("connector_name"); 
+    log.info("Connector name:"+connector_name);
+    //to check for a valid name
+    if(connector_name!=null || connector_name!=""){
+        connector_call = call.connector(connector_name);
+        //Setting the command parameter
+        connector_call.set("command",command);
+        log.info("Command:"+command);
+
+    }
+    else{
+        log.error("Connector name is null or empty string");
+    }
 }
 else{
-    log.error("Connector name not given");          //mandatory to give connector name
+    log.error("Connector name key is not given in the input");
 }
 
-//Validation of Target
-if(target!=null || target!=""){
-    log.info("target:"+target);
+//Target
+if(input_clone.hasOwnProperty("target")){ //to check for key "target"
+    target = input.get("target"); 
+    log.info("Target:"+target);
+    //to check for a valid target
+    if(target!=null || target!=""){
+        connector_call.set("target",target);
+    }
+    else{
+        log.error("Target is null or empty string");
+    }
 }
 else{
-    log.error("target not given");                  //mandatory to give target
+    log.error("Target key is not given in the input");
 }
 
-//Validation of Type
-if(type!=null || type!=""){
-    log.info("type:"+type);
+//Username
+if(input_clone.hasOwnProperty("username")){ //to check for key "username"
+    username = input.get("username"); 
+    log.info("Username:"+username);
+    //to check for a valid username
+    if(username!=null || username!=""){
+        connector_call.set("username",username);
+    }
+    else{
+        log.error("Username is null or empty string");
+    }
 }
 else{
-    log.error("type not given");                  //mandatory to give type
+    log.error("Username key is not given in the input");
 }
 
-
-//Validation of Username
-if(username!=null || username!=""){
-    log.info("username:"+username);
+//Port
+if(input_clone.hasOwnProperty("port")){ //to check for key "port"
+    port = input.get("port");
+    port = parseInt(port); 
+    log.info("Port:"+port);
+    //to check for a valid port
+    if(port!=null || port!=""){
+        connector_call.set("port",port);
+    }
+    else{
+        log.error("Port is null or empty string");
+    }
 }
 else{
-    log.error("Username name not given");           //mandatory to give username
+    log.error("Port key is not given in the input");
 }
 
-//Validation of timeout
-if(timeout!=null || timeout!=""){                   //timeout not mandatory
-    timeout = parseInt(timeout);
-    log.info("timeout:"+timeout);
+//Type
+if(input_clone.hasOwnProperty("type_of_shell")){ //to check for key "type"
+    type = input.get("type_of_shell"); 
+    log.info("Type:"+type);
+    //to check for a valid type
+    if(type!=null || type!=""){
+        connector_call.set("type",type);
+    }
+    else{
+        log.error("Type is null or empty string");
+    }
 }
 else{
-    timeout = 60000;                                //Setting default timeout
-    log.info("Setting timeout to 60000 miliseconds");
+    log.error("Type key is not given in the input");
 }
 
-//Validation of Port
-if(port!=null || port!=""){
-    port = parseInt(port);
-    log.info("port:"+port);
-}
-else{
-    log.error("Port not given");                    //Port mandatory input
-}
 
-//Validation of password
-if(password!=null || password!=""){
+//Password based authentication
+if(input_clone.hasOwnProperty("password")){ //to check for key "password"
+    password = input.get("password"); 
     log.info("Password is given");
-}
-else{                                               //Not mandatory as authentication type
-    log.trace("Password not given");                //depends on user
-}
-
-//Validation of private key path
-if(key_file!=null || key_file!=""){
-    log.info("private key path:"+key_file);
-}
-else{                                               //Not mandatory as authentication type
-    log.trace("private key path not given");        //depends on user
-}
-
-//Validation of passphrase
-if(passphrase!=null || passphrase!=""){
-    log.info("passphrase:"+passphrase);
-}
-else{                                               //Not mandatory as authentication type
-    log.trace("Passphrase not given");              //depends on user
-}
-
-
-//connector call
-// For password-based authentication
-if(password!=null || password!=""){
-    response = call.connector(connector_name)
-                .set("target",target)
-                .set("username",username)
-                .set("password",password)
-                .set("command",command)
-                .set("timeout",timeout)
-                .set("type",type)
-                .set("port",port)
-                .sync();
-
-}
-
-//For key-based authentication without passphrase
-else if((key_file!=null || key_file!="") && (passphrase==null || passphrase=="")){
-    response = call.connector(connector_name)
-                .set("target",target)
-                .set("username",username)
-                .set("key-file",key_file)
-                .set("command",command)
-                .set("timeout",timeout)
-                .set("type",type)
-                .set("port",port)
-                .sync();
-
-}
-
-//For key-based authentication with passphrase
-else if((key_file!=null || key_file!="") && (passphrase!=null || passphrase!="")){
-    response = call.connector(connector_name)
-                .set("target",target)
-                .set("username",username)
-                .set("passphrase",passphrase)
-                .set("key-file",key_file)
-                .set("command",command)
-                .set("timeout",timeout)
-                .set("type",type)
-                .set("port",port)
-                .sync();
-
+    //to check for a valid password
+    if(password!=null || password!=""){
+        response = connector_call.set("password",password).sync();
+    }
+    else{
+        log.trace("Password is null or empty string");
+    }
 }
 else{
-    log.error("Authentication error.Use either password-based or key-based authetication.");
+    log.trace("Password key is not given in the input");
+}
+
+//Key-based authentication with key and passphrase
+if(input_clone.hasOwnProperty("private_key_path") && input_clone.hasOwnProperty("passphrase")){
+    key_file = input.get("private_key_path"); 
+    passphrase = input.get("passphrase");
+    log.info("Key Path:"+key_file);
+    log.info("Passphrase:"+passphrase);
+    //to check for a valid key file and passphrase
+    if((key_file!=null || key_file!="") && (passphrase!=null || passphrase!="")){
+        response = connector_call.set("key-file",key_file).set("passphrase",passphrase).sync();
+    }
+    else{
+        log.trace("Key-Path and passphrase is null or empty string");
+    }
+}
+else{
+    log.trace("Key-path and passpharse are not given in the input");
+}
+
+//Key-based authentication only with key
+if(input_clone.hasOwnProperty("private_key_path")){
+    key_file = input.get("private_key_path"); 
+    log.info("Key Path:"+key_file);
+    //to check for a valid key file 
+    if((key_file!=null || key_file!="")){
+        response = connector_call.set("key-file",key_file).sync();
+    }
+    else{
+        log.trace("Key-Path is null or empty string");
+    }
+}
+else{
+    log.trace("Key-path is not given in the input");
+}
+
+//Validation for no authentication
+if((input_clone.hasOwnProperty("password")==false && 
+    input_clone.hasOwnProperty("private_key_path")==false && 
+    input_clone.hasOwnProperty("passphrase")==false) || 
+    ((password==null || password=="") && 
+    (passphrase==null || passphrase=="") &&
+    (key_file==null || key_file==""))){
+    log.trace("No authentication information provided. Please use either password-based or key-based authentication");
 }
 
 //SSH Connector Response's meta parameters
