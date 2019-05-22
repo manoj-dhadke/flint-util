@@ -7,13 +7,22 @@ log.trace("Started executing flint-util:freshservice:update_ticket_wf.js")
 
     log.info(input)
 
-    // Global config
-    freshservice_configs = ""
+input_clone = JSON.parse(input)
+
+// Service Params
+freshservice_configs = ""
+
+// Global config
+if(input_clone.hasOwnProperty('freshservice_configurations')){
+    log.trace("Freshservice service params are given")
+    freshservice_configs = input.get('freshservice_configurations')
+    log.info("Freshservice service params are: "+freshservice_configs)
+}
+
 // Global config
     email = config.global("freshservice_wf.email")                               //Email address of the requester
     if(email == null || email == ""){
         log.trace("Setting email from service param")
-        freshservice_configs = input.get('freshservice_configurations')
         email = freshservice_configs.get('email')
         log.trace(email)
     }
