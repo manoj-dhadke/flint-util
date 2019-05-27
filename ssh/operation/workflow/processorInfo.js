@@ -1,11 +1,10 @@
 /**
- * Creation Date: 24/05/2019
- * Summary: to view present working directory on target
- * Description: To view present working directory on target using SSH Protocol
+ * Creation Date: 27/05/2019
+ * Summary: Processor information on target
+ * Description: To view Processor information on target using SSH Protocol
 */
 
-log.trace("Started executing 'flint-util:ssh:operation:workflow:pwd.js'");
-
+log.trace("Started executing 'flint-util:ssh:operation:workflow:processorInfo.js'");
 input_clone = JSON.parse(input);
 
 //Connector name
@@ -13,21 +12,21 @@ connector_name = "ssh";
 connector_call = call.connector(connector_name);
 log.info("Connector Name: "+connector_name);
 
-//Type
-type = "exec";
-log.info("Type Of Shell: "+type);
-
 //Command
-command = "hostname";
+command = "lscpu";
 log.info("Command: "+command);
 
+//Type
+type = "exec";
+log.info("Type: "+type);
+
 //Timeout
-timeout = 240000; //4 minutes
+timeout = 240000;
 log.info("Timeout: "+timeout);
 
-connector_call.set("timeout",timeout).set("type",type).set("command",command);
+connector_call.set("command",command).set("type",type).set("timeout",timeout);
 
-if(input_clone.hasOwnProperty("protocol_connection")){ //to check for key "target"
+if(input_clone.hasOwnProperty("protocol_connection")){
     
     //Target
     target = input_clone.protocol_connection["hostname"]; 
@@ -81,15 +80,15 @@ if(input_clone.hasOwnProperty("protocol_connection")){ //to check for key "targe
     
     //Key-based authentication
     else{
-        key = input_clone.protocol_connection["pem_key"]; 
-        log.info("Key is given");
-        //to check for a valid key
-        if((key!=null || key!="")){
-            response = connector_call.set("pem-data",key).sync();
-        }
-        else{
-            log.trace("Key is null or empty string");
-        }
+        key = input.get("pem_key"); 
+        log.info("Private Key is given");
+        //to check for a valid key 
+        if(key!=null || key!=""){
+        response = connector_call.set("pem-data",key).sync();
+    }
+    else{
+        log.trace("Key is null or empty string");
+    }
     }
     //SSH Connector Response's meta parameters
     response_exitcode = response.exitcode();        //Exit status code
@@ -97,21 +96,43 @@ if(input_clone.hasOwnProperty("protocol_connection")){ //to check for key "targe
 
     //SSH Connector Response's Result parameter
     result = response.get("result");                //Response result
-    result = result.replace("\n","");              //to remove the "\n" at the end of the result
+
+    //Split the result according to "\n" to obtain individual key:value pairs in an array
+    result = result.split("\n");  //result array
+    result.pop();   //deleting the last empty entry from the result array
+
+    jstr = '{';                             //making a string to convert into JSON
+    for(i = 0 ; i < result.length ; i++){
+        result_val = result[i];    
+        arr = result_val.split(":"); //splitting each entry into key and value. arr is an array with 2 elements 
+        key = arr[0].trim();
+        value = arr[1].trim(); 
+        jstr = jstr + '"' + key + '":"' + value + '"';
+        if(i!=(result.length-1)) jstr = jstr + ',';
+        }
+    jstr = jstr + '}';
+
+    result = JSON.parse(jstr); //converting the string into JSON
 
     if(response_exitcode==0){                       //Successfull execution
         log.info("Successfull execution of command:"+command);
-        log.info("Command result:"+result);
-        //User Message
-        user_message = "The present working directory on the target is "+result;
-        //Setting the result,exit-code and user_message in output
+        //User Message by extracting values from JSON 
+        user_message =' The processor information on target is'+
+                   '    (i)Model name:'+ result["Model name"]+ 
+                    '   (ii)Architecture:'+ result["Architecture"]+ 
+                    '   (iii)CPU(s):'+ result["CPU(s)"]+ 
+                    '   (iv)Thread(s) per core:'+ result["Thread(s) per core"]+ 
+                    '   (v)CPU MHz:'+ result["CPU MHz"];
+        log.info("Command result:"+user_message);
+
+
         output.set("result",result).set("exit-code",0).set("user_message",user_message);
-        log.trace("finished executing 'flint-util:ssh:operation:workflow:pwd.js' successfully")
+        log.trace("finished executing 'flint-util:ssh:operation:workflow:processorInfo.js' successfully")
     }
     else{
         log.error("Failure in execution, message:"+response_message+" | exitcode:"+response_exitcode);
         output.set("error",response_message).set("exit-code",-1);
-        log.trace("finished executing 'flint-util:ssh:operation:workflow:pwd.js' with errors")
+        log.trace("finished executing 'flint-util:ssh:operation:workflow:processorInfo.js' with errors")
     }
 }
 else{

@@ -13,6 +13,10 @@ method = "head";
 input_clone = JSON.parse(input); //For checking purposes
 
 //Connector name - mandatory
+connector_name = "http";
+connector_call = call.connector(connector_name);
+log.info("Connector Name: "+connector_name);
+/*
 if(input_clone.hasOwnProperty("connector_name")){
     connector_name = input.get("connector_name");
     if(connector_name!=null || connector_name!=""){
@@ -26,7 +30,7 @@ if(input_clone.hasOwnProperty("connector_name")){
 else{
     log.error("'connector_name' key not given in input JSON");
 }
-
+*/
 //URL - mandatory
 if(input_clone.hasOwnProperty("url")){
     url = input.get("url");
