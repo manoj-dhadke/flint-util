@@ -10,11 +10,24 @@ log.trace("Flintbit Inputs: \n"+input)
 
 action = 'unlock-user'
 
+input_clone = JSON.parse(input)
+
+// Initialize variables
+organization_url = ""
+api_token = ""
+connector_name = ""
+
 // Service parameters
-okta_config = input.get('okta_configurations')
-organization_url = okta_config.get('organization_url')
-api_token = okta_config.get('api_token')
-connector_name = okta_config.get('connector_name')
+if(input_clone.hasOwnProperty('okta_configurations')){
+    okta_config = input.get('okta_configurations')
+    organization_url = okta_config.get('organization_url')
+    api_token = okta_config.get('api_token')
+    connector_name = okta_config.get('connector_name')
+}else{
+    organization_url = input.get('organization_url')
+    api_token = input.get('api_token')
+    connector_name = input.get('connector_name')
+}
 
 // Service Inputs
 email = input.get('email')
