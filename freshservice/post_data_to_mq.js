@@ -3,7 +3,7 @@
 *
 **/
 
-log.info("Started executing 'example:post_data_to_mq.js' flintbit")
+log.info("Started executing 'flint-util:freshservice:post_data_to_mq.js' flintbit")
 
 log.debug("Inputs are "+input)
 

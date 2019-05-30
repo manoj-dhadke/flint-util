@@ -22,8 +22,8 @@ if(input_clone.hasOwnProperty('fw_subdomain') || input_clone.hasOwnProperty('fw_
     log.debug("Body to be sent to MQ: "+body)
 
     // Call Flintbit to send data to MQ
-    log.info("Calling flintbit 'example:post_data_to_mq.js' flinbit to post freshworks app request data to RabbitMQ")
-    flintbit_response = call.bit('example:post_data_to_mq.js')
+    log.info("Calling flintbit 'flint-util:freshservice:post_data_to_mq.js' flinbit to post freshworks app request data to RabbitMQ")
+    flintbit_response = call.bit('flint-util:freshservice:post_data_to_mq.js')
                             .set('body', body)
                             .sync()
 
