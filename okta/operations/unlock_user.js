@@ -12,6 +12,29 @@ action = 'unlock-user'
 
 input_clone = JSON.parse(input)
 
+// Check if request is coming from freshservice
+if(input_clone.hasOwnProperty('fw_subdomain') || input_clone.hasOwnProperty('fw_account_id')){
+    log.info("Input context is "+input.context())
+    body = {
+        "input" : input,
+        "timestamp" : + new Date(),
+        "input_context" : input.context()
+    }
+
+    body = util.json(body)
+    log.debug("Body to be sent to MQ: "+body)
+
+    // Call Flintbit to send data to MQ
+    log.info("Calling flintbit 'flint-util:freshservice:post_data_to_mq.js' flinbit to post freshworks app request data to RabbitMQ")
+    flintbit_response = call.bit('flint-util:freshservice:post_data_to_mq.js')
+                            .set('body', body)
+                            .sync()
+
+    log.debug("Call to 'example:post_data_to_mq.js' was made. \nResult: "+flintbit_response.get("result"))
+
+
+}
+
 // Initialize variables
 organization_url = ""
 api_token = ""

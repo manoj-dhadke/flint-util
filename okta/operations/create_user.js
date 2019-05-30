@@ -9,7 +9,7 @@ log.info("Started executing 'example:create_user.js' flintbit")
 log.trace("Flintbit Inputs: \n"+input)
 input_clone = JSON.parse(input)
 
-// Check if coming
+// Check if request is coming from freshservice
 if(input_clone.hasOwnProperty('fw_subdomain') || input_clone.hasOwnProperty('fw_account_id')){
     log.info("Input context is "+input.context())
     body = {
