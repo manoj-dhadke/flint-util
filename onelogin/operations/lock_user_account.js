@@ -9,18 +9,29 @@ log.info("Started executing 'example:lock_user_account.js' flintbit")
 log.trace("Flintbit Inputs: \n"+input)
 
 action = 'lock-user-account'
-// Service parameters
-onelogin_config = input.get('onelogin_configurations')
-client_id = onelogin_config.get('client_id')
-client_secret = onelogin_config.get('client_secret')
-connector_name = onelogin_config.get('connector_name')
+input_clone = JSON.parse(input)
+
+result = ""
+client_id = ""
+client_secret = ""
+connector_name = ""
+
+if (input_clone.hasOwnProperty('onelogin_configurations')) {
+    // Service parameters
+    onelogin_config = input.get('onelogin_configurations')
+    client_id = onelogin_config.get('client_id')
+    client_secret = onelogin_config.get('client_secret')
+    connector_name = onelogin_config.get('connector_name')
+}else{
+    client_id = input.get('client_id')
+    client_secret = input.get('client_secret')
+    connector_name = input.get('connector_name')
+}
 
 region = input.get('region')
 user_id = input.get('user_id')
 
 // Specified the duration in minutes, to lock the specified user account
-input_clone = JSON.parse(input)
-
 
 log.trace("Setting OneLogin Connector Inputs")
 

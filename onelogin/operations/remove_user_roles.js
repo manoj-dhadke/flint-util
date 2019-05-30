@@ -8,11 +8,24 @@ log.info("Started executing 'example:remove_user_roles.js' flintbit")
 
 action = 'remove-user-roles'
 
-// Service parameters
-onelogin_config = input.get('onelogin_configurations')
-client_id = onelogin_config.get('client_id')
-client_secret = onelogin_config.get('client_secret')
-connector_name = onelogin_config.get('connector_name')
+input_clone = JSON.parse(input)
+
+result = ""
+client_id = ""
+client_secret = ""
+connector_name = ""
+
+if (input_clone.hasOwnProperty('onelogin_configurations')) {
+    // Service parameters
+    onelogin_config = input.get('onelogin_configurations')
+    client_id = onelogin_config.get('client_id')
+    client_secret = onelogin_config.get('client_secret')
+    connector_name = onelogin_config.get('connector_name')
+}else{
+    client_id = input.get('client_id')
+    client_secret = input.get('client_secret')
+    connector_name = input.get('connector_name')
+}
 
 // Service Form Inputs
 region = input.get('region')
