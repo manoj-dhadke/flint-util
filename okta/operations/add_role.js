@@ -56,6 +56,7 @@ if(exit_code == 0){
 }else{
     log.trace("Failed to add role to user: "+message)
     output.set('error', message)
+    output.exit(-1, message)
 }
 
 log.info("Finished executing 'flint-util:okta:operations:add_role.js' flintbit")

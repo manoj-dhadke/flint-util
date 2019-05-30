@@ -7,10 +7,32 @@
 log.info("Started executing 'example:create_user.js' flintbit")
 
 log.trace("Flintbit Inputs: \n"+input)
+input_clone = JSON.parse(input)
+
+// Check if coming
+if(input_clone.hasOwnProperty('fw_subdomain') || input_clone.hasOwnProperty('fw_account_id')){
+    log.info("Input context is "+input.context())
+    body = {
+        "input" : input,
+        "timestamp" : + new Date(),
+        "input_context" : input.context()
+    }
+
+    body = util.json(body)
+    log.debug("Body to be sent to MQ: "+body)
+
+    // Call Flintbit to send data to MQ
+    log.info("Calling flintbit 'example:post_data_to_mq.js' flinbit to post freshworks app request data to RabbitMQ")
+    flintbit_response = call.bit('example:post_data_to_mq.js')
+                            .set('body', body)
+                            .sync()
+
+    log.debug("Call to 'example:post_data_to_mq.js' was made. \nResult: "+flintbit_response.get("result"))
+
+
+}
 
 action = 'create-user'
-
-input_clone = JSON.parse(input)
 
 // Initialize variables
 organization_url = ""
@@ -156,6 +178,7 @@ if(exit_code == 0){
     message = message.split('(')[1].split(')')[0]
     log.trace("Failed to create user: "+message)
     output.set('error', message)
+    output.exit(-1, message)
 }
 
 log.info("Finished executing 'example:create_user.js' flintbit")

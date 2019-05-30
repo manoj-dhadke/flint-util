@@ -54,6 +54,7 @@ if(exit_code == 0){
     message = message.split('(')[1].split(')')[0]
     log.trace("Failed to unlock user : "+message)
     output.set('error', message)
+    output.exit(-1, message)
 }
 
 log.info("Finished executing 'flint-util:okta:operations:unlock_user.js' flintbit")

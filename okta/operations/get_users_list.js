@@ -50,6 +50,7 @@ if(exit_code == 0){
 }else{
     log.trace("Failed to get users list: "+message)
     output.set('error', message)
+    output.exit(-1, message)
 }
 
 log.info("Finished executing 'flint-util:okta:operations:get_users_list.js' flintbit")
