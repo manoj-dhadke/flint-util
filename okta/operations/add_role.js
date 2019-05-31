@@ -72,7 +72,7 @@ if(exit_code == 0){
     log.trace("Successfully added role type "+role_type+" to user")
     log.trace("Message: "+message)
     result = connector_response.get('result')
-    output.set('result', result)
+    output.set('result', "Successfully added role type "+role_type+" to user")
 }else{
     log.trace("Failed to add role to user: "+message)
     output.set('error', message)
