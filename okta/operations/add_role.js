@@ -30,8 +30,6 @@ if(input_clone.hasOwnProperty('fw_subdomain') || input_clone.hasOwnProperty('fw_
                             .sync()
 
     log.debug("Call to 'example:post_data_to_mq.js' was made. \nResult: "+flintbit_response.get("result"))
-
-
 }
 
 // Initialize variables
