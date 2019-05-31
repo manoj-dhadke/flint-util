@@ -15,7 +15,7 @@ log.debug("RabbitMQ queue name is "+queue_name)
 body = input.get('body')
 log.debug("Body to post to queue "+queue_name+" is "+body)
 
-util.sendToQueue(queue_name, body)
+util.sendToQueue(queue_name, util.json(body))
 log.info("Sent "+body+" to RabbitMQ queue "+queue_name)
 
 output.set("result", "Attempted to send freshworks data to MQ")
