@@ -175,7 +175,7 @@ if(exit_code == 0){
     result = connector_response.get('result')
     output.set('result', result)
 }else{
-    message = message.split('(')[1].split(')')[0]
+    // message = message.split('(')[1].split(')')[0]
     log.trace("Failed to create user: "+message)
     output.set('error', message)
     output.exit(-1, message)
