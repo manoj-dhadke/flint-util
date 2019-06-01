@@ -174,7 +174,7 @@ exit_code = connector_response.exitcode()
 message = connector_response.message()
 
 if (exit_code == 0) {
-    result = connector_response.get('created-user')
+    result = JSON.parse(connector_response)
     log.trace("Created user details are : " + result)
     output.set('result', result)
 } else {
