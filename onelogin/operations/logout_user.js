@@ -45,7 +45,7 @@ if (input_clone.hasOwnProperty('onelogin_configurations')) {
 }
 
 region = input.get('region')
-user_id = input.get('user_id')
+username = input.get('username')
 action = 'logout-user'
 
 connector_response = call.connector(connector_name)
@@ -53,7 +53,7 @@ connector_response = call.connector(connector_name)
                         .set('client_secret', client_secret)
                         .set('region', region)
                         .set('action', action)
-                        .set('user_id', user_id)
+                        .set('username', username)
                         .sync()
 
 log.trace(connector_response)
@@ -61,7 +61,7 @@ exit_code = connector_response.exitcode()
 message = connector_response.message()
 if(exit_code == 0){
     result = connector_response.get('status')
-    log.trace("Successfully logged out user with ID: "+user_id)
+    log.trace("Successfully logged out user with username: "+username)
     log.trace("Message: "+message)
     output.set('result', result)
 }else{

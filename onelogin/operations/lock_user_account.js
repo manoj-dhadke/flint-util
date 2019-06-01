@@ -48,7 +48,7 @@ if (input_clone.hasOwnProperty('onelogin_configurations')) {
 }
 
 region = input.get('region')
-user_id = input.get('user_id')
+username = input.get('username')
 
 // Specified the duration in minutes, to lock the specified user account
 
@@ -59,7 +59,7 @@ response = call.connector(connector_name)
                         .set('client_secret', client_secret)
                         .set('region', region)
                         .set('action', action)
-                        .set('user_id', user_id)
+                        .set('username', username)
                         .timeout(120000)
                         log.debug(input_clone['locked_until'] )
                         log.debug(input_clone['locked_until'] != null)
@@ -77,7 +77,7 @@ result = connector_response.get('status')
 exit_code = connector_response.exitcode()
 message = connector_response.message()
 if(exit_code == 0){
-    log.trace("Successfully locked user account with ID: "+user_id+" for "+locked_until+" minutes")
+    log.trace("Successfully locked user account with username: "+username+" for "+locked_until+" minutes")
     log.trace("Message: "+message)
     output.set('result', result)
 }else{

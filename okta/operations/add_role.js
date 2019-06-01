@@ -50,7 +50,6 @@ if(input_clone.hasOwnProperty('okta_configurations')){
     connector_name = input.get('connector_name')
 }
 
-
 // Service Inputs
 role_type = input.get('role_type')
 email = input.get('email')

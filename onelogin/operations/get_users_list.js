@@ -55,10 +55,11 @@ connector_response = call.connector(connector_name)
                         .sync()
 
 log.trace(connector_response)
-result = connector_response.get('users-list')
+result = connector_response
 exit_code = connector_response.exitcode()
 message = connector_response.message()
 if(exit_code == 0){
+    result = JSON.parse(result)
     log.trace("Users List: "+result)
     output.set('result', result)
 }else{

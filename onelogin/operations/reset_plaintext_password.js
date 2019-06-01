@@ -49,7 +49,7 @@ if (input_clone.hasOwnProperty('onelogin_configurations')) {
 }
 
 region = input.get('region')
-user_id = input.get('user_id')
+username = input.get('username')
 password = input.get('password')
 confirm_password = input.get('confirm_password')
 
@@ -61,7 +61,7 @@ response = call.connector(connector_name)
                         .set('client_secret', client_secret)
                         .set('region', region)
                         .set('action', action)
-                        .set('user_id', user_id)
+                        .set('username', username)
                         .set('password', password)
                         .set('password_confirmation', confirm_password)
 
@@ -83,7 +83,7 @@ message = connector_response.message()
 
 if(exit_code == 0){
     result = connector_response.get('status')
-    log.trace("Successfully reset password for user with ID: "+user_id)
+    log.trace("Successfully reset password for user with username: "+username)
     log.trace("Message: "+message)
     output.set('result', result)
 }else{
