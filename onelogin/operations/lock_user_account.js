@@ -6,7 +6,10 @@
 
 log.info("Started executing 'example:lock_user_account.js' flintbit")
 
+
+input_clone = JSON.parse(input)
 log.trace("Flintbit Inputs: \n"+input)
+
 // Check if request is coming from freshservice
 if(input_clone.hasOwnProperty('fw_subdomain') || input_clone.hasOwnProperty('fw_account_id')){
     log.info("Input context is "+input.context())
@@ -28,7 +31,6 @@ if(input_clone.hasOwnProperty('fw_subdomain') || input_clone.hasOwnProperty('fw_
     log.debug("Call to 'example:post_data_to_mq.js' was made. \nResult: "+flintbit_response.get("result"))
 }
 action = 'lock-user-account'
-input_clone = JSON.parse(input)
 
 result = ""
 client_id = ""
