@@ -123,7 +123,7 @@ if (exit_code == 0) {
     output.set('result', message)
 
 } else {
-    log.trace("Error: " + message)
+    log.error("Error: " + message)
     output.set('error', message)
 }
 
