@@ -1,8 +1,8 @@
 log.trace("Started executing 'fb-cloud:azure:operation:update_ad_user.js' flintbit")
 
 log.trace("Inputs for 'fb-cloud:azure:operation:update_ad_user.js' :: " + input)
-action = "aad-update-user"
-connector_name = "msazure"
+action = "update-user"
+connector_name = input.get('connector_name')
 
 // Input clone
 input_clone = JSON.parse(input)
@@ -58,7 +58,7 @@ if (input_clone.hasOwnProperty('ms_azure_parameters')) {
 // Connector call
 log.trace("Calling MS Azure connector for action: " + action)
 
-// Azure AD Username
+// Azure AD Username - Mandatory
 if(input_clone.hasOwnProperty('username')){
     username = input.get('username')
     if(username != null && username != ""){
@@ -70,6 +70,20 @@ if(input_clone.hasOwnProperty('username')){
     log.error("Please provide Azure AD users, username")
 }
 
+// Active Directory Domain - Mandatory
+active_directory_domain = ""
+if(input_clone.hasOwnProperty('active_directory_domain')){
+    log.info("Active directory domain is given")
+    active_directory_domain = input.get('active_directory_domain')
+    if (active_directory_domain != null || active_directory_domain != "") {
+        active_directory_domain = input.get('active_directory_domain')
+        log.trace("Azure Active directory domain is "+ active_directory_domain)
+    }else{
+        log.error("Active directory domain is null or empty")
+    }
+}else{
+    log.error("Active directory domain is not given")
+}
 
 connector_call = call.connector(connector_name)
     .set('action', action)
@@ -78,18 +92,11 @@ connector_call = call.connector(connector_name)
     .set('key', key)
     .set('subscription-id', subscription_id)
     .set('username', username)
-    .set('azureAd', '')
+    .set('active-directory-domain' , active_directory_domain)
     .timeout(120000)
 
 
 // Optional parameters
-
-// Active Directory Domain
-if(input_clone.hasOwnProperty('active_directory_domain')){
-    active_directory_domain = input.get('active_directory_domain')
-    log.trace("Active directory domain: "+active_directory_domain)
-    connector_call.set('active_directory_domain', active_directory_domain)
-}
 
 // Account Enabled 
 if(input_clone.hasOwnProperty('account_enabled')){

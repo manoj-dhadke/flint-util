@@ -89,16 +89,15 @@ if(input_clone.hasOwnProperty('group_name')){
 if(input_clone.hasOwnProperty('active_directory_domain')){
     log.info("Active directory domain is given")
     active_directory_domain = input.get('active_directory_domain')
-    if (group_name != null || group_name != "") {
-        group_name = input.get('active_directory_domain')
-        log.trace(username + " will be added to the group " + group_name)
+    if (active_directory_domain != null || active_directory_domain != "") {
+        active_directory_domain = input.get('active_directory_domain')
+        log.trace("Active directory domain is " + active_directory_domain)
     }else{
         log.error("Active directory domain is null or empty")
     }
 }else{
     log.error("Active directory domain is not given")
 }
-
 
 log.trace("Calling MS Azure connector for action: " + action)
 connector_call_response = call.connector(connector_name)
