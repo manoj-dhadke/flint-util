@@ -1,8 +1,9 @@
 log.trace("Started executing 'fb-cloud:azure:operation:add_user_to_group.js' flintbit")
 
 log.trace("Inputs for 'fb-cloud:azure:operation:add_user_to_group.js' :: "+input)
-action = "aad-add-user-to-group"
-connector_name = "msazure"
+action = "add-user-to-group"
+
+connector_name = input.get('connector_name')
 
 // Input clone
 input_clone = JSON.parse(input)
@@ -55,17 +56,50 @@ if (input_clone.hasOwnProperty('ms_azure_parameters')) {
 
 }
 
-// Username and Group name
-username = input.get('username')
-group_name = input.get('group_name')
+// Username, Group name & Active directory domain
+username = ""
+group_name = ""
+active_directory_domain = ""
 
-if(username != null || username != ""){
-    log.trace("Azure AD username is "+username)
+// Username
+if (input_clone.hasOwnProperty('username')) {
+    log.info("Username is given")
+    username = input.get('username')
+    if (username != null || username != "") {
+        log.trace("Azure AD username is " + username)
+    } else {
+        log.error("Username is null or empty")
+    }
+} else {
+    log.error("Username is not given")
 }
 
-if(group_name != null || group_name != ""){
-    log.trace(username+ " will be added to the group "+group_name)
+// Group Name
+if(input_clone.hasOwnProperty('group_name')){
+    if (group_name != null || group_name != "") {
+        group_name = input.get('group_name')
+        log.trace(username + " will be added to the group " + group_name)
+    }else{
+        log.error("Group name is null or empty")
+    }
+}else{
+    log.error("Group name is not given")
 }
+
+// Active Directory Domain
+if(input_clone.hasOwnProperty('active_directory_domain')){
+    log.info("Active directory domain is given")
+    active_directory_domain = input.get('active_directory_domain')
+    if (group_name != null || group_name != "") {
+        group_name = input.get('active_directory_domain')
+        log.trace(username + " will be added to the group " + group_name)
+    }else{
+        log.error("Active directory domain is null or empty")
+    }
+}else{
+    log.error("Active directory domain is not given")
+}
+
 
 log.trace("Calling MS Azure connector for action: "+action)
 connector_call_response = call.connector(connector_name)
@@ -74,9 +108,10 @@ connector_call_response = call.connector(connector_name)
     .set('tenant-id', tenant_id)
     .set('key', key)
     .set('subscription-id', subscription_id)
-    .set('name-of-user', username)
+    .set('username', username)
     .set('group-name', group_name)
     .set('azureAd','')
+    .set('active-directory-domain', active_directory_domain)
     .timeout(120000)
     .sync()
 
@@ -90,8 +125,9 @@ if(exit_code == 0){
     output.set('result', message)
 
 }else{
-    log.trace("Error: "+message)
+    log.error("Error: "+message)
     output.set('error', message)
+    output.exit(-2, message)
 }
 
 log.trace("Finsihed executing 'fb-cloud:azure:operation:add_user_to_group.js' flintbit")

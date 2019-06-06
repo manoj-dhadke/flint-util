@@ -1,8 +1,8 @@
 log.trace("Started executing 'fb-cloud:azure:operation:remove_user_from_group.js' flintbit")
 
-log.trace("Inputs for 'fb-cloud:azure:operation:remove_user_from_group.js' :: "+input)
-action = "aad-add-user-to-group"
-connector_name = "msazure"
+log.trace("Inputs for 'fb-cloud:azure:operation:remove_user_from_group.js' :: " + input)
+action = "remove-user-from-group"
+connector_name = input.get('connector_name')
 
 // Input clone
 input_clone = JSON.parse(input)
@@ -45,53 +45,85 @@ if (input_clone.hasOwnProperty('ms_azure_parameters')) {
     log.info("Optional azure service parameters are not present")
 
     client_id = input.get('client_id')
-    log.trace("Client ID: "+client_id)
+    log.trace("Client ID: " + client_id)
     tenant_id = input.get('tenant_id')
     log.trace("Tenant ID is given")
     key = input.get('key')
     log.trace("Key is given")
     subscription_id = input.get('subscription_id')
-    log.trace("Subscription ID: "+subscription_id)
+    log.trace("Subscription ID: " + subscription_id)
 
 }
 
-// Username and Group name
-username = input.get('username')
-group_name = input.get('group_name')
+// Username, Group name & Active directory domain
+username = ""
+group_name = ""
+active_directory_domain = ""
 
-if(username != null || username != ""){
-    log.trace("Azure AD username is "+username)
+// Username
+if (input_clone.hasOwnProperty('username')) {
+    log.info("Username is given")
+    username = input.get('username')
+    if (username != null || username != "") {
+        log.trace("Azure AD username is " + username)
+    } else {
+        log.error("Username is null or empty")
+    }
+} else {
+    log.error("Username is not given")
 }
 
-if(group_name != null || group_name != ""){
-    log.trace(username+ " will be added to the group "+group_name)
+// Group Name
+if(input_clone.hasOwnProperty('group_name')){
+    if (group_name != null || group_name != "") {
+        group_name = input.get('group_name')
+        log.trace(username + " will be added to the group " + group_name)
+    }else{
+        log.error("Group name is null or empty")
+    }
+}else{
+    log.error("Group name is not given")
+}
+
+// Active Directory Domain
+if(input_clone.hasOwnProperty('active_directory_domain')){
+    log.info("Active directory domain is given")
+    active_directory_domain = input.get('active_directory_domain')
+    if (group_name != null || group_name != "") {
+        group_name = input.get('active_directory_domain')
+        log.trace(username + " will be added to the group " + group_name)
+    }else{
+        log.error("Active directory domain is null or empty")
+    }
+}else{
+    log.error("Active directory domain is not given")
 }
 
 
-log.trace("Calling MS Azure connector for action: "+action)
+log.trace("Calling MS Azure connector for action: " + action)
 connector_call_response = call.connector(connector_name)
     .set('action', action)
     .set('client-id', client_id)
     .set('tenant-id', tenant_id)
     .set('key', key)
     .set('subscription-id', subscription_id)
-    .set('name-of-user', username)
+    .set('username', username)
     .set('group-name', group_name)
-    .set('azureAd','')
+    .set('active-directory-domain', active_directory_domain)
     .timeout(120000)
     .sync()
 
 exit_code = connector_call_response.exitcode()
 message = connector_call_response.message()
 
-log.trace("Remove Azure AD user "+username+" from group response: "+connector_call_response)
+log.trace("Remove Azure AD user " + username + " from group response: " + connector_call_response)
 
-if(exit_code == 0){
-    log.trace("Exitcode is "+exit_code)
+if (exit_code == 0) {
+    log.trace("Exitcode is " + exit_code)
     output.set('result', message)
 
-}else{
-    log.trace("Error: "+message)
+} else {
+    log.trace("Error: " + message)
     output.set('error', message)
 }
 
