@@ -29,8 +29,11 @@ connector_call.set("timeout",timeout).set("type",type).set("command",command);
 
 if(input_clone.hasOwnProperty("protocol_connection")){ //to check for key "target"
     
+    protocol_connection = input_clone["protocol_connection"];
+    encryptedCredentials = protocol_connection["encryptedCredentials"];
+
     //Target
-    target = input_clone.protocol_connection["hostname"]; 
+    target = encryptedCredentials["hostname"]; 
     log.info("Target:"+target);
     //to check for a valid target
     if(target!=null || target!=""){
@@ -41,7 +44,7 @@ if(input_clone.hasOwnProperty("protocol_connection")){ //to check for key "targe
     }
 
     //Username
-    username = input_clone.protocol_connection["username"]; 
+    username = encryptedCredentials["username"]; 
     log.info("Username:"+username);
     //to check for a valid username
     if(username!=null || username!=""){
@@ -52,7 +55,7 @@ if(input_clone.hasOwnProperty("protocol_connection")){ //to check for key "targe
     }
 
     //Port
-    port = input_clone.protocol_connection["port"];
+    port = encryptedCredentials["port"];
     port = parseInt(port); 
     log.info("Port:"+port);
     //to check for a valid port
@@ -63,12 +66,9 @@ if(input_clone.hasOwnProperty("protocol_connection")){ //to check for key "targe
         log.error("Port is null or empty string");
     }
 
-    //To know the type of authentication used by user
-    authentication = input_clone.protocol_connection;
-
     //Password based authentication
-    if(authentication.hasOwnProperty("password")){
-        password = input_clone.protocol_connection["password"]; 
+    if(encryptedCredentials.hasOwnProperty("password")){
+        password = encryptedCredentials["password"]; 
         log.info("Password is given");
         //to check for a valid password
         if(password!=null || password!=""){
@@ -81,7 +81,7 @@ if(input_clone.hasOwnProperty("protocol_connection")){ //to check for key "targe
     
     //Key-based authentication
     else{
-        key = input_clone.protocol_connection["pem_key"]; 
+        key = encryptedCredentials["pem_key"]; 
         log.info("Key is given");
         //to check for a valid key
         if((key!=null || key!="")){

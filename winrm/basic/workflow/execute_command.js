@@ -23,8 +23,11 @@ connector_call.set("timeout",timeout).set("operation_timeout",operation_timeout)
 
 if(input_clone.hasOwnProperty("protocol_connection")){
 
+    protocol_connection = input_clone["protocol_connection"];
+    encryptedCredentials = protocol_connection["encryptedCredentials"];
+
     //Validation of Target
-    target = input_clone.protocol_connection["hostname"];
+    target = encryptedCredentials["hostname"];
     if(target!=null || target!=""){
         connector_call.set("target",target);
         log.info("target:"+target);
@@ -34,7 +37,7 @@ if(input_clone.hasOwnProperty("protocol_connection")){
     }
 
     //Validation of Username
-    username = input_clone.protocol_connection["username"];                   //Target Username
+    username = encryptedCredentials["username"];                   //Target Username
     if(username!=null || username!=""){
         connector_call.set("username",username);
         log.info("username:"+username);
@@ -44,7 +47,7 @@ if(input_clone.hasOwnProperty("protocol_connection")){
     }
 
     //Validation of Port
-    port = input_clone.protocol_connection["port"];                           //Port to connect
+    port = encryptedCredentials["port"];                           //Port to connect
     if(port!=null || port!=""){
         connector_call.set("port",port);
         log.info("port:"+port);
@@ -54,7 +57,7 @@ if(input_clone.hasOwnProperty("protocol_connection")){
     }
 
     //Validation of password
-    password = input_clone.protocol_connection["password"];                   //Target password
+    password = encryptedCredentials["password"];                   //Target password
     if(password!=null || password!=""){
         connector_call.set("password",password);
         log.info("Password is given");
@@ -64,7 +67,7 @@ if(input_clone.hasOwnProperty("protocol_connection")){
     }
 
     //Validation of transport
-    transport = input_clone.protocol_connection["authentication_type"];       //Aunthentication and encryption type
+    transport = encryptedCredentials["authentication_type"];       //Aunthentication and encryption type
     if(transport!=null || transport!=""){
         connector_call.set("transport",transport);
         log.info("Transport type:"+transport);
@@ -74,7 +77,7 @@ if(input_clone.hasOwnProperty("protocol_connection")){
     }
 
     //Validation of shell
-    shell = input_clone.protocol_connection["shell"];
+    shell = encryptedCredentials["shell"];
     if(shell!=null || shell!=""){
         connector_call.set("shell",shell);
         log.info("shell:"+shell);

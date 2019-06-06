@@ -20,8 +20,10 @@
 
  if(input_clone.hasOwnProperty("protocol_connection")){
 
+    protocol_connection = input_clone["protocol_connection"];
+    encryptedCredentials = protocol_connection["encryptedCredentials"];
     //Username
-    username = input_clone.protocol_connection["username"]; 
+    username = encryptedCredentials["username"]; 
     if(username!="" || username!=null){
         connector_call.set("username",username);
         log.info("Username: "+username);
@@ -31,7 +33,7 @@
     }
 
     //Password
-    password = input_clone.protocol_connection["password"]; 
+    password = encryptedCredentials["password"]; 
     if(password!="" || password!=null){
         connector_call.set("password",password);
         log.info("Password is given.");
@@ -40,8 +42,8 @@
         log.error("Password is an empty string or a null");
     }
 
-    //Hostname
-    target = input_clone.protocol_connection["hostname"]; 
+    //Target
+    target = encryptedCredentials["target"]; 
     if(target!="" || target!=null){
         connector_call.set("target",target);
         log.info("Target: "+target);
@@ -51,7 +53,7 @@
     }
 
     //Port
-    port = input_clone.protocol_connection["port"]; 
+    port = encryptedCredentials["port"]; 
     if(port!=null || port!=""){
         connector_call.set("port",port);
         log.info("Port: "+port);
@@ -124,36 +126,75 @@
     if(input_clone.hasOwnProperty("cc")){
         cc = input.get("cc");
         if(cc!=null || cc!=""){
-            connector_call.set("cc",cc);
-            log.info("cc: "+cc);
+            index_cc = cc.indexOf(",");
+            if(index_cc!=-1){
+                cc = cc.split(",");
+                connector_call.set("cc",cc);
+                log.info("cc: "+cc);
+            }
+            else{
+                cc_array = [];
+                cc_array.push(cc);
+                connector_call.set("cc",cc_array);
+                log.info("cc: "+cc_array);
+            }
         }
+        else{
+            log.info("cc is null or an empty string");
+        }
+    }
+    else{
+        log.info("Input JSON doesn't contain 'cc' key");
     }
 
     //bcc
     if(input_clone.hasOwnProperty("bcc")){
         bcc = input.get("bcc");
         if(bcc!=null || bcc!=""){
-            connector_call.set("bcc",bcc);
-            log.info("bcc: "+bcc);
+            index_bcc = bcc.indexOf(",");
+            if(index_bcc!=-1){
+                bcc = bcc.split(",");
+                connector_call.set("bcc",bcc);
+                log.info("bcc: "+bcc);
+            }
+            else{
+                bcc_array = [];
+                bcc_array.push(bcc);
+                connector_call.set("bcc",bcc_array);
+                log.info("bcc: "+bcc_array);
+            }
         }
+        else{
+            log.info("bcc is null or an empty string");
+        }
+    }
+    else{
+        log.info("Input JSON doesn't contain 'bcc' key");
     }
 
     //Attachments
     if(input_clone.hasOwnProperty("attachments")){
         attachments = input.get("attachments");
         if(attachments!=null || attachments!=""){
-            connector_call.set("attachments",attachments);
-            log.info("Attachments: "+attachments);
+            index_attachment = attachments.indexOf(",");
+            if(index_attachment!=-1){
+                attachments = attachments.split(",");
+                connector_call.set("attachments",attachments);
+                log.info("Attachments: "+attachments);
+            }
+            else{
+                attachments_array = [];
+                attachments_array.push(attachments);
+                connector_call.set("attachments",attachments_array);
+                log.info("Attachments: "+attachments_array);
+            }
+        }
+        else{
+            log.info("attachments is null or an empty string");
         }
     }
-
-    //Content Type
-    if(input_clone.hasOwnProperty("content_type")){
-        content_type = input.get("content_type");
-        if(content_type!=null || content_type!=""){
-            connector_call.set("content-type",content_type);
-            log.info("Content Type: "+content_type);
-        }
+    else{
+        log.info("Input JSON doesn't contain 'attachments' key");
     }
 
     //Connector call
