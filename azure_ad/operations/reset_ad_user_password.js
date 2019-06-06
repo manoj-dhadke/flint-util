@@ -6,13 +6,14 @@
 
 log.trace("Started executing 'flint-util:azure:operation:reset_ad_user_password.js' flintbit")
 
-log.trace("Inputs for 'fb-cloud:azure:operation:reset_ad_user_password.js' :: "+input)
+log.trace("Inputs for 'fb-cloud:azure:operation:reset_ad_user_password.js' :: " + input)
 
 // Action name
-action = "aad-reset-password"
+action = "reset-password"
 
 // Connector name
-connector_name = "msazure"
+// connector_name = "msazure"
+connector_name = input.get('connector_name')
 
 // Input clone
 input_clone = JSON.parse(input)
@@ -25,68 +26,98 @@ subscription_id = ""
 ms_azure_parameters = ""
 
 // Check if service params for Azure exist
-if(input_clone.hasOwnProperty('ms_azure_parameters')){
+if (input_clone.hasOwnProperty('ms_azure_parameters')) {
     ms_azure_parameters = input.get('ms_azure_parameters')
-}else{
-    log.info("Azure service parameters are not present")
-}
 
-// Client ID
-if(input_clone.hasOwnProperty('client_id')){
+    // Client ID
+    if (!input_clone.hasOwnProperty('client_id')) {
+        client_id = ms_azure_parameters.get('client_id')
+        log.trace("Client ID taken from service parameters")
+    }
+
+    // Tenant ID
+    if (!input_clone.hasOwnProperty('tenant_id')) {
+        tenant_id = ms_azure_parameters.get('tenant_id')
+        log.trace("Tenant ID taken from service parameters")
+    }
+
+    // Key
+    if (!input_clone.hasOwnProperty('key')) {
+        key = ms_azure_parameters.get('key')
+        log.trace("Key taken from service parameters")
+    }
+
+    // Subscription ID
+    if (!input_clone.hasOwnProperty('subscription_id')) {
+        subscription_id = ms_azure_parameters.get('subscription_id')
+        log.trace("Subscription ID taken from service parameters")
+    }
+} else {
+    log.info("Optional azure service parameters are not present")
+
     client_id = input.get('client_id')
-}else{
-    client_id = ms_azure_parameters.get('client_id')
-}
-
-// Tenant ID
-if(input_clone.hasOwnProperty('tenant_id')){
+    log.trace("Client ID: " + client_id)
     tenant_id = input.get('tenant_id')
-}else{
-    tenant_id= ms_azure_parameters.get('tenant_id')
-}
-
-// Key
-if(input_clone.hasOwnProperty('key')){
+    log.trace("Tenant ID is given")
     key = input.get('key')
-}else{
-    key= ms_azure_parameters.get('key')
-}
-
-// Subscription ID
-if(input_clone.hasOwnProperty('subscription_id')){
+    log.trace("Key is given")
     subscription_id = input.get('subscription_id')
-}else{
-    subscription_id = ms_azure_parameters.get('subscription_id')
+    log.trace("Subscription ID: " + subscription_id)
+
 }
 
 // Azure AD username
-username = input.get('username')
-if(username == null && username == ""){
-    log.trace("Please provide active directory username")
+username = ""
+if (input_clone.hasOwnProperty('username')) {
+    log.info("Username is given")
+    username = input.get('username')
+    if (username != null || username != "") {
+        log.trace("Azure AD username is " + username)
+    } else {
+        log.error("Username is null or empty")
+    }
+} else {
+    log.error("Username is not given")
 }
 
-// Azure AD Domain
-ad_domain = input.get('active_directory_domain')
-log.trace("AD Domain: "+ad_domain)
-if(ad_domain == null && ad_domain == ""){
-    log.trace("Please provide active directory domain")
+// Active Directory Domain
+active_directory_domain = ""
+if (input_clone.hasOwnProperty('active_directory_domain')) {
+    log.info("Active directory domain is given")
+    active_directory_domain = input.get('active_directory_domain')
+    if (active_directory_domain != null || active_directory_domain != "") {
+        active_directory_domain = input.get('active_directory_domain')
+        log.trace("Active directory domain is " + active_directory_domain)
+    } else {
+        log.error("Active directory domain is null or empty")
+    }
+} else {
+    log.error("Active directory domain is not given")
 }
 
 // Password
-password = input.get('password')
-log.trace("New password: "+password)
-if(password == null && password == ""){
-    log.trace("Please provide password")
+password = ""
+if (input_clone.hasOwnProperty('password')) {
+    log.info("Password is given")
+    password = input.get('password')
+    if (password != null || password != "") {
+        password = input.get('password')
+        log.trace("Password is given not null or empty")
+    } else {
+        log.error("Password is null or empty")
+    }
+} else {
+    log.error("Password is not given")
 }
 
 // Force password change?
 is_force_password_change = input.get('force_password_change')
-log.trace("Change password: "+is_force_password_change)
-if(is_force_password_change == null && is_force_password_change == ""){
+log.trace("Change password: " + is_force_password_change)
+if (is_force_password_change == null && is_force_password_change == "") {
     log.trace("please provide force password change")
 }
 
-log.trace("Calling MS Azure connector for action: "+action)
+log.trace("Calling MS Azure connector for action: " + action)
 connector_call_response = call.connector(connector_name)
     .set('action', action)
     .set('client-id', client_id)
@@ -94,25 +125,25 @@ connector_call_response = call.connector(connector_name)
     .set('key', key)
     .set('subscription-id', subscription_id)
     .set('username', username)
-    .set('active_directory_domain', ad_domain)
+    .set('active-directory-domain', active_directory_domain)
     .set('password', password)
     .set('forceChangePasswordNextLogin', is_force_password_change)
-    .set('azureAd','')
     .timeout(120000)
     .sync()
 
 exit_code = connector_call_response.exitcode()
 message = connector_call_response.message()
 
-log.trace("Reset Azure AD users password response: "+connector_call_response)
+log.trace("Reset Azure AD users password response: " + connector_call_response)
 
-if(exit_code == 0){
-    log.trace("Exitcode is "+exit_code)
+if (exit_code == 0) {
+    log.trace("Exitcode is " + exit_code)
     output.set('result', message)
 
-}else{
-    log.trace("Error: "+message)
+} else {
+    log.trace("Error: " + message)
     output.set('error', message)
+    output.error(-3, message)
 }
 
-log.trace("Finsihed executing 'fb-cloud:azure:operation:reset_ad_user_password.js' flintbit")
+log.trace("Finsihed executing 'flint-util:azure:operation:reset_ad_user_password.js' flintbit")
