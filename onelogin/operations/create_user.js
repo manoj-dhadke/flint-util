@@ -109,7 +109,7 @@ if (input_clone.hasOwnProperty('external_id') && input_clone['external_id'] != n
 
 if (input_clone.hasOwnProperty('group_id') && input_clone['group_id'] != null && input_clone['group_id'] != "") {
     group_id = input.get('group_id')           // Integer
-    group_id = Number('group_id')
+    group_id = Number(group_id)
     response.set('group_id', group_id)
     log.trace("Group ID is " + group_id)
 
