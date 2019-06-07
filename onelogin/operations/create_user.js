@@ -117,7 +117,7 @@ if (input_clone.hasOwnProperty('group_id') && input_clone['group_id'] != null &&
 
 if (input_clone.hasOwnProperty('invalid_login_attempts') && input_clone['invalid_login_attempts'] != null && input_clone['invalid_login_attempts'] != "") {
     invalid_login_attempts = input.get('invalid_login_attempts') // Integer
-    invalid_login_attempts = Number('invalid_login_attempts')
+    invalid_login_attempts = Number(invalid_login_attempts)
     response.set('invalid_login_attempts', invalid_login_attempts)
     log.trace("Invalid login attempts are set to " + invalid_login_attempts)
 
