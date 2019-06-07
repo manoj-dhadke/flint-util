@@ -46,7 +46,7 @@ if (input_clone.hasOwnProperty('onelogin_configurations')) {
     connector_name = input.get('connector_name')
 }
 
-region = input.get('region')
+region = input.get('onelogin_region')
 action = 'get-users'
 
 connector_response = call.connector(connector_name)

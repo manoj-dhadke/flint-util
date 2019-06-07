@@ -53,7 +53,7 @@ if (input_clone.hasOwnProperty('onelogin_configurations')) {
 action = 'create-user'
 
 // Create User Params
-region = input.get('region')
+region = input.get('onelogin_region')
 first_name = input.get('first_name')
 last_name = input.get('last_name')
 email = input.get('email')
