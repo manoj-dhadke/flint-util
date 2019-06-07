@@ -5,7 +5,7 @@
 **/
 
 log.info("Started executing 'example:delete_user.js' flintbit")
-
+log.info("Flintbit inputs: "+input)
 input_clone = JSON.parse(input)
 // Check if request is coming from freshservice
 if(input_clone.hasOwnProperty('fw_subdomain') || input_clone.hasOwnProperty('fw_account_id')){
