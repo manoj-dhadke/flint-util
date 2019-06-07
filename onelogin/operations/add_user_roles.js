@@ -5,7 +5,7 @@
 **/
 
 log.info("Started executing 'flint:add_user_roles.js' flintbit")
-
+log.info("Flintbit inputs: "+input)
 action = 'add-user-roles'
 
 input_clone = JSON.parse(input)
@@ -14,7 +14,8 @@ input_clone = JSON.parse(input)
 if(input_clone.hasOwnProperty('fw_subdomain') || input_clone.hasOwnProperty('fw_account_id')){
     log.info("Input context is "+input.context())
     body = {
-        "input" : input,
+        "fw_subdomain" : input.get('fw_subdomain'),
+        "fw_account_id" : input.get('fw_account_id'),
         "timestamp" : + new Date(),
         "input_context" : input.context()
     }
