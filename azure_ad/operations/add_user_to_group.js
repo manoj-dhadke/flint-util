@@ -90,8 +90,8 @@ if(input_clone.hasOwnProperty('group_name')){
 if(input_clone.hasOwnProperty('active_directory_domain')){
     log.info("Active directory domain is given")
     active_directory_domain = input.get('active_directory_domain')
-    if (group_name != null || group_name != "") {
-        group_name = input.get('active_directory_domain')
+    if (active_directory_domain != null || active_directory_domain != "") {
+        active_directory_domain = input.get('active_directory_domain')
         log.trace(username + " will be added to the group " + group_name)
     }else{
         log.error("Active directory domain is null or empty")
