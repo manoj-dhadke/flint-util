@@ -1,7 +1,7 @@
 log.trace("Started executing 'flint-util:azure_ad:operation:delete_user.js' flintbit")
 
 log.trace("Inputs for 'fb-cloud:azure:operation:add_user_to_group.js' :: "+input)
-action = "add-user-to-group"
+action = "delete-user"
 
 connector_name = input.get('connector_name')
 
