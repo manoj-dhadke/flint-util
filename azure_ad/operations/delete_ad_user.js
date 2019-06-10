@@ -85,6 +85,7 @@ if(exit_code == 0){
 }else{
     log.trace("Error: "+message)
     output.set('error', message)
+    output.exit(-3, message)
 }
 
 log.trace("Finsihed executing 'fb-cloud:azure:operation:delete_ad_user.js' flintbit")

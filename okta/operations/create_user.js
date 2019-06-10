@@ -97,8 +97,10 @@ if(input_clone.hasOwnProperty('is_active') && input_clone['is_active'] != null &
     is_active = input.get('is_active')
     if(is_active == "true"){
         is_active = true
-    }else{
+    }else if(is_active == "false"){
         is_active = false
+    }else{
+        is_active = true
     }
     connector_request.set('is_active', is_active)
     log.trace('Make user active?: '+is_active)

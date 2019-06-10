@@ -112,7 +112,7 @@ if(exit_code == 0){
 }else{
     log.error("Error: "+message)
     output.set('error', message)
-    output.exit(-2, message)
+    output.exit(-3, message)
 }
 
 log.trace("Finished executing 'flint-util:azure_ad:operation:delete_user.js' flintbit")

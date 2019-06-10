@@ -283,6 +283,7 @@ if (exit_code == 0) {
 } else {
     log.error("Error: " + message)
     output.set('error', message)
+    output.exit(-3, message)
 }
 
 log.trace("Finsihed executing 'fb-cloud:azure:operation:create_ad_user.js' flintbit")
