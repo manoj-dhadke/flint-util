@@ -167,6 +167,7 @@ connector_call = call.connector(connector_name)
 
 // Optional parameters
 // Department
+department = ""
 if (input_clone.hasOwnProperty('department')) {
     if (department != null || department != "") {
         department = input.get('department')
@@ -175,6 +176,7 @@ if (input_clone.hasOwnProperty('department')) {
     }
 }
 // Given Name - First Name
+given_name = ""
 if (input_clone.hasOwnProperty('given_name')) {
     given_name = input.get('given_name')
     log.trace("Given name/ first name is " + given_name)
@@ -182,6 +184,7 @@ if (input_clone.hasOwnProperty('given_name')) {
 
 }
 // Job Title
+job_title = ""
 if (input_clone.hasOwnProperty('job_title')) {
     if (job_title != null || job_title != "") {
         job_title = input.get('job_title')
@@ -190,6 +193,7 @@ if (input_clone.hasOwnProperty('job_title')) {
     }
 }
 // Mobile
+mobile = ""
 if (input_clone.hasOwnProperty('mobile')) {
     if (mobile != null || mobile != "") {
 
@@ -199,6 +203,7 @@ if (input_clone.hasOwnProperty('mobile')) {
     }
 }
 // Other mails
+other_mails = ""
 if (input_clone.hasOwnProperty('other_mails')) {
     if (other_mails != null || other_mails != "") {
 
@@ -209,6 +214,7 @@ if (input_clone.hasOwnProperty('other_mails')) {
     }
 }
 // Password Policies
+password_policies = ""
 if (input_clone.hasOwnProperty('password_policies')) {
     if (password_policies != null || password_policies != "") {
 
@@ -218,6 +224,7 @@ if (input_clone.hasOwnProperty('password_policies')) {
     }
 }
 // Physical Delivery Office Name
+physical_delivery_office_name = ""
 if (input_clone.hasOwnProperty('physical_delivery_office_name')) {
     if (physical_delivery_office_name != null || physical_delivery_office_name != "") {
 
@@ -227,6 +234,7 @@ if (input_clone.hasOwnProperty('physical_delivery_office_name')) {
     }
 }
 // Preferred Language
+preferred_language = ""
 if (input_clone.hasOwnProperty('preferred_language')) {
     if (preferred_language != null || preferred_language != "") {
 
@@ -236,6 +244,7 @@ if (input_clone.hasOwnProperty('preferred_language')) {
     }
 }
 // Street Address
+street_address = ""
 if (input_clone.hasOwnProperty('street_address')) {
     if (street_address != null || street_address != "") {
 
@@ -245,6 +254,7 @@ if (input_clone.hasOwnProperty('street_address')) {
     }
 }
 // Postal Code
+postal_code = ""
 if (input_clone.hasOwnProperty('postal_code')) {
     if (postal_code != null || postal_code != "") {
 
@@ -254,6 +264,7 @@ if (input_clone.hasOwnProperty('postal_code')) {
     }
 }
 // On Premises Security Identifier
+on_premise_security_identifier = ""
 if (input_clone.hasOwnProperty('on_premise_security_identifier')) {
     if (on_premise_security_identifier != null || on_premise_security_identifier != "") {
 
@@ -263,6 +274,7 @@ if (input_clone.hasOwnProperty('on_premise_security_identifier')) {
     }
 }
 // Object Type
+object_type = ""
 if (input_clone.hasOwnProperty('object_type')) {
     if (object_type != null || object_type != "") {
 
@@ -272,6 +284,7 @@ if (input_clone.hasOwnProperty('object_type')) {
     }
 }
 // Surname
+surname = ""
 if (input_clone.hasOwnProperty('surname')) {
     if (surname != null || surname != "") {
 
@@ -281,6 +294,7 @@ if (input_clone.hasOwnProperty('surname')) {
     }
 }
 // Email
+email = ""
 if (input_clone.hasOwnProperty('Email')) {
     if (email != null || email != "") {
 
