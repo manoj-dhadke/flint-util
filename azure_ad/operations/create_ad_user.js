@@ -214,6 +214,7 @@ if (input_clone.hasOwnProperty('other_mails')) {
             log.trace("Other mails is " + other_mails)
             connector_call.set('otherMails', other_mails)
         } else {
+            other_mails = [other_mails]
             connector_call.set('otherMails', other_mails)
         }
     }
