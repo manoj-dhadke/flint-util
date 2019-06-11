@@ -4,7 +4,7 @@
 ** Description: This flintbit is developed to assign roles to OneLogin user.
 **/
 
-log.info("Started executing 'flint:add_user_roles.js' flintbit")
+log.info("Started executing 'flint-util:onelogin:operations:add_user_roles.js' flintbit")
 log.info("Flintbit inputs: "+input)
 action = 'add-user-roles'
 
@@ -77,4 +77,4 @@ if(exit_code == 0){
     output.exit(-3, message.toString())
 }
 
-log.info("Finished executing 'example:add_user_roles.js' flintbit")
+log.info("Finished executing 'flint-util:onelogin:operations:add_user_roles.js' flintbit")

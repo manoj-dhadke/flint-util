@@ -4,7 +4,7 @@
 ** Description: This flintbit is developed to lock an users account for specified duration in minutes on OneLogin.
 **/
 
-log.info("Started executing 'example:lock_user_account.js' flintbit")
+log.info("Started executing 'flint-util:onelogin:operations:lock_user_account.js' flintbit")
 
 input_clone = JSON.parse(input)
 log.trace("Flintbit Inputs: \n"+input)
@@ -88,4 +88,4 @@ if(exit_code == 0){
     output.exit(-3, message.toString())
 }
 
-log.info("Finished executing 'example:lock_user_account.js' flintbit")
+log.info("Finished executing 'flint-util:onelogin:operations:lock_user_account.js' flintbit")

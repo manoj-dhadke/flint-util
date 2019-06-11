@@ -4,7 +4,7 @@
 ** Description: This flintbit is developed to logout an user on OneLogin.
 **/
 
-log.info("Started executing 'example:logout_user.js' flintbit")
+log.info("Started executing 'flint-util:onelogin:operations:logout_user.js' flintbit")
 log.info("Flintbit inputs: "+input)
 
 input_clone = JSON.parse(input)
@@ -72,4 +72,4 @@ if(exit_code == 0){
     output.exit(-3, message.toString())
 }
 
-log.info("Finished executing 'example:logout_user.js' flintbit")
+log.info("Finished executing 'flint-util:onelogin:operations:logout_user.js' flintbit")

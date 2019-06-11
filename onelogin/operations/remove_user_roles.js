@@ -4,7 +4,7 @@
 ** Description: This flintbit is developed to remove roles assigned to OneLogin user.
 **/
 
-log.info("Started executing 'example:remove_user_roles.js' flintbit")
+log.info("Started executing 'flint-util:onelogin:operations:remove_user_roles.js' flintbit")
 
 action = 'remove-user-roles'
 log.info("Flintbit inputs: "+input)
@@ -79,4 +79,4 @@ if(exit_code == 0){
     output.exit(-3, message.toString())
 }
 
-log.info("Finished executing 'example:remove_user_roles.js' flintbit")
+log.info("Finished executing 'flint-util:onelogin:operations:remove_user_roles.js' flintbit")

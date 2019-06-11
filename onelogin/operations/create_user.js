@@ -4,7 +4,7 @@
 ** Description: This flintbit is developed to create a OneLogin user.
 **/
 
-log.info("Started executing 'example:create_user.js' flintbit")
+log.info("Started executing 'flint-util:onelogin:operations:create_user.js' flintbit")
 
 log.info("Flintbit Inputs: \n" + input)
 
@@ -184,4 +184,4 @@ if (exit_code == 0) {
     output.exit(-3, message.toString())
 }
 
-log.info("Finished executing 'example:create_user.js' flintbit")
+log.info("Finished executing 'flint-util:onelogin:operations:create_user.js' flintbit")

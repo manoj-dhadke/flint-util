@@ -4,7 +4,7 @@
 ** Description: This flintbit is developed to logout an user on OneLogin.
 **/
 
-log.info("Started executing 'example:reset_plaintext_password.js' flintbit")
+log.info("Started executing 'flint-util:onelogin:operations:reset_plaintext_password.js' flintbit")
 log.trace("Flintbit inputs: "+input)
 
 action = 'reset-password-plaintext'
@@ -94,4 +94,4 @@ if(exit_code == 0){
     output.exit(-3, message.toString())
 }
 
-log.info("Finished executing 'example:reset_plaintext_password.js' flintbit")
+log.info("Finished executing 'flint-util:onelogin:operations:reset_plaintext_password.js' flintbit")

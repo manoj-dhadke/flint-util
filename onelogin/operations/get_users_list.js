@@ -4,7 +4,7 @@
 ** Description: This flintbit is developed to get a list of OneLogin users list.
 **/
 
-log.info("Started executing 'example:get_users.js' flintbit")
+log.info("Started executing 'flint-util:onelogin:operations:get_users.js' flintbit")
 log.info("Flintbit inputs: "+input)
 
 input_clone = JSON.parse(input)
@@ -70,4 +70,4 @@ if(exit_code == 0){
     output.exit(-3, message.toString())
 }
 
-log.info("Finished executing 'example:get_users.js' flintbit")
+log.info("Finished executing 'flint-util:onelogin:operations:get_users.js' flintbit")

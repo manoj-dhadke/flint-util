@@ -4,7 +4,7 @@
 ** Description: This flintbit is developed to create a new user on Okta.
 **/
 
-log.info("Started executing 'example:create_user.js' flintbit")
+log.info("Started executing 'flint-util:okta:operations:create_user.js' flintbit")
 
 log.trace("Flintbit Inputs: \n"+input)
 input_clone = JSON.parse(input)
@@ -184,4 +184,4 @@ if(exit_code == 0){
     output.exit(-1, message)
 }
 
-log.info("Finished executing 'example:create_user.js' flintbit")
+log.info("Finished executing 'flint-util:okta:operations:create_user.js' flintbit")

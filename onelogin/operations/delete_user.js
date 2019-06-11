@@ -4,7 +4,7 @@
 ** Description: This flintbit is developed to delete a user on OneLogin.
 **/
 
-log.info("Started executing 'example:delete_user.js' flintbit")
+log.info("Started executing 'flint-util:onelogin:operations:delete_user.js' flintbit")
 log.info("Flintbit inputs: "+input)
 
 input_clone = JSON.parse(input)
@@ -74,4 +74,4 @@ if(exit_code == 0){
     output.exit(-3, message.toString())
 }
 
-log.info("Finished executing 'example:delete_user.js' flintbit")
+log.info("Finished executing 'flint-util:onelogin:operations:delete_user.js' flintbit")
