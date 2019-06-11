@@ -172,7 +172,7 @@ if (input_clone.hasOwnProperty('department')) {
     department = input.get('department')
     log.trace("department "+department)
 
-    if (department != null || department != "") {
+    if (department !== null || department !== "") {
         department = input.get('department')
         log.trace("Department is " + department)
         connector_call.set('department', department)
@@ -183,7 +183,7 @@ given_name = ""
 if (input_clone.hasOwnProperty('given_name')) {
     given_name = input.get('given_name')
     log.trace("given name is "+given_name)
-    if (given_name != null || given_name != "") {
+    if (given_name !== null || given_name !== "") {
 
         given_name = input.get('given_name')
         log.trace("Given name/ first name is " + given_name)
