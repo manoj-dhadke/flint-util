@@ -52,7 +52,7 @@ if (input_clone.hasOwnProperty('onelogin_configurations')) {
 region = input.get('onelogin_region')
 username = input.get('username')
 role_id_array = input.get('role_id_array')
-role_id_array = [role_id_array]
+role_id_array = role_id_array.split(',')
 
 connector_response = call.connector(connector_name)
                         .set('client_id',client_id)

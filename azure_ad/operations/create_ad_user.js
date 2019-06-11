@@ -197,6 +197,7 @@ if (input_clone.hasOwnProperty('mobile')) {
 // Other mails
 if (input_clone.hasOwnProperty('other_mails')) {
     other_mails = input.get('other_mails')
+    other_mails = other_mails.split(',')
     log.trace("Other mails is " + other_mails)
     connector_call.set('otherMails', other_mails)
 
