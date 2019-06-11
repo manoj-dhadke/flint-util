@@ -130,10 +130,10 @@ if (input_clone.hasOwnProperty('user_principal_name')) {
     user_principal_name = input.get('user_principal_name')
     if (user_principal_name != null && user_principal_name != "") {
         log.trace("User Principal name is " + user_principal_name)
-    }else{
+    } else {
         log.error("User principal name is null or empty")
     }
-}else{
+} else {
     log.error("User principal name is not given")
 }
 
@@ -142,10 +142,10 @@ if (input_clone.hasOwnProperty('active_directory_domain')) {
     active_directory_domain = input.get('active_directory_domain')
     if (active_directory_domain != null && active_directory_domain != "") {
         log.trace("Azure AD domain is " + active_directory_domain)
-    }else{
+    } else {
         log.error("Active directory domain is null or empty")
     }
-}else{
+} else {
     log.error("Active directory domain is not given")
 }
 
@@ -168,10 +168,11 @@ connector_call = call.connector(connector_name)
 // Optional parameters
 // Department
 if (input_clone.hasOwnProperty('department')) {
-    department = input.get('department')
-    log.trace("Department is " + department)
-    connector_call.set('department', department)
-
+    if (department != null || department != "") {
+        department = input.get('department')
+        log.trace("Department is " + department)
+        connector_call.set('department', department)
+    }
 }
 // Given Name - First Name
 if (input_clone.hasOwnProperty('given_name')) {
@@ -182,88 +183,111 @@ if (input_clone.hasOwnProperty('given_name')) {
 }
 // Job Title
 if (input_clone.hasOwnProperty('job_title')) {
-    job_title = input.get('job_title')
-    log.trace("Job title is " + job_title)
-    connector_call.set('jobTitle', job_title)
-
+    if (job_title != null || job_title != "") {
+        job_title = input.get('job_title')
+        log.trace("Job title is " + job_title)
+        connector_call.set('jobTitle', job_title)
+    }
 }
 // Mobile
 if (input_clone.hasOwnProperty('mobile')) {
-    mobile = input.get('mobile')
-    log.trace("Mobile is " + mobile)
-    connector_call.set('mobile', mobile)
+    if (mobile != null || mobile != "") {
 
+        mobile = input.get('mobile')
+        log.trace("Mobile is " + mobile)
+        connector_call.set('mobile', mobile)
+    }
 }
 // Other mails
 if (input_clone.hasOwnProperty('other_mails')) {
-    other_mails = input.get('other_mails')
-    other_mails = other_mails.split(',')
-    log.trace("Other mails is " + other_mails)
-    connector_call.set('otherMails', other_mails)
+    if (other_mails != null || other_mails != "") {
 
+        other_mails = input.get('other_mails')
+        other_mails = other_mails.split(',')
+        log.trace("Other mails is " + other_mails)
+        connector_call.set('otherMails', other_mails)
+    }
 }
 // Password Policies
 if (input_clone.hasOwnProperty('password_policies')) {
-    password_policies = input.get('password_policies')
-    log.trace("Password policy is " + password_policies)
-    connector_call.set('passwordPolicies', password_policies)
+    if (password_policies != null || password_policies != "") {
 
+        password_policies = input.get('password_policies')
+        log.trace("Password policy is " + password_policies)
+        connector_call.set('passwordPolicies', password_policies)
+    }
 }
 // Physical Delivery Office Name
 if (input_clone.hasOwnProperty('physical_delivery_office_name')) {
-    physical_delivery_office_name = input.get('physical_delivery_office_name')
-    log.trace("Physical Delivery Office Name is " + physical_delivery_office_name)
-    connector_call.set('physicalDeliveryOfficeName', physical_delivery_office_name)
+    if (physical_delivery_office_name != null || physical_delivery_office_name != "") {
 
+        physical_delivery_office_name = input.get('physical_delivery_office_name')
+        log.trace("Physical Delivery Office Name is " + physical_delivery_office_name)
+        connector_call.set('physicalDeliveryOfficeName', physical_delivery_office_name)
+    }
 }
 // Preferred Language
 if (input_clone.hasOwnProperty('preferred_language')) {
-    preferred_language = input.get('preferred_language')
-    log.trace("Preferred Language is " + preferred_language)
-    connector_call.set('preferredLanguage', preferred_language)
+    if (preferred_language != null || preferred_language != "") {
 
+        preferred_language = input.get('preferred_language')
+        log.trace("Preferred Language is " + preferred_language)
+        connector_call.set('preferredLanguage', preferred_language)
+    }
 }
 // Street Address
 if (input_clone.hasOwnProperty('street_address')) {
-    street_address = input.get('street_address')
-    log.trace("Street address is " + street_address)
-    connector_call.set('streetAddress', street_address)
+    if (street_address != null || street_address != "") {
 
+        street_address = input.get('street_address')
+        log.trace("Street address is " + street_address)
+        connector_call.set('streetAddress', street_address)
+    }
 }
 // Postal Code
 if (input_clone.hasOwnProperty('postal_code')) {
-    postal_code = input.get('postal_code')
-    log.trace("Postal code is " + postal_code)
-    connector_call.set('postalCode', postal_code)
+    if (postal_code != null || postal_code != "") {
 
+        postal_code = input.get('postal_code')
+        log.trace("Postal code is " + postal_code)
+        connector_call.set('postalCode', postal_code)
+    }
 }
 // On Premises Security Identifier
 if (input_clone.hasOwnProperty('on_premise_security_identifier')) {
-    on_premise_security_identifier = input.get('on_premise_security_identifier')
-    log.trace("On Premises Security Identifier is " + on_premise_security_identifier)
-    connector_call.set('onPremisesSecurityIdentifier', on_premise_security_identifier)
+    if (on_premise_security_identifier != null || on_premise_security_identifier != "") {
 
+        on_premise_security_identifier = input.get('on_premise_security_identifier')
+        log.trace("On Premises Security Identifier is " + on_premise_security_identifier)
+        connector_call.set('onPremisesSecurityIdentifier', on_premise_security_identifier)
+    }
 }
 // Object Type
 if (input_clone.hasOwnProperty('object_type')) {
-    object_type = input.get('object_type')
-    log.trace("Object type is " + object_type)
-    connector_call.set('objectType', object_type)
+    if (object_type != null || object_type != "") {
 
+        object_type = input.get('object_type')
+        log.trace("Object type is " + object_type)
+        connector_call.set('objectType', object_type)
+    }
 }
 // Surname
 if (input_clone.hasOwnProperty('surname')) {
-    surname = input.get('surname')
-    log.trace("Surname is " + surname)
-    connector_call.set('surname', surname)
+    if (surname != null || surname != "") {
 
+        surname = input.get('surname')
+        log.trace("Surname is " + surname)
+        connector_call.set('surname', surname)
+    }
 }
 // Email
 if (input_clone.hasOwnProperty('Email')) {
-    email = input.get('Email')
-    log.trace("Email is " + email)
-    connector_call.set('Email', email)
+    if (email != null || email != "") {
 
+        email = input.get('Email')
+        log.trace("Email is " + email)
+        connector_call.set('Email', email)
+    }
 }
 
 log.info("Connector request generated. Making connector call.")
