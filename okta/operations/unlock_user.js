@@ -75,13 +75,13 @@ if (exit_code == 0) {
     result = connector_response.get('result')
     output.set('result', result)
 } else {
-    if (message.includes("The user is not locked out")) {
+    if (message.indexOf("The user is not locked out") != -1) {
         message = "User is not locked"
         log.info(message)
 
         output.set('message', message)
         output.exit(0, message)
-        
+
     } else {
         // message = message.split('(')[1].split(')')[0]
         log.trace("Failed to unlock user : " + message)
