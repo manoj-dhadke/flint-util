@@ -54,8 +54,17 @@ if (input_clone.hasOwnProperty('onelogin_configurations')) {
 region = input.get('onelogin_region')
 username = input.get('username')
 role_id_array = input.get('role_id_array')
-role_id_array = [role_id_array]
-
+if (role_id_array != null && role_id_array != "") {
+    if (role_id_array.search(',') != -1) {
+        role_id_array = role_id_array.replace(/ /g, '')
+        role_id_array = role_id_array.split(',')
+        log.trace("Roles have been split into an array > "+role_id_array)
+    }else{
+        role_id_array = [role_id_array]
+    }
+} else {
+    log.error("Please provide roles to assign to user")
+}
 connector_response = call.connector(connector_name)
                         .set('client_id',client_id)
                         .set('client_secret', client_secret)
