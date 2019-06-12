@@ -113,9 +113,21 @@ if (input_clone.hasOwnProperty('password')) {
 // Force password change?
 is_force_password_change = input.get('force_password_change')
 log.trace("Change password?: " + is_force_password_change)
-if (typeof is_force_password_change != 'boolean') {
-    log.error("Is force password change value is not boolean")
+// if (typeof is_force_password_change != 'boolean') {
+//     log.error("Is force password change value is not boolean")
+// }
+if (is_force_password_change != null && is_force_password_change != "") {
+    if (is_force_password_change == "true") {
+        is_force_password_change = true
+    } else if (is_force_password_change == "false") {
+        is_force_password_change = false
+    }else{
+        is_force_password_change = false
+    }
+} else {
+    is_force_password_change = false
 }
+
 
 log.trace("Calling MS Azure connector for action: " + action)
 connector_call_response = call.connector(connector_name)
