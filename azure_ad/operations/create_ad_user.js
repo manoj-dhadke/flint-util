@@ -69,9 +69,20 @@ user_principal_name = ""
 // Account Enabled?
 if (input_clone.hasOwnProperty('account_enabled')) {
     account_enabled = input.get('account_enabled')
-    if (typeof account_enabled != 'boolean') {
-        log.error("Please provide a boolean value for 'is account enabled?'")
+    // if (typeof account_enabled != 'boolean') {
+    //     log.error("Please provide a boolean value for 'is account enabled?'")
+    // }
+    if(account_enabled != null && account_enabled != ""){
+        if(account_enabled == "true"){
+            account_enabled = true
+        }else if(account_enabled == "false"){
+            account_enabled = false
+        }
+    }else{
+        account_enabled = true
     }
+}else{
+    account_enabled = true
 }
 
 // Display Name
@@ -113,9 +124,20 @@ if (input_clone.hasOwnProperty('password')) {
 // Force password change on login
 if (input_clone.hasOwnProperty('force_password_change')) {
     force_password_change = input.get('force_password_change')
-    if (typeof force_password_change != 'boolean') {
-        log.error("Is force password change is not a boolean value")
+    // if (typeof force_password_change != 'boolean') {
+    //     log.error("Is force password change is not a boolean value")
+    // }
+    if(force_password_change != null && force_password_change != ""){
+        if(force_password_change == "true"){
+            force_password_change = true
+        }else if(force_password_change == "false"){
+            force_password_change = false
+        }
+    }else{
+        force_password_change = false
     }
+}else{
+    force_password_change = false
 }
 
 // User Principal Name
