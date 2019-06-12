@@ -164,7 +164,7 @@ department = ""
 if (input_clone.hasOwnProperty('department')) {
     // department = input.get('department')
     log.trace("department " + department)
-    if (input_clone['department'] != null || input_clone['department'] != "") {
+    if (input_clone['department'] != null && input_clone['department'] != "") {
         department = input.get('department')
         log.trace("Department is " + department)
         connector_call.set('department', department)
