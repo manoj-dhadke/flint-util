@@ -1,6 +1,7 @@
 log.trace("Started executing 'fb-cloud:azure:operation:create_ad_user.js' flintbit")
 
-log.trace("Inputs for 'fb-cloud:azure:operation:create_ad_user.js' :: " + input)
+log.trace("Inputs for 'flint-uril:azure_ad:operations:create_ad_user.js' :: " + input)
+
 action = "create-user"
 connector_name = input.get('connector_name')
 
@@ -68,14 +69,10 @@ user_principal_name = ""
 // Account Enabled?
 if (input_clone.hasOwnProperty('account_enabled')) {
     account_enabled = input.get('account_enabled')
-    if (account_enabled != null && account_enabled != "") {
-        log.trace("Account Enabled? " + account_enabled)
-    } else {
-        account_enabled = true
+    if (typeof account_enabled != 'boolean') {
+        log.error("Please provide a boolean value for 'is account enabled?'")
     }
-} else {
-    account_enabled = true
-}
+} 
 
 // Display Name
 if (input_clone.hasOwnProperty('display_name')) {
@@ -116,13 +113,9 @@ if (input_clone.hasOwnProperty('password')) {
 // Force password change on login
 if (input_clone.hasOwnProperty('force_password_change')) {
     force_password_change = input.get('force_password_change')
-    if (force_password_change != null && force_password_change != "") {
-        log.trace("Force password change on login? " + force_password_change)
-    } else {
-        force_password_change = true
+    if(typeof force_password_change != 'boolean'){
+        log.error("Is force password change is not a boolean value")
     }
-} else {
-    force_password_change = true
 }
 
 // User Principal Name
@@ -167,11 +160,10 @@ connector_call = call.connector(connector_name)
 
 // Optional parameters
 // Department
-department = null
+department = ""
 if (input_clone.hasOwnProperty('department')) {
     department = input.get('department')
-    log.trace("department "+department)
-
+    log.trace("department " + department)
     if (department != null || department != "") {
         department = input.get('department')
         log.trace("Department is " + department)
@@ -179,12 +171,11 @@ if (input_clone.hasOwnProperty('department')) {
     }
 }
 // Given Name - First Name
-given_name = null
+given_name = ""
 if (input_clone.hasOwnProperty('given_name')) {
     given_name = input.get('given_name')
-    log.trace("given name is "+given_name)
+    log.trace("given name is " + given_name)
     if (given_name != null || given_name != "") {
-
         given_name = input.get('given_name')
         log.trace("Given name/ first name is " + given_name)
         connector_call.set('givenName', given_name)
@@ -194,7 +185,6 @@ if (input_clone.hasOwnProperty('given_name')) {
 job_title = ""
 if (input_clone.hasOwnProperty('job_title')) {
     job_title = input.get('job_title')
-
     if (job_title != null || job_title != "") {
         job_title = input.get('job_title')
         log.trace("Job title is " + job_title)
@@ -205,9 +195,7 @@ if (input_clone.hasOwnProperty('job_title')) {
 mobile = ""
 if (input_clone.hasOwnProperty('mobile')) {
     mobile = input.get('mobile')
-
     if (mobile != null || mobile != "") {
-
         mobile = input.get('mobile')
         log.trace("Mobile is " + mobile)
         connector_call.set('mobile', mobile)
@@ -362,4 +350,4 @@ if (exit_code == 0) {
     output.exit(-3, message)
 }
 
-log.trace("Finsihed executing 'fb-cloud:azure:operation:create_ad_user.js' flintbit")
+log.trace("Finsihed executing 'flint-uril:azure_ad:operations:create_ad_user.js' flintbit")
