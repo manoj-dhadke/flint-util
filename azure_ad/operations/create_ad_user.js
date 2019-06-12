@@ -211,6 +211,7 @@ if (input_clone.hasOwnProperty('other_mails')) {
         other_mails = input.get('other_mails')
         log.info("Other mails check >> " + other_mails.search(','))
         if (other_mails.search(',') != -1) {
+            other_mails = other_mails.replace(/ /g,'')
             other_mails = other_mails.split(',')
             log.trace("Other mails is " + other_mails)
             connector_call.set('otherMails', other_mails)
