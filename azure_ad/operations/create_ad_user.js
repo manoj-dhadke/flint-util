@@ -72,7 +72,7 @@ if (input_clone.hasOwnProperty('account_enabled')) {
     if (typeof account_enabled != 'boolean') {
         log.error("Please provide a boolean value for 'is account enabled?'")
     }
-} 
+}
 
 // Display Name
 if (input_clone.hasOwnProperty('display_name')) {
@@ -113,7 +113,7 @@ if (input_clone.hasOwnProperty('password')) {
 // Force password change on login
 if (input_clone.hasOwnProperty('force_password_change')) {
     force_password_change = input.get('force_password_change')
-    if(typeof force_password_change != 'boolean'){
+    if (typeof force_password_change != 'boolean') {
         log.error("Is force password change is not a boolean value")
     }
 }
@@ -175,7 +175,7 @@ given_name = ""
 if (input_clone.hasOwnProperty('given_name')) {
     given_name = input.get('given_name')
     log.trace("given name is " + given_name)
-    if (given_name != null || given_name != "") {
+    if (given_name != null && given_name != "") {
         given_name = input.get('given_name')
         log.trace("Given name/ first name is " + given_name)
         connector_call.set('givenName', given_name)
@@ -185,7 +185,7 @@ if (input_clone.hasOwnProperty('given_name')) {
 job_title = ""
 if (input_clone.hasOwnProperty('job_title')) {
     job_title = input.get('job_title')
-    if (job_title != null || job_title != "") {
+    if (job_title != null && job_title != "") {
         job_title = input.get('job_title')
         log.trace("Job title is " + job_title)
         connector_call.set('jobTitle', job_title)
@@ -195,7 +195,7 @@ if (input_clone.hasOwnProperty('job_title')) {
 mobile = ""
 if (input_clone.hasOwnProperty('mobile')) {
     mobile = input.get('mobile')
-    if (mobile != null || mobile != "") {
+    if (mobile != null && mobile != "") {
         mobile = input.get('mobile')
         log.trace("Mobile is " + mobile)
         connector_call.set('mobile', mobile)
@@ -206,7 +206,7 @@ other_mails = ""
 if (input_clone.hasOwnProperty('other_mails')) {
     other_mails = input.get('other_mails')
 
-    if (other_mails != null || other_mails != "") {
+    if (other_mails != null && other_mails != "") {
 
         other_mails = input.get('other_mails')
         log.info("Other mails check >> " + other_mails.search(','))
@@ -225,7 +225,7 @@ password_policies = ""
 if (input_clone.hasOwnProperty('password_policies')) {
     password_policies = input.get('password_policies')
 
-    if (password_policies != null || password_policies != "") {
+    if (password_policies != null && password_policies != "") {
 
         password_policies = input.get('password_policies')
         log.trace("Password policy is " + password_policies)
@@ -237,7 +237,7 @@ physical_delivery_office_name = ""
 if (input_clone.hasOwnProperty('physical_delivery_office_name')) {
     physical_delivery_office_name = input.get('physical_delivery_office_name')
 
-    if (physical_delivery_office_name != null || physical_delivery_office_name != "") {
+    if (physical_delivery_office_name != null && physical_delivery_office_name != "") {
 
         physical_delivery_office_name = input.get('physical_delivery_office_name')
         log.trace("Physical Delivery Office Name is " + physical_delivery_office_name)
@@ -249,7 +249,7 @@ preferred_language = ""
 if (input_clone.hasOwnProperty('preferred_language')) {
     preferred_language = input.get('preferred_language')
 
-    if (preferred_language != null || preferred_language != "") {
+    if (preferred_language != null && preferred_language != "") {
 
         preferred_language = input.get('preferred_language')
         log.trace("Preferred Language is " + preferred_language)
@@ -261,7 +261,7 @@ street_address = ""
 if (input_clone.hasOwnProperty('street_address')) {
     street_address = input.get('street_address')
 
-    if (street_address != null || street_address != "") {
+    if (street_address != null && street_address != "") {
 
         street_address = input.get('street_address')
         log.trace("Street address is " + street_address)
@@ -273,7 +273,7 @@ postal_code = ""
 if (input_clone.hasOwnProperty('postal_code')) {
     postal_code = input.get('postal_code')
 
-    if (postal_code != null || postal_code != "") {
+    if (postal_code != null && postal_code != "") {
 
         postal_code = input.get('postal_code')
         log.trace("Postal code is " + postal_code)
@@ -285,7 +285,7 @@ on_premise_security_identifier = ""
 if (input_clone.hasOwnProperty('on_premise_security_identifier')) {
     on_premise_security_identifier = input.get('on_premise_security_identifier')
 
-    if (on_premise_security_identifier != null || on_premise_security_identifier != "") {
+    if (on_premise_security_identifier != null && on_premise_security_identifier != "") {
 
         on_premise_security_identifier = input.get('on_premise_security_identifier')
         log.trace("On Premises Security Identifier is " + on_premise_security_identifier)
@@ -297,7 +297,7 @@ object_type = ""
 if (input_clone.hasOwnProperty('object_type')) {
     object_type = input.get('object_type')
 
-    if (object_type != null || object_type != "") {
+    if (object_type != null && object_type != "") {
 
         object_type = input.get('object_type')
         log.trace("Object type is " + object_type)
@@ -309,7 +309,7 @@ surname = ""
 if (input_clone.hasOwnProperty('surname')) {
     surname = input.get('surname')
 
-    if (surname != null || surname != "") {
+    if (surname != null && surname != "") {
 
         surname = input.get('surname')
         log.trace("Surname is " + surname)
@@ -321,7 +321,7 @@ email = ""
 if (input_clone.hasOwnProperty('Email')) {
     email = input.get('Email')
 
-    if (email != null || email != "") {
+    if (email != null && email != "") {
 
         email = input.get('Email')
         log.trace("Email is " + email)
