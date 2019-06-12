@@ -95,36 +95,37 @@ if (input_clone.hasOwnProperty('profile_properties') && input_clone['profile_pro
 // User Active?
 if (input_clone.hasOwnProperty('is_active') && input_clone['is_active'] != null && input_clone['is_active'] != '') {
     is_active = input.get('is_active')
-    if (typeof is_active != 'boolean') {
-        log.error("Is user active value is not boolean. Please provide boolean value.")
-    } else {
-        connector_request.set('is_active', is_active)
-    }
-    // if(is_active == "true"){
-    //     is_active = true
-    // }else if(is_active == "false"){
-    //     is_active = false
-    // }else{
-    //     is_active = true
+    // if (typeof is_active != 'boolean') {
+    //     log.error("Is user active value is not boolean. Please provide boolean value.")
+    // } else {
+    //     connector_request.set('is_active', is_active)
     // }
-
+    if (is_active == "true") {
+        is_active = true
+    } else if (is_active == "false") {
+        is_active = false
+    } else {
+        is_active = true
+    }
+    connector_request.set('is_active', is_active)
     log.trace('Make user active?: ' + is_active)
 }
 
 // Next login boolean
 if (input_clone.hasOwnProperty('is_next_login') && input_clone['is_next_login'] != null && input_clone['is_next_login'] != '') {
     is_next_login = input.get('is_next_login')
-    if (typeof is_next_login != 'boolean') {
-        log.error("Is next login is not boolean. Please provide a boolean value")
-    } else {
-        // if(is_next_login == "true"){
-        //     is_next_login = true
-        // }else{
-        //     is_next_login = false
-        // }
-        connector_request.set('is_next_login', is_next_login)
-        log.trace('Reset password on next login?: ' + is_next_login)
+    // if (typeof is_next_login != 'boolean') {
+    //     log.error("Is next login is not boolean. Please provide a boolean value")
+    // } else {
+    if (is_next_login == "true") {
+        is_next_login = true
+    } else if (is_next_login == "false") {
+        is_next_login = false
+    }else{
+        is_next_login = false
     }
+    connector_request.set('is_next_login', is_next_login)
+    log.trace('Reset password on next login?: ' + is_next_login)
 }
 
 // Is user Provider? boolean
@@ -132,7 +133,9 @@ if (input_clone.hasOwnProperty('is_provider') && input_clone['is_provider'] != n
     is_provider = input.get('is_provider')
     if (is_provider == "true") {
         is_provider = true
-    } else {
+    } else if(is_provider == "false"){
+        is_provider = false
+    }else{
         is_provider = false
     }
     connector_request.set('is_provider', is_provider)
