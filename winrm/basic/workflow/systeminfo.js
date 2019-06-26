@@ -73,7 +73,7 @@ if(input_clone.hasOwnProperty("protocol_connection")){
     //Validation of transport
     transport = encryptedCredentials["authentication_type"];       //Aunthentication and encryption type
     if(transport!=null || transport!=""){
-        connector_call.set("transport",transport);
+        connector_call.set("transport",transport.toLowerCase());
         log.info("Transport type:"+transport);
     }
     else{
@@ -117,12 +117,13 @@ if(input_clone.hasOwnProperty("protocol_connection")){
     result_arr = user_message.split("\n");
     result_arr.pop();
 
-    final_msg = "The details on host are:<br>";
+    final_msg = "The <b>System Details</b> on host are:<ul>";
     for(i = 0 ; i<result_arr.length;i++){
         index = result_arr[i].indexOf("\r");
         result_arr[i] = result_arr[i].substring(0,index);
-        final_msg = final_msg + "" +result_arr[i]+"<br>";
+        final_msg = final_msg + "   <li>" +result_arr[i]+"</li>";
     }
+    final_msg = final_msg + "</ul>";
 
     if(response_exitcode==0){                       //Successfull execution
         log.info("Successfull execution of command:"+command);
