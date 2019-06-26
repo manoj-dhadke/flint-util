@@ -90,15 +90,9 @@ if(input_clone.hasOwnProperty("protocol_connection")){
     }
 
     //Validation of shell
-    shell = encryptedCredentials["shell"];
-    if(shell!=null || shell!=""){
-        connector_call.set("shell",shell);
-        log.info("shell:"+shell);
-    }
-    else{
-        log.error("Shell type is null or empty string")
-    }
-
+    shell = "ps"
+    connector_call.set("shell",shell);
+    
     //Validation of command
     if(input_clone.hasOwnProperty("command")){
         command = input.get("command");
