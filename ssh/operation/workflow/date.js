@@ -21,10 +21,23 @@ log.info("Type: "+type);
 command = "date";
 log.info("Command: "+command);
 
-//Timeout
-timeout = 240000; //4 minutes
+if(input_clone.hasOwnProperty("request_timeout")){
+    request_timeout = input.get("request_timeout");
+    if(request_timeout!=null || request_timeout!=""){
+        connector_call.set("timeout",request_timeout); 
+        log.info("Request Timeout: "+request_timeout);
+    }
+    else{
+        connector_call.set("timeout",240000); 
+        log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
+    }
+}
+else{
+    connector_call.set("timeout",240000); 
+    log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
+}
 
-connector_call.set("timeout",timeout).set("type",type).set("command",command);
+connector_call.set("type",type).set("command",command);
 
 if(input_clone.hasOwnProperty("protocol_connection")){
 
@@ -102,7 +115,7 @@ if(input_clone.hasOwnProperty("protocol_connection")){
         log.info("Successfull execution of command:"+command);
         log.info("Command result:"+result);
         //User Message
-        user_message = "The date on the target is "+result;
+        user_message = "The <b>Date</b> on the target is <b>"+result+"</b>";
         //Setting the result,exit-code and user_message in output
         output.set("result",result).set("exit-code",0).set("user_message",user_message);
         log.trace("finished executing 'flint-util:ssh:operation:workflow:date.js' successfully")

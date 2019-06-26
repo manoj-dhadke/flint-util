@@ -20,11 +20,23 @@ log.info("Command: "+command);
 type = "exec";
 log.info("Type: "+type);
 
-//Timeout
-timeout = 240000;
-log.info("Timeout: "+timeout);
+if(input_clone.hasOwnProperty("request_timeout")){
+    request_timeout = input.get("request_timeout");
+    if(request_timeout!=null || request_timeout!=""){
+        connector_call.set("timeout",request_timeout); 
+        log.info("Request Timeout: "+request_timeout);
+    }
+    else{
+        connector_call.set("timeout",240000); 
+        log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
+    }
+}
+else{
+    connector_call.set("timeout",240000); 
+    log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
+}
 
-connector_call.set("command",command).set("type",type).set("timeout",timeout);
+connector_call.set("command",command).set("type",type);
 
 if(input_clone.hasOwnProperty("protocol_connection")){
     
@@ -117,12 +129,12 @@ if(input_clone.hasOwnProperty("protocol_connection")){
     if(response_exitcode==0){                       //Successfull execution
         log.info("Successfull execution of command:"+command);
         //User Message by extracting values from JSON 
-        user_message =' The processor information on target is'+
-                   '    (i)Model name:'+ result["Model name"]+ 
-                    '   (ii)Architecture:'+ result["Architecture"]+ 
-                    '   (iii)CPU(s):'+ result["CPU(s)"]+ 
-                    '   (iv)Thread(s) per core:'+ result["Thread(s) per core"]+ 
-                    '   (v)CPU MHz:'+ result["CPU MHz"];
+        user_message =' The <b>Processor Information</b> on target is:<br><ul>'+
+                   '    <li>Model name:'+ result["Model name"]+'</li>'+ 
+                    '    <li>Architecture:'+ result["Architecture"]+'</li>'+ 
+                    '    <li>CPU(s):'+ result["CPU(s)"]+'</li>'+ 
+                    '    <li>Thread(s) per core:'+ result["Thread(s) per core"]+'</li>'+ 
+                    '    <li>CPU MHz:'+ result["CPU MHz"]+'</li></ul>';
         log.info("Command result:"+user_message);
 
 

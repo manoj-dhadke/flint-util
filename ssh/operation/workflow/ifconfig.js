@@ -20,11 +20,23 @@ log.info("Command: "+command);
 type = "exec";
 log.info("Type: "+type);
 
-//Timeout
-timeout = 240000;
-log.info("Timeout: "+timeout);
+if(input_clone.hasOwnProperty("request_timeout")){
+    request_timeout = input.get("request_timeout");
+    if(request_timeout!=null || request_timeout!=""){
+        connector_call.set("timeout",request_timeout); 
+        log.info("Request Timeout: "+request_timeout);
+    }
+    else{
+        connector_call.set("timeout",240000); 
+        log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
+    }
+}
+else{
+    connector_call.set("timeout",240000); 
+    log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
+}
 
-connector_call.set("command",command).set("type",type).set("timeout",timeout);
+connector_call.set("command",command).set("type",type);
 
 if(input_clone.hasOwnProperty("protocol_connection")){
     
@@ -111,7 +123,11 @@ if(input_clone.hasOwnProperty("protocol_connection")){
         log.info("Successfull execution of command:"+command);
         log.info("Command result:"+ipadrs);
         //User message
-        user_message = "The IP addresses of target is(are) "+ipadrs;
+        user_message = "The <b>IP addresses</b> of target is(are):<ul>";
+        for(i = 0; i < ipadrs.length ; i++){
+            user_message = user_message +"  <li>"+ipadrs[i]+"</li>";
+        }
+        user_message = user_message + "</ul>";
         output.set("result",ipadrs).set("exit-code",0).set("user_message",user_message);
         log.trace("finished executing 'flint-util:ssh:operation:workflow:ifconfig_auth_passphrase.js' successfully")
     }
