@@ -16,14 +16,27 @@ command = "systeminfo";
 log.info("Command: "+command);
 
 input_clone = JSON.parse(input);
-
-//Timeout and Operation Timeout
-timeout = 240000;
+//Operation Timeout
 operation_timeout = 80;
-log.info("Timeout: "+timeout);
 log.info("Operation Timeout: "+operation_timeout);
 
-connector_call.set("command",command).set("timeout",timeout).set("operation_timeout",operation_timeout);
+if(input_clone.hasOwnProperty("request_timeout")){
+    request_timeout = input.get("request_timeout");
+    if(request_timeout!=null || request_timeout!=""){
+        connector_call.set("timeout",request_timeout); 
+        log.info("Request Timeout: "+request_timeout);
+    }
+    else{
+        connector_call.set("timeout",240000); 
+        log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
+    }
+}
+else{
+    connector_call.set("timeout",240000); 
+    log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
+}
+
+connector_call.set("command",command).set("operation_timeout",operation_timeout);
 
 if(input_clone.hasOwnProperty("protocol_connection")){
 
@@ -118,10 +131,21 @@ if(input_clone.hasOwnProperty("protocol_connection")){
     result_arr.pop();
 
     final_msg = "The <b>System Details</b> on host are:<ul>";
+    to_split = result_arr[2];
+    index_tot_phy_mem = to_split.indexOf("Total Physical Memory");
+    result_arr[2] = to_split.substring(0,index_tot_phy_mem);
+    result_arr.push(to_split.substring(index_tot_phy_mem,to_split.length));
+
     for(i = 0 ; i<result_arr.length;i++){
         index = result_arr[i].indexOf("\r");
-        result_arr[i] = result_arr[i].substring(0,index);
-        final_msg = final_msg + "   <li>" +result_arr[i]+"</li>";
+        if(index!=-1) result_arr[i] = result_arr[i].substring(0,index);
+    }
+
+    regexp = /:\s+/;
+    for( i=0;i<result_arr.length;i++){
+        arr = result_arr[i].split(regexp);
+        if(arr.length==2) final_msg = final_msg+"    <li><b>"+arr[0]+"</b>:"+arr[1]+"</li>";
+        if(arr.length==3) final_msg = final_msg+"    <li><b>"+arr[0]+" "+arr[1]+"</b>:"+arr[2]+"</li>";
     }
     final_msg = final_msg + "</ul>";
 

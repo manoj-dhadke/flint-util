@@ -8,18 +8,31 @@ log.trace("Started executing 'flint-util:winrm:basic:workflow:powershell_command
 
 input_clone = JSON.parse(input);
 
-//Timeout and Operation Timeout
-timeout = 240000;
-operation_timeout = 80;
-log.info("Timeout: "+timeout);
-log.info("Operation Timeout: "+operation_timeout);
-
 //Connector 
 connector_name = "winrm";
 connector_call = call.connector(connector_name);
 log.info("Connector Name: "+connector_name);
 
-connector_call.set("timeout",timeout).set("operation_timeout",operation_timeout);
+//Operation Timeout
+operation_timeout = 80;
+log.info("Operation Timeout: "+operation_timeout);
+
+if(input_clone.hasOwnProperty("request_timeout")){
+    request_timeout = input.get("request_timeout");
+    if(request_timeout!=null || request_timeout!=""){
+        connector_call.set("timeout",request_timeout); 
+        log.info("Request Timeout: "+request_timeout);
+    }
+    else{
+        connector_call.set("timeout",240000); 
+        log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
+    }
+}
+else{
+    connector_call.set("timeout",240000); 
+    log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
+}
+connector_call.set("operation_timeout",operation_timeout);
 
 if(input_clone.hasOwnProperty("protocol_connection")){
     
@@ -69,7 +82,7 @@ if(input_clone.hasOwnProperty("protocol_connection")){
     //Validation of transport
     transport = encryptedCredentials["authentication_type"];       //Aunthentication and encryption type
     if(transport!=null || transport!=""){
-        connector_call.set("transport",transport);
+        connector_call.set("transport",transport.toLowerCase());
         log.info("Transport type:"+transport);
     }
     else{
@@ -77,15 +90,9 @@ if(input_clone.hasOwnProperty("protocol_connection")){
     }
 
     //Validation of shell
-    shell = encryptedCredentials["shell"];
-    if(shell!=null || shell!=""){
-        connector_call.set("shell",shell);
-        log.info("shell:"+shell);
-    }
-    else{
-        log.error("Shell type is null or empty string")
-    }
-
+    shell = "ps"
+    connector_call.set("shell",shell);
+    
     //Validation of command
     if(input_clone.hasOwnProperty("command")){
         command = input.get("command");
@@ -116,7 +123,7 @@ if(input_clone.hasOwnProperty("protocol_connection")){
         log.info("Successfull execution of command:"+command);
         log.info("Command result:"+result);
         //user message
-        user_message = "The command '"+command+"' produced the result '"+result+"'";
+        user_message = "The Command <b>'"+command+"'</b> produced the result <b>'"+result+"'</b>";
         output.set("result",result).set("exit-code",0).set("user_message",user_message);
         log.trace("finished executing 'flint-util:winrm:basic:workflow:powershell_command.js' successfully")
     }

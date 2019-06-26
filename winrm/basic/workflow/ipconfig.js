@@ -12,18 +12,32 @@ log.info("Command: "+command);
 
 input_clone = JSON.parse(input);
 
-//Timeout and Operation Timeout
-timeout = 240000;
-operation_timeout = 80;
-log.info("Timeout: "+timeout);
-log.info("Operation Timeout: "+operation_timeout);
-
 //Connector 
 connector_name = "winrm";
 connector_call = call.connector(connector_name);
 log.info("Connector Name: "+connector_name);
 
-connector_call.set("command",command).set("timeout",timeout).set("operation_timeout",operation_timeout);
+//Operation Timeout
+operation_timeout = 80;
+log.info("Operation Timeout: "+operation_timeout);
+
+if(input_clone.hasOwnProperty("request_timeout")){
+    request_timeout = input.get("request_timeout");
+    if(request_timeout!=null || request_timeout!=""){
+        connector_call.set("timeout",request_timeout); 
+        log.info("Request Timeout: "+request_timeout);
+    }
+    else{
+        connector_call.set("timeout",240000); 
+        log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
+    }
+}
+else{
+    connector_call.set("timeout",240000); 
+    log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
+}
+
+connector_call.set("command",command).set("operation_timeout",operation_timeout);
 
 if(input_clone.hasOwnProperty("protocol_connection")){
 
@@ -73,7 +87,7 @@ if(input_clone.hasOwnProperty("protocol_connection")){
     //Validation of transport
     transport = encryptedCredentials["authentication_type"];       //Aunthentication and encryption type
     if(transport!=null || transport!=""){
-        connector_call.set("transport",transport);
+        connector_call.set("transport",transport.toLowerCase());
         log.info("Transport type:"+transport);
     }
     else{
@@ -112,7 +126,7 @@ if(input_clone.hasOwnProperty("protocol_connection")){
         log.info("Successfull execution of command:"+command);
         log.info("Command result:"+ipadrs);
         //user message
-        user_message = "The configuration on target is "+ipadrs;
+        user_message = "The <b>Configuration</b> on target is <b>"+ipadrs+"</b>";
         output.set("result",ipadrs).set("exit-code",0).set("user_message",user_message);
         log.trace("finished executing 'flint-util:winrm:basic:workflow:ipconfig.js' successfully")
     }

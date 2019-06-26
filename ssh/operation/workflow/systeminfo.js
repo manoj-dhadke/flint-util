@@ -23,11 +23,23 @@ command2 = "ps -e -o pid,args --sort=-pcpu --no-headers|head -5";
 log.info("Command 1: "+command);
 log.info("Command 2: "+command2);
 
-//Timeout
-timeout = 240000;
-log.info("Timeout: "+timeout);
+if(input_clone.hasOwnProperty("request_timeout")){
+    request_timeout = input.get("request_timeout");
+    if(request_timeout!=null || request_timeout!=""){
+        connector_call.set("timeout",request_timeout); 
+        log.info("Request Timeout: "+request_timeout);
+    }
+    else{
+        connector_call.set("timeout",240000); 
+        log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
+    }
+}
+else{
+    connector_call.set("timeout",240000); 
+    log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
+}
 
-connector_call.set("type",type).set("timeout",timeout);
+connector_call.set("type",type);
 
 if(input_clone.hasOwnProperty("protocol_connection")){
     
@@ -121,10 +133,10 @@ if(input_clone.hasOwnProperty("protocol_connection")){
     uptime = result[4];
     result[4] = "uptime: "+result[4];
     result.splice(1,1);
-    body = '<br>' + "CPU Usage:"+ cpu_usage +"%<br>"+
-        "Disk space:"+disk_space +"<br>"+
-        "Memory usage:" + memory +"%<br>"+
-        "Server uptime:"+uptime+"<br>";
+    body = 'The <b>System Information</b> on Target is:<ul>' + "<li>    CPU Usage:"+ cpu_usage +"%</li>"+
+    "    <li>Disk space:"+disk_space +"</li>"+
+    "    <li>Memory usage:" + memory +"%</li>"+
+    "    <li>Server uptime:"+uptime+"</li></ul>";
 
 
     result2 = response2.get("result");                //Response result
