@@ -6,118 +6,139 @@
 
 log.trace("Started executing 'flint-util:winrm:basic:workflow:execute_command.js'");
 
-//Service Parameters
-connector_name = input.get("connector_name");      //Name of the WinRM Connector
+input_clone = JSON.parse(input);
 
-//Service Inputs
-target = input.get("target");                       //Target machine where command will be executed
-username = input.get("username");                   //Target Username
-password = input.get("password");                   //Target password
-port = input.get("port");                           //Port to connect
-transport = input("transport");                     //Aunthentication and encryption type
-shell = input.get("shell");                          //shell type 
-timeout = input.get("timeout");
+//Connector 
+connector_name = "winrm";
+connector_call = call.connector(connector_name);
+log.info("Connector Name: "+connector_name);
+
+//Operation Timeout
 operation_timeout = 80;
-command = input.get("command");                     //command user wants to execute
+log.info("Operation Timeout: "+operation_timeout);
 
-//Validation of Connector Name
-if(connector_name!=null || connector_name!=""){
-    log.info("connector name:"+connector_name);
+if(input_clone.hasOwnProperty("request_timeout")){
+    request_timeout = input.get("request_timeout");
+    if(request_timeout!=null || request_timeout!=""){
+        connector_call.set("timeout",request_timeout); 
+        log.info("Request Timeout: "+request_timeout);
+    }
+    else{
+        connector_call.set("timeout",240000); 
+        log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
+    }
 }
 else{
-    log.error("Connector name not given");          //Connector name is mandatory
+    connector_call.set("timeout",240000); 
+    log.info("request_timeout not given. Setting 240000 miliseconds as timeout");
 }
 
-//Validation of Target
-if(target!=null || target!=""){
-    log.info("target:"+target);
+connector_call.set("operation_timeout",operation_timeout);
+
+if(input_clone.hasOwnProperty("protocol_connection")){
+
+    protocol_connection = input_clone["protocol_connection"];
+    encryptedCredentials = protocol_connection["encryptedCredentials"];
+
+    //Validation of Target
+    target = encryptedCredentials["hostname"];
+    if(target!=null || target!=""){
+        connector_call.set("target",target);
+        log.info("target:"+target);
+    }
+    else{
+        log.error("Target is null or empty string")
+    }
+
+    //Validation of Username
+    username = encryptedCredentials["username"];                   //Target Username
+    if(username!=null || username!=""){
+        connector_call.set("username",username);
+        log.info("username:"+username);
+    }
+    else{
+        log.error("Username is null or empty string")
+    }
+
+    //Validation of Port
+    port = encryptedCredentials["port"];                           //Port to connect
+    if(port!=null || port!=""){
+        connector_call.set("port",port);
+        log.info("port:"+port);
+    }
+    else{
+        log.error("Port null or empty string")
+    }
+
+    //Validation of password
+    password = encryptedCredentials["password"];                   //Target password
+    if(password!=null || password!=""){
+        connector_call.set("password",password);
+        log.info("Password is given");
+    }
+    else{
+        log.error("Password is null or an empty string")
+    }
+
+    //Validation of transport
+    transport = encryptedCredentials["authentication_type"];       //Aunthentication and encryption type
+    if(transport!=null || transport!=""){
+        connector_call.set("transport",transport.toLowerCase());
+        log.info("Transport type:"+transport);
+    }
+    else{
+        log.error("Transport type is null or empty string")
+    }
+
+    //Validation of shell
+    shell = encryptedCredentials["shell"];
+    if(shell!=null || shell!=""){
+        connector_call.set("shell",shell);
+        log.info("shell:"+shell);
+    }
+    else{
+        log.error("Shell type is null or empty string")
+    }
+
+    //Validation of command
+    if(input_clone.hasOwnProperty("command")){
+        command = input.get("command");       
+        if(command!=null || command!=""){
+            connector_call.set("command",command);
+            log.info("Command: "+command);
+        }
+        else{
+            log.error("command is null or empty string")
+        }
+    }
+    else{
+        log.error("Command key not given");          //Transport mandatory
+    }
+
+    //connector call
+    response = connector_call.sync();
+
+    //WinRM Connector Response's meta parameters
+    response_exitcode = response.exitcode();        //Exit status code
+    response_message = response.message();          //Execution status message
+
+    //WinRM Connector Response's Result parameter
+    result = response.get("result");                //Response result
+
+    if(response_exitcode==0){                       //Successfull execution
+        log.info("Successfull execution of command:"+command);
+        log.info("Command result:"+result);
+        //user message
+        user_message = "The command <b>'"+command+"'</b> produced the result <b>'"+result+"'</b>";
+        output.set("result",result).set("exit-code",0).set("user_message",user_message);
+        log.trace("finished executing 'flint-util:winrm:basic:workflow:execute_command.js' successfully")
+    }
+    else{
+        log.error("Failure in execution, message:"+response_message+" | exitcode:"+response_exitcode);
+        output.set("error",response_message).set("exit-code",-1);
+        log.trace("finished executing 'flint-util:winrm:basic:workflow:execute_command.js' with errors")
+    }
 }
 else{
-    log.error("target not given");                  //Target is mandatory
-}
-
-//Validation of Username
-if(username!=null || username!=""){
-    log.info("username:"+username);
-}
-else{
-    log.error("Username name not given");           //Username is mandatory
-}
-
-//Validation of timeout
-if(timeout!=null || timeout!=""){
-    timeout = parseInt(timeout);
-    log.info("timeout:"+timeout);
-}
-else{
-    timeout = 60000;                               //timeout not mandatory
-    log.info("Setting timeout to 60000 miliseconds");   //setting default timeout
-}
-
-//Validation of Port
-if(port!=null || port!=""){
-    port = parseInt(port);
-    log.info("port:"+port);
-}
-else{
-    log.error("Port not given");                //Port mandatory
-}
-
-//Validation of password
-if(password!=null || password!=""){
-    log.info("Password is given");
-}
-else{
-    log.error("Password not given");            //Password mandatory
-}
-
-//Validation of transport
-if(transport!=null || transport!=""){
-    log.info("Transport type:"+transport);
-}
-else{
-    log.error("Transport type not given");          //Transport mandatory
-}
-
-//Validation of shell
-if(shell!=null || shell!=""){
-    log.info("shell:"+shell);
-}
-else{
-    log.error("shell not given");                  //Type is mandatory
-}
-
-
-//connector call
-response = call.connector(connector_name)
-                .set("target",target)
-                .set("username",username)
-                .set("password",password)
-                .set("transport",transport)
-                .set("command",command)
-                .set("port",port)
-                .set("shell",shell)
-                .set("operation_timeout",operation_timeout)
-                .set("timeout",timeout)
-                .sync();
-
-//WinRM Connector Response's meta parameters
-response_exitcode = response.exitcode();        //Exit status code
-response_message = response.message();          //Execution status message
-
-//WinRM Connector Response's Result parameter
-result = response.get("result");                //Response result
-
-if(response_exitcode==0){                       //Successfull execution
-    log.info("Successfull execution of command:"+command);
-    log.info("Command result:"+result);
-    //user message
-    user_message = "The command '"+command+"' produced the result '"+result+"'";
-    output.set("result",result).set("exit-code",0).set("user_message",user_message);
-    log.trace("finished executing 'flint-util:winrm:basic:workflow:execute_command.js' successfully")
-}
-else{
-    log.error("Failure in execution, message:"+response_message+" | exitcode:"+response_exitcode);
-    output.set("error",response_message).set("exit-code",-1);
-    log.trace("finished executing 'flint-util:winrm:basic:workflow:execute_command.js' with errors")
+    log.error("Protocol Connection not given");
 }
