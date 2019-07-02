@@ -68,7 +68,7 @@ if (input_clone.hasOwnProperty("headers")) {
         if (typeof headers == "object") {
             log.trace("Headers is an array")
             connector_call.set("headers", headers);
-            
+
         }else if(headers.match(',')) {
             log.trace("Removing spaces if any: "+headers)
             headers = headers.replace(/ /g,'')
@@ -91,8 +91,19 @@ if (input_clone.hasOwnProperty("headers")) {
 if (input_clone.hasOwnProperty("is_proxy")) {
     is_proxy = input.get("is_proxy");
     if (is_proxy != null || is_proxy != "") {
-        connector_call.set("is-proxy", is_proxy);
-        log.info("Is-Proxy: " + is_proxy);
+        if(typeof is_proxy == "boolean"){
+            connector_call.set("is-proxy", is_proxy);
+        }else{
+            if(is_proxy == "true"){
+                is_proxy = true
+            }else if(is_proxy == "false"){
+                is_proxy = false
+            }else{
+                is_proxy = false
+                connector_call.set("is-proxy", is_proxy);
+                log.info("Is Proxy?: " + is_proxy);
+            }
+        }
     }
 }
 
