@@ -1,6 +1,6 @@
 log.trace("Started executing 'fb-cloud:azure:operation:create_ad_user.js' flintbit")
 
-log.trace("Inputs for 'flint-uril:azure_ad:operations:create_ad_user.js' :: " + input)
+log.trace("Inputs for 'flint-util:azure_ad:operations:create_ad_user.js' :: " + input)
 
 action = "create-user"
 connector_name = input.get('connector_name')
@@ -355,7 +355,7 @@ if (input_clone.hasOwnProperty('Email')) {
 custom_attributes = {}
 if (input_clone.hasOwnProperty('custom_attributes')) {
     custom_attributes = input.get('custom_attributes')
-
+    log.trace("Custom attributes are given ")
     if (custom_attributes != null && custom_attributes != "") {
         log.trace("Custom attributes are " + custom_attributes)
         connector_call.set('custom-attributes', custom_attributes)
