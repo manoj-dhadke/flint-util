@@ -352,11 +352,12 @@ if (input_clone.hasOwnProperty('Email')) {
 }
 
 // Custom Attributes: JSON
+custom_attributes = {}
 if (input_clone.hasOwnProperty('custom_attributes')) {
     custom_attributes = input.get('custom_attributes')
 
-    if (custom_attributes != null && email != "") {
-        log.trace("Custom attributes are " + email)
+    if (custom_attributes != null && custom_attributes != "") {
+        log.trace("Custom attributes are " + custom_attributes)
         connector_call.set('custom-attributes', custom_attributes)
     }
 }
