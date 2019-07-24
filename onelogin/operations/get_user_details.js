@@ -65,7 +65,7 @@ exit_code = connector_response.exitcode()
 message = connector_response.message()
 
 if(exit_code == 0){
-    result = JSON.parse(result)
+    // result = JSON.parse(result)
     log.trace("Users List: "+result)
     output.set('result', result)
 }else{

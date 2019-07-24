@@ -2,7 +2,7 @@ log.trace("Started executing 'flint-util:azure_ad:operations:list_users.js' flin
 
 log.trace("Inputs for 'flint-util:azure_ad:operations:list_users.js' :: " + input)
 action = "list-users"
-connector_name = input.get('connector_name')
+
 
 // Input clone
 input_clone = JSON.parse(input)
@@ -13,6 +13,7 @@ tenant_id = ""
 key = ""
 subscription_id = ""
 ms_azure_parameters = ""
+connector_name = ""
 
 // Check if service params for Azure exist
 if (input_clone.hasOwnProperty('ms_azure_parameters')) {
@@ -41,6 +42,11 @@ if (input_clone.hasOwnProperty('ms_azure_parameters')) {
         subscription_id = ms_azure_parameters.get('subscription_id')
         log.trace("Subscription ID taken from service parameters")
     }
+    // Connector Name
+    if (!input_clone.hasOwnProperty('connector_name')) {
+        connector_name = ms_azure_parameters.get('connector_name')
+        log.trace("Connector name is given in service parameter: "+connector_name)
+    }
 } else {
     log.info("Optional azure service parameters are not present")
 
@@ -52,7 +58,8 @@ if (input_clone.hasOwnProperty('ms_azure_parameters')) {
     log.trace("Key is given")
     subscription_id = input.get('subscription_id')
     log.trace("Subscription ID: "+subscription_id)
-
+    connector_name = input.get('connector_name')
+    log.trace("Connector name is "+connector_name)
 }
 
 // Connector call
