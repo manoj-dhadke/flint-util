@@ -352,10 +352,10 @@ if (input_clone.hasOwnProperty('Email')) {
 }
 
 // Custom Attributes: JSON
-custom_attributes = ""
+custom_attributes = {}
 if (input_clone.hasOwnProperty('custom_attributes')) {
     custom_attributes = input.get('custom_attributes')
-    log.trace("Custom attributes are given ")
+    log.trace("Custom attributes are given >>> "+custom_attributes)
     if (custom_attributes != null && custom_attributes != "") {
         custom_attributes = util.json(custom_attributes)
         log.trace("Custom attributes are " + custom_attributes)
@@ -384,4 +384,4 @@ if (exit_code == 0) {
     output.exit(-3, message)
 }
 
-log.trace("Finsihed executing 'flint-uril:azure_ad:operations:create_ad_user.js' flintbit")
+log.trace("Finsihed executing 'flint-util:azure_ad:operations:create_ad_user.js' flintbit")
