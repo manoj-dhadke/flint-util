@@ -4,7 +4,7 @@
  * Flintbit to get all Azure AD users and sync Onelogin with Azure AD
  */
 
-log.info("Started executing 'example:sync_onelogin_azure_ad.js' flintbit")
+log.info("Started executing 'flint-util:onelogin:sync_onelogin_azure_ad.js' flintbit")
 // log.trace(input)
 
 // Inputs
@@ -220,4 +220,4 @@ for (user_no in azure_ad_users_list) {
     }
 }
 
-log.info("Finished executing 'example:sync_onelogin_azure_ad.js' flintbit")
+log.info("Finished executing 'flint-util:onelogin:sync_onelogin_azure_ad.js' flintbit")
