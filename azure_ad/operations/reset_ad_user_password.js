@@ -120,9 +120,7 @@ if (input_clone.hasOwnProperty('password')) {
 // Force password change?
 is_force_password_change = input.get('force_password_change')
 log.trace("Change password?: " + is_force_password_change)
-// if (typeof is_force_password_change != 'boolean') {
-//     log.error("Is force password change value is not boolean")
-// }
+
 if (is_force_password_change != null && is_force_password_change != "") {
     if (is_force_password_change == "true") {
         is_force_password_change = true
