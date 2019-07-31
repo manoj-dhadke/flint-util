@@ -8,9 +8,11 @@ log.info("Started executing 'flint-util:onelogin:sync_onelogin_azure_ad.js' flin
 // log.trace(input)
 
 // Inputs
-azure_ad_users_list = azure_ad_users_list_json.get('get_azure_ad_users').get('output').get('result').get('value')
+// azure_ad_users_list = azure_ad_users_list_json.get('get_azure_ad_users').get('output').get('result').get('value')
+azure_ad_users_list = input.get('azure_ad_users_list_json')
+log.trace("Before util.json "+azure_ad_users_list)
 azure_ad_users_list = util.json(azure_ad_users_list)
- 
+log.trace("After util.json "+azure_ad_users_list)
 // log.trace("List is "+azure_ad_users_list)
 
 for (user_no in azure_ad_users_list) {
