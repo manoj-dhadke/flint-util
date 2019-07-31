@@ -4,28 +4,35 @@
  * Flintbit to get all Azure AD users and sync Onelogin with Azure AD
  */
 
-log.info("Started executing 'flint-util:onelogin:sync_onelogin_azure_ad.js' flintbit")
+log.info("Started executing 'flint-util:onelogin:sync_onelogin_azure_ad.js' flintbit >>>>")
 // log.trace(input)
 
 // Inputs
-// azure_ad_users_list = azure_ad_users_list_json.get('get_azure_ad_users').get('output').get('result').get('value')
 azure_ad_users_list = input.get('azure_ad_users_list_json')
 log.trace("Before util.json "+azure_ad_users_list)
 azure_ad_users_list = util.json(azure_ad_users_list)
-log.trace("After util.json "+azure_ad_users_list)
+
+log.trace("After util.json "+azure_ad_users_list.get("0"))
 // log.trace("List is "+azure_ad_users_list)
+azure_list_backup = azure_ad_users_list
+azure_ad_users_list = JSON.parse(azure_ad_users_list)
 
 for (user_no in azure_ad_users_list) {
 
+    log.trace("User no is "+user_no)
+
+    
     // Current user details json
-    current_user = azure_ad_users_list.get(user_no)
+    current_user = azure_list_backup.get(user_no)
+
+    log.trace("Current user: "+current_user)
 
     // Check if the user exists on Onelogin
     username = current_user.get('userPrincipalName').split("@")[0]
     log.trace("Username for user no. " + user_no + " is " + username)
 
     // Get Onelogin details
-    onelogin_configurations = input.get('input').get('onelogin_configurations')
+    onelogin_configurations = input.get('onelogin_configurations')
     // log.trace("Onelogin configs "+onelogin_configurations)
     client_id = onelogin_configurations.get('client_id')
     client_secret = onelogin_configurations.get('client_secret')
