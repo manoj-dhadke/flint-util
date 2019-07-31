@@ -5,7 +5,7 @@
  */
 
 log.info("Started executing 'flint-util:onelogin:sync_onelogin_azure_ad.js' flintbit >>>>")
-// log.trace(input)
+log.trace(input)
 
 // Inputs
 azure_ad_users_list = input.get('azure_ad_users_list_json')
