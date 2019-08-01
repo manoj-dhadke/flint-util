@@ -5,25 +5,24 @@
  */
 
 log.info("Started executing 'flint-util:onelogin:sync_onelogin_azure_ad.js' flintbit >>>>")
-log.trace(input)
+// log.trace("Flintbit 'flint-util:onelogin:sync_onelogin_azure_ad.js' inputs>>> "+input)
 
 // Inputs
-azure_ad_users_list = input.get('azure_ad_users_list_json')
-log.trace("Before util.json "+azure_ad_users_list)
-azure_ad_users_list = util.json(azure_ad_users_list)
+// Original Azure AD users list
+azure_users_list_inputs = input.get('azure_ad_users_list_json')
+util_json = util.json(azure_users_list_inputs)
+log.trace(azure_users_list_inputs)
 
-log.trace("After util.json "+azure_ad_users_list.get("0"))
-// log.trace("List is "+azure_ad_users_list)
-azure_list_backup = azure_ad_users_list
-azure_ad_users_list = JSON.parse(azure_ad_users_list)
+azure_ad_users_list = util_json.get('value')
+log.trace("USERS LIST JSON>>>>>> "+azure_ad_users_list)
 
 for (user_no in azure_ad_users_list) {
 
     log.trace("User no is "+user_no)
-
+    log.trace("INPUT IS >>>>>>>>>>> "+azure_ad_users_list[0])
     
     // Current user details json
-    current_user = azure_list_backup.get(user_no)
+    current_user = azure_ad_users_list[user_no]
 
     log.trace("Current user: "+current_user)
 
