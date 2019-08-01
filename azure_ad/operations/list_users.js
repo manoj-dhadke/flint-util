@@ -97,11 +97,12 @@ connector_call = call.connector(connector_name)
 
 
     if(exit_code == 0){
-        log.trace(connector_call)
-        output.set("result", JSON.parse(connector_call))
+        log.trace(connector_call.toString())
+        output.set("result", connector_call.toString())
     }else{
         log.trace("Error: "+message)
         output.set("error", message)
+        output.exit(-3, message)
     }
 
     log.trace("Finished executing 'flint-util:azure_ad:operations:list_users.js' flintbit")
