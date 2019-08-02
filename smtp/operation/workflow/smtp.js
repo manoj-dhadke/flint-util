@@ -4,202 +4,203 @@
  * Description - To send an email using SMTP Connector
  */
 
- log.trace("Starting the execution of 'flint-util:smtp:operation:workflow:smtp.js'");
+log.trace("Starting the execution of 'flint-util:smtp:operation:workflow:smtp.js'");
 
- //Connector
- connector_name = 'smtp';
- connector_call = call.connector(connector_name);
- log.info("Connector Name: "+connector_name);
+//Connector
+connector_name = 'smtp';
+connector_call = call.connector(connector_name);
+log.info("Connector Name: " + connector_name);
 
- //Action
- action = "send";
- log.info("Action: "+action);
- connector_call.set("action",action);
- 
- input_clone = JSON.parse(input);
+//Action
+action = "send";
+log.info("Action: " + action);
+connector_call.set("action", action);
 
- if(input_clone.hasOwnProperty("protocol_connection")){
+input_clone = JSON.parse(input);
+
+if (input_clone.hasOwnProperty("protocol_connection")) {
 
     protocol_connection = input_clone["protocol_connection"];
     encryptedCredentials = protocol_connection["encryptedCredentials"];
     //Username
-    username = encryptedCredentials["username"]; 
-    if(username!="" || username!=null){
-        connector_call.set("username",username);
-        log.info("Username: "+username);
+    username = encryptedCredentials["username"];
+    if (username != "" && username != null) {
+        connector_call.set("username", username);
+        log.info("Username: " + username);
     }
-    else{
+    else {
         log.error("Username is null or a empty string.");
     }
 
     //Password
-    password = encryptedCredentials["password"]; 
-    if(password!="" || password!=null){
-        connector_call.set("password",password);
+    password = encryptedCredentials["password"];
+    if (password != "" && password != null) {
+        connector_call.set("password", password);
         log.info("Password is given.");
     }
-    else{
+    else {
         log.error("Password is an empty string or a null");
     }
 
     //Target
-    target = encryptedCredentials["target"]; 
-    if(target!="" || target!=null){
-        connector_call.set("target",target);
-        log.info("Target: "+target);
+    target = encryptedCredentials["target"];
+    if (target != "" && target != null) {
+        connector_call.set("target", target);
+        log.info("Target: " + target);
     }
-    else{
+    else {
         log.error("Hostname is an empty string or null.");
     }
 
     //Port
-    port = encryptedCredentials["port"]; 
-    if(port!=null || port!=""){
-        connector_call.set("port",port);
-        log.info("Port: "+port);
+    port = encryptedCredentials["port"];
+    if (port != null && port != "") {
+        connector_call.set("port", port);
+        log.info("Port: " + port);
     }
-    else{
+    else {
         log.error("Port is an empty string or null");
     }
 
     //From
-    if(input_clone.hasOwnProperty("from")){
+    if (input_clone.hasOwnProperty("from")) {
         from = input.get("from");
-        if(from!=null || from!=""){
-            connector_call.set("from",from);
-            log.info("From: "+from);
+        if (from != null && from != "") {
+            connector_call.set("from", from);
+            log.info("From: " + from);
         }
-        else{
+        else {
             log.error("From is null or an empty string");
         }
     }
-    else{
+    else {
         log.error("Input JSON doesn't contain 'from' key");
     }
 
     //To
-    if(input_clone.hasOwnProperty("to")){
+    if (input_clone.hasOwnProperty("to")) {
         to = input.get("to");
-        if(to!=null || to!=""){
-            connector_call.set("to",to);
-            log.info("To: "+to);
+        if (to != null && to != "") {
+            connector_call.set("to", to);
+            log.info("To: " + to);
         }
-        else{
+        else {
             log.error("To is null or an empty string");
         }
     }
-    else{
+    else {
         log.error("Input JSON doesn't contain 'to' key");
     }
 
     //Subject
-    if(input_clone.hasOwnProperty("subject")){
+    if (input_clone.hasOwnProperty("subject")) {
         subject = input.get("subject");
-        if(subject!=null || subject!=""){
-            connector_call.set("subject",subject);
-            log.info("Subject: "+subject);
+        if (subject != null && subject != "") {
+            connector_call.set("subject", subject);
+            log.info("Subject: " + subject);
         }
-        else{
+        else {
             log.error("Subject is null or an empty string");
         }
     }
-    else{
+    else {
         log.error("Input JSON doesn't contain 'subject' key");
     }
 
     //Body
-    if(input_clone.hasOwnProperty("body")){
+    if (input_clone.hasOwnProperty("body")) {
         body = input.get("body");
-        if(body!=null || body!=""){
-            connector_call.set("body",body);
-            log.info("Body: "+body);
+        if (body != null && body != "") {
+            connector_call.set("body", body);
+            log.info("Body: " + body);
         }
-        else{
+        else {
             log.error("Body is null or an empty string");
         }
     }
-    else{
+    else {
         log.error("Input JSON doesn't contain 'body' key");
     }
 
     //cc
-    if(input_clone.hasOwnProperty("cc")){
+    if (input_clone.hasOwnProperty("cc")) {
         cc = input.get("cc");
-        if(cc!=null || cc!=""){
+        if (cc != null && cc != "") {
             index_cc = cc.indexOf(",");
-            if(index_cc!=-1){
+            if (index_cc != -1) {
                 cc = cc.split(",");
-                connector_call.set("cc",cc);
-                log.info("cc: "+cc);
+                connector_call.set("cc", cc);
+                log.info("cc: " + cc);
             }
-            else{
+            else {
                 cc_array = [];
                 cc_array.push(cc);
-                connector_call.set("cc",cc_array);
-                log.info("cc: "+cc_array);
+                connector_call.set("cc", cc_array);
+                log.info("cc: " + cc_array);
             }
         }
-        else{
+        else {
             log.info("cc is null or an empty string");
         }
     }
-    else{
+    else {
         log.info("Input JSON doesn't contain 'cc' key");
     }
 
     //bcc
-    if(input_clone.hasOwnProperty("bcc")){
+    if (input_clone.hasOwnProperty("bcc")) {
         bcc = input.get("bcc");
-        if(bcc!=null || bcc!=""){
+        if (bcc != null && bcc != "") {
             index_bcc = bcc.indexOf(",");
-            if(index_bcc!=-1){
+            if (index_bcc != -1) {
                 bcc = bcc.split(",");
-                connector_call.set("bcc",bcc);
-                log.info("bcc: "+bcc);
+                connector_call.set("bcc", bcc);
+                log.info("bcc: " + bcc);
             }
-            else{
+            else {
                 bcc_array = [];
                 bcc_array.push(bcc);
-                connector_call.set("bcc",bcc_array);
-                log.info("bcc: "+bcc_array);
+                connector_call.set("bcc", bcc_array);
+                log.info("bcc: " + bcc_array);
             }
         }
-        else{
+        else {
             log.info("bcc is null or an empty string");
         }
     }
-    else{
+    else {
         log.info("Input JSON doesn't contain 'bcc' key");
     }
 
     //Attachments
-    if(input_clone.hasOwnProperty("attachments")){
+    if (input_clone.hasOwnProperty("attachments")) {
         attachments = input.get("attachments");
-        if(attachments!=null || attachments!=""){
+        log.trace("Current attachment value " + typeof attachments)
+        if (attachments != null && attachments != "" && attachments != []) {
             index_attachment = attachments.indexOf(",");
-            if(index_attachment!=-1){
+            if (index_attachment != -1) {
                 attachments = attachments.split(",");
-                connector_call.set("attachments",attachments);
-                log.info("Attachments: "+attachments);
+                connector_call.set("attachments", attachments);
+                log.info("Attachments: " + attachments);
             }
-            else{
+            else {
                 attachments_array = [];
                 attachments_array.push(attachments);
-                connector_call.set("attachments",attachments_array);
-                log.info("Attachments: "+attachments_array);
+                connector_call.set("attachments", attachments_array);
+                log.info("Attachments: " + attachments_array);
             }
         }
-        else{
+        else {
             log.info("attachments is null or an empty string");
         }
     }
-    else{
+    else {
         log.info("Input JSON doesn't contain 'attachments' key");
     }
 
     //Connector call
     response = connector_call.sync();
-    
+
     //Response Meta Parameters
     response_exitcode = response.exitcode();
     response_message = response.message();
@@ -207,18 +208,18 @@
     //Response Result
     result = response.get("result");
 
-    if(response_exitcode==0){
+    if (response_exitcode == 0) {
         log.info("Email sent Successfully!");
         user_message = "email sent successfully.";
-        output.set("result",result).set("user_message",user_message).set("exit-code",response_exitcode);
+        output.set("result", result).set("user_message", user_message).set("exit-code", response_exitcode);
         log.trace("Finished executing 'flint-util:smtp:operation:workflow:smtp.js' successfully");
     }
-    else{
+    else {
         log.error("Failure in sending email");
-        output.set("error",response_message).set("exit-code",response_exitcode);
+        output.set("error", response_message).set("exit-code", response_exitcode);
         log.trace("Finished executing 'flint-util:smtp:operation:workflow:smtp.js' with errors");
     }
- }
- else{
-     log.error("Protocol Connection is not given.");
- }
+}
+else {
+    log.error("Protocol Connection is not given.");
+}
