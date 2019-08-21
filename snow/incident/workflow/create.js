@@ -16,7 +16,9 @@ impact = input.get('impact')
 urgency = input.get('urgency')
 caller_id = input.get('caller_id')
 optional_fields=input.get("optional_fields")
-optional_fields=JSON.parse(optional_fields)
+if (optional_fields != null || optional_fields != "") {
+    optional_fields=JSON.parse(optional_fields)
+  }
 mandatory_data = {};
 mandatory_data['description'] = description;
 mandatory_data['short_description'] = short_description;
