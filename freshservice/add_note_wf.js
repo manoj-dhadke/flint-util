@@ -69,35 +69,35 @@ if(input_clone.hasOwnProperty('freshservice_configurations')){
     log.trace("Service form inputs set")
 
     if (freshservice_connector_name == null || freshservice_connector_name == "") {
-        throw "Please provide 'Connector Name'"
+        log.error("Please provide 'Connector Name'")
     }
 
     if (domain_name == null || domain_name == "") {
-        throw "Please provide 'Freshservice account Domain Name'"
+        log.error("Please provide 'Freshservice account Domain Name'")
     }
 
     if (email == null || email == "") {
-        throw "Please provide 'Freshservice account Email Id'"
+        log.error("Please provide 'Freshservice account Email Id'")
     }
 
     if (password == null || password == "") {
-        throw "Please provide 'Freshservice account Password'"
+        log.error("Please provide 'Freshservice account Password'")
     }
 
     if (ticket_id == null || ticket_id == "") {
-        throw "Please provide 'Freshservice Ticket ID to add Note on ticket'"
+        log.error("Please provide 'Freshservice Ticket ID to add Note on ticket'")
     }
 
     if (ticket_type == null || ticket_type == "") {
-        throw "Please provide 'Freshservice Ticket type: Incident'"
+        log.error("Please provide 'Freshservice Ticket type: Incident'")
     }
 
     if (private_note == null) {
-        throw "Please provide 'Freshservice Private Note state: Boolean true/false'"
+        log.error("Please provide 'Freshservice Private Note state: Boolean true/false'")
     }
 
     if (body == null || body == "") {
-        throw "Please provide 'Freshservice Note/Comments body'"
+        log.error("Please provide 'Freshservice Note/Comments body'")
     }
 
     connector_response = call.connector(freshservice_connector_name)
