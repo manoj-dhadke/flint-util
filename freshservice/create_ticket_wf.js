@@ -31,31 +31,31 @@ action = "create-ticket"
 
 
 if (freshservice_connector_name == null || freshservice_connector_name == "") {
-    throw "Please provide 'Connector Name'"
+    log.error("Please provide 'Connector Name'")
 }
 
 if (domain_name == null || domain_name == "") {
-    throw "Please provide 'Freshservice account Domain Name'"
+    log.error("Please provide 'Freshservice account Domain Name'")
 }
 
 if (email == null || email == "") {
-    throw "Please provide 'Freshservice account Email Id'"
+    log.error("Please provide 'Freshservice account Email Id'")
 }
 
 if (password == null || password == "") {
-    throw "Please provide 'Freshservice account Password'"
+    log.error("Please provide 'Freshservice account Password'")
 }
 
 if (ticket_type == null || ticket_type == "") {
-    throw "Please provide 'Freshservice Ticket type: 'Incident'"
+    log.error("Please provide 'Freshservice Ticket type: 'Incident'")
 }
 
 if (subject == null || subject == "") {
-    throw "Please provide 'Freshservice Ticket Subject"
+    log.error("Please provide 'Freshservice Ticket Subject")
 }
 
 if (description == null || description == "") {
-    throw "Please provide 'Freshservice Ticket Description"
+    log.error("Please provide 'Freshservice Ticket Description")
 }
 
 
