@@ -13,6 +13,8 @@ password = config.global("freshservice_wf.password")                         //P
 freshservice_connector_name = config.global("freshservice_wf.connector_name")
 domain_name = config.global("freshservice_wf.domain_name")
 
+log.trace(">>>>>>>>>>> "+email+"\n"+password+"\n"+freshservice_connector_name+"\n"+domain_name)
+
 // Portal Service Inputs
 fs_service_params = input.get("fs_service_param")
 // Status: Open=2; Pending=3; Resolved=4; Closed=5
