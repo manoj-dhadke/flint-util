@@ -26,10 +26,10 @@ message = flintbit_response.message()
 
 if(exit_code == 0){
     log.trace("Exit code is "+exit_code)
-    output.set(0, message).set('result', flintbit_response.get('result'))
+    output.set('exit-code', 0).set('result', flintbit_response.get('result'))
 }else{
     log.trace("POST request failed due to "+message)
-    output.set(-1, message).set('error', message)
+    output.set('exit-code', -1).set('error', message)
 }
 
 ouput.set("result", payload).set("exit-code", 0)
