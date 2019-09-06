@@ -11,6 +11,7 @@
  log.trace("Payload is "+payload)
 
 log.trace("Payload Type: "+typeof payload)
+url = input.get('url')
 
 // Make Http Post Request
 flintbit_response = call.bit('flint-util:http:operation:workflow:post.js')
