@@ -10,7 +10,7 @@
  payload = input.get("payload")
  log.trace("Payload is "+payload)
 
-log.trace("Payload converted to Json: "+payload)
+log.trace("Payload Type: "+typeof payload)
 
 // Make Http Post Request
 flintbit_response = call.bit('flint-util:http:operation:workflow:post.js')
