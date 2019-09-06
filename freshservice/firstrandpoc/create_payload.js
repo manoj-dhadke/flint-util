@@ -31,5 +31,3 @@ if(exit_code == 0){
     log.trace("POST request failed due to "+message)
     output.set('exit-code', -1).set('error', message)
 }
-
-ouput.set("result", payload).set("exit-code", 0)
