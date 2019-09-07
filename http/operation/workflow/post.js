@@ -16,21 +16,7 @@ input_clone = JSON.parse(input); //For checking purposes
 connector_name = "http";
 connector_call = call.connector(connector_name);
 log.info("Connector Name: " + connector_name);
-/*
-if(input_clone.hasOwnProperty("connector_name")){
-    connector_name = input.get("connector_name");
-    if(connector_name!=null || connector_name!=""){
-        connector_call = call.connector(connector_name);
-        log.info("Connector Name: "+connector_name);
-    }
-    else{
-        log.error("Connector Name is null or empty string.");
-    }
-}
-else{
-    log.error("'connector_name' key not given in input JSON");
-}
-*/
+
 //URL - mandatory
 if (input_clone.hasOwnProperty("url")) {
     url = input.get("url");
@@ -64,24 +50,44 @@ else {
 //Headers - not mandatory
 if (input_clone.hasOwnProperty("headers")) {
     headers = input.get("headers");
+    // Headers array
     if (headers != null || headers != "") {
         if (typeof headers == "object") {
             log.trace("Headers is an array")
+            log.trace(headers)
             connector_call.set("headers", headers);
 
-        }else if(headers.match(',')) {
-            log.trace("Removing spaces if any: "+headers)
-            headers = headers.replace(/ /g,'')
+            // Multiple Headers
+        } else if (headers.match(',')) {
+            log.trace("Removing spaces if any: " + headers)
             log.trace("Multiple headers are given")
             headers = headers.split(',')
+            for (index in headers) {
+                log.trace("=============>> " + headers[index].indexOf('Authorization') >= 0)
+                if (headers[index].indexOf('Authorization') >= 0) {
+                    log.trace("Authorization header is >>>>>>> " + headers[index])
+
+                } else {
+                    headers[index].replace(/ /g, '')
+                    log.trace('Removing whitespaces  >>> ' + headers)
+                }
+            }
 
             connector_call.set("headers", headers);
             log.info("Headers: " + headers);
         } else {
+            // Single header
             log.info("One header is given: " + headers)
-            connector_call.set("headers", headers);
+            // Single headers
+            if (headers.indexOf('Authorization') >= 0) {
+                log.trace("Single header: Authorization is given")
+                connector_call.set("headers", headers);
+            } else {
+                headers = headers.replace(/ /g, '')
+                connector_call.set("headers", headers);
+            }
         }
-    }else{
+    } else {
         log.trace("Headers are empty or null")
     }
 }
@@ -91,14 +97,14 @@ if (input_clone.hasOwnProperty("headers")) {
 if (input_clone.hasOwnProperty("is_proxy")) {
     is_proxy = input.get("is_proxy");
     if (is_proxy != null || is_proxy != "") {
-        if(typeof is_proxy == "boolean"){
+        if (typeof is_proxy == "boolean") {
             connector_call.set("is-proxy", is_proxy);
-        }else{
-            if(is_proxy == "true"){
+        } else {
+            if (is_proxy == "true") {
                 is_proxy = true
-            }else if(is_proxy == "false"){
+            } else if (is_proxy == "false") {
                 is_proxy = false
-            }else{
+            } else {
                 is_proxy = false
                 connector_call.set("is-proxy", is_proxy);
                 log.info("Is Proxy?: " + is_proxy);
