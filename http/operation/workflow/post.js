@@ -75,6 +75,7 @@ if (input_clone.hasOwnProperty("headers")) {
 
             connector_call.set("headers", headers);
             log.info("Headers: " + headers);
+            log.info("Type of header is "+typeof headers)
         } else {
             // Single header
             log.info("One header is given: " + headers)
@@ -96,7 +97,7 @@ if (input_clone.hasOwnProperty("headers")) {
 //Is Proxy - not mandatory
 if (input_clone.hasOwnProperty("is_proxy")) {
     is_proxy = input.get("is_proxy");
-    if (is_proxy != null || is_proxy != "") {
+    if (is_proxy != null & is_proxy != "") {
         if (typeof is_proxy == "boolean") {
             connector_call.set("is-proxy", is_proxy);
         } else {
@@ -125,7 +126,7 @@ if (input_clone.hasOwnProperty("proxy")) {
 //Timeout - not mandatory
 if (input_clone.hasOwnProperty("timeout")) {
     timeout = input.get("timeout");
-    if (timeout != null || timeout != "") {
+    if (timeout != null && timeout != "") {
         timeout = parseInt(timeout);
     }
     else {
