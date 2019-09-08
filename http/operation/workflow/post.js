@@ -145,6 +145,7 @@ response = connector_call.set("method", method).sync();
 //Response's meta parameters
 response_exitcode = response.exitcode();
 response_message = response.message();
+log.trace("Response message:: "+response_message)
 
 //Response's Body
 response_body = response.get("body");
