@@ -165,6 +165,7 @@ if (response_exitcode == 0) {
 
 else {
     log.error("Failure in execution of method:" + method);
-    output.set("error", response_message).set("exit-code", response_exitcode);
+    log.error("Failed to execute POST request:: "+response_body)
+    output.set("error", response_message).set("exit-code", response_exitcode).set('response-body', response_body);
     log.trace("Finished executing 'flint-util:http:operation:workflow:post.js' with errors");
 }
