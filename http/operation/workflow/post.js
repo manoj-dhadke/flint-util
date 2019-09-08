@@ -142,6 +142,7 @@ log.info("Timeout: " + timeout);
 //Calling the HTTP connector
 response = connector_call.set("method", method).sync();
 
+log.trace("POST Response:: "+response)
 //Response's meta parameters
 response_exitcode = response.exitcode();
 response_message = response.message();
