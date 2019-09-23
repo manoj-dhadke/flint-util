@@ -119,11 +119,11 @@ log.info("Timeout: "+timeout);
 
 //Calling the HTTP connector
 response = connector_call.set("method",method).sync();
-
+log.trace("Connector response:: "+response)
 //Response's meta parameters
 response_exitcode = response.exitcode();
 response_message = response.message();
-
+log.trace("Message:: "+response_message)
 //Response's Body
 response_body = response.get("body");
 
@@ -141,6 +141,7 @@ if(response_exitcode==0){
 
 else{
     log.error("Failure in execution of method:"+method);
-    output.set("error",response_message).set("exit-code",response_exitcode);
+    log.error("Error message: "+response_message)
+    output.set("error",response_message).set("exit-code",response_exitcode).set('user_message', response_message);
     log.trace("Finished executing 'flint-util:http:operation:workflow:get.js' with errors");
 }

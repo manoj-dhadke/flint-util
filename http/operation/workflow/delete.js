@@ -150,6 +150,7 @@ if(response_exitcode==0){
 
 else{
     log.error("Failure in execution of method:"+method);
+    log.error("Error: "+response_message)
     output.set("error",response_message).set("exit-code",response_exitcode);
     log.trace("Finished executing 'flint-util:http:operation:workflow:delete.js' with errors");
 }
