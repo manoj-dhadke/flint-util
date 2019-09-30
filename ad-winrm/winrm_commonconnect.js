@@ -6,7 +6,6 @@
 
 log.trace("Started executing flint-util:ad-winrm:winrm_commonconnect.js flintbit.")
 // Input from Flint
-try {
     log.info("Input: " +input)
     target = input.get("target")
     username = input.get("username")
@@ -64,9 +63,5 @@ try {
         log.trace("Finished executing winrm flintbit with error...")
     }
 
-} catch (error) {
-    log.error("Error message: " + error)
-    output.set('exit-code', 1)
-}
 
 log.trace("Finished executing flint-util:ad-winrm:winrm_commonconnect.js flintbit.")
