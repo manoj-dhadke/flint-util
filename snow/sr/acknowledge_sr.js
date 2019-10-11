@@ -80,4 +80,4 @@ else {
     log.trace("Finished executing 'serviceNow' flintbit with error...")
 
 }
-log.trace("Finsished executing 'flint-util:snow:sr:update.js' flintbit...")
+log.trace("Finished executing 'flint-util:snow:sr:acknowledge_sr.js' flintbit...")
