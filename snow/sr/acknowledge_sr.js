@@ -19,7 +19,7 @@ data = input.get('data')
 url = input.get("itsm_connection.encryptedCredentials.target")
 username = input.get("itsm_connection.encryptedCredentials.username")
 password = input.get("itsm_connection.encryptedCredentials.password")
-log.info("URL:: " +url+ "Username:: " +username)
+log.info("URL:: " +url + "Username:: " +username)
 
 if (url == null || url == "") {
     throw "Please provide ServiceNow instance URL to connect to the instance"
