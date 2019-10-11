@@ -8,19 +8,19 @@ log.info("Started executing 'flint-util:snow:sr:update_state.js' ")
 //Input JSON to be parsed and extracting required values from SNOW SR form
 
 log.info("Inputs from ServiceNow SR form:: " +input)
-sys_id = input.get("sys_id") //RITM Sys-id queried from table (sc_req_item)
+sys_id = input.get("sys_id")  //RITM Sys-id queried from table (sc_req_item)
 servicenow_connector_name = 'servicenow'
-state = input.get("state")
+state = input.get("state")   //ex: 'Closed Complete', 'Work in Progress' 
 close_notes = input.get("close_notes")
 comments = input.get("comments")
 action = 'update-record'
-tableName = 'sc_req_item'
-sys_id = input.get('sys_id')
+tablename = 'sc_req_item'
 sysparm_display_value = false
 data = input.get('data')
-url = input.get("url")
-username = input.get("username")
-password = input.get("password")
+url = input.get("itsm_connection.encryptedCredentials.target")
+username = input.get("itsm_connection.encryptedCredentials.username")
+password = input.get("itsm_connection.encryptedCredentials.password")
+log.info("URL:: " +url+ "Username:: " +username)
 
 if (url == null || url == "") {
     throw "Please provide ServiceNow instance URL to connect to the instance"
@@ -59,7 +59,7 @@ response = call.connector(servicenow_connector_name)
                .set("username",username)
                .set("password",password)
                .set('action', action)
-               .set('table-name', tableName)
+               .set('table-name', tablename)
                .set('data', data)
                .set('sysparm_display_value', sysparm_display_value)
                .set('sys-id', sys_id)
