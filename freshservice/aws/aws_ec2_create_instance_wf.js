@@ -5,6 +5,7 @@
 **/
 log.trace("Started executing flint-util:freshservice:aws:aws_ec2_create_instance_wf.js flintbit.")
 log.info("Input.....:: " + input)
+input_clone = JSON.parse(input)
 
 // Get Flint Job ID
 flint_job_id = input.jobid()
