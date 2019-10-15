@@ -37,14 +37,14 @@ log.trace(key_name)
 if (input_clone.hasOwnProperty('cloud_connection')) {
     log.trace("Taking AWS credentials from connection")
     access_key = input.get('cloud_connection').get('encryptedCredentials').get('access_key');
-    security_key = input.get('cloud_connection').get('encryptedCredentials').get('secret_key');
-    log.info("Access Key:: " +access_key + " Secret Key:: " +secret_key)
+    security_key = input.get('cloud_connection').get('encryptedCredentials').get('security_key');
+    log.info("Access Key:: " +access_key + " Secret Key:: " +security_key)
     // Check if credentials are null or empty
   
     }else{
-        log.info("Unable to get 'secret_key' and 'access_key' from Connection")
+        log.info("Unable to get 'security_key' and 'access_key' from Connection")
     }
-    if (access_key == null || access_key == "" || secret_key == null || secret_key == "") {
+    if (access_key == null || access_key == "" || security_key == null || security_key == "") {
             log.trace("AWS credentials are not properly given in connection. Checking in JSON parameter")
             access_key = aws_service_params.get('access_key')
             security_key = aws_service_params.get('security_key')
