@@ -10,7 +10,7 @@ log.info("Input.....:: " + input)
 flint_job_id = input.jobid()
 
 // Inputs to create AWS instance, set in service config
-aws_service_params = input.get('aws_service_params')
+aws_service_params = input.get('aws_service_parameters')
 region = aws_service_params.get('region')
 key_name = aws_service_params.get('key_name')
 subnet_id = aws_service_params.get('subnet_id')
