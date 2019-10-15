@@ -28,7 +28,7 @@ availability_zone = aws_service_params.get('availablity_zone')
 log.info("Service Parameters: "+aws_service_params)
 // Credential Variables
 access_key = ""
-secret_key = ""
+security_key = ""
 aws_connector_name=""
 
 log.trace(region)
