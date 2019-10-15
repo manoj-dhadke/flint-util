@@ -18,14 +18,34 @@ max_instance = aws_service_params.get('max_instance')
 min_instance = aws_service_params.get('min_instance')
 availability_zone = aws_service_params.get('availablity_zone')
 log.info("Service Parameters: "+aws_service_params)
+// Credential Variables
+access_key = ""
+secret_key = ""
+aws_connector_name=""
 
 log.trace(region)
 log.trace(key_name)
 
-// Global Conf
-access_key = aws_service_params.get('access_key')
-security_key = aws_service_params.get('security_key')
-aws_connector_name = aws_service_params.get('connector_name')
+// Credentials - AWS Cloud Connection JSON
+if (input_clone.hasOwnProperty('cloud_connection')) {
+    log.trace("Taking AWS credentials from connection")
+    access_key = input.get('cloud_connection').get('encryptedCredentials').get('access_key');
+    secret_key = input.get('cloud_connection').get('encryptedCredentials').get('secret_key');
+    // Check if credentials are null or empty
+  
+    }else{
+        log.info("Unable to get 'secret_key' and 'access_key' from Connection")
+    }
+    if ((access_key == null || access_key == "") || (secret_key == null || secret_key == "")) {
+            log.trace("AWS credentials are not properly given in connection. Checking in JSON parameter")
+            access_key = aws_service_params.get('access_key')
+            security_key = aws_service_params.get('security_key')
+            aws_connector_name = aws_service_params.get('connector_name')
+            // Check if credentials are null or empty
+        
+        } else {
+            log.error("AWS Credentials are not provided. Please provide AWS credentials")
+        }
 
 log.trace(aws_connector_name)
 
