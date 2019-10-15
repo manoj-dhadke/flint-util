@@ -37,7 +37,7 @@ log.trace(key_name)
 if (input_clone.hasOwnProperty('cloud_connection')) {
     log.trace("Taking AWS credentials from connection")
     access_key = input.get('cloud_connection').get('encryptedCredentials').get('access_key');
-    secret_key = input.get('cloud_connection').get('encryptedCredentials').get('secret_key');
+    security_key = input.get('cloud_connection').get('encryptedCredentials').get('secret_key');
     log.info("Access Key:: " +access_key + " Secret Key:: " +secret_key)
     // Check if credentials are null or empty
   
