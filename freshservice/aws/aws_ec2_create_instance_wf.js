@@ -52,9 +52,9 @@ if (input_clone.hasOwnProperty('cloud_connection')) {
             // Check if credentials are null or empty
         
         } else {
-            log.error("AWS Credentials are not provided. Please provide AWS credentials")
+            log.info("AWS Credentials fetched from Connection")
         }
-
+aws_connector_name = aws_service_params.get('connector_name')
 log.trace(aws_connector_name)
 
 // Service Form
