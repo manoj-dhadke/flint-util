@@ -26,7 +26,6 @@ aws_connector_name=""
 log.trace(region)
 log.trace(key_name)
 
-// Credentials - AWS Cloud Connection JSON
 if (input_clone.hasOwnProperty('cloud_connection')) {
     log.trace("Taking AWS credentials from connection")
     access_key = input.get('cloud_connection').get('encryptedCredentials').get('access_key');
