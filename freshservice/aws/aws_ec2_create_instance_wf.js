@@ -11,6 +11,13 @@ flint_job_id = input.jobid()
 
 // Inputs to create AWS instance, set in service config
 aws_service_params = input.get('aws_service_parameters')
+
+if (typeof aws_service_params == "string") {
+    log.trace("Template is given as a JSON string. Coverting to JSON object")
+    aws_service_params = util.json(aws_service_params)
+} else if (typeof aws_service_params == "object") {
+    log.trace("Template JSON is given")
+}
 region = aws_service_params.get('region')
 key_name = aws_service_params.get('key_name')
 subnet_id = aws_service_params.get('subnet_id')
