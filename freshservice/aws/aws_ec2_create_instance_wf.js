@@ -93,8 +93,7 @@ create_aws_flintbit_call_response = call.bit("fb-cloud:aws-ec2:operation:create_
 // Getting exit-code for create instance flinbit call
 create_instance_exit_code = create_aws_flintbit_call_response.get("exit-code")
 log.trace("Exit code: "+create_instance_exit_code)
-
-// create_instance_response_message = create_aws_flintbit_call_response.get("message")
+create_instance_response_message = create_aws_flintbit_call_response.get("message")
 log.info(create_aws_flintbit_call_response)
 // Getting instance information
 instance_info = create_aws_flintbit_call_response.get('instances-info')
@@ -110,7 +109,7 @@ if(create_instance_exit_code == 0){
 }
 else{
     // Setting user message (will be visible on CMP)
-    output.set('exit-code', -1).set('error', create_aws_flintbit_call_response)
+    output.set('exit-code', -1).set('error', create_instance_response_message)
 }
 
 log.trace("Finished executing flint-util:freshservice:aws:aws_ec2_create_instance_wf.js flintbit.")
