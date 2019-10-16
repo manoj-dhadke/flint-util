@@ -102,12 +102,11 @@ if(create_instance_exit_code == 0){
     instance_info = create_aws_flintbit_call_response.get('instances-info')
     instance_id = instance_info[0].get('instance-id')
     log.info("Instance_Info: " + instance_id)
-    log.trace("Instance created successfully with: \nInstance ID:"+instance_id+"\nPrivate IP: "+private_ip)
-    
     private_ip = instance_info[0].get('private-ip')
     log.info("Private IP: " + private_ip)
+    log.trace("Instance created successfully with: \nInstance ID:"+instance_id+"\nPrivate IP: "+private_ip)
     output.set('instance_details', instance_info[0])
-}
+    }
 else{
     // Setting user message (will be visible on CMP)
     output.set('exit-code', -1).set('error', create_instance_response_message)
