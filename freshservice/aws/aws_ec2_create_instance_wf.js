@@ -99,12 +99,11 @@ log.info(create_aws_flintbit_call_response)
 
 
 if(create_instance_exit_code == 0){
-    log.trace("Instance created successfully with: \nInstance ID:"+instance_id+"\nPrivate IP: "+private_ip)
-    // Getting instance information
     instance_info = create_aws_flintbit_call_response.get('instances-info')
     instance_id = instance_info[0].get('instance-id')
     log.info("Instance_Info: " + instance_id)
-    // Getting private IP
+    log.trace("Instance created successfully with: \nInstance ID:"+instance_id+"\nPrivate IP: "+private_ip)
+    
     private_ip = instance_info[0].get('private-ip')
     log.info("Private IP: " + private_ip)
     output.set('instance_details', instance_info[0])
