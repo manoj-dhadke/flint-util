@@ -1,10 +1,12 @@
-log.trace("Started executing 'flint-util:azure_ad:operation:delete_user.js' flintbit")
+log.trace("Started executing 'flint-util:azure_ad:operation:disable_user.js' flintbit")
 
 log.trace("Inputs for 'fb-cloud:azure:operation:add_user_to_group.js' :: " + input)
-action = "delete-user"
+
+action = "disable-user"
+log.trace("Action is " + action)
 
 connector_name = input.get('connector_name')
-
+log.trace("Connector name is " + connector_name)
 // Input clone
 input_clone = JSON.parse(input)
 
@@ -58,29 +60,43 @@ if (input_clone.hasOwnProperty('ms_azure_parameters')) {
 
 // Username, Group name & Active directory domain
 username = ""
-group_name = ""
+is_disable_user = false
 active_directory_domain = ""
 
 // Username
 if (input_clone.hasOwnProperty('username')) {
-    log.info("Username is given")
+    log.info("Username value is given")
     username = input.get('username')
-    if (username != null || username != "") {
-        log.trace("Azure AD username is " + username)
+    if (username != null && username != "") {
+        log.trace("Username is " + username)
     } else {
-        log.error("Username is null or empty")
+        log.error("Username is null or empty " + username)
     }
 } else {
-    log.error("Username is not given")
+    log.error("Username value is not given")
+}
+
+
+// Is disable user?
+if (input_clone.hasOwnProperty('is_user_enabled')) {
+    log.info("Disable user boolean value is given")
+    is_user_enabled = input.get('is_user_enabled')
+    if (is_user_enabled != null) {
+        log.trace("User enabled? " + is_user_enabled)
+    } else {
+        log.error("User enabled boolean value is null :: " + is_user_enabled)
+    }
+} else {
+    log.error("User enabled boolean value is not given")
 }
 
 // Active Directory Domain
 if (input_clone.hasOwnProperty('active_directory_domain')) {
     log.info("Active directory domain is given")
     active_directory_domain = input.get('active_directory_domain')
-    if (active_directory_domain != null || active_directory_domain != "") {
+    if (active_directory_domain != null && active_directory_domain != "") {
         active_directory_domain = input.get('active_directory_domain')
-        log.trace("Azure AD domain is " + active_directory_domain)
+        log.trace("Azure AD domain is :: " + active_directory_domain)
     } else {
         log.error("Active directory domain is null or empty")
     }
@@ -97,17 +113,18 @@ connector_call_response = call.connector(connector_name)
     .set('subscription-id', subscription_id)
     .set('username', username)
     .set('active-directory-domain', active_directory_domain)
+    .set('is-user-enabled', is_user_enabled)
     .timeout(120000)
     .sync()
 
 exit_code = connector_call_response.exitcode()
 message = connector_call_response.message()
 
-log.trace("Add Azure AD user " + username + " to group response: " + connector_call_response)
+log.trace("Dsiable Azure AD user " + username + " response: " + connector_call_response)
 
 if (exit_code == 0) {
     log.trace("Exitcode is " + exit_code)
-    log.trace("Success message :: " + message)
+    log.trace("Success message :: "+message)
     output.set('result', message)
     output.set('user_message', message)
 
@@ -118,4 +135,4 @@ if (exit_code == 0) {
     output.exit(-3, message)
 }
 
-log.trace("Finished executing 'flint-util:azure_ad:operation:delete_user.js' flintbit")
+log.trace("Finished executing 'flint-util:azure_ad:operation:disable_user.js' flintbit")
