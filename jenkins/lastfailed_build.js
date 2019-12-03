@@ -43,7 +43,7 @@
     throw "Please provide lastfailedBuild to connect"
   }
 
-  status_url = jenkins_host + "job/" + build_name.replace(" ", "%20") + lastfailedBuild
+  status_url = jenkins_host + "/job/" + build_name.replace(" ", "%20") + lastfailedBuild
   build_name.replace("%20", " ")
 
 

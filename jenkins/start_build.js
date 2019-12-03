@@ -3,7 +3,7 @@
 ** Summary:
 ** Description: This flintbit is used to trigger jenkins build
 **/
-  log.trace("Started execution of 'flint-util:jenkins:start_build.rb'flintbit..")
+  log.trace("Started execution of 'flint-util:jenkins:start_build.js'flintbit..")
 
   jenkins_username = input.get("username")     // Username of the jenkins user
   jenkins_api_token = input.get("api_token")  //Api token of Jenkins
@@ -30,7 +30,7 @@
     throw "Please provide valid Crumb URL"
   }
 
-  build_url = jenkins_host + "job/" + build_name.replace(" ", "%20") + "/build"
+  build_url = jenkins_host + "/job/" + build_name.replace(" ", "%20") + "/build"
   build_name.replace("%20", " ")
 
   log.info("build_url:" + build_url)
@@ -95,4 +95,4 @@
     output.exit(-1, message)
   }
 
-log.trace("Finished execution of 'flint-util:jenkins:start_build.rb'flintbit..")
+log.trace("Finished execution of 'flint-util:jenkins:start_build.js'flintbit..")

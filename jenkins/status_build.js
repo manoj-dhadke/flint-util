@@ -35,7 +35,7 @@ if (lastSuccessfulBuild == null || lastSuccessfulBuild == "") {
 }
 
 
-status_url = jenkins_host + "job/" + build_name.replace(" ", "%20") + lastSuccessfulBuild
+status_url = jenkins_host + "/job/" + build_name.replace(" ", "%20") + lastSuccessfulBuild
 build_name.replace("%20", " ")
 
 log.info("print_url::" + status_url)
