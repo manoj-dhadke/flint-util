@@ -5,6 +5,8 @@
 **/
   log.trace("Started execution of 'flint-util:jenkins:lastfailed_build.js' flintbit..")
 
+  log.debug("Inputs :: "+input)
+
   jenkins_username = input.get("username") // Username of the jenkins user
   jenkins_api_token = input.get("api_token") //Api token of Jenkins
   jenkins_host = input.get("jenkins_url")  //Jenkins host URL
