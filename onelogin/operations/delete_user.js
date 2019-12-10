@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 10th April 2019
+** Summary: Delete OneLogin User. 
+** Description: This flintbit is developed to delete a user on OneLogin.
+**/
+
 log.info("Started executing 'flint-util:onelogin:operations:delete_user.js' flintbit")
 log.info("Flintbit inputs: "+input)
 

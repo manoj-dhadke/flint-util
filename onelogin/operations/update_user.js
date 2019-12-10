@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 26th July 2019
+** Summary: Update OneLogin User. 
+** Description: This flintbit is developed to update a OneLogin user.
+**/
+
 log.info("Started executing 'flint-util:onelogin:operations:update_user.js' flintbit")
 
 log.info("Flintbit Inputs: \n" + input)

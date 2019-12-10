@@ -14,6 +14,11 @@
  *  is strictly forbidden unless prior written permission is obtained
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
+/**
+** Creation Date: 9th May 2019
+** Summary: Reset Azure AD Password. 
+** Description: This flintbit is developed to reset password for an Azure AD user.
+**/
 
 log.trace("Started executing 'flint-util:azure:operation:reset_ad_user_password.js' flintbit")
 

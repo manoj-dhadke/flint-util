@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 20th May 2018
+** Summary: This is Active Directory User Account Enable flintbit.
+** Description: This flintbit is developed to enable Active Directory User Account using WinRM connector.
+**/
+
 log.trace("Started executing flint-util:ad-winrm:enable_ad_account.js flintbit.")
   // Input from Flint
   login_name = input.get('login_name')

@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 1st February 2019
+** Summary: This is update ticket in Freshservice Desk flintbit. Flint Workflow Compatible.
+** Description: This flintbit is developed to update ticket in Freshservice Desk. Flint Workflow Compatible.
+**/
+
 log.trace("Started executing flint-util:freshservice:update_ticket_wf.js")
 
     log.info(input)

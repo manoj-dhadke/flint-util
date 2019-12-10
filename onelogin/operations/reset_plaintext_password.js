@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 15th April 2019
+** Summary: Reset Password (Cleartext) of OneLogin User. 
+** Description: This flintbit is developed to logout an user on OneLogin.
+**/
+
 log.info("Started executing 'flint-util:onelogin:operations:reset_plaintext_password.js' flintbit")
 log.trace("Flintbit inputs: " + input)
 

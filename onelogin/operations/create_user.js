@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 9th April 2019
+** Summary: Create OneLogin User. 
+** Description: This flintbit is developed to create a OneLogin user.
+**/
+
 log.info("Started executing 'flint-util:onelogin:operations:create_user.js' flintbit")
 
 log.info("Flintbit Inputs: \n" + input)

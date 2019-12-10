@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 24th July 2019
+** Summary: Get OneLogin User Details. 
+** Description: This flintbit is developed to get details of a OneLogin user.
+**/
+
 log.info("Started executing 'flint-util:onelogin:operations:get_user_details.js' flintbit")
 log.info("Flintbit inputs: "+input)
 

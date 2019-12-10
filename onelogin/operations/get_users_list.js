@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 9th April 2019
+** Summary: Get OneLogin Users List. 
+** Description: This flintbit is developed to get a list of OneLogin users list.
+**/
+
 log.info("Started executing 'flint-util:onelogin:operations:get_users.js' flintbit")
 log.info("Flintbit inputs: "+input)
 

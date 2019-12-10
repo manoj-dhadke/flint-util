@@ -15,6 +15,11 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 20th May 2018
+** Summary: This is winrm_commonconnect.js flintbit to execute commands on Windows server remotely.
+** Description: The winrm_commonconnect flintbit is developed as a common flintbit which uses WinRM connector to connect and execute commands on Windows server.
+**/
 log.trace("Started executing flint-util:ad-winrm:winrm_commonconnect.js flintbit.")
 // Input from Flint
     log.info("Input: " +input)

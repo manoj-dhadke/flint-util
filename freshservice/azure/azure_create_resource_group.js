@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 31 October 2018
+** Summary: This is Create Azure Resource Group service flintbit.
+** Description: This flintbit is developed to create Azure resource group after receiving request from Freshserver.
+**/
+
 log.trace("Started executing flint-util:freshservice:azure:azure_create_resource_group.js flintbit.")
 log.info("Input parameters........::  " + input)
 try {

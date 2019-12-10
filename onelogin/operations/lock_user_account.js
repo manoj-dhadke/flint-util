@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 10th April 2019
+** Summary: Lock OneLogin User Account. 
+** Description: This flintbit is developed to lock an users account for specified duration in minutes on OneLogin.
+**/
+
 log.info("Started executing 'flint-util:onelogin:operations:lock_user_account.js' flintbit")
 
 input_clone = JSON.parse(input)

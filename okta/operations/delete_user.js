@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 20th April 2019
+** Summary: Delete Okta User. 
+** Description: This flintbit is developed to delete an user on Okta.
+**/
+
 log.info("Started executing 'flint-util:okta:operations:delete_user.js' flintbit")
 
 log.trace("Flintbit Inputs: \n"+input)

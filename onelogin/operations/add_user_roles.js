@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 13th April 2019
+** Summary: Assign Roles To OneLogin User. 
+** Description: This flintbit is developed to assign roles to OneLogin user.
+**/
+
 log.info("Started executing 'flint-util:onelogin:operations:add_user_roles.js' flintbit")
 log.info("Flintbit inputs: " + input)
 action = 'add-user-roles'

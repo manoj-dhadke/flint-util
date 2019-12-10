@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 10th April 2019
+** Summary: Logout OneLogin User. 
+** Description: This flintbit is developed to logout an user on OneLogin.
+**/
+
 log.info("Started executing 'flint-util:onelogin:operations:logout_user.js' flintbit")
 log.info("Flintbit inputs: "+input)
 

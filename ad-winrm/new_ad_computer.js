@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 14th Sep 2018
+** Summary: This is Active Directory Add Computer flintbit.
+** Description: This flintbit is developed to'Add New Computer'in Active Directory using WinRM connector.
+**/
+
 log.trace("Started executing flint-util:ad-winrm:new_ad_computer.js flintbit...")
 // Input from Flint
 try{

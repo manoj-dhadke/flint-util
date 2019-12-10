@@ -14,6 +14,13 @@
  *  is strictly forbidden unless prior written permission is obtained
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
  */
+
+ /**
+** Creation Date: 31 October 2018
+** Summary: This is for JSON parsing Freshservice inputs.
+** Description: This flintbit is developed to parse 'ticket_service_item_fields' field from freshservice API call.
+**/
+
 log.info("Started executing flintbit 'extract_sr_items_fields.groovy'")
 log.info("Inputs to flintbit are: "+input)
 

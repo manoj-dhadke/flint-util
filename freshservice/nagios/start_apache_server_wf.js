@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+ /**
+** Creation Date: 6th March 2019
+** Summary: Start Apache server.
+** Description: This flintbit is developed to start apache server.
+**/
+
 log.trace("Started executing 'flint-util:freshservice:start_apache_server_wf.js' flintbit...")
 
 // Global configuration inputs

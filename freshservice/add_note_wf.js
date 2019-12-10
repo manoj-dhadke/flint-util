@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 1st February 2019
+** Summary: This is add note/comments on ticket in Freshservice Desk flintbit. Flint workflow compatible.
+** Description: This flintbit is developed to add note/comments on ticket in Freshservice Desk. Flint workflow compatible.
+**/
+
 log.trace("Started executing flint-util:freshservice:add_note_wf.js")
 log.info(input)
 

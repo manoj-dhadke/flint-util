@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 19th April 2019
+** Summary: Get Okta Users List. 
+** Description: This flintbit is developed to get users list from an organization on Okta.
+**/
+
 log.info("Started executing 'flint-util:okta:operations:get_users_list.js' flintbit")
 
 log.trace("Flintbit Inputs: \n"+input)

@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 7th November 2019
+** Summary: This flintbit is used to find jenkins last failed build
+** Description: This flintbit is used to find jenkins last failed build
+**/
+
   log.trace("Started execution of 'flint-util:jenkins:lastfailed_build.js' flintbit..")
 
   log.debug("Inputs :: "+input)

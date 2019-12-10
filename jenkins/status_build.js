@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 7th November 2019
+** Summary:
+** Description: This flintbit is used to know last status of build which is failed or success.
+**/
+
 log.trace("Started execution of 'flint-util:jenkins:status_build.js' flintbit..")
 
 log.debug("Inputs :: "+input)

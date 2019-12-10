@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 19th April 2019
+** Summary: Assign Role To Okta User. 
+** Description: This flintbit is developed to assign a role to an user on Okta.
+**/
+
 log.info("Started executing 'flint-util:okta:operations:add_role.js' flintbit")
 
 log.trace("Flintbit Inputs: \n"+input)

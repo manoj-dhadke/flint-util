@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 7th November 2019
+** Summary:
+** Description: This flintbit is used to trigger jenkins build
+**/
+
   log.trace("Started execution of 'flint-util:jenkins:start_build.js'flintbit..")
 
   log.debug("Inputs :: "+input)

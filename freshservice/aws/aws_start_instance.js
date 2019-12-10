@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 31 October 2018
+** Summary: This is Start AWS instance service flintbit.
+** Description: This flintbit is developed to start an AWS instance after receiving request from Freshserver.
+**/
+
 log.trace("Started executing flint-util:freshservice:aws:aws_start_instance.js flintbit.")
 log.info("Input parameters........::  " + input)
 try {

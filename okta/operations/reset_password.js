@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 20th April 2019
+** Summary: Reset Okta Users Password. 
+** Description: This flintbit is developed to reset password of an user on Okta.
+**/
+
 log.info("Started executing 'flint-util:okta:operations:reset_password.js' flintbit")
 
 log.trace("Flintbit Inputs: \n"+input)

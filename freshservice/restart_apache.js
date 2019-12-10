@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 25th August 2018
+** Summary: This is Auto-remediate Apache server flintbit.
+** Description: This flintbit is developed to remediate apache server after receiving server status from nagios.
+**/
+
 log.trace("Started executing 'flint-util:freshservice:restart_apache.js' flintbit...")
 try{
     // Apache Server Details

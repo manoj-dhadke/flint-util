@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 23th August 2018
+** Summary: This is Reset Active Directory User Password flintbit.
+** Description: This flintbit is developed to reset AD user password after receiving service request from Freshserver.
+**/
+
 log.trace("Started executing flint-util:freshservice:wrapper_reset_ad_password.js flintbit.")
 try{
     // Get Flint Job ID

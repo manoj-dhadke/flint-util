@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 15th April 2019
+** Summary: Remove Roles Assigned to OneLogin User. 
+** Description: This flintbit is developed to remove roles assigned to OneLogin user.
+**/
+
 log.info("Started executing 'flint-util:onelogin:operations:remove_user_roles.js' flintbit")
 
 action = 'remove-user-roles'

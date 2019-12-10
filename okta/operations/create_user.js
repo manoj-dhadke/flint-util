@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 19th April 2019
+** Summary: Create New Okta User. 
+** Description: This flintbit is developed to create a new user on Okta.
+**/
+
 log.info("Started executing 'flint-util:okta:operations:create_user.js' flintbit")
 
 log.trace("Flintbit Inputs: \n" + input)

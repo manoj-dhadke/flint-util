@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 2 November 2018
+** Summary: This is GCP Create Instance service flintbit.
+** Description: This flintbit is developed to create GCP instance after receiving request from Freshserver.
+**/
+
 log.trace("Started executing flint-util:freshservice:gcp:gcp_create_instance.js flintbit.")
 log.info("Input parameters........::  " + input)
 try {

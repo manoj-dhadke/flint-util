@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 2nd Jan 2019
+** Summary: This is Active Directory Add Printer flintbit.
+** Description: This flintbit is developed to'Add New Printer'in Active Directory using WinRM connector.
+**/
+
 log.trace("Started executing flint-util:ad-winrm:add_new_printer.js flintbit...")
 // Input from Flint
 try{

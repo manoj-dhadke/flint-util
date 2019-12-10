@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 22nd Aug 2018
+** Summary: This is create ticket in Freshservice Desk flintbit
+** Description: This flintbit is developed to create ticket in Freshservice Desk.
+**/
+
 log.trace("Started executing flint-util:freshservice:create_ticket.js")
 try {
     email = input.get("email")                               //Email address of the requester

@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 16th January 2019
+** Summary: List VM Restore points on Veeam. 
+** Description: This flintbit is developed to get List of VM Restore points on Veeam
+**/
+
 log.trace("Started executing vm_restore_points.js flintbit")
     
 // Set Inputs

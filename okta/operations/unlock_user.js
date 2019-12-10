@@ -15,6 +15,12 @@
  *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
 */
 
+/**
+** Creation Date: 20th April 2019
+** Summary: Unlock Okta User. 
+** Description: This flintbit is developed to unlock an user on Okta.
+**/
+
 log.info("Started executing 'flint-util:okta:operations:unlock_user.js' flintbit")
 
 log.trace("Flintbit Inputs: \n" + input)
