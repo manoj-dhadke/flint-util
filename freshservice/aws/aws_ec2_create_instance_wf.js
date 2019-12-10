@@ -1,8 +1,20 @@
-/**
-** Creation Date: 8th March 2019
-** Summary: Create AWS instance service flintbit.
-** Description: This flintbit is developed to create an AWS EC2 instance.
-**/
+/*
+ *
+ * INFIVERVE TECHNOLOGIES PTE LIMITED CONFIDENTIAL
+ * _______________________________________________
+ *
+ *  (C) INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE
+ *  All Rights Reserved.
+ *  Product / Project: Flint IT Automation Platform
+ *  NOTICE:  All information contained herein is, and remains
+ *  the property of INFIVERVE TECHNOLOGIES PTE LIMITED.
+ *  The intellectual and technical concepts contained
+ *  herein are proprietary to INFIVERVE TECHNOLOGIES PTE LIMITED.
+ *  Dissemination of this information or any form of reproduction of this material
+ *  is strictly forbidden unless prior written permission is obtained
+ *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
+*/
+
 log.trace("Started executing flint-util:freshservice:aws:aws_ec2_create_instance_wf.js flintbit.")
 log.info("Input.....:: " + input)
 input_clone = JSON.parse(input)

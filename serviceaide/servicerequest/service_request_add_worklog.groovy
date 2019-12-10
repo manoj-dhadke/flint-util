@@ -1,3 +1,19 @@
+/*
+ *
+ * INFIVERVE TECHNOLOGIES PTE LIMITED CONFIDENTIAL
+ * _______________________________________________
+ *
+ *  (C) INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE
+ *  All Rights Reserved.
+ *  Product / Project: Flint IT Automation Platform
+ *  NOTICE:  All information contained herein is, and remains
+ *  the property of INFIVERVE TECHNOLOGIES PTE LIMITED.
+ *  The intellectual and technical concepts contained
+ *  herein are proprietary to INFIVERVE TECHNOLOGIES PTE LIMITED.
+ *  Dissemination of this information or any form of reproduction of this material
+ *  is strictly forbidden unless prior written permission is obtained
+ *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
+ */
 log.info("Started execution of 'serviceaide:service_request_add_worklog.groovy")
 ticket_id = input.get("ticket_id")
 //work_description = "Ticket with ticket id : ${ticket_id} is updated to resolved state"

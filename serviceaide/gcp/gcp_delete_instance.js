@@ -1,8 +1,20 @@
-/**
-** Creation Date: 3rd Oct 2018
-** Summary: This is Delete GCP instance service flintbit.
-** Description: This flintbit is developed to delete an GCP instance after receiving request from Serviceaide.
-**/
+/*
+ *
+ * INFIVERVE TECHNOLOGIES PTE LIMITED CONFIDENTIAL
+ * _______________________________________________
+ *
+ *  (C) INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE
+ *  All Rights Reserved.
+ *  Product / Project: Flint IT Automation Platform
+ *  NOTICE:  All information contained herein is, and remains
+ *  the property of INFIVERVE TECHNOLOGIES PTE LIMITED.
+ *  The intellectual and technical concepts contained
+ *  herein are proprietary to INFIVERVE TECHNOLOGIES PTE LIMITED.
+ *  Dissemination of this information or any form of reproduction of this material
+ *  is strictly forbidden unless prior written permission is obtained
+ *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
+*/
+
 log.trace("Started execution 'fb-cloud:google-cloud:operation:delete_instance.groovy' flintbit...") // execution Started
 try {
     // Flintbit input parametes

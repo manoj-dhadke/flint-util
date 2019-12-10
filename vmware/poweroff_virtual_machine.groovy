@@ -1,8 +1,19 @@
-/**
-** Creation Date: 7th February 2019
-** Summary: This is stop VM in VMware Vcenter. Flint workflow compatible.
-** Description: This flintbit is developed to stop/power-off a Virtual Machine in VMware. Flint workflow compatible.
-**/
+/*
+ *
+ * INFIVERVE TECHNOLOGIES PTE LIMITED CONFIDENTIAL
+ * _______________________________________________
+ *
+ *  (C) INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE
+ *  All Rights Reserved.
+ *  Product / Project: Flint IT Automation Platform
+ *  NOTICE:  All information contained herein is, and remains
+ *  the property of INFIVERVE TECHNOLOGIES PTE LIMITED.
+ *  The intellectual and technical concepts contained
+ *  herein are proprietary to INFIVERVE TECHNOLOGIES PTE LIMITED.
+ *  Dissemination of this information or any form of reproduction of this material
+ *  is strictly forbidden unless prior written permission is obtained
+ *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
+ */
 log.trace("Started execution 'flint-util:vmware:poweroff_virtual_machine.groovy' flintbit...") // execution Started
     // Flintbit input parametes
     // Mandatory

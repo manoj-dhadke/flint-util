@@ -1,8 +1,20 @@
-/**
-** Creation Date: 3rd Oct 2018
-** Summary: This is Azure Create Resource Group Flintbit.
-** Description: This flintbit is developed to create resource group in azure after receiving request from Serviceaide.
-**/
+/*
+ *
+ * INFIVERVE TECHNOLOGIES PTE LIMITED CONFIDENTIAL
+ * _______________________________________________
+ *
+ *  (C) INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE
+ *  All Rights Reserved.
+ *  Product / Project: Flint IT Automation Platform
+ *  NOTICE:  All information contained herein is, and remains
+ *  the property of INFIVERVE TECHNOLOGIES PTE LIMITED.
+ *  The intellectual and technical concepts contained
+ *  herein are proprietary to INFIVERVE TECHNOLOGIES PTE LIMITED.
+ *  Dissemination of this information or any form of reproduction of this material
+ *  is strictly forbidden unless prior written permission is obtained
+ *  from INFIVERVE TECHNOLOGIES PTE LIMITED, SINGAPORE.
+*/
+
 log.trace("Started executing 'fb-cloud:azure:operation:create_resource_group.rb' flintbit...")
 try {
     // Flintbit Input Parameters
